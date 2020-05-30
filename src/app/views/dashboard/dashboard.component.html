@@ -1,0 +1,88 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      <i class="fas fa-chevron-right pr-2"></i>Organizations</li>
+  </ol>
+</nav>
+<div class="d-flex align-items-start">
+  <div class="page-header">
+    <h3>Dashboard</h3>
+  </div>
+</div>
+
+<div class="admin__dashboard">
+  <div class="card admin__dashboard__card">
+    <div class="card-body">
+      <span class="admin__dashboard__card_item_vol">
+        {{dashboradKPIs?.organisation}}
+      </span>
+      <span class="admin__dashboard__card_item_desc">
+        Organizations
+      </span>
+    </div>
+  </div>
+  <div class="card admin__dashboard__card">
+    <div class="card-body">
+      <span class="admin__dashboard__card_item_vol">
+        {{dashboradKPIs?.user}}
+      </span>
+      <span class="admin__dashboard__card_item_desc">
+        Users
+      </span>
+    </div>
+  </div>
+  <div class="card admin__dashboard__card">
+    <div class="card-body">
+      <span class="admin__dashboard__card_item_vol">
+        {{dashboradKPIs?.dataSet}}
+      </span>
+      <span class="admin__dashboard__card_item_desc">
+        Data Sources
+      </span>
+    </div>
+  </div>
+  <div class="card admin__dashboard__card">
+    <div class="card-body">
+      <span class="admin__dashboard__card_item_vol">
+        {{dashboradKPIs?.businessUnit}}
+      </span>
+      <span class="admin__dashboard__card_item_desc">
+        Business Units
+      </span>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="page-header mb-0">
+    <h3>List of Organizations</h3>
+  </div>
+  <a [routerLink]="['/organisation/add']" class="btn btn-primary">+ ADD</a>
+</div>
+<div class="admin__organisation">
+  <div class="card admin__organisation__card" *ngFor="let org of dashboardOrgs">
+    <div class="card-body">
+      <h5 [id]="org?.orgName" class="card-title">{{org?.orgName}}</h5>
+      <h6 class="card-subtitle">Active Since</h6>
+      <p class="admin__organisation__card_subtitle">{{org?.activeFromdate | date:'dd MMMM yyyy'}}</p>
+
+      <!-- <a href="javascript:;" (click)="onOrgEdit(org?.orgId)" class="card-link">edit</a>
+        <a href="javascript:;" (click)="onOrgManageUser(org?.orgId,org?.orgName)" class="card-link">manage user</a>
+        <a href="javascript:;" (click)="onDataIngestion(org?.orgId)" class="card-link">data ingestion</a> -->
+
+      <a href="javascript:;" (click)="onOrgEdit(org?.orgId)" class="card-link edit-org"><i
+          class="far fa-edit mr-2 manage-user__edit"></i>Edit</a>
+
+      <a [id]="org?.orgName +'_01'" href="javascript:;" (click)="showDashBoard(org?.orgId)"
+        class="card-link">Show organisation pages</a>
+
+      <span *ngIf="OrgStatus.Draft===org.statusId" class="badge badge-warning admin__organisation__status">Draft</span>
+      <span *ngIf="OrgStatus.Approved===org.statusId"
+        class="badge badge-primary admin__organisation__status">Approved</span>
+      <span *ngIf="OrgStatus.Published===org.statusId"
+        class="badge badge-success admin__organisation__status">Published</span>
+      <span *ngIf="OrgStatus.Unpublished===org.statusId"
+        class="badge badge-info admin__organisation__status">UnPublished</span>
+    </div>
+  </div>
+</div>

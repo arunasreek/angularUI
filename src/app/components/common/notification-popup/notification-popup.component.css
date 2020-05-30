@@ -1,0 +1,21 @@
+.notification-popup-box {
+  display: none;
+  background: lightblue;
+  width: 300px;
+  margin-left: -150px;
+  height: 100px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+}
+.notification-popup-box-text {
+  height: 80px;
+  padding-top: 10px;
+}
+.notification-popup-box-dismiss {
+  height: 20px;
+  width: 300px;
+}
+.notification-popup-box-shown {
+  display: block;
+}

@@ -1,0 +1,34 @@
+<!-- <div class="card">
+  <div class="card-header p-1" (click)="toggle.emit()">
+    <ng-content select="[group-header]"></ng-content>
+  </div>
+  <div class="card-body" [ngClass]="{'d-none': !opened}">
+    <ng-content select="[group-body]"></ng-content>
+  </div>
+  <div> -->
+
+<div class="card">
+  <div class="card-header p-0">
+    <ng-content select="[group-header]"></ng-content>
+  </div>
+  <!-- [ngClass]="{'show':tabIndex==0}" -->
+  
+  <div [id]="'collapse'+tabIndex" [ngClass]="(lastItem)?'card-body collapse show':'card-body collapse'" data-parent="#accordion"
+    role="tabpanel" [attr.aria-labelledby]="'heading'+tabIndex">
+    <ng-content select="[group-body]"></ng-content>
+  </div>
+  <!-- 
+  <div class="panel-heading" role="tab" [id]="'heading'+tabIndex">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" [href]="'#collapse'+tabIndex"
+          aria-expanded="true" [attr.aria-controls]="'collapse'+tabIndex">
+          <ng-content select="[group-header]"></ng-content>
+        </a>
+      </h4>
+    </div>
+    <div [id]="'collapse'+tabIndex" class="panel-collapse collapse" [ngClass]="{'in':tabIndex==0}" role="tabpanel"
+      [attr.aria-labelledby]="'heading'+tabIndex">
+      <div class="panel-body">
+        <ng-content select="[group-body]"></ng-content>
+      </div>
+    </div> -->

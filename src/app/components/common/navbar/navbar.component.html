@@ -1,0 +1,105 @@
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a routerLink="/user/dashboard" routerLinkActive="active" class="nav-link sidebar__link" href="/user/dashboard">
+      <span class="sidebar__link__icon">
+        <img src="assets/img/home.png" alt="home icon" />
+      </span>
+      <span class="sidebar__link__text">Home</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a routerLink="/data-ingestion" routerLinkActive="active" class="nav-link sidebar__link" href="/data-ingestion">
+      <span class="sidebar__link__icon">
+        <img src="assets/img/upload.png" alt="upload icon" />
+      </span>
+      <span class="sidebar__link__text">Data Ingestion</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link sidebar__link" routerLinkActive="active" [routerLink]="['/approvals']">
+      <span class="sidebar__link__icon">
+        <img src="assets/img/data-approval.png" alt="data approval icon" />
+      </span>
+      <span class="sidebar__link__text">Approval</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link sidebar__link" href="/process">
+      <span class="sidebar__link__icon">
+        <img src="assets/img/process-update.png" alt="process update icon" />
+      </span>
+      <span class="sidebar__link__text">Process Update</span>
+    </a>
+  </li>
+  <li class="nav-item dropright">
+    <a class="nav-link sidebar__link sidebar__link__dropdown dropdown-toggle" id="dashboardMenu" href="javascript:;"
+      role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sidebar__link__icon">
+        <img src="assets/img/dashboard.png" alt="dashboard icon">
+      </span>
+      <span class="sidebar__link__text">Dashboards</span>
+    </a>
+    <!-- <ul class="sidebar__aside__nav dropdown-menu" aria-labelledby="dashboardMenu" x-placement="right-start"
+      style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(225px, 0px, 0px);">
+      <a class="sidebar__aside__link dropdown-item" routerLinkActive="active"
+        [routerLink]="['/dashboard/executive/'+DashboardItem.Executive_Dashboard]">Executive
+        Dashboard</a>
+      <a class="sidebar__aside__link dropdown-item" routerLinkActive="active"
+        [routerLink]="['/dashboard/media/'+DashboardItem.Media_Effectiveness]">Media Effectiveness</a>
+      <a class="sidebar__aside__link dropdown-item" routerLinkActive="active"
+        [routerLink]="['/dashboard/trend/'+DashboardItem.Trend_Analysis]">Trend Analysis</a>
+      <a class="sidebar__aside__link dropdown-item" routerLinkActive="active"
+        [routerLink]="['/dashboard/volume/'+DashboardItem.Volume_Contribution]">Volume Contribution</a>
+      <a class="sidebar__aside__link dropdown-item" routerLinkActive="active"
+        [routerLink]="['/dashboard/data-Summary/'+DashboardItem.Data_Summary]">Data Summary</a>
+    </ul> -->
+    <ul *ngIf="userDashBoardList" class="sidebar__aside__nav dropdown-menu" aria-labelledby="dashboardMenu"
+      x-placement="right-start"
+      style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(225px, 0px, 0px);">
+
+      <a *ngFor="let item of userDashBoardList" class="sidebar__aside__link dropdown-item" routerLinkActive="active"
+        [routerLink]="['/dashboard/media/'+item.dashboardId]">{{item.dashboardName}}</a>
+
+    </ul>
+
+  </li>
+  <li class="nav-item">
+    <a class="nav-link sidebar__link" href="javascript:;">
+      <span class="sidebar__link__icon">
+        <img src="assets/img/simulator.png" alt="simulator icon">
+      </span>
+      <span class="sidebar__link__text">Media Simulator</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link sidebar__link" href="javascript:;">
+      <span class="sidebar__link__icon">
+        <img src="assets/img/cube.png" alt="cube icon">
+      </span>
+      <span class="sidebar__link__text">Data Cube</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a routerLink="/users" routerLinkActive="active" class="nav-link sidebar__link" href="/users">
+      <span class="sidebar__link__icon">
+        <img src="assets/img/manage-users.png" alt="manage users icon" />
+      </span>
+      <span class="sidebar__link__text">Manage Users</span>
+    </a>
+  </li>
+  <li class="nav-item dropright">
+    <a class="nav-link sidebar__link sidebar__link__dropdown dropdown-toggle" href="javascript:;" role="button"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sidebar__link__icon">
+        <img src="assets/img/manage-users.png" alt="manage users icon">
+      </span>
+      <span class="sidebar__link__text">Admin Settings</span>
+    </a>
+    <div class="sidebar__aside__nav dropdown-menu">
+      <a class="sidebar__aside__link dropdown-item" href="#" role="button" data-toggle="modal"
+        data-target="#superAdminAccessModal">Give SuperAdmin Access</a>
+      <a class="sidebar__aside__link dropdown-item" routerLinkActive="active"
+        [routerLink]="['/admin/managerole']">Create Role</a>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,11 @@
+<ngx-loading-bar color="#F7931E" height="1.5px" includeSpinner="false"></ngx-loading-bar>
+<app-topbar [user]="currentUser" *ngIf="currentUser"></app-topbar>
+<div class="content">
+  <app-navbar  *ngIf="isNavbarShow && currentUser" ngClass="{sidebar sidebar sidebar__open}"></app-navbar>
+  <div class="container-fluid">
+    <app-alert></app-alert>
+    <router-outlet></router-outlet>
+    <!-- <app-notification-popup [notification$]="notificationStream$"></app-notification-popup> -->
+  </div>
+</div>
+<app-footer *ngIf="currentUser"></app-footer>

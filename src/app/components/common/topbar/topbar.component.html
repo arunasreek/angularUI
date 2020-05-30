@@ -1,0 +1,113 @@
+<header class="navbar fixed-top navbar-light bg-white">
+  <div class="float-left">
+    <button *ngIf="!IsSuperAdmin" class="btn sidebar__toggle__btn toggle mr-3 float-left"
+      (click)="onSidebarToggleClick()">
+      <svg width="20" height="12" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <path d="M0 10v2h20v-2H0zm0-5v2h20V5H0zm0-5v2h20V0H0z" id="a" />
+        </defs>
+        <g fill="none" fill-rule="evenodd">
+          <mask id="b" fill="#fff">
+            <use xlink:href="#a" />
+          </mask>
+          <g mask="url(#b)">
+            <path d="M-15-19h50v50h-50z" fill="#000" />
+          </g>
+        </g>
+      </svg>
+    </button>
+    <a class="navbar-brand im-logo float-left" [href]="!IsSuperAdmin ? '/user/dashboard' : '/'" aria-label="Bootstrap">
+      <img src="assets/img/intell-mix-logo.png" alt="intell mix logo">
+    </a>
+  </div>
+  <div class="float-right">
+    <div class="float-left customer-logo-block">
+      <img src="assets/img/clorox-logo.png" alt="customer logo" />
+    </div>
+    <div class="float-left notif-block">
+      <ul class="notif-dropdown-list">
+        <li class="nav-item dropdown">
+          <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-bell"></i>
+            <span class="notif-ticker">{{pushUserNotificationCount}}</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="">
+              <li class="head text-light bg-dark">
+                <div class="">
+                  <span>Notifications</span>
+                </div>
+              </li>
+              <li class="notification-box bg-gray description-notif" *ngFor="let item of pushUserNotificationAggregates"
+                [class]="!item.isSeen? 'notification-box bg-gray link-notif':'notification-box link-notif'">
+                <a href="javascript:;" (click)="updateNotification(item.notificationId)"
+                  class="notif-link col-12">
+                  <p class="filetype-name">{{item.fileTypeName}}</p>
+                  <p *ngIf="item.organisationId!==0" [class]="!item.remark?'notif-desc':'notif-desc text-danger'">
+                    <span>Status:</span>
+                    <strong>{{item.remark?  'Rejected':item.processStateId===ProcessState.FileUpload? 'File upload
+                    completed':item.processStateId===ProcessState.FileApproval? 'File approved':
+                    item.processStateId===ProcessState.DataPreperation?'DataPreperation completed':
+                    item.processStateId===ProcessState.Reports?'Reports completed':''}}</strong></p>
+
+                  <p *ngIf="item.organisationId===0" class="notif-desc">{{item.remark}}</p>
+
+                  <div *ngIf="item.remark && item.organisationId!==0" class="notif-desc text-danger">
+                    {{item.remark}}
+                  </div>
+                  <small class="timestamp">{{item.createdDate}}</small>
+                </a>
+              </li>
+              <!-- notification without a link -->
+              <!-- <li class="notification-box bg-gray description-notif">
+                <a href="#" class="notif-link col-12">
+                  <p class="notif-desc">
+                    Your superadmin access is granted by Clorox admin
+                  </p>
+                  <small class="timestamp">27.11.2015, 15:00</small>
+                </a>
+              </li> -->
+              <!-- toggle bg-gray class for read/unread notif -->
+              <!-- <li class="notification-box bg-gray">
+                <div class="col-12">
+                  <strong class="text-info">Data Preparations step is rejected</strong>
+                  <div>
+                    Description goes here
+                  </div>
+                  <small class="">27.11.2015, 15:00</small>
+                </div>
+              </li>
+              <li class="notification-box">
+                <div class="col-12">
+                  <strong class="text-info">You superadmin access is granted by Clorox admin</strong>
+                  <div>
+                    Description goes here
+                  </div>
+                  <small class="">27.11.2015, 15:00</small>
+                </div>
+              </li> -->
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="float-right header-right logout-block">
+      <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split" href="#" role="button" id="dropdownMenuLink"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+          <p class="user-name text-truncate">Hello, {{currentUser.name}}!</p>
+          <span class="user-profile-icon"></span>
+          <span class="caret"></span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a href="javascript:;" (click)="onProfileEdit(currentUser?.orgId,currentUser?.userId)"
+            class="dropdown-item">Profile</a>
+          <a class="dropdown-item" href="#" (click)="logout()">Sign Out</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>

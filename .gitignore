@@ -1,38 +1,46 @@
-// System / Log files 
-*.DS_Store
-*.log
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-// Archives
-*.zip
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
 
-// Sass Cache
-.sass-cache
+# dependencies
+/node_modules
 
-// Project files
-.idea
-nbproject
-nbproject/private
-.vscode/
-.vs/
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
 
-// Node / Bower
-node_modules/
-bower_components/
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-// Plugins
-/plugins/*/*.md
-/plugins/*/*.html
-/plugins/*/package.json
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
 
-// Docs
-Gemfile.lock
-docs/_site
-docs_html/
-.jekyll-cache/
-.jekyll-metadata
-
-// ETC
-TODO
-test.html
-ad.js
+# System Files
+.DS_Store
+Thumbs.db
