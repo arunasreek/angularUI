@@ -1,61 +1,73 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// Cookies localStorage 
-import { CookieService } from 'ngx-cookie-service';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
-// for HttpClient import:
-import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
-// for Router import:
-import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
-
-// for Core import:
-import { LoadingBarModule } from '@ngx-loading-bar/core';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// component module
-import { ComponentsModule } from './components/component.module';
+// Import containers
+import { DefaultLayoutComponent } from './containers';
 
-//views module
-import { ViewsModule } from './views/views.module';
+import { P404Component } from './views/error/404.component';
+import { P500Component } from './views/error/500.component';
+import { LoginComponent } from './views/login/login.component';
+import { RegisterComponent } from './views/register/register.component';
 
-//services module
-import { ServicesModule } from './services/services.module';
+const APP_CONTAINERS = [
+  DefaultLayoutComponent
+];
 
-//helpers module
-import { HelpersModule } from './helpers/helpers.module';
+import {
+  AppAsideModule,
+  AppBreadcrumbModule,
+  AppHeaderModule,
+  AppFooterModule,
+  AppSidebarModule,
+} from '@coreui/angular';
 
-//config module
-import { AppConfigModule, AppConfig } from './config/app.config.module';
+// Import routing module
+import { AppRoutingModule } from './app.routing';
 
-import { NotificationPopupComponent } from './components/common/notification-popup/notification-popup.component';
-
+// Import 3rd party components
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotificationPopupComponent
-  ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ComponentsModule,
-    ViewsModule,
-    ServicesModule,
-    HelpersModule,
-    AppConfigModule,
     BrowserAnimationsModule,
-    LoadingBarHttpClientModule,
-    LoadingBarRouterModule,
-    LoadingBarModule
+    AppRoutingModule,
+    AppAsideModule,
+    AppBreadcrumbModule.forRoot(),
+    AppFooterModule,
+    AppHeaderModule,
+    AppSidebarModule,
+    PerfectScrollbarModule,
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ChartsModule
   ],
-  providers: [AppConfig,CookieService],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    ...APP_CONTAINERS,
+    P404Component,
+    P500Component,
+    LoginComponent,
+    RegisterComponent
+  ],
+  providers: [{
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  }],
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { } 
+export class AppModule { }
