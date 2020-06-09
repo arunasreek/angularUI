@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,6 +21,8 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+//services module
+import { ServicesModule } from './services/services.module';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -40,11 +43,13 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
+import {AppConfigModule, AppConfig } from './config/app.config.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     AppAsideModule,
     AppBreadcrumbModule.forRoot(),
@@ -54,7 +59,9 @@ import { ChartsModule } from 'ng2-charts';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    ServicesModule,
+    AppConfigModule
   ],
   declarations: [
     AppComponent,
@@ -64,10 +71,7 @@ import { ChartsModule } from 'ng2-charts';
     LoginComponent,
     RegisterComponent
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+  providers: [AppConfig],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

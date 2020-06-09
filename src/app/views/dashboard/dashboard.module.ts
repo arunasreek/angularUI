@@ -6,6 +6,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { Router } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -17,4 +18,12 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
   ],
   declarations: [ DashboardComponent ]
 })
-export class DashboardModule { }
+export class DashboardModule {
+  constructor(
+    private router: Router
+) { }
+
+  ngOnInit() {
+  
+    }
+ }

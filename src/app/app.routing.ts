@@ -8,26 +8,15 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { AuthGuard } from './guards/auth.guards';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
-  },
-  {
-    path: '404',
-    component: P404Component,
-    data: {
-      title: 'Page 404'
-    }
-  },
-  {
-    path: '500',
-    component: P500Component,
-    data: {
-      title: 'Page 500'
-    }
   },
   {
     path: 'login',
@@ -89,6 +78,9 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [
+    { provide: LocationStrategy, useClass: PathLocationStrategy }
+  ]
 })
 export class AppRoutingModule {}
