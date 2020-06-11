@@ -15,7 +15,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {

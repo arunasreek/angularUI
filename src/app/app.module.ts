@@ -24,6 +24,11 @@ import { RegisterComponent } from './views/register/register.component';
 //services module
 import { ServicesModule } from './services/services.module';
 
+import { LoadingBarHttpModule } from '@ngx-loading-bar/http';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+
+
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
@@ -44,6 +49,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import {AppConfigModule, AppConfig } from './config/app.config.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   imports: [
@@ -61,7 +69,14 @@ import {AppConfigModule, AppConfig } from './config/app.config.module';
     TabsModule.forRoot(),
     ChartsModule,
     ServicesModule,
-    AppConfigModule
+    AppConfigModule,
+    FormsModule,
+    ToastrModule.forRoot(),
+    LoadingBarHttpModule,
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,

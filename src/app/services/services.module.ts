@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import {
    
     AuthenticationService,
-    AlertService
+    AlertService,
+    UsersService
 
 } from './'
 
 @NgModule({
     providers: [
         AuthenticationService,
-        AlertService
+        AlertService,
+        UsersService
     ]
 })
 

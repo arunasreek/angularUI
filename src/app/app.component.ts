@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { LoadingBarService } from '@ngx-loading-bar/core';
+
 
 @Component({
   // tslint:disable-next-line
   selector: 'body',
-  template: '<router-outlet></router-outlet>'
+  template: '	<ngx-loading-bar></ngx-loading-bar>  <router-outlet></router-outlet>'
 })
 export class AppComponent implements OnInit {
   constructor(private router: Router) { }

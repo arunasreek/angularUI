@@ -10,9 +10,13 @@ import { Router } from '@angular/router';
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public navItems = navItems;
+  customerName:string;
 
   constructor(private authenticationService: AuthenticationService, private router: Router,){
 
+  }
+  ngOnInit(){
+    this.customerName=this.authenticationService.currentUserValue.email
   }
 
   toggleMinimize(e) {

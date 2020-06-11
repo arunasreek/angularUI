@@ -11,4 +11,5 @@ export interface IToken {
     userId: string;
     error_description: string;
     orgName: string;
+    email:string;
 }

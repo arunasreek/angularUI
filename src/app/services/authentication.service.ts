@@ -21,7 +21,6 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        alert(this.config.apiEndpoint);
         let body = `UserName=${username}&Password=${password}&grant_type=password`;
         let headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
         return this.http.post<any>(`${this.config.apiEndpoint}/token`, body, { headers: headers })
