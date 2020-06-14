@@ -1,130 +1,441 @@
-<div class="animated fadeIn">
-  <div class="card-columns cols-2">
-    <div class="card">
-      <div class="card-header">
-        Line Chart
-        <div class="card-header-actions">
-          <a href="http://www.chartjs.org">
-            <small class="text-muted">docs</small>
-          </a>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <canvas baseChart class="chart"
-          [datasets]="lineChartData"
-          [labels]="lineChartLabels"
-          [options]="lineChartOptions"
-          [colors]="lineChartColours"
-          [legend]="lineChartLegend"
-          [chartType]="lineChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        Bar Chart
-        <div class="card-header-actions">
-          <a href="http://www.chartjs.org">
-            <small class="text-muted">docs</small>
-          </a>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <canvas baseChart class="chart"
-          [datasets]="barChartData"
-          [labels]="barChartLabels"
-          [options]="barChartOptions"
-          [legend]="barChartLegend"
-          [chartType]="barChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        Doughnut Chart
-        <div class="card-header-actions">
-          <a href="http://www.chartjs.org">
-            <small class="text-muted">docs</small>
-          </a>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <canvas baseChart class="chart"
-          [data]="doughnutChartData"
-          [labels]="doughnutChartLabels"
-          [chartType]="doughnutChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        Radar Chart
-        <div class="card-header-actions">
-          <a href="http://www.chartjs.org">
-            <small class="text-muted">docs</small>
-          </a>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <canvas baseChart class="chart"
-          [datasets]="radarChartData"
-          [labels]="radarChartLabels"
-          [chartType]="radarChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        Pie Chart
-        <div class="card-header-actions">
-          <a href="http://www.chartjs.org">
-            <small class="text-muted">docs</small>
-          </a>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <canvas baseChart class="chart"
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        Polar Area Chart
-        <div class="card-header-actions">
-          <a href="http://www.chartjs.org">
-            <small class="text-muted">docs</small>
-          </a>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="chart-wrapper">
-          <canvas baseChart class="chart"
-          [data]="polarAreaChartData"
-          [labels]="polarAreaChartLabels"
-          [legend]="polarAreaLegend"
-          [chartType]="polarAreaChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="row">
+  <div class="col-lg-12">
+  <div class="card">
+  <div class="card-header"> Enterprise Details</div>
+  <div class="card-body">
+      <tabset class="tab-container"><ul  class="nav nav-tabs" role="tablist" ng-reflect-klass="nav" ng-reflect-ng-class="[object Object]" aria-label="Tabs">
+<!--bindings={
+"ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><li  class="nav-item active" ng-reflect-ng-class="nav-item,">
+  <a  class="nav-link active" href="javascript:void(0);" role="tab" aria-controls="" aria-selected="true" id="">
+    <span >Enterprise List</span>
+    <!--bindings={}-->
+  </a>
+</li><li  class="nav-item" ng-reflect-ng-class="nav-item,">
+  <a  class="nav-link" href="javascript:void(0);" role="tab" aria-controls="" aria-selected="false" id="">
+    <span >Primary Details</span>
+    <!--bindings={}-->
+  </a>
+</li><li  class="nav-item" ng-reflect-ng-class="nav-item,">
+  <a  class="nav-link" href="javascript:void(0);" role="tab" aria-controls="" aria-selected="false" id="">
+    <span >Logo &amp; Banner</span>
+    <!--bindings={}-->
+  </a>
+</li><li  class="nav-item" ng-reflect-ng-class="nav-item,">
+  <a  class="nav-link" href="javascript:void(0);" role="tab" aria-controls="" aria-selected="false" id="">
+    <span >Database Connection Settings</span>
+    <!--bindings={}-->
+  </a>
+</li><li  class="nav-item" ng-reflect-ng-class="nav-item,">
+  <a  class="nav-link" href="javascript:void(0);" role="tab" aria-controls="" aria-selected="false" id="">
+    <span >Financial Settings</span>
+    <!--bindings={}-->
+  </a>
+</li><li  class="nav-item" ng-reflect-ng-class="nav-item,">
+  <a  class="nav-link" href="javascript:void(0);" role="tab" aria-controls="" aria-selected="false" id="">
+    <span >Other Details</span>
+    <!--bindings={}-->
+  </a>
+</li>
+</ul>
+<div  class="tab-content">
+
+          <tab heading="Enterprise List" ng-reflect-heading="Enterprise List" class="active tab-pane" role="tabpanel" aria-labelledby="">
+                  <div class="row">
+                    <div class="col-12">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Enterprise ID</th>
+                            <th scope="col">Enterprise Name</th>
+                            <th scope="col">Parent Enterprise</th>
+                            <th scope="col">Date Of Inception</th>
+                            <th scope="col">Date Of Expiry Date</th>
+                            <th scope="col">Functional Currency</th>
+                            <th scope="col">Financial year</th>
+                            <th scope="col">Actions</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Bootstrap Flexbox </td>
+                            <td>Cristina</td>
+                            <td>1.234</td>
+                            <td>1.234</td>
+                            <td>1.234</td>
+                            <td>1.234</td>
+                            <td>
+                              <button class="btn btn-primary" type="button"><i class="icon-eye"></i></button>
+                              <button class="btn btn-success" type="button"> <i class="icon-pencil"></i></button>
+                            <button class="btn btn-danger" type="button"><i class="icon-trash"></i></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+            
+          </tab>
+          <tab heading="Primary Details" ng-reflect-heading="Primary Details" class="tab-pane" role="tabpanel" aria-labelledby="">
+              <div class="row">
+                  <div class="form-group col-sm-3">
+                  <label for="ccmonth">Enterprise ID</label>
+                  <input class="form-control" id="cvv" placeholder="123" type="text">
+                  </div>
+                  <div class="form-group col-sm-3">
+                  <label for="ccyear">Enterprise Name</label>
+                  <input class="form-control" id="cvv" placeholder="123" type="text">
+                  </div>
+                  <div class="form-group col-sm-3">
+                      <label for="ccyear">Parent Enterprise</label>
+                      <input class="form-control" id="cvv" placeholder="123" type="text">
+                      </div>
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                  <label for="cvv">Permanent Registration</label>
+                  <input class="form-control" id="cvv" placeholder="123" type="text">
+                  </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-sm-3">
+                      <label for="ccmonth">Date Of Inception</label>
+                      <input class="form-control" id="cvv" placeholder="123" type="text">
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="ccyear">Date Of Expiry</label>
+                      <input class="form-control" id="cvv" placeholder="123" type="text">
+                      </div>
+                      <div class="form-group col-sm-3">
+                          <label for="ccyear">Standard1</label>
+                          <input class="form-control" id="cvv" placeholder="123" type="text">
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="ccyear">Standard2</label>
+                              <input class="form-control" id="cvv" placeholder="123" type="text">
+                              </div>
+                      </div>
+                      <div class="card-footer">
+                          <button class="btn  btn-primary" type="submit">Save</button>
+                          <button class="btn btn-secondary" type="button">Cancel</button>
+                       
+                          </div>
+          </tab>
+          <tab heading="Logo &amp; Banner" ng-reflect-heading="Logo &amp; Banner" class="tab-pane" role="tabpanel" aria-labelledby="">
+              <div class="row">
+                  <div class="form-group col-sm-3">
+                  <label for="ccmonth">Enterprise Id</label>
+                  <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                  </div>
+                  <div class="form-group col-sm-3">
+                  <label for="ccyear">Upload Enterprise Banner</label>
+                  <input type="file">
+                  </div>
+                  <div class="form-group col-sm-3">
+                      <label for="ccyear">Upload Enterprise Logo</label>
+                      <input type="file">
+                      </div>
+                    
+                  </div>
+                  <div class="card-footer">
+                      <button class="btn  btn-primary" type="submit">Upload</button>                     
+                      </div>
+          </tab>
+      
+            <tab heading="Database Connection Settings" ng-reflect-heading="Database Connection Settings" class="tab-pane" role="tabpanel" aria-labelledby="">
+              <div class="row">
+                  <div class="form-group col-sm-3">
+                  <label for="ccmonth">Database Location</label>
+                  <input type="file">
+                  </div>
+                  <div class="form-group col-sm-3">
+                  <label for="ccyear">Application Location</label>
+                  <input type="file">
+                  </div>
+                  <div class="form-group col-sm-3">
+                      <label for="ccyear">Backup Location</label>
+                      <input type="file">
+                      </div>
+                      <div class="form-group col-sm-3">
+                          <label for="ccyear">Mail Server ID Location</label>
+                          <input type="file">
+                          </div>
+                  </div>
+                  <div class="card-footer">
+                      <button class="btn  btn-primary" type="submit">Upload</button>                     
+                      </div>
+            </tab>
+            <tab heading="Financial Settings" ng-reflect-heading="Financial Settings" class="tab-pane" role="tabpanel" aria-labelledby="">
+              <div class="row">
+                  <div class="form-group col-sm-3">
+                  <label for="ccmonth">Functional Currency</label>
+                  <select class="form-control" required="">
+                      <option value="Select">Select</option>
+                      <option value="USD">USD</option>
+                      <option value="INR">INR</option>
+                      <option value="EURO">EURO</option>
+                      <option value="AED">AED</option>
+                      <option value="AUD">AUD</option>
+                  </select>
+                  </div>
+                  <div class="form-group col-sm-3">
+                  <label for="ccyear">Financial Year Start Date*</label>
+                  <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                  </div>
+                  <div class="form-group col-sm-3">
+                      <label for="ccyear">Financial Year End Date*</label>
+                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                      </div>
+                      <div class="form-group col-sm-3">
+                          <label for="ccyear">Pay Period Type*</label>
+                          <select class="form-control" required="">
+                              <option value="Select Option">Select Option</option>
+                              <option value="Quarterly">Quarterly</option>
+                              <option value="Monthly">Monthly</option>
+                              <option value="Bi - Weekly">Bi - Weekly</option>
+                              <option value="Weekly">Weekly</option>
+
+                          </select>
+                          </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-sm-3">
+                      <label for="ccmonth">Employer Tax No*</label>
+                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="ccyear">Employer PAN Card No*</label>
+                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                      </div>
+                      <div class="form-group col-sm-3">
+                          <label for="ccyear">Employer DIN No*</label>
+                          <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="ccyear">Employer BIN No*</label>
+                              <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                              </div>
+                      </div>
+                  <div class="card-footer">
+                      <button class="btn  btn-primary" type="submit">Submit</button>                     
+                      </div>
+            </tab>
+            <tab heading="Other Details" ng-reflect-heading="Other Details" class="tab-pane" role="tabpanel" aria-labelledby="">
+              <div class="row">
+                  <div class="form-group col-sm-12">
+                  <label for="ccmonth">Select Enterprise Id</label>
+                  <select aria-controls="example1" class="form-control input-sm ng-pristine ng-valid ng-empty ng-touched" id="Enterpiseid" name="Enterpiseid" ng-model="Enterpiseid">
+                  
+                  </select>                        
+                  </div>                    
+              </div>
+              <div class="row">
+                  <div class="form-group col-sm-12">
+                      <div class="accordion" id="accordion" role="tablist">
+                          <div class="card mb-0">
+                          <div class="card-header" id="headingOne" role="tab">
+                          <h5 class="mb-0">
+                              <a aria-controls="isAddressCollapsed" class="" data-toggle="collapse" aria-expanded="true">Address</a></h5>
+                          </div>
+                          <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordion" id="isAddressCollapsed" role="tabpanel" style="" ng-reflect-collapsed="false">
+                          <div class="card-body">
+                              <div class="row">
+                                  <div class="form-group col-sm-3">
+                                  <label for="ccmonth">Country</label>
+                                  <select class="form-control" id="Enterpiseid" name="Enterpiseid" ng-model="Enterpiseid">
+                  
+                                  </select>       
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                  <label for="ccyear">State</label>
+                                  <select class="form-control" id="Enterpiseid" name="Enterpiseid" ng-model="Enterpiseid">
+                  
+                                  </select>       
+                                  </div>
+                                  <div class="form-group col-sm-3">
+                                      <label for="ccyear">City</label>
+                                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                      </div>
+                                      <div class="form-group col-sm-3">
+                                          <label for="ccyear">Address 1</label>
+                                          <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                          </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="form-group col-sm-3">
+                                      <label for="ccmonth">Address 2</label>
+                                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                      </div>
+                                      <div class="form-group col-sm-3">
+                                      <label for="ccyear">Post Box</label>
+                                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text"> 
+                                      </div>
+                                      <div class="form-group col-sm-3">
+                                          <label for="ccyear">Zip Code</label>
+                                          <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                          </div>
+                                          <div class="form-group col-sm-3">
+                                              <label for="ccyear">Land Line*</label>
+                                              <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                              </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="form-group col-sm-3">
+                                          <label for="ccmonth">Fax</label>
+                                          <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                          </div>
+                                          <div class="form-group col-sm-3">
+                                          <label for="ccyear">Email Address</label>
+                                          <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text"> 
+                                          </div>
+                                          <div class="form-group col-sm-3">
+                                              <label for="ccyear">Website</label>
+                                              <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                              </div>
+                                          </div>
+                         </div>
+                          </div>
+                          </div>
+                          <div class="card mb-0">
+                              <div class="card-header" id="headingOne" role="tab">
+                              <h5 class="mb-0">
+                                  <a aria-controls="isAuthorizedCollapsed" class="" data-toggle="collapse" aria-expanded="true">Authorized Representative</a></h5>
+                              </div>
+                              <div aria-labelledby="headingOne" class="collapsed collapse show" data-parent="#accordion" id="isAuthorizedCollapsed" role="tabpanel" style="" ng-reflect-collapsed="false">
+                              <div class="card-body">
+                                  <div class="row">
+                                      <div class="form-group col-sm-3">
+                                      <label for="ccmonth">Employee ID</label>
+                                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                      </div>
+                                      <div class="form-group col-sm-3">
+                                      <label for="ccyear">First Name</label>
+                                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text"> 
+                                      </div>
+                                      <div class="form-group col-sm-3">
+                                          <label for="ccyear">Middle Name</label>
+                                          <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                          </div>
+                                          <div class="form-group col-sm-3">
+                                              <label for="ccyear">Last Name</label>
+                                              <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                              </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="form-group col-sm-3">
+                                          <label for="ccmonth">Email Address</label>
+                                          <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                          </div>
+                                          <div class="form-group col-sm-3">
+                                          <label for="ccyear">Designation</label>
+                                          <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text"> 
+                                          </div>
+                                          <div class="form-group col-sm-3">
+                                              <label for="ccyear">Phone</label>
+                                              <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                              </div>
+                                              <div class="form-group col-sm-3">
+                                                  <label for="ccyear">Fax</label>
+                                                  <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                                  </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="form-group col-sm-3">
+                                              <label for="ccmonth">Mobile No</label>
+                                              <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                              </div>
+                                              <div class="form-group col-md-3">
+                                                  <label> Preferred Contact Mode</label>
+                                                  <br>
+
+                                                  <input class="ng-pristine ng-untouched ng-valid ng-empty" name="A_m_Email" ng-model="A_m_Email" type="checkbox" value="Email"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" style="font-size:18px;" title="Email Address"></i>
+                                                  &nbsp;&nbsp;&nbsp;  <input class="ng-pristine ng-untouched ng-valid ng-empty" name="A_m_Email" type="checkbox" value="Telephone"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" style="font-size:23px;" title="Telephone No"></i>
+                                                  &nbsp;&nbsp;&nbsp;  <input class="ng-pristine ng-untouched ng-valid ng-empty" name="A_m_Email" type="checkbox" value="Mobile"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" style="font-size:23px;" title="Mobile No"></i>
+
+                                              </div>
+                                              </div>
+                              </div>
+                              </div>
+                              </div>
+
+                              <div class="card mb-0">
+                                  <div class="card-header" id="headingOne" role="tab">
+                                  <h5 class="mb-0">
+                                      <a aria-controls="isOfficeCollapsed" class="" data-toggle="collapse" aria-expanded="true"> Office Contact Person</a></h5>
+                                  </div>
+                                  <div aria-labelledby="headingOne" class="collapsed collapse show" data-parent="#accordion" id="isOfficeCollapsed" role="tabpanel" style="" ng-reflect-collapsed="false">
+                                      <div class="card-body">
+                                          <div class="row">
+                                              <div class="form-group col-sm-3">
+                                              <label for="ccmonth">Employee ID</label>
+                                              <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                              </div>
+                                              <div class="form-group col-sm-3">
+                                              <label for="ccyear">First Name</label>
+                                              <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text"> 
+                                              </div>
+                                              <div class="form-group col-sm-3">
+                                                  <label for="ccyear">Middle Name</label>
+                                                  <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                                  </div>
+                                                  <div class="form-group col-sm-3">
+                                                      <label for="ccyear">Last Name</label>
+                                                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                                      </div>
+                                              </div>
+                                              <div class="row">
+                                                  <div class="form-group col-sm-3">
+                                                  <label for="ccmonth">Email Address</label>
+                                                  <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                                  </div>
+                                                  <div class="form-group col-sm-3">
+                                                  <label for="ccyear">Designation</label>
+                                                  <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text"> 
+                                                  </div>
+                                                  <div class="form-group col-sm-3">
+                                                      <label for="ccyear">Phone</label>
+                                                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                                      </div>
+                                                      <div class="form-group col-sm-3">
+                                                          <label for="ccyear">Fax</label>
+                                                          <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                                          </div>
+                                                  </div>
+                                                  <div class="row">
+                                                      <div class="form-group col-sm-3">
+                                                      <label for="ccmonth">Mobile No</label>
+                                                      <input class="form-control" id="cvv" placeholder="Enterprise Id" type="text">
+                                                      </div>
+                                                      <div class="form-group col-md-3">
+                                                          <label> Preferred Contact Mode</label>
+                                                          <br>
+      
+                                                          <input class="ng-pristine ng-untouched ng-valid ng-empty" name="A_m_Email" ng-model="A_m_Email" type="checkbox" value="Email"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" style="font-size:18px;" title="Email Address"></i>
+                                                          &nbsp;&nbsp;&nbsp;  <input class="ng-pristine ng-untouched ng-valid ng-empty" name="A_m_Email" type="checkbox" value="Telephone"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" style="font-size:23px;" title="Telephone No"></i>
+                                                          &nbsp;&nbsp;&nbsp;  <input class="ng-pristine ng-untouched ng-valid ng-empty" name="A_m_Email" type="checkbox" value="Mobile"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" style="font-size:23px;" title="Mobile No"></i>
+      
+                                                      </div>
+                                                      </div>
+                                      </div>
+                                  </div>
+                                  </div>
+                          </div>
+                      
+                  </div>
+              </div>
+                 
+                     
+              <div class="card-footer">
+                  <button class="btn  btn-primary" type="submit">Submit</button>                     
+                  </div>
+            </tab>
+        
 </div>
+</tabset>
+  </div>
+  </div>
+  </div>
+  
+  </div>
