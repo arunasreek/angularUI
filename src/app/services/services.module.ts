@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import {
-   
     AuthenticationService,
-    AlertService,
-    UsersService
-
+    UsersService,
+    CommonService,
+    EmployeeService
+    
 } from './'
+
 
 @NgModule({
     providers: [
         AuthenticationService,
-        AlertService,
-        UsersService
+        UsersService,
+        CommonService,
+        EmployeeService
     ]
 })
 

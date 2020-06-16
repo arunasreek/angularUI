@@ -35,6 +35,12 @@ export class AuthenticationService {
             }));
     }
 
+    getOrgDetails(orgId: number) {
+        return this.http.get<ICommonResult>(`${this.config.apiEndpoint}/Organisation/${orgId}`).pipe(map((data: any) => {
+            return data;
+        }));
+    }
+
 
     logout() {
         // remove user from local storage to log user out

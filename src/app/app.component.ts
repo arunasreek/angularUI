@@ -1,22 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { LoadingBarService } from '@ngx-loading-bar/core';
+import { Component } from '@angular/core';
+declare var $: any;
 
 
 @Component({
-  // tslint:disable-next-line
-  selector: 'body',
-  template: '	<ngx-loading-bar></ngx-loading-bar>  <router-outlet></router-outlet>'
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  constructor(private router: Router) { }
+export class AppComponent {
+  title = 'Esmart';
 
   ngOnInit() {
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      window.scrollTo(0, 0);
-    });
+   
   }
 }

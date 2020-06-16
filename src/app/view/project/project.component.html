@@ -1,0 +1,393 @@
+<div class="col-md-12 ng-scope" id="divProjectPlan" ng-controller="Projectcontroller">
+    <div class="scrollbar scrollbar-primary">
+        <div class="force-overflow">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs" id="tabs">
+                    <li class="active" id="lifirsttab1"><a href="#lifirsttab" id="afirsttab" data-toggle="tab"> Projects List</a></li>
+                    <li id="lisecondtab1"><a href="#tab_a" id="tabfirst" data-toggle="tab">General</a></li>
+                    <li id="lithirdtab1"><a href="#tab_1" data-toggle="tab" ng-click="ThirdTabClick()">Project Plan</a></li>
+                    <li id="lifourthtab1"><a href="#tab_2" data-toggle="tab" ng-click="FourthTabClick()">Jobs</a></li>
+                    <li id="lififthtab1"><a href="#tab_3" data-toggle="tab" ng-click="FifthTabClick()">Shifts</a></li>
+                    <li id="lisixthtab1"><a href="#tab_4" data-toggle="tab" ng-click="SixTabClick()">Teams</a></li>
+                    <li id="liseventhtab1"><a href="#tab_5" data-toggle="tab" ng-click="SevenTabClick()">Employees</a></li>
+                    <li id="lieigthtab1"><a href="#tab_6" data-toggle="tab" ng-click="EigthTabClick()">Work Orders</a></li>
+                    <li id="lininthtab1"><a href="#tab_7" data-toggle="tab" ng-click="NinethTabClick()">Equipments</a></li>
+                    <li id="litenthtab1"><a href="#tab_8" data-toggle="tab" ng-click="TenthTabClick()">Risks</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="box tab-pane active" id="lifirsttab">
+                        <div class="box-header">
+                            <h3 class="box-title">Data Table</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">ID</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Project Manager</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Client</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- ngRepeat: proj in ProjectList --><tr ng-repeat="proj in ProjectList" class="ng-scope">
+                                                    <td class="sorting_1 ng-binding">pject120</td>
+                                                    <td class="ng-binding">Esmart</td>
+                                                    <td class="ng-binding">XYZ</td>
+                                                    <td class="ng-binding">sourab</td>
+                                                    <td>
+                                                        <a href="/Enterprise/ES/ProjectItemView?id=1" data-lity="">
+                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;
+                                                    padding: 05px;    color: #d81b60;
+                                                "></i>
+                                                        </a>
+                                                        <a href="#" ng-click="GetprojctListbyid(proj.project_id)">
+                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;
+                                                    padding: 05px;    color: #d81b60;
+                                                "></i>
+                                                        </a>
+                                                        <a href="#" ng-click="DltProjectItembyid(proj.project_id)">
+                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px;
+                                                    padding: 05px;    color: #d81b60;
+                                                "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr><!-- end ngRepeat: proj in ProjectList --><tr ng-repeat="proj in ProjectList" class="ng-scope">
+                                                    <td class="sorting_1 ng-binding">project6</td>
+                                                    <td class="ng-binding">Naven</td>
+                                                    <td class="ng-binding">Arun</td>
+                                                    <td class="ng-binding">sORAB</td>
+                                                    <td>
+                                                        <a href="/Enterprise/ES/ProjectItemView?id=4" data-lity="">
+                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;
+                                                    padding: 05px;    color: #d81b60;
+                                                "></i>
+                                                        </a>
+                                                        <a href="#" ng-click="GetprojctListbyid(proj.project_id)">
+                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;
+                                                    padding: 05px;    color: #d81b60;
+                                                "></i>
+                                                        </a>
+                                                        <a href="#" ng-click="DltProjectItembyid(proj.project_id)">
+                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px;
+                                                    padding: 05px;    color: #d81b60;
+                                                "></i>
+                                                        </a>
+                                                    </td>
+                                                </tr><!-- end ngRepeat: proj in ProjectList -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- /.tab-content -->
+                        </div>
+                    </div>
+                    <div class="tab-pane ng-dirty ng-valid-parse ng-invalid ng-invalid-required" id="tab_a" ng-form="Projectform1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-primary" style="border-top:none;">
+                                    <div class="box-body">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                                        Project
+                                                    </a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="box box-primary" style="border-top:none;">
+                                                                <form role="form" class="ng-dirty ng-valid-parse ng-invalid ng-invalid-required">
+                                                                    <div class="box-body">
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;"> ID</label><span style="color:red">*</span>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="P_id" ng-model="P_id" name="P_id" placeholder="Id" required="">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Name</label><span style="color:red">*</span>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Project_name" ng-model="Project_name" name="Project_name" placeholder="Name" required="">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Project Cost Center</label>
+                                                                            <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="projectr_cost_center" name="projectr_cost_center">
+                                                                                <option value="" disabled="" selected="selected">Select</option>
+                                                                                <option value="Y">Yes</option>
+                                                                                <option value="N">NO</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Reporting To Org Unit</label>
+                                                                            
+                                                                            <select class="form-control ng-untouched ng-valid ng-empty ng-dirty ng-valid-parse" id="Reporting_to" ng-model="Reporting_org" name="Reporting_org">
+                                                                                <option value="" disabled="" selected="selected">Select</option>
+                                                                                <!-- ngRepeat: org in OrganizationList --><option ng-repeat="org in OrganizationList" value="1" class="ng-binding ng-scope">smp</option><!-- end ngRepeat: org in OrganizationList --><option ng-repeat="org in OrganizationList" value="2" class="ng-binding ng-scope">rcb</option><!-- end ngRepeat: org in OrganizationList --><option ng-repeat="org in OrganizationList" value="3" class="ng-binding ng-scope">csk</option><!-- end ngRepeat: org in OrganizationList -->
+                                                                            </select>
+
+                                                                        </div>
+                                                                        
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Address</label>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Address" ng-model="Address" name="Address" placeholder="Address">
+
+                                                                        </div>
+                                                                        
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Project Manager</label><span style="color:red">*</span>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="p_manager" ng-model="p_manager" name="p_manager" placeholder="Project Manager" required="">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Planned Start Date</label><span style="color:red">*</span>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="pl_str" ng-model="pl_str" placeholder="dd-mm-yyyy" required="">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Actual Start Date</label><span style="color:red">*</span>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="Al_str" ng-model="Al_str" placeholder="dd-mm-yyyy" required="">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Planned End Date</label><span style="color:red">*</span>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="pl_end" ng-model="pl_end" placeholder="dd-mm-yyyy" required="">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Actual End Date</label><span style="color:red">*</span>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="Al_end" ng-model="Al_end" placeholder="dd-mm-yyyy" required="">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Risk Description</label>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Risk_desc" ng-model="Risk_desc" name="Risk_desc" placeholder="Risk Description">
+
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="headingTwo">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                                        Client
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="box box-primary " style="border-top:none;">
+                                                                <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
+                                                                    <div class="box-body">
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Client</label><span style="color:red">*</span>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="client" ng-model="client" name="client" placeholder="Client" required="">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Contact Number</label>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="cNumber" ng-model="cNumber" name="cNumber" placeholder="Contact Number">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Contact Description</label>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="cDescription" ng-model="cDescription" name="cDescription" placeholder="Contact Description">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Contact Start Date</label><span style="color:red">*</span>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="cntctstr" ng-model="cntctstr" placeholder="dd-mm-yyyy" required="">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Contact End Date</label><span style="color:red">*</span>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="cntctend" ng-model="cntctend" placeholder="dd-mm-yyyy" required="">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Project Reference Number</label>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="p_ref_number" ng-model="p_ref_number" name="p_ref_number" placeholder="Project Reference Number">
+
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="Projectform1.$invalid" ng-click="SetprojctList()" disabled="disabled">Save</button>
+                                        <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin ng-hide" ng-disabled="Projectform1.$invalid" ng-click="SetprojctList()" disabled="disabled">Update</button>
+                                        <button type="button" class="btn bg-maroon margin">Cancel</button>
+                                        <button type="button" class="btn bg-maroon margin">Exit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane " id="tab_1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-primary" style="border-top:none;">
+                                    <div class="box-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane " id="tab_2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-primary" style="border-top:none;">
+                                    <div class="box-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane  ng-pristine ng-valid" id="tab_3" ng-form="Projectform3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-primary" style="border-top:none;">
+                                    <div class="box-body">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="headingThree">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                                        Positions/Resources
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="box box-primary " style="border-top:none;">
+                                                                <form role="form" class="ng-pristine ng-valid">
+                                                                    <div class="box-body">
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Number Of Shifts Required</label>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="NSRequired" ng-model="NSRequired" name="NSRequired" placeholder="Number Of Shifts Required">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Number Of Positions Required</label>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="NPRequired" ng-model="NPRequired" name="NSRequired" placeholder="Number Of Positions Required">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Number Of Employees Assigned</label>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="NEAssigned" ng-model="NEAssigned" name="NEAssigned" placeholder="Number Of Employees Assigned">
+
+                                                                        </div>
+                                                                        <div class="form-group col-md-3">
+                                                                            <label for="exampleInputEmail1" style="color:blue;">Vaccant Positions</label>
+                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="VPositions" ng-model="VPositions" name="VPositions" placeholder="Vaccant Positions">
+
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="Projectform3.$invalid" ng-click="SetprojctList()">Save</button>
+                                                    <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin ng-hide" ng-disabled="Projectform3.$invalid" ng-click="SetprojctList()">Update</button>
+                                                    <button type="button" class="btn bg-maroon margin">Cancel</button>
+                                                    <button type="button" class="btn bg-maroon margin">Exit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane " id="tab_4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-primary" style="border-top:none;">
+                                    <div class="box-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane " id="tab_5">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-primary" style="border-top:none;">
+                                    <div class="box-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane " id="tab_6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-primary" style="border-top:none;">
+                                    <div class="box-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane " id="tab_7">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-primary" style="border-top:none;">
+                                    <div class="box-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane " id="tab_8">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-primary" style="border-top:none;">
+                                    <div class="box-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

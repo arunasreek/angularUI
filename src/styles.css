@@ -1,0 +1,216 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: white;
+}
+
+.content {
+    min-height: 600px;
+}
+
+.nav-tabs-custom > .nav-tabs {
+    margin: 0;
+    border-bottom-color: #f4f4f4;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    /*background: #99c2ff;*/
+    color: white;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: 1px;
+            display: none;
+    }
+
+.sidebar-menu > li > a {
+    padding: 9px 5px 10px 31px;
+    display: block;
+}
+.nav li {
+border-bottom: 3px solid rgba(0, 0, 0, 0);
+}
+.nav li:hover {
+border-top: 3px solid #d81b60 !important;
+}
+.nav li.active  {
+border-top: 3px solid #d81b60;
+background: #eee
+}
+#con {
+    height: auto;
+    min-height: 100%;
+    /*margin-top: -17%;*/
+    margin-right: 3%;
+}
+a {
+    text-decoration: none;
+}
+
+nav {
+    font-family: monospace;
+}
+
+
+li a {
+    color: black;
+}
+
+li:hover {
+    cursor: pointer;
+    color: white;
+}
+
+ul li ul {
+    background: orange;
+    visibility: hidden;
+    opacity: 0;
+    min-width: 5rem;
+    position: absolute;
+    transition: all 0.5s ease;
+    margin-top: 1rem;
+    left: 0;
+    display: none;
+    color: white;
+}
+
+    ul li:hover > ul,
+    ul li ul:hover {
+        visibility: visible;
+        opacity: 1;
+        display: block;
+        color: white;
+    }
+
+    ul li ul li {
+        clear: both;
+        width: 100%;
+    }
+
+    @import url(http://fonts.googleapis.com/css?family=Open+Sans:700); #cssmenu {
+        background: red;
+        width: auto;
+        position: relative;
+        top: 0;
+    }
+
+    #cssmenu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        display: block;
+        zoom: 1;
+        background: grey;
+    }
+
+        #cssmenu ul:after {
+            content: ' ';
+            display: block;
+            font-size: 0;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        #cssmenu ul li {
+            float: left;
+            display: block;
+            padding: 0;
+        }
+
+            #cssmenu ul li a {
+                color: #ffffff;
+                text-decoration: none;
+                display: block;
+                padding: 15px 15px;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 14px;
+                position: relative;
+                -webkit-transition: color .25s;
+                -moz-transition: color .25s;
+                -ms-transition: color .25s;
+                -o-transition: color .25s;
+                transition: color .25s;
+            }
+
+                #cssmenu ul li a:hover {
+                    /*color: #83c9ff;*/
+                }
+
+                    #cssmenu ul li a:hover:before {
+                        width: 100%;
+                    }
+
+                #cssmenu ul li a:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    right: -3px;
+                    top: 19px;
+                    height: 6px;
+                    width: 6px;
+                    background: #ffffff;
+                    opacity: .5;
+                }
+
+                #cssmenu ul li a:before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    height: 3px;
+                    width: 0;
+                    /*background: #83c9ff;*/
+                    -webkit-transition: width .25s;
+                    -moz-transition: width .25s;
+                    -ms-transition: width .25s;
+                    -o-transition: width .25s;
+                    transition: width .25s;
+                }
+
+            #cssmenu ul li.last > a:after, #cssmenu ul li:last-child > a:after {
+                display: none;
+            }
+
+            #cssmenu ul li.active a {
+                color: #83c9ff;
+                background: black;
+            }
+
+                #cssmenu ul li.active a:before {
+                    width: 100%;
+                }
+
+    #cssmenu ul li a {
+        width: 100%;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+        #cssmenu ul li a:after {
+            display: none;
+        }
+
+        #cssmenu ul li a:before {
+            height: 1px;
+            background: grey;
+            width: 100%;
+            opacity: .2;
+        }
+
+    #cssmenu ul li.last > a:before, #cssmenu ul li:last-child > a:before {
+        display: none;
+    }
+
+    .nav-tabs-custom > .nav-tabs > li.active{
+        border-top-color:#d81b60 !important;
+    }

@@ -11,5 +11,10 @@ export interface IToken {
     userId: string;
     error_description: string;
     orgName: string;
-    email:string;
+}
+
+export interface ICommonResult {
+    success: boolean;
+    error: any;
+    result: any;
 }
