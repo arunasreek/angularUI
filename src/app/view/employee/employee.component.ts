@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from "../../services";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IEmployeePost, IEmployeeDelete, IEmployeeEdit } from 'src/app/models';
+import { IEmployeePost, IEmployeeDelete, IEmployeeEdit, IEmployeeWorkPermit } from 'src/app/models';
 import { ToastrService } from 'ngx-toastr';
 declare var $:any;
 
@@ -26,7 +26,15 @@ export class EmployeeComponent implements OnInit {
   Ed_cnrt_enddate: Date;
   Ed_dob: Date;
   employeePrimaryForm: FormGroup;
+  employeeWorkForm: FormGroup;
 
+  I_Date: Date;
+  expdate: Date;
+  VI_Date: Date;
+  VI_expdate: Date;
+  WI_Date:Date;
+  W_expdate: Date
+  Ed_wrkstdate: Date
 
 
   constructor(public employeeService: EmployeeService,
@@ -35,6 +43,7 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.employeeAPIcall();
     this.emplyeeFormSetup();
+    this.employeeWorkFormSetup();
   }
 
   emplyeeFormSetup() {
@@ -78,8 +87,23 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
+  employeeWorkFormSetup (){
+    this.employeeWorkForm = this.formBuilder.group({
+      pp_num:[''],
+        PI_Auth:[''],
+       PI_cntry:[''],
+        V_num:[''],
+       VI_Auth:[''],
+      VI_cntry:[''],
+      Wrk_per_no:[''],
+       WI_Auth:[''],
+       WI_cntry:[''],
+        
+    });
+  }
 
   get f() { return this.employeePrimaryForm.controls; }
+  get d() { return this.employeeWorkForm.controls; }
 
 
   clearEmployeedata(){
@@ -132,6 +156,7 @@ export class EmployeeComponent implements OnInit {
 
       this.employeeService.getEmployeedetList().subscribe((data: any) => {
         this.employeedetList = data;
+        this.Isupdate=true;
       });
 
     });
@@ -171,7 +196,7 @@ export class EmployeeComponent implements OnInit {
         this.Ed_cnrt_enddate=new Date(data.GetEmployeeDetailsList[0].ContractEndDate);
         //Setting Values
           this.employeePrimaryForm.setValue({
-      employee_id:data.GetEmployeeDetailsList[0].EmployeeID,
+      employee_id:data.GetEmployeeDetailsList[0].employee_id,
       Ed_Employee_ID:data.GetEmployeeDetailsList[0].EmployeeID,
       Ed_Employer_ID:data.GetEmployeeDetailsList[0].emp_id,
       Ed_Emplr_branch:data.GetEmployeeDetailsList[0].b_id,
@@ -208,10 +233,61 @@ export class EmployeeComponent implements OnInit {
       Ed_cnrt_enddate:data.GetEmployeeDetailsList[0].ContractEndDate,
       ECP_mobile:data.GetEmployeeDetailsList[0].ECP_MobileNo
           });
+
+          this.I_Date= new Date(data.GetEmployeeDetailsList[0].IssueDate);
+          this.expdate= new Date(data.GetEmployeeDetailsList[0].ExpiryDate);
+          this.VI_Date= new Date(data.GetEmployeeDetailsList[0].Visa_IssueDate);
+          this.VI_expdate= new Date( data.GetEmployeeDetailsList[0].Visa_ExpiryDate);
+          this.WI_Date = new Date(data.GetEmployeeDetailsList[0].Work_IssueDate);
+          this.W_expdate = new Date(data.GetEmployeeDetailsList[0].Work_ExpiryDate);
+          this.Ed_wrkstdate =new Date( data.GetEmployeeDetailsList[0].WorkStartDate);
+
+          this.employeeWorkForm.setValue({
+            pp_num:  data.GetEmployeeDetailsList[0].PassportNo,
+            PI_Auth:   data.GetEmployeeDetailsList[0].IssuingAuthority,
+            PI_cntry:   data.GetEmployeeDetailsList[0].IssuingCountry,
+            V_num:   data.GetEmployeeDetailsList[0].VisaNo,
+            VI_Auth:   data.GetEmployeeDetailsList[0].Visa_IssuingAuthority,
+            VI_cntry:   data.GetEmployeeDetailsList[0].Visa_IssuingCountry,
+            Wrk_per_no:   data.GetEmployeeDetailsList[0].WorkPermitNo,
+            WI_Auth:   data.GetEmployeeDetailsList[0].Work_IssuingAuthority,
+            WI_cntry:   data.GetEmployeeDetailsList[0].Work_IssuingCountry,
+            
+          });
        }
+
+
     });
     $(document).ready(function() {
       $("#tabsecond").click();
+    });
+  }
+
+  onSubmitWorkPermit(){
+    let empWorkPermitData:IEmployeeWorkPermit={
+      employee_id: this.employeePrimaryForm.value.employee_id,
+      PassportNo: this.employeeWorkForm.value.pp_num,
+      IssueDate: this.I_Date,
+      ExpiryDate: this.VI_expdate,
+      IssuingAuthority:  this.employeeWorkForm.value.PI_Auth,
+      IssuingCountry:  this.employeeWorkForm.value.PI_cntry,
+      VisaNo:  this.employeeWorkForm.value.V_num,
+      Visa_IssueDate: this.VI_Date,
+      Visa_ExpiryDate: this.VI_expdate,
+      Visa_IssuingAuthority:  this.employeeWorkForm.value.VI_Auth,
+      Visa_IssuingCountry:  this.employeeWorkForm.value.VI_cntry,
+      WorkPermitNo:  this.employeeWorkForm.value.Wrk_per_no,
+      Work_IssueDate:this.WI_Date,
+      Work_ExpiryDate: this.W_expdate,
+      Work_IssuingAuthority:  this.employeeWorkForm.value.WI_Auth,
+      Work_IssuingCountry:  this.employeeWorkForm.value.WI_cntry,
+      WorkStartDate: this.Ed_wrkstdate
+    }
+
+    this.employeeService.UpadteEmpWrkprmtdet(empWorkPermitData).subscribe((data: any) => {
+        if(data.ResponseStatus){
+            this.toastr.success('Updated Successfully.','Success')
+        }
     });
   }
 

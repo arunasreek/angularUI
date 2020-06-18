@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConfig, APP_CONFIG } from '../config/app.config.module';
 import { map } from 'rxjs/operators';
-import { IEmployeePost, IEmployeeDelete, IEmployeeEdit } from '../models';
+import { IEmployeePost, IEmployeeDelete, IEmployeeEdit, IEmployeeWorkPermit } from '../models';
 
 @Injectable()
 export class EmployeeService {
@@ -59,9 +59,10 @@ export class EmployeeService {
         }));
     }
 
-    UpadteEmpWrkprmtdet(postData:IEmployeeEdit){
-        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise/ES/EditEmployeepdet`, postData).pipe(map((res: any) => {
+    UpadteEmpWrkprmtdet(postData:IEmployeeWorkPermit){
+        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise/ES/UpadteEmpWrkprmtdet`, postData).pipe(map((res: any) => {
             return res;
         }));
     }
+    
 }

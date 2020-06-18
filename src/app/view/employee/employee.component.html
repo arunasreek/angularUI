@@ -2,7 +2,8 @@
     <div class="col-md-12">
       <div class="nav-tabs-custom">
           <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_0" id="tabfirst" data-toggle="tab">Employee List</a></li>
+              <li class="active">
+                  <a href="#tab_0" id="tabfirst" data-toggle="tab">Employee List</a></li>
               <li><a href="#tab_a" id="tabsecond" data-toggle="tab">Employee Primary Details</a></li>
               <li><a href="#tab_1" id="tabthird" data-toggle="tab">Employee Work Details</a>
           </li></ul>
@@ -91,7 +92,7 @@
                                           <!-- /.box-header -->
                                           <!-- form start -->
     
-                                              <div class="box-body" (ngSubmit)="onSubmitPrimary()">
+                                              <div class="box-body">
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1" style="color:blue;">Employee ID</label><span style="color:#d81b60;">*</span>
                                                       <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID">
@@ -349,6 +350,7 @@
               </div>
 
               <div class="tab-pane panel panel-default" id="tab_1">
+                <form [formGroup]="employeeWorkForm"(ngSubmit)="onSubmitWorkPermit()">
                   <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingOne">
                           <h4 class="panel-title">
@@ -369,33 +371,42 @@
                                           <!-- /.box-header -->
                                           <!-- form start -->
     
-                                          <form role="form" class="ng-pristine ng-valid">
+                                       
                                               <div class="box-body">
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1">Passport Number</label>
-                                                      <input type="text" class="form-control " id="pp_num" ng-model="pp_num" name="pp_num" placeholder="First Name">
+                                                      <input type="text" class="form-control " id="pp_num" formControlName="pp_num" name="pp_num" placeholder="First Name">
                                                   </div>
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1">Issue Date</label>
-                                                      <input type="text" class="form-control  hasDatepicker" id="I_Date" placeholder="dd-mm-yy" name="I_Date" ng-model="I_Date">
+                                                    
+                                                      <input type="text"
+                                                      class="form-control"
+                                                      
+                                                      #dp="bsDatepicker"
+                                                      bsDatepicker [(bsValue)]="I_Date">  
                                                   </div>
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1">Expiry Date</label>
-                                                      <input type="text" class="form-control  hasDatepicker" id="expdate" name="expdate" ng-model="expdate" placeholder="dd-mm-yy">
+                                                      <input type="text"
+                                                      class="form-control"
+                                                      
+                                                      #dp="bsDatepicker"
+                                                      bsDatepicker [(bsValue)]="expdate">  
                                                   </div>
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1">Issuing Authoriy</label>
-                                                      <input type="text" class="form-control " id="PI_Auth" ng-model="PI_Auth" name="PI_Auth" placeholder="Issuing Authoriy">
+                                                      <input type="text" class="form-control " id="PI_Auth" formControlName="PI_Auth" name="PI_Auth" placeholder="Issuing Authoriy">
     
                                                   </div>
     
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1">Issuing Country</label>
-                                                      <input type="text" class="form-control " id="PI_cntry" ng-model="PI_cntry" name="PI_cntry" placeholder="Issuing Country">
+                                                      <input type="text" class="form-control " id="PI_cntry" formControlName="PI_cntry" name="PI_cntry" placeholder="Issuing Country">
     
                                                   </div>
                                               </div>
-                                          </form>
+                                      
                                       </div>
                                   </div>
                               </div>
@@ -423,36 +434,44 @@
                                           <!-- /.box-header -->
                                           <!-- form start -->
     
-                                          <form role="form" class="ng-pristine ng-valid">
+                                       
                                               <div class="box-body">
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1">Visa Number </label>
-                                                      <input type="text" class="form-control " id="V_num" ng-model="V_num" name="V_num" placeholder="">
+                                                      <input type="text" class="form-control " id="V_num" formControlName="V_num" name="V_num" placeholder="">
     
                                                   </div>
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1">Issue Date </label>
-                                                      <input type="text" class="form-control  hasDatepicker" id="VI_Date" ng-model="VI_Date" name="VI_Date" placeholder="dd-mm-yy">
-    
+                                                      
+                                                      <input type="text"
+                                                      class="form-control"
+                                                      
+                                                      #dp="bsDatepicker"
+                                                      bsDatepicker [(bsValue)]="VI_Date">  
                                                   </div>
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1">Expiry Date </label>
-                                                      <input type="text" class="form-control  hasDatepicker" id="VI_expdate" ng-model="VI_expdate" name="VI_expdate" placeholder="dd-mm-yy">
-    
+                                                     
+                                                      <input type="text"
+                                                      class="form-control"
+                                                      
+                                                      #dp="bsDatepicker"
+                                                      bsDatepicker [(bsValue)]="VI_expdate">  
                                                   </div>
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1">Issuing Authority</label>
-                                                      <input type="text" class="form-control " id="VI_Auth" ng-model="VI_Auth" name="VI_Auth" placeholder="">
+                                                      <input type="text" class="form-control " id="VI_Auth" formControlName="VI_Auth" name="VI_Auth" placeholder="">
     
                                                   </div>
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1">Issuing Country</label>
-                                                      <input type="text" class="form-control " id="VI_cntry" ng-model="VI_cntry" name="VI_cntry" placeholder="">
+                                                      <input type="text" class="form-control " id="VI_cntry" formControlName="VI_cntry" name="VI_cntry" placeholder="">
     
                                                   </div>
     
                                               </div>
-                                          </form>
+                                          
                                       </div>
                                   </div>
                               </div>
@@ -474,51 +493,64 @@
                                   <div class="row">
                                       <div class="col-md-12">
                                           <div class="box box-primary" style="border-top:none;">
-                                              <form role="form" class="ng-pristine ng-valid">
+                                           
                                                   <div class="box-body">
                                                       <div class="form-group col-md-3">
                                                           <label for="exampleInputEmail1">Work Permit Number </label>
-                                                          <input type="text" class="form-control " id="Wrk_per_no" ng-model="Wrk_per_no" name="Wrk_per_no" placeholder="dd-mm-yy">
+                                                          <input type="text" class="form-control " id="Wrk_per_no" formControlName="Wrk_per_no" name="Wrk_per_no" placeholder="dd-mm-yy">
     
                                                       </div>
                                                       <div class="form-group col-md-3">
                                                           <label for="exampleInputEmail1">Issue Date </label>
-                                                          <input type="text" class="form-control  hasDatepicker" id="WI_Date" ng-model="WI_Date" name="WI_Date" placeholder="dd-mm-yy">
-    
+                                                       
+                                                          <input type="text"
+                                                          class="form-control"
+                                                          
+                                                          #dp="bsDatepicker"
+                                                          bsDatepicker [(bsValue)]="WI_Date">  
                                                       </div>
                                                       <div class="form-group col-md-3">
                                                           <label for="exampleInputEmail1">Expiry Date </label>
-                                                          <input type="text" class="form-control  hasDatepicker" id="W_expdate" ng-model="W_expdate" name="W_expdate" placeholder="dd-mm-yy">
-    
+                                                          
+                                                          <input type="text"
+                                                          class="form-control"
+                                                          
+                                                          #dp="bsDatepicker"
+                                                          bsDatepicker [(bsValue)]="W_expdate">  
                                                       </div>
                                                       <div class="form-group col-md-3">
                                                           <label for="exampleInputEmail1">Work Start Date</label>
-                                                          <input type="text" class="form-control  hasDatepicker" id="Ed_wrkstdate" ng-model="Ed_wrkstdate" name="Ed_wrkstdate" placeholder="dd-mm-yy">
+                                                          <input type="text"
+                                                          class="form-control"
+                                                          
+                                                          #dp="bsDatepicker"
+                                                          bsDatepicker [(bsValue)]="Ed_wrkstdate">  
                                                       </div>
                                                       <div class="form-group col-md-3">
                                                           <label for="exampleInputEmail1">Issuing Authority</label>
-                                                          <input type="text" class="form-control " id="WI_Auth" ng-model="WI_Auth" name="WI_Auth" placeholder="">
+                                                          <input type="text" class="form-control " id="WI_Auth" formControlName="WI_Auth" name="WI_Auth" placeholder="">
     
                                                       </div>
                                                       <div class="form-group col-md-3">
                                                           <label for="exampleInputEmail1">Issuing Country</label>
-                                                          <input type="text" class="form-control " id="WI_cntry" ng-model="WI_cntry" name="WI_cntry" placeholder="">
+                                                          <input type="text" class="form-control " id="WI_cntry" formControlName="WI_cntry" name="WI_cntry" placeholder="">
     
                                                       </div>
     
                                                   </div>
-                                              </form>
+                                           
                                           </div>
                                       </div>
                                   </div>
                               </div>
                           </div>
                       </div>
-                      <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetEmployeePrimarydet()">Save</button>
-                      <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetEmployeePrimarydet()">Exit</button>
-                      <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetEmployeePrimarydet()">Cancel</button>
+                      <button type="submit" class="btn bg-maroon margin" *ngIf="Isupdate">Save</button>
+                      <button type="button" class="btn bg-maroon margin" *ngIf="Isupdate" ng-click="SetEmployeePrimarydet()">Exit</button>
+                      <button type="button" class="btn bg-maroon margin" *ngIf="Isupdate">Cancel</button>
     
                   </div>
+                </form>
               </div>
     
     

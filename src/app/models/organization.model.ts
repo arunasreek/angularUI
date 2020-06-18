@@ -1,0 +1,18 @@
+export interface IOrganiationPost{
+  o_id: number,
+  Org_ID: number,
+  OrganizationName: string,
+  emp_id: number,
+  b_id: number,
+  ReportingDepartmentID: number,
+  CostCenter: number,
+  MD_FirstName: string,
+  MD_MiddleName: string,
+  MD_LastName: string,
+  MD_Designation: string,
+  MD_Email: string,
+  MD_Phone: string,
+  MD_Fax: string,
+  MD_MobileNo: string,
+  MD_PreferredContactPerson: string,
+}

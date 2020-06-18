@@ -37,8 +37,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- ngRepeat: GEL in Getenterprisealllist -->
-
+                                        <tr *ngFor="let item of employeedetList" >
+                                            <td class="ng-binding">{{item.EnterpriseID}}</td>
+                                            <td class="ng-binding">{{item.EnterpriseName}}</td>
+                                           <td class="ng-binding"> {{item.ParentEnterprise}}</td>
+                                            <td class="ng-binding">{{item.DateOfInception}}</td>
+                                            <td class="ng-binding">{{item.DateOfExpiry}}</td>
+                                            <td class="ng-binding">{{item.PrimaryFunctionalCurrency}}</td>
+                                            <td class="ng-binding">{{item.FinancialYearStartDate}}</td>
+                                            <td>
+                                               
+                                                <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity="">
+                                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="GetEditenterprisealllist(GEL.ep_id)"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
+                                                </a>
+                                  
+                                            </td>
+                                       
+                                        </tr>
 
 
                                     </tbody>
@@ -55,6 +76,7 @@
                         </div>
                     </div>
                     <div class="tab-pane ng-pristine ng-invalid ng-invalid-required" id="tab_1" ng-form="enterpriseform1">
+                        <form [formGroup]="enterpriseDetailsForm" (ngSubmit)="onSubmitEnterpriseDetails()">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
@@ -66,6 +88,7 @@
                             </div>
                             <!-- in -->
                             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                               
                                 <div class="panel-body">
 
 
@@ -78,21 +101,20 @@
                                                 <!-- /.box-header -->
                                                 <!-- form start -->
 
-                                                <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
 
                                                     <div class="box-body">
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1"><span style="color:blue;">Enterprise ID</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="exampleInputPassword1" placeholder="Enterprise_ID" ng-model="Enterprise_ID" name="Enterprise_ID" required="">
+                                                            <input type="text" class="form-control " id="exampleInputPassword1" placeholder="Enterprise_ID"formControlName="Enterprise_ID" name="Enterprise_ID" required="">
 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Enterprise Name</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Entname" ng-model="Entname" name="Entname" placeholder="Enterprise Name" required="">
+                                                            <input type="text" class="form-control " id="Entname"formControlName="Entname" name="Entname" placeholder="Enterprise Name" required="">
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputFile"><span style="color:blue;">Parent Enterprise</span><span style="color:red;">*</span></label>
-                                                            <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="ParentEnt" ng-model="ParentEnt" name="ParentEnt" required="">
+                                                            <select class="form-control " id="ParentEnt"formControlName="ParentEnt" name="ParentEnt" required="">
                                                                 <option value="" disabled="" selected="selected">--Select Parent Enterprise</option>
                                                                 <option value="Yes">Yes</option>
                                                                 <option value="No">No</option>
@@ -101,12 +123,15 @@
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Permanent Registration</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="txtprmreg" ng-model="Prmreg" name="Prmreg" placeholder="Permanent Registration" required="">
+                                                            <input type="text" class="form-control " id="txtprmreg"formControlName="Prmreg" name="Prmreg" placeholder="Permanent Registration" required="">
                                                         </div>
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Date Of Inception</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control  ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="date" ng-model="Date_inception" name="Date_inception" placeholder="Date Of Incpetion" required="">
+                                                            <input type="text"
+                                                            class="form-control"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="Date_inception">  
                                                         </div>
                                                         <!-- 	<div class="form-group col-md-3">
                                                       <label for="exampleInputPassword1">Start Date / Renewed Date</label>
@@ -115,7 +140,10 @@
                                                      -->
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Date Of Expiry</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="date_Ecpiry" ng-model="date_Ecpiry" name="date_Ecpiry" placeholder="Date Of Expiry" required="">
+                                                            <input type="text"
+                                                            class="form-control"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="date_Ecpiry">  
                                                         </div>
 
                                                        
@@ -132,7 +160,7 @@
                                                   <button type="submit" class="btn btn-primary">Submit</button>
                                                 </div> -->
 
-                                                </form>
+                                             
                                             </div>
                                         </div>
                                     </div>
@@ -140,26 +168,15 @@
                             </div>
                         </div>
 
-                        <input type="hidden" id="epid" ng-model="epid" name="epid" autocomplete="off" class="ng-pristine ng-untouched ng-valid ng-empty">
+                      
+                        <button type="submit" class="btn bg-maroon margin" *ngIf="!Isupdate" >Save</button>
+                        <button type="submit" class="btn bg-maroon margin ng-hide" *ngIf="Isupdate">Update</button>
 
-                        <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-disabled="enterpriseform1.$invalid" ng-click="SetEnterpricedetails()" disabled="disabled">Save</button>
-                        <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isupdate" ng-disabled="enterpriseform1.$invalid" ng-click="SetEnterpricedetails()" disabled="disabled">Update</button>
-
-                        <button type="button" class="btn bg-maroon margin" ng-click="clearenterprisedata()">Cancel</button>
-                        
-                        <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isrenew">Renew</button>
-                        <button type="button" class="btn bg-maroon margin ng-hide" ng-show="IsActive">Active</button>
-                        <button type="button" class="btn bg-maroon margin ng-hide" ng-show="IsInactive">Inactive</button>
-
-
-
-
-
-
-
-
-
-
+                        <button type="button" class="btn bg-maroon margin" (click)="clearenterprisedata()">Cancel</button>
+                        <button type="button" class="btn bg-maroon margin ng-hide" *ngIf="Isrenew">Renew</button>
+                        <button type="button" class="btn bg-maroon margin ng-hide" *ngIf="IsActive">Active</button>
+                        <button type="button" class="btn bg-maroon margin ng-hide" *ngIf="IsInactive">Inactive</button>
+                    </form>
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="tab_2">
@@ -243,7 +260,7 @@
 
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <button type="button" class="btn bg-maroon margin">Submit</button>
+                                            <button type="submit" class="btn bg-maroon margin">Submit</button>
                                         </div>
                                     </form>
 
@@ -283,12 +300,12 @@
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Financial Year Start Date</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="txtfiyrstr" ng-model="fysd" name="fysd" placeholder="" required="">
+                                                <input type="text" class="form-control " id="txtfiyrstr" ng-model="fysd" name="fysd" placeholder="" required="">
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Financial Year End Date</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="txtfiyrend" ng-model="fyed" name="fyed" placeholder="" required="">
+                                                <input type="text" class="form-control " id="txtfiyrend" ng-model="fyed" name="fyed" placeholder="" required="">
                                             </div>
 
                                             <div class="form-group col-md-3">
@@ -308,20 +325,20 @@
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer Tax No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="exampleInputPassword1" ng-model="emptn" name="emptn" placeholder="" required="">
+                                                <input type="text" class="form-control " id="exampleInputPassword1" ng-model="emptn" name="emptn" placeholder="" required="">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer PAN Card No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="exampleInputPassword1" ng-model="emppcn" name="emppcn" placeholder="" required="">
+                                                <input type="text" class="form-control " id="exampleInputPassword1" ng-model="emppcn" name="emppcn" placeholder="" required="">
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer DIN No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="exampleInputPassword1" ng-model="empdn" name="empdn" placeholder="" required="">
+                                                <input type="text" class="form-control " id="exampleInputPassword1" ng-model="empdn" name="empdn" placeholder="" required="">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer BIN No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="exampleInputPassword1" ng-model="empbn" name="empbn" placeholder="" required="">
+                                                <input type="text" class="form-control " id="exampleInputPassword1" ng-model="empbn" name="empbn" placeholder="" required="">
                                             </div>
 
                                             <br>
@@ -429,12 +446,12 @@
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Land Line</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Landline" ng-model="Landline" name="Landline" placeholder="Land Line" required="">
+                                                                                <input type="text" class="form-control " id="Landline" ng-model="Landline" name="Landline" placeholder="Land Line" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Fax" ng-model="Fax" name="Fax" placeholder="Fax" required="">
+                                                                                <input type="text" class="form-control " id="Fax" ng-model="Fax" name="Fax" placeholder="Fax" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
@@ -517,18 +534,18 @@
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="datepicker" ng-model="A_Phone" name="A_Phone" placeholder="Phone" required="">
+                                                                                <input type="text" class="form-control " id="datepicker" ng-model="A_Phone" name="A_Phone" placeholder="Phone" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="datepicker" ng-model="A_Fax" name="A_Fax" placeholder="Fax" required="">
+                                                                                <input type="text" class="form-control " id="datepicker" ng-model="A_Fax" name="A_Fax" placeholder="Fax" required="">
 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="datepicker" ng-model="A_m_No" name="A_m_No" placeholder="Mobile No" required="">
+                                                                                <input type="text" class="form-control " id="datepicker" ng-model="A_m_No" name="A_m_No" placeholder="Mobile No" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
@@ -609,18 +626,18 @@
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="o_Phone" ng-model="o_Phone" name="o_Phone" placeholder="Phone" required="">
+                                                                                <input type="text" class="form-control " id="o_Phone" ng-model="o_Phone" name="o_Phone" placeholder="Phone" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="o_Fax" ng-model="o_Fax" name="o_Fax" placeholder="Fax" required="">
+                                                                                <input type="text" class="form-control " id="o_Fax" ng-model="o_Fax" name="o_Fax" placeholder="Fax" required="">
 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="o_mobile" ng-model="o_mobile" name="o_mobile" placeholder="Mobile No" required="">
+                                                                                <input type="text" class="form-control " id="o_mobile" ng-model="o_mobile" name="o_mobile" placeholder="Mobile No" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">

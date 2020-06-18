@@ -3,7 +3,9 @@ import {
     AuthenticationService,
     UsersService,
     CommonService,
-    EmployeeService
+    EmployeeService,
+    OrganizationService,
+    EnterpriseService,
     
 } from './'
 
@@ -13,7 +15,9 @@ import {
         AuthenticationService,
         UsersService,
         CommonService,
-        EmployeeService
+        EmployeeService,
+        OrganizationService,
+        EnterpriseService
     ]
 })
 
