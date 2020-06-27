@@ -8,10 +8,10 @@ export const environment = {
   //apiEndpoint: 'http://104.211.214.19:8081/api',
 
   //Local
-   apiEndpoint: 'http://localhost:3432',
+   //apiEndpoint: 'http://localhost:3432',
 
   //Devlopment
- // apiEndpoint: 'http://104.211.214.19:8086/api'
+  apiEndpoint: 'http://web.sreemithra.com'
 };
 
 /*
