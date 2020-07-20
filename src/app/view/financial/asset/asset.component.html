@@ -1,0 +1,349 @@
+
+
+<section class="content">
+    <div class="row" ng-controller="AssetController" id="assetsController">
+        <div class="col-md-12">
+            <div class="scrollbar scrollbar-primary">
+                <div class="force-overflow">
+                    <div class="nav-tabs-customs">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#firsttab" id="afirsttab" data-toggle="tab">AssetsList</a></li>
+                            <li><a href="#tab_1" id="secondtab" data-toggle="tab">Assets</a></li>
+                            <li><a href="#tab_2" id="secondtab" data-toggle="tab">Accounting Entry</a></li>
+                        </ul>
+                        <div class="tab-content">
+
+                            @*LIst*@
+                            <div class="box tab-pane active" id="firsttab">
+                                <div class="box-header">
+                                    <h3 class="box-title">Data Table</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Asset ID</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">vendor Name</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Acquire Date</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">WarrentyExpiry Date</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Status</th>
+                                                            
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="as in Getassetlist">
+                                                            <td class="sorting_1"></td>
+                                                            <td> </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><span class="glyphicon glyphicon-ok-circle" style="color:#d81b60;cursor:pointer;font-size: 20px" title="approve"></span>
+                                                                <span class="glyphicon glyphicon-remove-circle" style="color:#d81b60;cursor:pointer;font-size:20px;" title="reject"></span></td>
+                                                            <td><button class="btn bg-maroon margin" ng-click="CreateLedgeraccforasset(as.asset_id)">Ledger Account</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.tab-content -->
+                                </div>
+                            </div>
+
+                            @*create*@
+                            <div class="tab-pane" id="tab_1" ng-form="assetform1">
+                                <form role="form">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordian" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    <i class="more-less glyphicon glyphicon-plus" style="color: #d81b60;"></i>
+                                                    Details Of Assets
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="box box-primary" style="border-top:none">
+                                                            <form role="form">
+                                                                <div class="box-body">
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail"><span style="color:blue;">Vendor Name</span><span style="color:red;">*</span></label>
+                                                                        <select class="form-control" id="vender_id" ng-model="vender_id" name="vender_id">
+                                                                            <option value="" disabled>--Select Vendor Id--</option>
+                                                                            <option ng-repeat="Vi in GetSuplist" value="">()</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail"><span style="color:blue;">Asset ID</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control" id="Ass_id" ng-model="Ass_id" name="Ass_id" placeholder="Enter asset id">
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail"><span style="color:blue;">Employer ID</span><span style="color:red;">*</span></label>
+                                                                        <select class="form-control" id="Emp_id" ng-model="Emp_id" name="Emp_id">
+                                                                            <option value="" disabled>--Select Employer Id--</option>
+                                                                            <option ng-repeat="EID in GetEmployeeriD" value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail"><span style="color:blue;">Branch ID</span><span style="color:red;">*</span></label>
+                                                                        <select class="form-control" id="b_id" ng-model="b_id" name="b_id" placeholder="">
+                                                                            <option value="" disabled>--Select Branch Id--</option>
+                                                                            <option ng-repeat="BiD in GetEmployeerbarchid" value=""></option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail"><span style="color:blue;">Asset Type</span><span style="color:red;">*</span></label>
+                                                                        <select class="form-control" id="Ass_type" ng-model="Ass_type" name="Ass_type" placeholder="" required>
+                                                                            <option value="" disabled>--select Asset Type</option>
+                                                                            <option value="N">New Account</option>
+                                                                            <option value="E">Exit Account</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail"><span style="color:blue;">Asset Description</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control" id="Ass_desc" ng-model="Ass_desc" name="Ass_desc" placeholder="Asset Description" required>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail"><span style="color:blue;">Acquire Date</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control" id="Acq_date" ng-model="Acq_date" name="Acq_date" placeholder="dd-mm-yy" required>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail"><span style="color:blue;">Warranty Expiry Date</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control" id="War_Exp_date" ng-model="War_Exp_date" name="War_Exp_date" placeholder="dd-mm-yy" required>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                                <button type="button" class="btn bg-maroon margin" ng-click="setAsset()">Save</button>
+                                <button type="button" class="btn bg-maroon margin" ng-show="Isedit==1" ng-disabled="assetform.$invalid" ng-click="SetAssetdetails()">Update</button>
+                                <button type="button" class="btn bg-maroon margin" ng-click="setAsset()">Exit</button>
+                                <button type="button" class="btn bg-maroon margin" ng-click="clearassetdata()">Cancel</button>
+                                <button type="button" class="btn bg-maroon margin" ng-show="Isrenew">Renew</button>
+                                <button type="button" class="btn bg-maroon margin" ng-show="IsActive">Active</button>
+                                <button type="button" class="btn bg-maroon margin" ng-show="IsInactive">Inactive</button>
+
+                            </div>
+
+                            @*Tab 3*@
+                            <div class="tab-pane tab2" id="tab_2">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+
+                                        <!-- in -->
+                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="box box-primary " style="border-top:none;">
+
+                                                            <form role="form">
+                                                                <div class="box-body">
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Asset ID</span><span style="color:red;">*</span></label>
+                                                                        <select aria-controls="example1" id="AssetID" class="form-control" ng-model="AssetID" name="AssetID">
+                                                                            <option value="" disabled>--Select Asset Id--</option>
+                                                                            <option ng-repeat="AID in Getassetlist" value=""></option>
+                                                                        </select>
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Transaction date</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control" id="textdate" ng-model="textdate" name="textdate" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                    <table id="tbl_accdet" class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="color:blue;">Account Number<span style="color:#d81b60;">*</span></th>
+                                                                                <th>Account Name</th>
+                                                                                <th>Debit Amount</th>
+                                                                                <th>Credit Amount</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="tb_trdet1">
+                                                                            <tr>
+                                                                                <td data-toggle="modal" data-target="#Account">
+                                                                                    <input type="text" id="Acno_number" ng-click="GetAccountnums()" ng-model="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+
+                                                                                </td>
+                                                                                <td><input class="form-control" type="text" id="Ac_name" /></td>
+                                                                                <td><input type="text" class="form-control" id="dramount_0" onkeyup="Debitchange()" /></td>
+                                                                                <td><input type="text" class="form-control" onkeyup="Creditchange()" id="cramount_0" /></td>
+                                                                                <td><button class="btn bg-maroon margin" ng-click="AddNew()">Add</button></td>
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+                                                                @*dynamic table*@
+                                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                    <table id="tbl_accdet" class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Account Number</th>
+                                                                                <th>Account Name</th>
+                                                                                <th>Debit Amount</th>
+                                                                                <th>Credit Amount</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="tb_trdet"></tbody>
+                                                                    </table>
+
+                                                                </div>
+                                                                <div>
+                                                                    <p style="margin-left:474px;">Total Debit:-<b>.00</b><label style="margin-left: 137px;">Total Credit:-<b>.00</b></label></p>
+                                                                    @*<p style="margin-left:50px;">Total Credit:-</p>*@
+                                                                </div>
+                                                                <div style="float:right">
+                                                                    <button class="btn bg-maroon margin" ng-click="SetassetaccountmapBulk()">Submit</button>
+                                                                </div>
+                                                                <!-- /.box-body -->
+                                                                <!--  <div class="box-footer">
+                                              <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div> -->
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn bg-maroon margin" ng-show="!Isorganizationupdate" ng-disabled="organisationform2.$invalid" ng-click="SetOrganization()">Save</button>
+                                    <button type="button" class="btn bg-maroon margin" ng-show="Isorganizationupdate" ng-disabled="organisationform2.$invalid" ng-click="updateOrganization()">Update</button>
+                                    <button type="button" class="btn bg-maroon margin">Cancel</button>
+                                    <button type="button" class="btn bg-maroon margin">Exit</button>
+                                </div>
+                                <!-- Modal content-->
+
+                                <div class="modal fade" id="Account" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title" style="text-align:center">Select Your Account Number</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="box-body">
+                                                    <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                        <div class="row">
+
+                                                            <div class="col-sm-12">
+                                                                <div id="example1_filter" class="dataTables_filter">
+                                                                    <label>Search:<input type="search" class="form-control input-lg" placeholder="" aria-controls="example1"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Account No</th>
+                                                                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Account Name</th>
+                                                                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Select Acc no</th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr role="row" class="odd" ng-repeat="ac in GetAccountnums">
+                                                                            <td class="sorting_1"></td>
+                                                                            <td class="sorting_1"></td>
+                                                                            @*<td><input type="checkbox" id="txtcheckval_" /></td>*@
+                                                                            <td><button type="button" class="btn btn-default" ng-click="selectedaccno(ac)">Select</button></td>
+                                                                        </tr>
+                                                                    </tbody>
+
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            @*<div class="col-sm-5">
+                                                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 3 of 57 entries</div>
+                                            </div>*@
+                                                            @*<div class="col-sm-7">
+                                            <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                                <ul class="pagination">
+                                                    <li class="paginate_button previous disabled" id="example1_previous">
+                                                        <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
+                                                    </li>
+                                                    <li class="paginate_button active">
+                                                        <a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
+                                                    </li>
+                                                    <li class="paginate_button ">
+                                                        <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a>
+                                                    </li>
+                                                    <li class="paginate_button ">
+                                                        <a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a>
+                                                    </li>
+                                                    <li class="paginate_button ">
+                                                        <a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a>
+                                                    </li>
+
+                                                    <li class="paginate_button next" id="example1_next">
+                                                        <a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </div>*@
+                                                            @*<div class="modal-footer">
+
+                                            </div>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+          
+        </div> 
+     </div>
+     </section>
+<script>
+    $(document).ready(function () {
+        $("#Acq_date").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+        $("#textdate").datepicker({
+            //showWeek: true,
+            //dateFormat: "dd-mm-yy"
+        });
+        $("#War_Exp_date").datepicker({
+
+        });
+    });
+</script>

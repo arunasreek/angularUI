@@ -1,0 +1,241 @@
+<div class="row" ng-controller="GeneralLedgercontroller" id="DivGenralledge">
+    <div class="col-md-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#tab_1" data-toggle="tab">
+                        GeneralLedger
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordian" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <i class="more-less glyphicon glyphicon-plus" style="color: #d81b60;"></i>
+                                    GeneralLedgerDetails
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="box box-primary" style="border-top:none;">
+                                            <form role="form">
+                                                <div class="box-body">
+                                                    <div class="form-group col-md-3">
+                                                        <label for="exampleInputFile" style="color:blue;">Employer ID</label><span style="color:red">*</span>
+                                                        <select class="form-control" id="employer_id" ng-model="employer_id" name="employer_id" required>
+                                                            <option value="" disabled>--Select Employer ID</option>
+                                                            <option ng-repeat="EID in GetEmployeeriD" value="EID.emp_id"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <label for="exampleInputFile" style="color:blue;">Branch ID</label><span style="color:red">*</span>
+                                                        <select class="form-control" id="branchid" ng-model="branchid" name="branchid" required>
+                                                            <option value="" disabled>--Select Branch ID</option>
+                                                            <option ng-repeat="BiD in GetEmployeerbarchid" value="BiD.b_id"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <label for="exampleInputFile" style="color:blue;">Organisation Unit ID</label><span style="color:red">*</span>
+                                                        <select class="form-control" id="org_un_id" ng-model="org_un_id" name="org_un_id" required>
+                                                            <option value="" disabled>--Select Organisation Unit ID</option>
+                                                            <option ng-repeat="OID in GetOrganizationID" value="OID.o_id"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <label for="exampleInputFile" style="color:blue;">Project ID</label><span style="color:red">*</span>
+                                                        <select class="form-control" id="projectid" ng-model="projectid" name="projectid" required>
+                                                            <option value="" disabled>--Select Project ID</option>
+                                                            <option ng-repeat="PID in Getprlist" value="PID.project_id"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <label for="exampleInputFile">Currency</label>
+                                                        <select class="form-control" id="currency" ng-model="currency" name="currency">
+                                                            <option value="" selected disabled>--Select Currency</option>
+                                                            <option value="Rs">Rs</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <label for="exampleInputFile">Account Number</label>
+                                                        <input type="text" data-toggle="modal" data-target="#Account" id="Acno_number" ng-click="GetAccountnums2()" ng-model="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <label for="exampleInputFile">From Date</label>
+                                                        <input type="text" class="form-control" id="Frm_Date" ng-model="Frm_Date" name="Frm_Date" placeholder="dd-mm-yy" />
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <label for="exampleInputFile">To Date</label>
+                                                        <input type="text" class="form-control" id="To_Date" ng-model="To_Date" name="To_Date" placeholder="dd-mm-yy" />
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                    
+                                                    <button ng-click="btnsearch()" class="btn bg-maroon margin">Search</button>   
+                                                      </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="Account" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title" style="text-align:center">Select Your Account Number</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="box-body">
+                                                    <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div id="example1_filter" class="dataTables_filter">
+                                                                    <label>Search:<input type="search" class="form-control input-lg" placeholder="" aria-controls="example1"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Account No</th>
+                                                                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Account Name</th>
+                                                                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Select Acc no</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr role="row" class="odd" ng-repeat="ac in GetAccountnums">
+                                                                            <td class="sorting_1"></td>
+                                                                            <td class="sorting_1"></td>
+                                                                            <td><button type="button" class="btn btn-default" ng-click="selectedaccno(ac)">Select</button></td>
+                                                                        </tr>
+                                                                    </tbody>
+
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="print-content">
+                                    <div>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Account Number</th>
+                                                    <th>Account Name</th>
+                                                    <th>From Date</th>
+                                                    <th>To Date</th>
+                                                    <th>Closing Balance</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><input type="text" class="form-control" value="accno" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="accname" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="Frm_Date" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="To_Date" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="runningbal" readonly /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><br /><br />
+                                    <div id="bankdeatilsbulk">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>SL.NO</th>
+                                                    <th>Transaction Date</th>
+                                                    <th>Voucher Number</th>
+                                                    <th>Narration</th>
+                                                    <th>Debit Amount</th>
+                                                    <th>Credit Amount</th>
+                                                    <th>Balance</th>
+                                                    <th>Type</th>
+                                                    <th>&nbsp;</th>
+                                                </tr>
+                                            </thead>
+                                             <tfoot>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><input type="text" class="form-control" readonly /></td>
+                                                    <td><input type="text" class="form-control" readonly /></td>
+                                                </tr>
+                                            </tfoot> 
+                                            <tbody id="txttbody">
+                                                <tr ng-repeat="dt in Getgendrlist">
+                                                    <td><input type="text" class="form-control"  value="$index" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="dt.trans_date" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="dt.VoucherNumber" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="dt.Narration" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="dt.DebitAmount" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="dt.CreditAmount" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="dt.RunningBalance" readonly /></td>
+                                                    <td><input type="text" class="form-control" value="dt.DebitAmount>0?'Dr':'Cr'" readonly /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+
+                                <button type="button" class="btn bg-maroon margin">Exit</button>
+                               <a href="/Reports/re/GeneralLedgePrint" data-lity>Print</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function printDiv(divName) {
+
+        var printContents = document.getElementById(divName).innerHTML;
+        w = window.open();
+        w.document.write(printContents);
+        w.print();
+        w.close();
+    }
+    $(document).ready(function () {
+
+        //var tdate = new Date();
+        //var dd = tdate.getDate(); //yields day
+        //var MM = tdate.getMonth(); //yields month
+        //var yyyy = tdate.getFullYear(); //yields year
+        //var currentDate = dd + "-" + MM + "-" + yyyy;
+        //$("#Frm_Date").val(currentDate);
+        //$("#To_Date").val(currentDate);
+        $("#Frm_Date").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+        $("#To_Date").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+    });
+</script>
+

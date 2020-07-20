@@ -1,0 +1,227 @@
+
+<style>
+    .fieldset {
+    position: relative;
+    border: 1px solid #000;
+    margin: 20px;
+    padding: 20px;
+    text-align: left;
+}
+
+.fieldset .legend {
+    background: #fff;
+    height: 1px;
+    position: absolute;
+    top: -1px;
+    padding: 0 20px;
+    color: #000;
+    overflow: visible;
+}
+
+.fieldset .legend span {
+    top: -0.5em;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: visible;
+}
+</style>
+<div id="approve" ng-controller="Approvecontroller">
+
+    <div class="page-container">
+        <div class="page-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-horizontal ng-pristine ng-valid">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Approvals</h2><br>
+                            </div>
+                            <div class="panel-body-height1">
+                                <div class="activity_box">
+                                    <div class="scrollbar1" id="style-2">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12  col-sm-12">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="temple_id">Request Status</label>
+                                                            <select tabindex="1" id="ddlreqstatus" class="form-control input-md">
+                                                                <option value="-1">All</option>
+                                                                <option value="0">Pending</option>
+                                                                <option value="1">Approved</option>
+                                                                <option value="2">Reject</option>
+                                                                <option value="3">Hold</option>
+                                                            </select>
+                                                             <i class="fa fa-chevron-down"></i> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                                        <label class="label-width1">Service</label>
+                                                        <select tabindex="2" id="ddlservice" class="form-control input-md">
+                                                            <option value="">All</option>
+                                                                <option ng-repeat="esv in Esmservicelist" value="esv.Eservice_id"></option>
+                                                        </select>
+                                                         <i class="fa fa-chevron-down"></i> 
+                                                    </div>
+
+                                                    <div class="col-md-4 col-sm-4 zebracal">
+                                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <label class="label-width1">From Date</label>
+                                                          <input type="text" id="txtfromdate" class="form-control pos Fromdatepicker" placeholder="Start date" name="StartDate" tabindex="2" style="position: relative; top: auto; right: auto; bottom: auto; left: auto;">
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <label class="label-width1">To Date</label>
+                                                            <input type="text" id="txttodate" class="form-control pos Fromdatepicker" placeholder="End date" name="ToDate" tabindex="3"style="position: relative; top: auto; right: auto; bottom: auto; left: auto;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-2 search_button">
+                                                            <button type="button" id="btnapprove" ng-click="Approvedata();" class="btn btn-success">Search</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><br>
+                                            <!-- ngRepeat: item in Approvalsdatalist -->
+                                            <div id="divapproves" style="border-bottom: double;" ng-show="Approvedatalist.length>0" class="col-md-12 col-sm-12 approval_form ng-scope" ng-repeat="aprvl in Approvedatalist">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                         <span>This is the title</span> 
+                                                            <div class="col-md-4">
+                                                                <label class="form_labels">Service Name <span class="colon3">:</span></label>
+                                                                <span class="subject_label1 ng-binding"></span>
+                                                            </div>
+                                                             <div class="col-md-12">
+                                                                <label class="form_labels">Room type &nbsp;&nbsp;<span class="colon2">:</span></label>
+                                                                <span class="subject_label ng-binding"></span>
+                                                            </div> 
+                                                            <div class="col-md-4">
+                                                                <label class="form_labels">Comments &nbsp;&nbsp;<span class="colon2">:</span></label>
+                                                                <span class="subject_label ng-binding"></span>
+                                                            </div>
+                                                            <div class="col-md-4" >
+                                                                <label class="form_labels">Asset Id &nbsp;&nbsp;&nbsp;<span class="colon2">:</span></label>
+                                                                <span class="subject_label ng-binding"></span>
+                                                            </div>
+                                                             <div class="col-md-4">
+                                                                <label class="form_labels">Request Description :</label>
+                                                                <p class="subject_label2 ng-binding" ng-show="item.status!=7"> ok</p>
+                                                            </div> 
+                                                     
+                                                     
+                                                            <div class="col-md-4">
+                                                                <label class="form_labels">Transaction date &nbsp;:</label>
+                                                                <span class="subject_label3 ng-binding"></span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label class="form_labels">Created By<span class="colon1">:</span></label>
+                                                                <span class="subject_label3 ng-binding">Dhanunjay</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label class="form_labels">Voucher Number<span class="colon1">:</span></label>
+                                                                <span class="subject_label3 ng-binding"></span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label class="form_labels">Status<span class="colon2">:</span></label>
+                                                                <span class="subject_label3" ng-show="aprvl.approved_status==1">Approved</span>
+                                                                <span class="subject_label3" ng-show="aprvl.approved_status==0">Pending</span>
+                                                                <span class="subject_label3" ng-show="aprvl.approved_status==3">Hold</span>
+                                                                <span class="subject_label3" ng-show="aprvl.approved_status==2">Rejected</span>
+
+                                                                 <span class="subject_label3" >Pending</span> 
+                                                                
+                                                            </div>
+                                                       <div style="  border-bottom: double;"></div> 
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row" ng-show="aprvl.approved_status==0">
+                                                    <div class="col-md-12 text-center">
+                                                         <button type="button" ng-click="ApprovalWithRemarks(9,item.rhistory_id);" class="btn btn-green" ng-show="item.status==7 || item.status==0" style="display: none;">Approve</button>
+                                                        <button type="button" ng-click="ApprovalWithRemarks(8,item.rhistory_id);" class="btn btn-red" ng-show="item.status==7 || item.status==0" style="display: none;">Reject</button>
+                                                        <button type="button" ng-click="ApprovalWithRemarks(7,item.rhistory_id);" class="btn btn-hold" ng-show="item.status==0" style="display: none;">Hold</button> 
+                                                        <button type="button"  class="btn btn-success" ng-click="btnapprove('A',aprvl.As_id,aprvl.Type)">Approve</button>
+                                                        <button type="button" ng-click="btnapprove('R',aprvl.As_id,aprvl.Type)" class="btn btn-warning">Reject</button>
+                                                        <button type="button" ng-click="btnapprove('H',aprvl.As_id,aprvl.Type)" class="btn btn-danger">Hold</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-show="Approvedatalist.length==0" style="color:red;font-weight:bold;text-align:center">No Records Found</div>
+                                           
+                                            <div id="myModal" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">
+                                                            <span ng-if="aptype=='A'">Approve Status</span>
+                                                                <span ng-if="aptype=='R'">Reject Status</span>
+                                                                <span ng-if="aptype=='H'">Hold Status</span> 
+                                                            </h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                           <label>Remarks</label>
+                                                            <textarea class="form-control" id="txtremarks"></textarea>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="Setapprove(aptype)">Send</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            var d = new Date();
+            var ddd = d.getDate().toString();
+            var dd = ddd.length > 1 ? ddd : '0' + ddd;
+            var m = (d.getMonth() + 1).toString();
+            var mm = m.length > 1 ? m : '0' + m;
+            var yy = d.getFullYear();
+            var startDate = dd + "/" + mm + "/" + yy;
+            Date.prototype.addMonths = function (m) {
+                var d = new Date(this);
+                var years = Math.floor(m / 12);
+                var months = m - (years * 12);
+                if (years) d.setFullYear(d.getFullYear() + years);
+                if (months) d.setMonth(d.getMonth() + months);
+                return d;
+            }
+            var eDate = new Date().addMonths(3);
+            var d = eDate.getDate().toString();
+            var dd = d.length > 1 ? d : '0' + d;
+            var m = (eDate.getMonth() + 1).toString();
+            var mm = m.length > 1 ? m : '0' + m;
+            var yy = eDate.getFullYear();
+            var endDate = dd + "/" + mm + "/" + yy;
+            $("#txtfromdate").val(startDate);
+            $("#txttodate").val(endDate);
+
+            $("#txtfromdate").datepicker({
+                showWeek: true,
+                dateFormat: "dd/mm/yy"
+            });
+            $("#txttodate").datepicker({
+                showWeek: true,
+                dateFormat: "dd/mm/yy"
+            });
+        });
+    </script>

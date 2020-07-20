@@ -1,0 +1,423 @@
+
+<script src="~/Content/Scripts/Procurment.js"></script>
+<section class="content">
+    <div class="row" ng-controller="PurchaseRequisitionController" id="purchaserequisitionController">
+        <div class="col-md-12">
+            <div class="nav-tabs-customs">
+                <ul class="nav nav-tabs">
+                    <li class="active tabone"><a href="#tab_a" id="lifirsttab" data-toggle="tab">PurchaseRequisition List</a></li>
+                    <li class="tabtwo"><a href="#tab_1" data-toggle="tab">PurchaseRequisition</a></li>
+                </ul>
+                <div class="tab-content">
+
+
+                    <div class="tab-pane in active" id="tab_a">
+                        <div class="row divheight">
+                            <div class="col-lg-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Requisition ID</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Supplier Name</th>
+                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th> 
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Supplier Contact Person</th>
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Delivery</th>
+                                            <!-- concatenation Of Office Contact Person First , Middle  , LAst Names -->
+
+
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Actions</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="GEL in PurchaseMaterialReqdet">
+                                            <td></td>
+                                            <td></td>                                           
+                                            <td></td>
+                                            <td></td>
+                                            <td>                                                
+                                                <a href="/procure/pc/purchasereqview?id=&As_id=" data-lity>
+                                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="EditPurmaterailreq(GEL.purchase_id,GEL.As_id)"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="DltPurreqbyId(GEL.purchase_id,GEL.As_id)"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                    <!--   <tfoot>
+                                    <tr>
+                                    <th rowspan="1" colspan="1">Rendering engine</th>
+                                    <th rowspan="1" colspan="1">Browser</th>
+                                    <th rowspan="1" colspan="1">Platform(s)</th>
+                                    <th rowspan="1" colspan="1">Engine version</th>
+                                    <th rowspan="1" colspan="1">CSS grade</th></tr>
+                                    </tfoot> -->
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab_1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        PurchaseRequistion Details
+                                    </a>
+                                </h4>
+                            </div>
+                            <!-- in -->
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                                  <h3 class="box-title">Quick Example</h3>
+                                                </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                                <form role="form">
+
+                                                    <div class="box-body">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword">Employer ID</label>
+                                                            <select class="form-control" id="emp_id" ng-model="pur_emp_id" name="pur_emp_id" onchange="GetEmplrbarchllist()">
+                                                                <option value="" disabled>select</option>
+                                                                <option ng-repeat="empr in GetEmployeeriD" value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword">Employer Branch</label>
+                                                            <select class="form-control" id="emp_brnch" ng-model="pur_emp_brnch" name="pur_emp_brnch">
+                                                                <option value="0" disabled>select</option>
+                                                                <option ng-repeat="branch in GetEmployeerbarchllist" value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword">Organisation Unit</label>
+                                                            <select class="form-control" id="orgunit" ng-model="pur_orgunit" name="pur_orgunit">
+                                                                <option value="" disabled>select</option>
+                                                                <option ng-repeat="org in OrganizationList" value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword">Project</label>
+                                                            <select class="form-control" id="project" ng-model="pur_project" name="pur_project">
+                                                                <option value="" disabled>select</option>
+                                                                <option ng-repeat="Proj in ProjectList" value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Material Request ID</label>
+                                                            <input type="text" class="form-control" data-target="#pur_mat_req_id" id="mat_req_id" data-toggle="modal" ng-model="pur_mat_req_id" name="pur_mat_req_id" data-target="#material" placeholder="&#61442;" style="font-family: FontAwesome;">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleinputemail1">purchase requisition id</label>
+                                                            <input type="text" class="form-control" id="pur_req_id" placeholder="purchase requisition id" ng-model="pur_req_id" name="pur_req_id">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Supplier Name</label>
+                                                            <input type="text" class="form-control" data-target="#pur_sup" data-toggle="modal" id="sup_name" ng-model="pur_sup_name" name="pur_sup_name" data-target="#Designation" placeholder="&#61442;" style="font-family: FontAwesome;">
+                                                        </div>
+                                                       
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Contact Person Name</label>
+                                                            <input type="text" class="form-control" id="pur_cnt_per_name" ng-model="pur_cnt_per_name" name="pur_cnt_per_name" placeholder="Contact Person Name" readonly>
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Contact Person Mobile No</label>
+                                                            <input type="text" class="form-control" id="pur_cnt_per_mobno" ng-model="pur_cnt_per_mobno" name="pur_cnt_per_mobno" placeholder="" readonly>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputFile">Supplier Address</label>
+                                                            <textarea class="form-control" id="pur_sup_add" ng-model="pur_sup_add" name="pur_sup_add" readonly></textarea>
+                                                        </div>
+                                                        <br />
+                                                        <!-- 	<div class="form-group col-md-3">
+                                                          <label for="exampleInputPassword1">Start Date / Renewed Date</label>
+                                                          <input type="date" class="form-control"  id="datepicker" placeholder="Start Date / Renewal Date">
+                                                        </div>
+                                                         -->
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Date Of Delivery</label>
+                                                            <input type="text" class="form-control" id="pur_dt_delvry" ng-model="pur_dt_delvry" name="pur_dt_delvry" placeholder="dd-mm-yy">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Delivery Location</label>
+                                                            <textarea class="form-control" id="pur_del_loc" ng-model="pur_del_loc" name="pur_del_loc" placeholder="Delivery Location"></textarea>
+                                                        </div>
+                                                        <div class="form-group col-md-10">
+                                                            <label for="exampleInputPassword1">Remarks</label>
+                                                            <textarea class="form-control" id="pur_remarks" ng-model="pur_remarks" name="pur_remarks" placeholder="Remarks"></textarea>
+                                                        </div>
+                                                        <input type="hidden" id="hdnindex" />
+                                                        <br />
+                                                        <br />
+                                                        <input type="hidden" id="hdnmareqid" />
+                                                        <input type="hidden" id="hdnPurreqid" />
+                                                        <div class="form-group col-md-10">
+                                                            <label for="exampleInputEmail">Select Item</label>
+                                                        </div>
+                                                        <div id="purchasedetails" class="form-group col-md-10">
+                                                            <table id="tblitem">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Item Id</th>
+                                                                        <th>Description</th>
+                                                                        <th>Qty</th>
+                                                                        <th>UM</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="txtbody">
+                                                                    <tr ng-repeat="item in ItemsList" ng-if="item.status<3">
+                                                                        <td><input type="text" class="form-control" id="slno_" value="" placeholder="S.No" readonly /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td><input type="text" name="description_$index" ng-model="item.description" id="description" class="form-control" readonly></td>
+                                                                        <td width="150"><input ng-model="item.quantity" id="quantity" type="text" class="form-control"></td>
+                                                                        <td width="150"><input ng-model="item.unitmeasure" id="unitmeasure" type="text" class="form-control" readonly></td>
+                                                                        <td ng-show="$index!=0" ng-click="deletrow($index,item.Req_TransId)"></td>
+                                                                        <td style="display:none;">
+                                                                            <input type="hidden" id="hiditemid" />
+                                                                            <input type="hidden" id="hidunit" />
+                                                                            <input type="hidden" id="Req_TransId" value="0" />
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
+                                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div> -->
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="epid" ng-model="epid" name="epid" />
+
+                           
+                        </div>
+
+                        <div class="modal fade" id="pur_item_id" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                       
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">                                                                                                     
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Item ID</th>
+                                                                    <th>Item Description</th>
+                                                                    <th>UM</th>
+                                                                     <th>Available Quantity</th>
+                                                                    <th>Reorder Level Quantity</th> 
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="item in GetStockitemsList">
+                                                                    <td><input type="radio" name="Empcheckgrp" id="itemcheck" value="" ng-model="Itemcheck" ng-click="GetItemdet(item)" /></td>
+                                                                    <td style="display:none;"></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="pur_mat_req_id" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                     <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier ID</label>
+                                                            <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier</label>
+                                                            <input type="text" id="desc" ng-model="desc" name="desc" />
+                                                        </div> 
+                                                     <div class="text-center">
+                                                       
+                                                    </div>
+                                                    <div class="text-right col-sm-12">
+                                                        <label for="exampleinput">Search</label>
+                                                        <input type="search" id="pur_search" ng-model="pur_search" name="pur_search" />
+                                                    </div> 
+
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Material Request ID</th>
+                                                                    <th>Project Name</th>
+                                                                     <th>UM</th>
+                                                                        <th>Available Quantity</th>
+                                                                        <th>Reorder Level Quantity</th> 
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="Metirial in MaterialReqdet">
+                                                                    <td><input type="radio" name="Empcheckgrp" id="itemcheck" value="" ng-model="Itemcheck" ng-click="GetReqIdItemdet(Metirial)" /></td>
+                                                                    <td style="display:none;"></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                     <td></td>
+                                                                        <td></td>
+                                                                        <td></td> 
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="pur_sup" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                     <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier ID</label>
+                                                            <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier</label>
+                                                            <input type="text" id="desc" ng-model="desc" name="desc" />
+                                                        </div>                                                    
+
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Supplier ID</th>
+                                                                    <th>Supplier Name</th>                                                                  
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="suplist in GetSupplieritemsList">
+                                                                    <td><input type="radio" name="item" ng-click="GetindividuvalSupdet(suplist)" /></td>
+                                                                    <td></td>
+                                                                    <td></td>                                                                  
+                                                                </tr>
+                                                            </tbody>                                                            
+                                                        </table>
+                                                        <input type="hidden" id="hdnsuppid" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    function addrow() {
+        var html = '<tr>' +
+                    '<td><input type="text" class="form-control"  placeholder="S.No"/></td>' +
+                    '<td onclick="addrow()"><input type="text" class="form-control"  data-target="#pur_item_id" data-toggle="modal" placeholder="&#61442;"style="font-family:FontAwesome;"/></td>' +
+                    '<td><input type="text" class="form-control" readonly></td>' +
+                    '<td width="150"><input type="text" class="form-control"></select></td>' +
+                    '<td width="150"><select class="form-control"><option value="2">kgs</option></select></td>' +
+                    '<td><td>' +
+                    '</tr>'
+        $(html).appendTo($("#txtbody"))
+    };
+    function deleterow() {
+        var par = $(this).parent().parent();
+        par.remove();
+    };
+    $("#txtbody").on("click", ".BtnMinus", deleterow);
+    $(document).ready(function () {
+        var html
+        $("#pur_dt_delvry").datepicker({
+            showWeek: "true",
+            dateFormat: "dd-mm-yy"
+        });
+    });
+    function GetEmplrbarchllist() {
+        angular.element(document.getElementById('purchaserequisitionController')).scope().GetEmployeerbarchllistdet();
+    }
+</script>

@@ -1,0 +1,199 @@
+
+
+<style>
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+
+<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+    <div class="panel-body" ng-controller="Mycontroller" id="divgrpdefinition">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary " style="border-top:none;">
+                    <div class="nav-tabs-custom">
+
+                        <ul class="nav nav-tabs" style="background-attachment:fixed">
+                            <li class="active" id="lifirsttab1"><a href="#tab1" id="listtab" data-toggle="tab">Group List</a></li>
+                            <li><a href="#tab2" id="firsttab" data-toggle="tab" ng-click="secontabclick()">Group Creation</a></li>
+                            @*<li><a href="#tab_3" id="thirdtab" data-toggle="tab">Account Details</a></li>*@
+                        </ul>
+                        <div class="tab-content">
+                            <div class="box tab-pane active" id="tab1">
+                                <div class="box-body">
+                                    <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-md-3">
+                                                    <label>From Date</label>
+                                                    <input type="text" id="txtfrmdate" class="form-control" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>To Date</label>
+                                                    <input type="text" id="txtTodate" class="form-control" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>Group Type</label>
+                                                    <select id="txtgrp_type" class="form-control">
+                                                        <option value="" selected>--All--</option>
+                                                        <option value="I">Internal</option>
+                                                        <option value="E">External</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button class="btn btn-success" ng-click="Getgroupdefinition()">Search</button>
+                                                </div>
+                                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th>Group ID</th>
+                                                            <th>Group Name</th>
+                                                            <th>Group Lang.</th>
+                                                            <th>Group Type</th>
+                                                            <th>Create Date</th>
+                                                           <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="grp in Gropdeflist">
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>
+                                                                @*<span ng-show="grp.G_Status==0">Active</span>
+                                                                <span ng-show="grp.G_Status==1">Inactive</span>*@
+
+                                                                <label class="switch">
+                                                                    <input type="checkbox" checked>
+                                                                    <span class="slider round"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.tab-content -->
+                                </div>
+
+                               
+                                </div>
+                            <div class="box tab-pane" id="tab2">
+                                
+                                <div class="box-body">
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">Group Id</label>
+                                        <input type="text" id="txtGroupId" class="form-control" />
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">Group Name</label>
+                                        <input type="text" id="txtgrpname" class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">Group Name in Local language</label>
+                                        <input type="text" id="txtGLName" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">Group Type</label>
+                                        <select id="txtgrptype" class="form-control">
+                                            <option value="" selected disabled>Please Select</option>
+                                            <option value="I">Internal</option>
+                                            <option value="E">External</option>
+                                        </select>
+                                    </div>
+                                    <button id="" type="submit" class="btn bg-maroon margin" ng-click="Setgroupdefinition()">Save</button>
+                                    <button id="" type="submit" class="btn bg-maroon margin" ng-click="cancelGroup()">Cancel</button>
+                                    <button id="" type="submit" class="btn bg-maroon margin" ng-click="ExitGroup()">Exit</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        var tdate = new Date();
+        var dd = tdate.getDate(); //yields day
+        var MM = tdate.getMonth()+1; //yields month
+        var yyyy = tdate.getFullYear(); //yields year
+        var currentDate = dd + "/" + MM + "/" + yyyy;
+        $("#txtfrmdate").val(currentDate);
+        $("#txtTodate").val(currentDate);
+        $("#txtfrmdate").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+        $("#txtTodate").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+
+        $("#txtgrp_type").change(function () {
+            angular.element(document.getElementById('divgrpdefinition')).scope().Getgroupdefinition();
+        })
+        //function Changeempname() {
+        //    alert("in");
+        //}
+})
+</script>

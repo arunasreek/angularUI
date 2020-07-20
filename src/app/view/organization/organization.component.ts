@@ -63,7 +63,7 @@ export class OrganizationComponent implements OnInit {
       o_id: this.Isorganizationupdate?this.o_id:0,
       Org_ID: this.orgDepartmentForm.value.O_Department_Id,
       OrganizationName: this.orgDepartmentForm.value.O_Department_Name,
-      emp_id:  this.orgDepartmentForm.value.O_Eployeer_Id,
+      emp_id: this.orgDepartmentForm.value.O_Eployeer_Id,
       b_id: this.orgDepartmentForm.value.O_Branch_Id,
       ReportingDepartmentID: this.orgDepartmentForm.value.O_Reporting_Department_Id,
       CostCenter: this.orgDepartmentForm.value.O_Costcenter,
@@ -80,17 +80,12 @@ export class OrganizationComponent implements OnInit {
 
     this.organizationService.setOrganization(orgPostData).subscribe((data:any)=>{
         if(data.ResponseMsg){
-            if(this.Isorganizationupdate){
-              this.toastr.success("Organization Successfully Updated.","Success");
-            }else{
-              this.toastr.success("Organization Successfully Created.","Success");
-            }
+            this.toastr.success("Organization Successfully Created.","Success");
             this.organizationService.getOrganizationList(0).subscribe((data: any) => {
               this.organizationList=data
             });
             $(document).ready(function() {
               $("#tabfirst").click();
-              this.orgDepartmentForm.reset();
             });
            
         }
@@ -98,17 +93,16 @@ export class OrganizationComponent implements OnInit {
   }
 
   orgEdit(o_id:number){
-    this.Isorganizationupdate=true;
     this.organizationService.getOrganizationList(o_id).subscribe((data: any) => {
        this.o_id= data[0].o_id,
        this.orgDepartmentForm.setValue({
           O_Department_Id:data[0].Org_ID,
           O_Department_Name:data[0].OrganizationName,
-          O_Eployeer_Id: this.employeeriDList.find(x=>x.EmployerID ==data[0].emp_id).emp_id,
+          O_Eployeer_Id:data[0].emp_id,
           O_Designation:data[0].MD_Designation,
-          O_Branch_Id:data[0].b_id,
+          O_Branch_Id:data[0].BranchId,
           O_Reporting_Department_Id:data[0].ReportingDepartmentID,
-          O_Costcenter:data[0].CostCenter=='Yes'?0:1,
+          O_Costcenter:data[0].CostCenter,
           O_First_Name:data[0].MD_FirstName,
           O_Middle_Name:data[0].MD_MiddleName,
           O_Last_Name:data[0].MD_LastName,
@@ -126,7 +120,6 @@ export class OrganizationComponent implements OnInit {
   }
 
   cancelorg(){
-    this.Isorganizationupdate=false;
     this.o_id=0;
     this.orgDepartmentForm.reset();
   }

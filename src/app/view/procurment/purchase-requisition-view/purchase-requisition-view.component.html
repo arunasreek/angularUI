@@ -1,0 +1,222 @@
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PurchaseRequisitionView</title>
+    
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Content/Scripts/Login.js"></script>
+    <script src="~/Content/Scripts/EEE.js"></script>
+   
+    <script src="~/Scripts/litty.js"></script>
+    <script src="~/Content/Scripts/Procurment.js"></script>
+    <script>
+
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[1]);
+        }
+        $(document).ready(function () {
+            debugger;
+            if (parseFloat(vars) > 0) {
+                angular.element(document.getElementById('PurchaseRequisitionviewController')).scope().GetPurchaseReqdet(vars[0], vars[1]);
+            }
+
+        });
+    </script>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <section class="content">
+        <div class="row" ng-app="Myapp" ng-controller="PurchaseRequisitionviewController" id="PurchaseRequisitionviewController">
+            <div class="col-md-12">
+                <div class="nav-tabs-customs">
+                    <ul class="nav nav-tabs">
+                         <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">PurchaseRequisition List</a></li> 
+                        <li class="active"><a href="#tab_1" id="primarytab" data-toggle="tab">PurchaseRequisition</a></li>
+                    </ul>
+                    <div class="tab-content" >
+                        <div class="tab-pane  active in" id="tab_1">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                            PurchaseRequistion Details
+                                        </a>
+                                    </h4>
+                                </div>
+                                <!-- in -->
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="box box-primary " style="border-top:none;">
+                                                    <!--   <div class="box-header with-border">
+                                                      <h3 class="box-title">Quick Example</h3>
+                                                    </div> -->
+                                                    <!-- /.box-header -->
+                                                    <!-- form start -->
+
+                                                    <form role="form">
+
+                                                        <div class="box-body">
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputpassword">Employer ID</label>
+                                                                <label class="form-control" ng-model="pur_emp_id" name="pur_emp_id">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputpassword">Employer Branch</label>
+                                                                <label class="form-control" ng-model="pur_emp_brnch" name="pur_emp_brnch">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputpassword">Organisation Unit</label>
+                                                                <label class="form-control" ng-model="pur_orgunit" name="pur_orgunit">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputpassword">Project</label>
+                                                                <label class="form-control" ng-model="pur_project" name="pur_project">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputEmail1">Material Request ID</label>
+                                                                <label type="text" class="form-control"  ng-model="pur_mat_req_id" name="pur_mat_req_id">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                             <div class="form-group col-md-3">
+                                                                <label for="exampleInputEmail1">Purchase Requisition ID</label>
+                                                                <label type="text" class="form-control" id="pur_req_id"  ng-model="pur_req_id" name="pur_req_id">
+                                                                    
+                                                                </label>
+
+                                                            </div> 
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Supplier Name</label>
+                                                                <label type="text" class="form-control"  ng-model="pur_sup_name" name="pur_sup_name">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputFile">Supplier Address</label>
+                                                                <label class="form-control" id="pur_sup_add" ng-model="pur_sup_add" name="pur_sup_add">
+
+                                                                </label>
+                                                            </div>
+                                                            <br />
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Contact Person Name</label>
+                                                                <label type="text" class="form-control" id="pur_cnt_per_name" ng-model="pur_cnt_per_name" name="pur_cnt_per_name" >
+                                                                    
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Contact Person Mobile No</label>
+                                                                <label type="text" class="form-control" id="pur_cnt_per_mobno" ng-model="pur_cnt_per_mobno" name="pur_cnt_per_mobno" >
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <!-- 	<div class="form-group col-md-3">
+                                                              <label for="exampleInputPassword1">Start Date / Renewed Date</label>
+                                                              <input type="date" class="form-control"  id="datepicker" placeholder="Start Date / Renewal Date">
+                                                            </div>
+                                                             -->
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Date Of Delivery</label>
+                                                                <label type="text" class="form-control" id="pur_dt_delvry" ng-model="pur_dt_delvry" name="pur_dt_delvry">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Delivery Location</label>
+                                                                <label type="text" class="form-control" id="pur_del_loc" ng-model="pur_del_loc" name="pur_del_loc" >
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-10">
+                                                                <label for="exampleInputPassword1">Remarks</label>
+                                                                <label type="text" class="form-control" id="pur_remarks" ng-model="pur_remarks" name="pur_remarks" >
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            
+                                                            <br />
+                                                            <br />
+                                                             <div class="form-group col-md-10">
+                                                                <label for="exampleInputEmail">Select Item</label>
+                                                            </div> 
+                                                        </div>
+                                                        <div id="purchasedetails">
+                                                            <table>
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Item Id</th>
+                                                                        <th>Description</th>
+                                                                        <th>Qty</th>
+                                                                        <th>UM</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="txtbody">
+                                                                    <tr ng-repeat="item in PurchaseMaterialReqdet[0].PtTransactions">
+                                                                        <td width="150"><label type="text" class="form-control">
+                                                                            
+                                                                            </label></td>
+                                                                        <td width="150"><label type="text" class="form-control">
+                                                                            </label></td>
+                                                                        <td width="150"><label type="text" class="form-control">
+                                                                            </label></td>
+                                                                        <td width="150"><label type="text" class="form-control">
+                                                                                            
+                                                                            </label></td>
+                                                                        <td width="150"><label class="form-control">
+                                                                            
+                                                                            </label></td>
+                                                                         <td onclick="deleterow()">
+                        <td> 
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <!-- /.box-body -->
+                                                        <!--  <div class="box-footer">
+                                                          <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </div> -->
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

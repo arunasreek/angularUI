@@ -6,6 +6,9 @@ import {
     EmployeeService,
     OrganizationService,
     EnterpriseService,
+    EmployerBranchesService,
+    CustomerService ,
+
     
 } from './'
 
@@ -17,7 +20,9 @@ import {
         CommonService,
         EmployeeService,
         OrganizationService,
-        EnterpriseService
+        EnterpriseService,
+        EmployerBranchesService,
+        CustomerService 
     ]
 })
 

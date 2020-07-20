@@ -20,16 +20,12 @@ export class EnterpriseComponent implements OnInit {
   Date_inception:Date;
   date_Ecpiry:Date;
 
-  // fysd:Date;
-  // fyed:Date;
-
   Isupdate:boolean;
   Isrenew:boolean;
   IsActive:boolean;
   IsInactive:boolean;
 
   enterpriseDetailsForm:FormGroup
-  financeSettingsForm:FormGroup
 
   constructor(public commonService:CommonService,
                private formBuilder: FormBuilder,
@@ -39,7 +35,6 @@ export class EnterpriseComponent implements OnInit {
   ngOnInit(): void {
     this.apiCall();
     this.enterPriseFormSetup();
-    this.financeSettingsFormSetup();
   }
 
   enterPriseFormSetup()
@@ -52,17 +47,7 @@ export class EnterpriseComponent implements OnInit {
     });
   }
 
-  
-  financeSettingsFormSetup(){
-    this.financeSettingsForm = this.formBuilder.group({
-      Functional_Currency:[''],
-      fysd:[''],
-      fyed:['']
-    });
-  }
-
   get a() { return this.enterpriseDetailsForm.controls; }
-  get b() { return this.financeSettingsForm.controls; }
 
   clearenterprisedata(){
     this.Date_inception=null;
@@ -87,7 +72,6 @@ export class EnterpriseComponent implements OnInit {
       }
     });
   }
-
 
 apiCall(){
   this.commonService.getEnterprisealllist().subscribe((data: any) => {

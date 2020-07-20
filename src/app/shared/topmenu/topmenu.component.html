@@ -1,172 +1,403 @@
-<div class="col-md-12">
-    <div class="nav-tabs-custom" style="width:102%">
+<div class="col-md-12" style="margin-left:-5px" >
+    <div class="nav-tabs-custom" style="width:103%">
         <ul class="nav nav-tabs" style="margin-top: -15px; margin-left: 2px;">
 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                    POLICIES<span class="caret"></span>
+                    SCM
                 </a>
                 <ul class="dropdown-menu">
                     <li class="dropdown-submenu">
-                        <a class="test" tabindex="-1" href="#">FINANCIAL <span class="caret"></span></a>
+                        <a class="test" tabindex="-1" href="#">Policies </a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a class="test" href="#">SETUP<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/Reports/re/approve_status">Approvals Setup</a></li>
-                                </ul>
-                           
-                            </li>
-                            <li><a href="#">SEGEMENTS</a></li>
-                            <li><a href="/Financila/Fn/Asset">ASSETS</a></li>
-                            <li><a href="/Financila/Fn/chartofaccts">CHART OF ACCOUNTS</a></li>
+                            <li><a routerLink="/customer">Customer</a></li>
+                            <li><a href="/Financila/Fn/Asset">Supplier</a></li>
+                            <li><a href="/Financila/Fn/Asset">Warehouse</a></li>
+                            <li><a routerLink="/floor">Floor</a></li>
+                            <li><a routerLink="/row">Row</a></li>
+                            <li><a routerLink="/rack">Rack</a></li>
+                            <li><a routerLink="/item-category">Item Category</a></li>
+                            <li><a routerLink="/itemgroup">Item Group</a></li>
+                            <li><a href="/Financila/Fn/Asset">Item Master</a></li>
+                            <li><a href="/Financila/Fn/Asset">UOM</a></li>
+                            <li><a href="/Financila/Fn/Asset">Inventory / Valutations</a></li>
 
-                            <li class="dropdown-submenu">
-                                <a class="test" href="#">VOUCHERS<span class="caret"></span></a>
-
-                                <ul class="dropdown-menu">
-                                    <li><a href="/Financila/Fn/ReceiptVoucher">RECEIPT VOUCHER</a></li>
-                                    <li><a href="/Financila/Fn/PaymentVocher">PAYMENT VOUCHER</a></li>
-                                    <li><a href="#">CONTRA</a></li>
-                                    <li><a href="#">JOURNAL</a></li>
-                                    <li><a href="#">PDC / CDC ISSUE</a></li>
-                                    <li><a href="#">PDC /CDC COLLECTION</a></li>
-                                    <li class="dropdown-submenu">
-                                        <a class="test" href="#">BANK RECONCILATION<span class="caret"></span></a>
-                                         <ul class="dropdown-menu">
-                                             <li><a href="/Stk/mgmt/BankMast">BANKS</a></li>
-                                         </ul>
-                                    </li>
-                                    <li><a href="assets.html">ASSETS</a></li>                                                          
-                                </ul>
-                            </li>
+                          
                         </ul>
-                    </li><li class="dropdown-submenu">
-                        <a class="test" href="#">LOGISTICS<span class="caret"></span></a>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" href="#">Inventory Management<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>
-                                <a class="test" href="#">PROCUREMENT<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/procure/pc/material">MATERIALREQUEST</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="test" href="#">PURCHASES<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/Enterprise/ES/Supplier">SUPPLIERS</a></li>
-                                </ul>
-                            </li>
-                                <li><a class="test" href="#">SALES<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/Enterprise/ES/CSupport">COUSTOMERS</a></li>
-                                    </ul>
-
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="test" href="#">INVENTORY MANAGEMENT<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="job-group.html">ITEM CATEGORY</a></li>
-                                    <li><a href="job-class.html">ITEM GROUP</a></li>
-                                    <li><a href="job-category.html">INVENTORY ITEMS</a></li>
-                                    <li><a href="job-catalouge.html">GOODS RECIEPT NOTE (GRN)</a></li>
-                                    <li><a href="grade-master.html">DELIVERY NOTE(DO)</a></li>
-
-                                </ul>
-                            </li>
+                            <li><a href="/Financila/Fn/Asset">Stock Adjustment Note</a></li>
+                            <li><a href="/Financila/Fn/Asset">Stock in hand Register</a></li>
+                            <li><a href="/Financila/Fn/Asset">Stock movement Register</a></li>
+                            <li><a href="/Financila/Fn/Asset">Delivery note</a></li>
+                            <li><a href="/Financila/Fn/Asset">Good Receipt note / POD </a></li>
+                            <li><a href="/Financila/Fn/Asset">Sales Returns</a></li>
+                            <li><a href="/Financila/Fn/Asset">Purchase returns</a></li>
                             </ul>
                             </li>
                                                                    
                  
-                        
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logistics</a></li>
 
                         <li class="dropdown-submenu">
-                            <a class="test" tabindex="-1" href="#">ADMINISTRATION <span class="caret"></span></a>
+                            <a class="test" tabindex="-1" href="#">Procurement <span class="caret"></span></a>
 
                             <ul class="dropdown-menu">
-
-                                <li class="dropdown-submenu">
-                                    <a class="test" href="#">APPROVAL WORKFLOW <span class="caret"></span></a>
-                                           </li><li><a href="/Reports/re/Approve">APPROVALS</a></li>
-                                    <a class="test" href="#">JOB CLASSIFICATION <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/Job/jb/Jobgroup">JOB GROUP</a></li>
-                                        <li><a href="/Job/jb/Jobclass">JOB ClASS</a></li>
-                                        <li><a href="/Job/jb/Jobcategory">JOB CATEGORY</a></li>
-                                        <li><a href="job-catalouge.html">JOB CATALOUGE</a></li>
-                                        <li><a href="grade-master.html">GRADE MASTER</a></li>
-                                        <li><a href="step-master.html">STEP MASTER</a></li>
-                                        <li><a href="job-grade-step.html">JOB GRADE STEP</a></li>
-
-                                    </ul>
-                                
-
-
-
+                                <li><a routerLink="/purchase-requisition">Supplier enquiry</a></li>
+                                <li><a routerLink="/purchase-quotation">Incoming Quotation</a></li>
+                                <li><a routerLink="/material-requisition">Supplier Quotation comparison</a></li>
+                                <li><a routerLink="/purchase-order">Purchase order</a></li>
+                               
                             </ul>
                         </li>
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="#">Sales <span class="caret"></span></a>
 
+                            <ul class="dropdown-menu">         
+                                <li><a routerLink="/sales-enquiry">Sales enquiry</a></li>
+                                <li><a routerLink="/outgoing-quotation">Outgoing quotation</a></li>
+                                <li><a routerLink="/sales-order">Sales order</a></li>
+                                        
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="#">Templates <span class="caret"></span></a>
+
+                            <ul class="dropdown-menu">
+                                        <li><a href="/Job/jb/Jobgroup">Payment terms templates</a></li>
+                                        <li><a href="/Job/jb/Jobclass">Customer Agreements templates</a></li>
+                                        <li><a href="/Job/jb/Jobcategory">Supplier Agreements templates</a></li>
+                                        <li><a href="job-catalouge.html">Any other templates</a></li>
+                                       </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="#">Reports <span class="caret"></span></a>
+
+                            <ul class="dropdown-menu">
+                                        <li><a href="/Job/jb/Jobgroup">Inventory reports</a></li>
+                                        <li><a href="/Job/jb/Jobclass">Other customized reports</a></li>
+                                        <li><a href="/Job/jb/Jobcategory">Stock adjustment reports</a></li>
+                                        <li><a href="job-catalouge.html">Stock in hand Register</a></li>
+                                        <li><a href="grade-master.html">Stock movement register</a></li>
+                                        <li><a href="step-master.html">Supplier Quotation comparison report</a></li>
+                                        <li><a href="job-grade-step.html">Pending Invoices report</a></li>
+                                        <li><a href="/Job/jb/Jobgroup">Pending GRN report</a></li>
+                                        <li><a href="/Job/jb/Jobclass">Supplier Invoice aging report</a></li>
+                                        <li><a href="/Job/jb/Jobcategory">GRN Aging report</a></li>
+                                        <li><a href="job-catalouge.html">PO Ageing report</a></li>
+                                        <li><a href="grade-master.html">Goods in Tansit report</a></li>
+                                        <li><a href="step-master.html">Goods Receipt Note Report day / Week /Month</a></li>
+                                        <li><a href="job-grade-step.html">Goods Delivered Report day / Week /Month</a></li>
+                                        <li><a href="/Job/jb/Jobgroup">Landing cost statement</a></li>
+                                        <li><a href="/Job/jb/Jobclass">Inventory / Valuations report</a></li>
+                                        <li><a href="/Job/jb/Jobcategory">Pending PO report</a></li>
+                                        <li><a href="job-catalouge.html">Pending SO report</a></li>
+                            </ul>
+                        </li>
 
                     </ul>
             </li>
 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                    HR MODULE <span class="caret"></span>
+                    FINANCE <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Policies</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Accounts allocation segments</a></li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Chart of Accounts <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Budgeting of GL's</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Customer</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Supplier</a></li>
+                                    <li><a routerLink="generalledge">General Ledger</a></li>
+          </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Vouchers <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+            
+                            <li><a routerLink="/journal-voucher">Journal Voucher</a></li>
+                            <li><a routerLink="/payment-voucher">Payment Voucher </a></li>
+                            <li><a routerLink="/receipt-voucher">Receipt Voucher</a></li>
+                                    <li><a href="job-catalouge.html">Supplier Voucher</a></li>
+                                    <li><a href="grade-master.html">Customer Invoice</a></li>
+                                    <li><a href="step-master.html">Credit Note</a></li>
+                                    <li><a href="job-grade-step.html">Debit Note</a></li>
+ </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Fixed Assests <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Fixed Assests Master</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Depriciaton calculation</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Depriciation Posting</a></li>
+                                    <li><a href="job-catalouge.html">Appriciation calculation</a></li>
+                                    <li><a href="grade-master.html">Appriciation posting</a></li>
+                                  
+
+                        </ul>
+                    </li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bank Reconcilation Statement</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CDC & PDC management</a></li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Settings <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Fisical year settings</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Financial year setting</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Fisical & financial month closing</a></li>
+                                    <li><a href="job-catalouge.html">Fisical & financial year closing</a></li>
+                                
+                        </ul>
+                    </li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Templates</a></li>
 
                 </ul>
             </li>
 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                    CRM MODULE <span class="caret"></span>
+                    PROJECT MANAGEMENT <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Policies</a></li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Project Master<span class="caret"></span></a>
 
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">WBS Master</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Estimations Master</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Budgeting</a></li>
+                               
+                                
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Material Management<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                            <li><a routerLink="/material-requisition">Material request</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Stock Issue note</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Stock Return Note</a></li>
+                                    <li><a href="job-catalouge.html">Stock Movement Register</a></li>
+                                
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Resource Management<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Resource request note</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Resorce return / Transfer note</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Material Invoice Submission</a></li>
+                                    <li><a href="job-catalouge.html">Resource Invoice Submission</a></li>
+                                
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Asset Management <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Asset allocation to Resources</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Asset verification note</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Assest verification report</a></li>
+                             
+                                
+                        </ul>
+                    </li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Reports</a></li>
                 </ul>
             </li>
 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                    REPORTS<span class="caret"></span>
+                    CRM <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">LOGISTICS REPORTS</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/Reports/re/GeneralLedge">FINANCIAL REPORTS</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">ADMIN REPORTS</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">MIS REPORTS</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">OTHER REPORTS</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Solutions</a></li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Marketing <span class="caret"></span></a>
 
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Contacts</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Campaigns</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Quick Campaigns</a></li>
+                             
+                                
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Sales<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Leads</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Opportunities</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Compitetors</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Products</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Quotes</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Orders</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Invoice</a></li>
+                             
+                                
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Service Management<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Service Calls</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Service Calendar</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Service Assignment</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Service Invoice</a></li>
+                                
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                    MAINTENANCE <span class="caret"></span>
+                    HCM <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Payroll Policies Management</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Personal Administration</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Employee Group</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Employee Sub Group</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Recruitment</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Time Management</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Payroll</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Performance Management</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sucession Management</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Training Management</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">ESS and MSS</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Reporting</a></li>
+                
                 </ul>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                    USER ACCESS MANAGEMENT<span class="caret"></span>
+                    MIS REPORTS<span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/GroupDefinition">Group Definition</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/UserCreation">User Creation</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/UserPermition">User_permistion</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/ServiceCreation">Service Creation</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/Groupmapping">Group Mapping</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/GroupDefinition">Reports</a></li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Financial Statements<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                            <li><a routerLink="/tradingaccount">Trading account</a></li>
+                                    <li><a href="/Job/jb/Jobclass">P & L account</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Balance sheet</a></li>
+                                    <li><a routerLink="/generalledgeprint">GL Ledger sheet</a></li>
+                                    <li><a href="/Job/jb/Jobgroup">Supplier Statement of Account report</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Customer Statement of Account report</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Fixed Assests Register</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Depriciation posting Report</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Accumulated Depriciation Report</a></li>
+                                
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Procurement Reports<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Landing cost statement</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Pending invoices report</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Pending DL report</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Pending Receipts report</a></li>
+                                    <li><a href="/Job/jb/Jobgroup">Customer invoice aging report</a></li>
+                                    <li><a href="/Job/jb/Jobclass">DL aging report</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">SO ageing report</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">Supplier Quotation comparision</a></li>
+                                    <li><a href="/Job/jb/Jobgroup">Supplier Statement of Account report</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Customer Statement of Account report</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Ratio analysis reports</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <li>
-                <a href="/Reports/re/Approve">Approvals</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    MAINTENANCE<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">User Management<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                            <li><a routerLink="/usercreation">User Creation</a></li>
+                                    <li><a href="/Job/jb/Jobclass">User Rolles</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">User Access levels Setup</a></li>
+                                    <li><a href="/Job/jb/Jobcategory">User Acess Interface</a></li>
+                   
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">User Approvals<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                            <li><a routerLink="/approve">Approvals Settings</a></li>
+                            <li><a routerLink="/approve-status">Approvals Assignment</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    IMPORTS & DOWNLOADS <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/GroupDefinition">Imports</a></li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Rates Import<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Sales tax Rates</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Income tax Rate</a></li>
+                                    <li><a href="/Job/jb/Jobgroup">GST rates</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Item Daily Rate update</a></li>
+                                    <li><a href="/Job/jb/Jobgroup">Customerwise rate fixing</a></li>
+                                   
+                           
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">Master Import<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                                    <li><a href="/Job/jb/Jobgroup">Customer</a></li>
+                                    <li><a href="/Job/jb/Jobclass">Supplier</a></li>
+                                    <li><a href="/Job/jb/Jobgroup">Item</a></li>
+                                    <li><a routerLink="/chart-of-accts" >Chart of Accounts</a></li>
+                                    <li><a href="/Job/jb/Jobgroup">Trail Balance</a></li>
+                                    
+                           
+                        </ul>
+                    </li>
+                </ul>
             </li>
             <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
         </ul>

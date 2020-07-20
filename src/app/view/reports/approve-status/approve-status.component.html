@@ -1,0 +1,215 @@
+
+<div class="row" ng-controller="Approvecontroller" id="aprvlleveldiv">
+    <div class="col-md-12">
+        <div class="nav-tabs-custom">
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    Approval Work Flow
+                                </a>
+                            </h4>
+                        </div>
+                        <!-- in -->
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="box box-primary " style="border-top:none;">
+                                            <!--   <div class="box-header with-border">
+                                                <h3 class="box-title">Quick Example</h3>
+                                              </div> -->
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
+
+                                          
+
+                                            <!-- /.box-body -->
+                                            <!--  <div class="box-footer">
+                                               <button type="submit" class="btn btn-primary">Submit</button>
+                                             </div> -->
+
+                                            <div class="nav-tabs-customs">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#tab_1" id="afirsttab" data-toggle="tab">Approval Level List</a></li>
+                                                    <li><a href="#tab_2" id="secondtab" data-toggle="tab">Set Approval Level</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+
+                                                       
+                                                    <div class="box tab-pane active" id="tab_1">
+                                                       
+                                                        <!-- /.box-header -->
+                                                        <div class="box-body">
+                                                            <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="col-md-3">
+                                                                            <label>From Date</label>
+                                                                            <input type="text" id="txtfrmdate" class="form-control"/>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <label>To Date</label>
+                                                                            <input type="text" id="txtTodate" class="form-control" />
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <label>Service Name</label>
+                                                                            <select id="servicef_id" ng-model="servicef_id" name="serviced_id" class="form-control">
+                                                                                <option value="" selected disabled>--Select Serivce Name--</option>
+                                                                                <option ng-repeat="esv in Esmservicelist" value="esv.Eservice_id"></option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                          <button class="btn btn-success" ng-click="GetServcieApproval()">Search</button>
+                                                                        </div>
+                                                                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                                            <thead>
+                                                                                <tr role="row">
+                                                                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Id</th>
+                                                                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Service Name</th>
+                                                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">User Name</th>
+                                                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Level Of Approval</th>
+                                                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Dealy Time</th>
+                                                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Created Date</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr ng-repeat="Gpvl in Getapvrllevellist">
+                                                                                    <td class="sorting_1"></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- /.tab-content -->
+                                                        </div>
+                                                    </div>
+
+                                                       
+                                                    <div class="tab-pane" id="tab_2">
+                                                        <form role="form">
+                                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 box-body table-responsive no-padding">
+                                                                        <table id="example1" class="table table-bordered table-striped dataTable table-hover" role="grid" aria-describedby="example1_info">
+                                                                            <thead>
+                                                                                <tr role="row">
+                                                                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Service Name</th>
+                                                                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">User Name</th>
+                                                                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Designation</th>
+                                                                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Level Of Approval</th>
+                                                                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Delay Time</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td>
+                                                                                        <select id="service_id" ng-model="service_id" name="service_id" class="form-control">
+                                                                                            <option value="" selected disabled>--Select Serivce Name--</option>
+                                                                                            <option ng-repeat="esv in Esmservicelist" value="esv.Eservice_id"></option>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <select id="emp_id" class="form-control">
+                                                                                            <option value="" selected disabled>--Select Employee Name--</option>
+                                                                                            <option ng-repeat="emp in EmployerList" value="emp.employee_id"></option>
+                                                                                        </select>
+                                                                                    </td>
+
+                                                                                    <td>
+                                                                                        <input type="text" id="txtdesignation" ng-model="txtdesignation" name="txtdesignation" class="form-control">
+                                                                                    </td>
+
+                                                                                    <td>
+                                                                                        <select id="txtlvlapvrl" ng-model="txtlvlapvrl" name="txtlvlapvrl" class="form-control">
+                                                                                            <option value="" selected disabled>--Select Approval Level--</option>
+                                                                                            <option value="L1">Level 1</option>
+                                                                                            <option value="L2">Level 2</option>
+                                                                                            <option value="L3">Level 3</option>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <select id="txtlduetime" ng-model="txtlduetime" name="txtlduetime" class="form-control">
+                                                                                            <option value="" selected disabled>--Select delay Time--</option>
+                                                                                            <option value="12">12 Hrs</option>
+                                                                                            <option value="24">24 Hrs</option>
+                                                                                            <option value="36">36 Hrs</option>
+                                                                                            <option value="48">48 Hrs</option>
+                                                                                        </select>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </form>
+
+                                                        <button id="" type="submit" class="btn bg-maroon margin" style="float:right" ng-click="SetApproveLevel()">Save</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.tab-content -->
+        </div>
+
+    </div>
+    <!-- /.row -->
+    <!-- Main row -->
+
+</div>
+<script>
+    $(document).ready(function () {
+
+        var tdate = new Date();
+        var dd = tdate.getDate(); //yields day
+        var MM = tdate.getMonth()+1; //yields month
+        var yyyy = tdate.getFullYear(); //yields year
+        var currentDate = dd + "/" + MM + "/" + yyyy;
+        $("#txtfrmdate").val(currentDate);
+        $("#txtTodate").val(currentDate);
+        $("#txtfrmdate").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+        $("#txtTodate").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+      
+        $("#emp_id").change(function () {
+            angular.element(document.getElementById('aprvlleveldiv')).scope().Getempchangelist();
+        })
+        //function Changeempname() {
+        //    alert("in");
+        //}
+})
+</script>

@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmployerView</title>
+   
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Content/Scripts/Login.js"></script>
+    <script src="~/Content/Scripts/EEE.js"></script>
+   
+    <script src="~/Scripts/litty.js"></script>
+    <script src="~/Content/Scripts/Stockmgmt.js"></script>
+    <script>
+       
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[1]);
+        }
+        $(document).ready(function () {
+           
+            if (parseFloat(vars) > 0) {
+                angular.element(document.getElementById('Itemgrp')).scope().GetItemGroupList(vars[0]);
+            }
+
+        });
+    </script>
+</head>
+<body ng-app="Myapp" id="Itemgrp" ng-controller="ItemgroupController">
+    <div class="row" >
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">             
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        ItemGroup Details
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                                  <h3 class="box-title">Quick Example</h3>
+                                                </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                                <form role="form">
+
+                                                    <div class="box-body" ng-repeat="grp in ItemGroupList">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1" style="color:blue;">ItemGroup ID <span style="color:red">*</span></label>
+                                                            <label type="text" class="form-control" ng-model="ItemGroupId" name="ItemGroupId" id="ItemGroupId" placeholder="ItemGroup Id"></label>
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1" style="color:blue;">ItemGroup Description<span style="color:red">*</span></label>
+                                                            <label type="text" class="form-control" ng-model="ItemGroupdesc" name="ItemGroupdesc" id="ItemGroupdesc" placeholder="ItemGroup Description"></label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
+                                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div> -->
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

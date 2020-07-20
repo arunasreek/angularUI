@@ -1,0 +1,117 @@
+
+
+<script>
+    $(document).ready(function () {
+        angular.element(document.getElementById('Invenrow')).scope().GetRowList();
+    });
+</script>
+<div class="row" ng-controller="InvRowController" id="Invenrow">
+    <div class="col-md-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active" id="lifirsttab1"><a href="#lifirsttab" id="afirsttab" data-toggle="tab"> Row List</a></li>
+                <li><a href="#tab_1" id="asecondtab" data-toggle="tab"> Add Row</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="box tab-pane active" id="lifirsttab">
+                    <div class="box-header">
+                        <h3 class="box-title">Data Table</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Row ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Row Description</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="row in Rowdet">
+                                                <td class="sorting_1"></td>
+                                                <td></td>
+                                                <td>
+                                                    <a href="/Stk/mgmt/InventRowView?id" data-lity>
+                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px;
+                                                            padding: 05px;    color: #d81b60;
+                                                        "></i>
+                                                    </a>
+                                                    <a href="#" ng-click="GetRowbyid(row.row_id)">
+                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px;
+                                                            padding: 05px;    color: #d81b60;
+                                                        "></i>
+                                                    </a>
+                                                    <a href="#" ng-click="DltRowbyid(row.row_id)">
+                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;
+                                                            padding: 05px;    color: #d81b60;
+                                                        "></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /.tab-content -->
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_1" ng-form="rowform1">
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box box-primary " style="border-top:none;">
+                                        <!--   <div class="box-header with-border">
+                                          <h3 class="box-title">Quick Example</h3>
+                                        </div> -->
+                                        <!-- /.box-header -->
+                                        <!-- form start -->
+
+                                        <form role="form">
+
+                                            <div class="box-body">
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Row ID <span style="color:red">*</span></label>
+                                                    <input type="text" class="form-control" ng-model="RowId" name="RowId" id="RowId" placeholder="Row Id" required>
+
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputPassword1" style="color:blue;">Row Description<span style="color:red">*</span></label>
+                                                    <input type="text" class="form-control" ng-model="Rowdesc" name="Rowdesc" id="Rowdesc" placeholder="Row Description" required>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.box-body -->
+                                            <!--  <div class="box-footer">
+                                              <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div> -->
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="rowform1.$invalid" ng-click="SetRowkdet()">Save</button>
+                            <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin" ng-disabled="rowform1.$invalid" ng-click="SetRowkdet()">Update</button>
+                            <button type="button" class="btn bg-maroon margin">Cancel</button>
+                            <button type="button" class="btn bg-maroon margin">Exit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

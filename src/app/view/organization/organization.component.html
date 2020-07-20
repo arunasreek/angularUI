@@ -54,16 +54,17 @@
                                     </tbody>
 
                                 </table>
+                                <!-- <div style="color:red; text-align:center" ng-show="GetOrganizationList.length==0" class="ng-hide">No Records  Found</div> -->
                               
                             </div>
                             
-                            <div class="tab-pane" id="tab_2" ng-form="organisationform2">
+                            <div class="tab-pane tab2 ng-pristine ng-invalid ng-invalid-required" id="tab_2" ng-form="organisationform2">
                                 <form [formGroup]="orgDepartmentForm" (ngSubmit)="onSubmitOrgDepartment()">
                                     <div class="col-md-12">
                                         <div class="panel panel-default">
                                             <div class="panel-heading" role="tab" id="headingOne">
                                                 <h4 class="panel-title">
-                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" >
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                                         <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
                                                         Details Of Department
                                                     </a>
@@ -96,7 +97,7 @@
                                                                             <label for="exampleInputPassword1"><span style="color:blue;">Employeer ID</span><span style="color:red;">*</span></label>
                                                                             <select aria-controls="example1" id="O_Eployeer_Id" class="form-control" formControlName="O_Eployeer_Id" name="O_Eployeer_Id" required="">
                                                                                 <option value="" disabled="" selected="selected">--Select Eployeer Id--</option>
-                                                                                <option   *ngFor="let item of employeeriDList" [ngValue]="item.emp_id">{{item.EmployerID}}</option>
+                                                                                <option *ngFor="let item of employeeriDList" [value]="item.emp_id">{{item.EmployerID}}</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-md-3">
@@ -133,20 +134,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
 
                                         <div class="panel panel-default">
                                             <div class="panel-heading" role="tab" id="headingTwo">
                                                 <h4 class="panel-title">
-                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                                         <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
                                                         Manager Details
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                                 <div class="panel-body">
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -223,6 +223,7 @@
                                         <button type="submit" class="btn bg-maroon margin" *ngIf="Isorganizationupdate">Update</button>
                                         <button type="button" class="btn bg-maroon margin" (click)="cancelorg()">Cancel</button>
                                         <!-- <button type="button" class="btn bg-maroon margin" ng-click="exitorg()">Exit</button> -->
+                                        <input type="hidden" id="hiddendesignation" autocomplete="off">
                                     </div>
                                 </form>
                             </div>
@@ -252,7 +253,7 @@
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div id="example1_filter" class="dataTables_filter">
-                                                        <label id="lblheading">Job ID/Title :<input type="text" class="form-control input-sm" placeholder="" aria-controls="example1"  name="txtsearch"></label>
+                                                        <label id="lblheading">Job ID/Title :<input type="text" class="form-control input-sm" placeholder="" aria-controls="example1" formControlName="txtsearch" name="txtsearch"></label>
                                                     </div>
                                                 </div>
                                             </div>

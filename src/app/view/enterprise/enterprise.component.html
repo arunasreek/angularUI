@@ -105,7 +105,7 @@
                                                     <div class="box-body">
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1"><span style="color:blue;">Enterprise ID</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control " id="exampleInputPassword1" placeholder="Enterprise_ID" formControlName="Enterprise_ID" name="Enterprise_ID" required="">
+                                                            <input type="text" class="form-control " id="exampleInputPassword1" placeholder="Enterprise_ID"formControlName="Enterprise_ID" name="Enterprise_ID" required="">
 
                                                         </div>
                                                         <div class="form-group col-md-3">
@@ -281,13 +281,13 @@
                                     <!-- /.box-header -->
                                     <!-- form start -->
 
-                                    <form [formGroup]="financeSettingsForm">
+                                    <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
 
                                         <div class="box-body">
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Functional Currency</span><span style="color:red;">*</span></label>
                                                 <!-- Should Use Currency Picker -->
-                                                <select class="form-control" required="" formControlName="Functional_Currency" name="Functional_Currency">
+                                                <select class="form-control" required="">
                                                     <option value="Select">Select</option>
                                                     <option value="USD">USD</option>
                                                     <option value="INR">INR</option>
@@ -299,23 +299,13 @@
 
 
                                             <div class="form-group col-md-3">
-                                                <label for="exampleInputEmail1"><span style="color:blue;">Financial Year Start Date</span><span style="color:red;">*</span></label>                                               
-                                                <input type="text"
-                                                class="form-control"
-                                                #dp="bsDatepicker"
-                                                formControlName="fysd"
-                                                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
-                                                bsDatepicker>  
+                                                <label for="exampleInputEmail1"><span style="color:blue;">Financial Year Start Date</span><span style="color:red;">*</span></label>
+                                                <input type="text" class="form-control " id="txtfiyrstr" ng-model="fysd" name="fysd" placeholder="" required="">
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Financial Year End Date</span><span style="color:red;">*</span></label>
-                                                <input type="text"
-                                                class="form-control"
-                                                #dp="bsDatepicker"
-                                                formControlName="fyed"
-                                                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
-                                                bsDatepicker>  
+                                                <input type="text" class="form-control " id="txtfiyrend" ng-model="fyed" name="fyed" placeholder="" required="">
                                             </div>
 
                                             <div class="form-group col-md-3">

@@ -1,0 +1,224 @@
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MaterialRequisitionView</title>
+    
+    <script src="~/Scripts/litty.js"></script>
+    <script>
+        debugger;
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[1]);
+        }
+        $(document).ready(function () {
+            debugger;
+            if (parseFloat(vars) > 0) {
+                angular.element(document.getElementById('MaterialRequisitionController')).scope().GetMaterialItemdet(vars[0], vars[1]);
+            }
+
+        });
+    </script>
+    <style>
+        .tbtextcolor {
+            color: black;
+            width: 100%;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <section class="content">
+        <div class="row" ng-app="Myapp" ng-controller="MaterialRequisitionViewController" id="MaterialRequisitionController">
+            <div class="col-md-12">
+                <div class="nav-tabs-customs">
+                     <ul class="nav nav-tabs">
+                         <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">MaterialRequisition List</a></li>
+                        <li class="active"><a href="#tab_1" id="primarytab" data-toggle="tab"></a></li>
+                    </ul> 
+                    <div class="tab-content">
+
+
+                       
+                        <div class="tab-pane active" id="tab_1">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                            MaterialRequisition Details
+                                        </a>
+                                    </h4>
+                                </div>
+                                <!-- in -->
+                                <div id="collapseOne" class="panel-collapse collapse in active" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="box box-primary " style="border-top:none;">
+                                                    <!--   <div class="box-header with-border">
+                                                      <h3 class="box-title">Quick Example</h3>
+                                                    </div> -->
+                                                    <!-- /.box-header -->
+                                                    <!-- form start -->
+
+                                                    <form role="form">
+
+                                                        <div class="box-body" ng-repeat="matreq in GetMetialreqList">
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputpassword">Employer ID</label>
+                                                                <label class="form-control" name="mat_emp_id">
+                                                                   
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputpassword">Employer Branch</label>
+                                                                <label class="form-control"  name="mat_emp_brnch">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputpassword">Organisation Unit</label>
+                                                                <label class="form-control" name="mat_orgunit">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputpassword">Project</label>
+                                                                <label class="form-control" name="mat_project">
+                                                                  
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputEmail1">Material Request ID</label>
+                                                                <label type="text" class="form-control"  name="mat_req_id" id="mat_req_id">
+                                                                   
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Contact Person Name</label>
+                                                                <label type="text" class="form-control" id="mat_cnt_per_name"  name="mat_cnt_per_name">
+                                                                    
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Contact Person Mobile No</label>
+                                                                <label type="text" class="form-control" id="mat_cnt_per_mobno"  name="mat_cnt_per_mobno">
+                                                                   
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Contact Person Designation</label>
+                                                                <label type="text" class="form-control" id="mat_cnt_per_desgn"  name="mat_cnt_per_desgn">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Project Start Date</label>
+                                                                <label type="text" class="form-control" id="mat_proj_strt_date"  name="mat_proj_strt_date" >
+                                                                   
+                                                                </label>
+                                                            </div>
+                                                            
+                                                            <!-- 	<div class="form-group col-md-3">
+                                                              <label for="exampleInputPassword1">Start Date / Renewed Date</label>
+                                                              <input type="date" class="form-control"  id="datepicker" placeholder="Start Date / Renewal Date">
+                                                            </div>
+                                                             -->
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Date Of Delivery</label>
+                                                                <label type="text" class="form-control" id="mat_dt_delvry"  name="mat_dt_delvry">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Delivery Location</label>
+                                                                <label type="text" class="form-control" id="mat_del_loc"  name="mat_del_loc">
+                                                                    
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1">Remarks</label>
+                                                                <label type="text" class="form-control" id="mat_remarks"  name="mat_remarks">
+                                                                   
+                                                                </label>
+                                                            </div>
+                                                            <br />
+                                                            <br />
+                                                            
+                                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                                <h4 class="panel-title">
+                                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                                                        Item Details
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="purchasedetails">
+                                                                <table style="width:100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>S.No</th>
+                                                                            <th>Item Id</th>
+                                                                            <th>Description</th>
+                                                                            <th>Qty</th>
+                                                                            <th>UM</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="txtbody">
+                                                                        <tr ng-repeat="mitem in matreq.MtTransactions">
+                                                                            <td width="100"><label class="form-control"></label></td>
+                                                                            <td width="100"><label class="form-control"></label></td>
+                                                                            <td width="100"><label class="form-control"></label></td>
+                                                                            <td width="150"><label class="form-control"></label></td>
+                                                                            <td width="150"><label class="form-control"></label></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+
+                                                        </div>
+                                                         <button onclick="myFunction()">Print</button>  
+                                                        <!-- /.box-body -->
+                                                        <!--  <div class="box-footer">
+                                                          <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </div> -->
+
+                                                    </form>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+
+                            </div>
+
+                           
+                           
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+ <script>
+function myFunction() {
+    window.print();
+}
+</script> 
