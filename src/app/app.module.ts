@@ -53,12 +53,19 @@ import { IndexComponent } from './view/home/index/index.component';
 import { JobcatalogfileuploadComponent } from './view/msdatafileup/jobcatalogfileupload/jobcatalogfileupload.component';
 import { DashboardComponent } from './view/login/dashboard/dashboard.component';
 import { GroupdefinitionComponent } from './view/login/groupdefinition/groupdefinition.component';
+
 // import { LoginComponent } from './view/login/login/login.component';
+
+
 import { UsercreationComponent } from './view/login/usercreation/usercreation.component';
 import { UserpermitionComponent } from './view/login/userpermition/userpermition.component';
 import { AddPhoneNumberComponent } from './view/manage/add-phone-number/add-phone-number.component';
 import { ChangePasswordComponent } from './view/manage/change-password/change-password.component';
+
 // import { IndexComponent } from './view/manage/index/index.component';
+
+// import { IndexComponent } from './view/manage/index/index.component';
+
 import { ManageLoginsComponent } from './view/manage/manage-logins/manage-logins.component';
 import { SetPasswordComponent } from './view/manage/set-password/set-password.component';
 import { VerifyPhoneComponent } from './view/manage/verify-phone/verify-phone.component';
@@ -102,6 +109,7 @@ import { StockitemViewComponent } from './view/stock/stockitem-view/stockitem-vi
 import { SalesEnquiryComponent } from './view/sales/sales-enquiry/sales-enquiry.component';
 import { OutgoingQuotationComponent } from './view/sales/outgoing-quotation/outgoing-quotation.component';
 import { SalesOrderComponent } from './view/sales/sales-order/sales-order.component';
+
 import { SupplierInvoiceComponent } from './view/invoice/supplier-invoice/supplier-invoice.component';
 import { CustomerInvoiceComponent } from './view/invoice/customer-invoice/customer-invoice.component';
 // import { ContactComponent } from './view/contact/contact.component';
@@ -117,6 +125,7 @@ import { GoodReceiptNoteComponent } from './view/good-receipt-note/good-receipt-
 import { SalesReturnsComponent } from './view/sales-returns/sales-returns.component';
 import { PurchaseReturnsComponent } from './view/purchase-returns/purchase-returns.component';
 import { SupplierComponent } from './view/supplier/supplier.component';
+
 
 
 @NgModule({
@@ -207,6 +216,7 @@ import { SupplierComponent } from './view/supplier/supplier.component';
     SalesEnquiryComponent,
     OutgoingQuotationComponent,
     SalesOrderComponent,
+
     SupplierInvoiceComponent,
     CustomerInvoiceComponent,
     ContactComponent,
@@ -221,6 +231,7 @@ import { SupplierComponent } from './view/supplier/supplier.component';
     SalesReturnsComponent,
     PurchaseReturnsComponent,
     SupplierComponent,
+
   ],
   imports: [
     HttpClientModule,

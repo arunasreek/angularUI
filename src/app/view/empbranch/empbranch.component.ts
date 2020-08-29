@@ -28,13 +28,14 @@ Isupdate:boolean;
   organizationIDList:any;
   organizationList:any;
   Isorganizationupdate:boolean;
-  Designation:string;
   Isempbranchupdate:boolean;
-  b_id:number;
+  Designation:string;
+  o_id:number;
   p: number=1;
   submitted=false;
 
   employerBranchForm:FormGroup;
+  b_id: number;
 
   constructor(public commonService:CommonService,
     private formBuilder: FormBuilder,public toastr:ToastrService,
@@ -47,7 +48,8 @@ Isupdate:boolean;
   
   employerBranchFormSetup(){
     this.employerBranchForm = this.formBuilder.group({
-      
+      b_id:[''],
+      employee_id: [''],
       Employer_Id: [''],
       Branch_ID: ['',[Validators.required,Validators.maxLength(6)]],
       Branch_Name: [''],
@@ -111,10 +113,10 @@ onGridReady(params) {
 
 empbranchEdit(b_id:number){
   this.employerBranchService.getbranchlist(b_id).subscribe((data: any) => {
-    this.b_id= data[0].b_id,
+  
      this.employerBranchForm.setValue({
         Employer_Id:data[0].EmployerId,
-        Branch_ID:data[0].BranchId,
+        Branch_ID:data[0].b_id,
         Branch_Name:data[0].BranchName,
         branc_manager_name:data[0].manager_name,
         Branch_Currency:data[0].BranchCurrency,
@@ -165,8 +167,10 @@ deleteEmployee(BranchId:number){
 // }
 
 onSubmitPrimary() {
+
+
   let employeebranchData: IEmployeeBranchPost = {
-      b_id:this.Isempbranchupdate?this.b_id:0,
+    b_id:this.Isempbranchupdate?this.b_id:0,
       EmployerId: this.employerBranchForm.value.Employer_Id,
       BranchId: this.employerBranchForm.value.Branch_Id,
       BranchName: this.employerBranchForm.value.Branch_Name,
@@ -193,14 +197,15 @@ onSubmitPrimary() {
       this.toastr.success("Employer Branch Successfully Created.","Success");
     this.employerBranchService.getbranchlist(0).subscribe((data: any) => {
           this.branchList=data
-         
-          
       });
-     
-
+      $(document).ready(function() {
+        $("#tabfirst").click();
+      });
     }
-  });
 
+
+
+  });
 
 
 }

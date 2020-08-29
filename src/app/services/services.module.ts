@@ -8,10 +8,12 @@ import {
     EnterpriseService,
     EmployerBranchesService,
     CustomerService ,
+
     EmployerService,
     ProjectService,
     WarehouseService,
     CharofAcctsService,
+
     
 } from './'
 
@@ -25,11 +27,15 @@ import {
         OrganizationService,
         EnterpriseService,
         EmployerBranchesService,
+
         CustomerService,
         EmployerService,
         ProjectService,
         WarehouseService,
-        CharofAcctsService 
+        CharofAcctsService ,
+
+        CustomerService 
+
     ]
 })
 

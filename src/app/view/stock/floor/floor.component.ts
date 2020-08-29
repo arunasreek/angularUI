@@ -1,3 +1,4 @@
+
      
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
@@ -6,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import {WarehouseService } from 'src/app/services';
 import { IsupplierPost } from 'src/app/models/supplier.model';
 declare var $:any;
+
 
 
 @Component({
@@ -19,6 +21,7 @@ export class FloorComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   columnDefs = [
     {headerName: 'Floor ID', field: 'make' },
     {headerName: 'Floor Description', field: 'model' },
@@ -46,4 +49,5 @@ rowData = [
     { make: 'Ford', model: 'Mondeo'},
     { make: 'Porsche', model: 'Boxter' }
 ];
+
 }

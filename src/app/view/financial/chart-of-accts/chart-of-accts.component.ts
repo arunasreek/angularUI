@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {CommonService} from 'src/app/services/common.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -6,12 +7,14 @@ import { CharofAcctsService } from 'src/app/services';
 import { IChartPost } from 'src/app/models/financial.model';
 declare var $:any;
 
+
 @Component({
   selector: 'app-chart-of-accts',
   templateUrl: './chart-of-accts.component.html',
   styleUrls: ['./chart-of-accts.component.css']
 })
 export class ChartOfAcctsComponent implements OnInit {
+
 
   private gridApi;
   private gridColumnApi;
@@ -177,5 +180,8 @@ apiCall(){
   });
 
 }
+
+ 
+
 
 }
