@@ -42,5 +42,5 @@ export class CommonService {
             return data;
         }));
     }
-
+   
 }

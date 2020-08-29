@@ -26,188 +26,71 @@
                                                 <tr role="row">
                                                     <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Employer ID</th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Employer Name</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Employer</th>
+                                                    
+                  
+                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Parent Company</th>
+                  
+                  
                                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry</th>
-
-                                                    <!-- concatenation Of Office Contact Person First , Middle  , LAst Names -->
+                                                    <!-- concatenation Of Office Contact Person First , Middle   , LAst Names -->
+                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expriy</th>
+                  
                                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Contact Person</th>
-                                             
+                  
                                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Actions</th>
+                  
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- ngRepeat: Employer in EmployerList --><tr ng-repeat="Employer in EmployerList" class="ng-scope">
-                                                    <td class="ng-binding">ES105</td>
-                                                    <td class="ng-binding">Santhu</td>
-                                                    <td class="ng-binding">Yes</td>
-                                                    <td class="ng-binding">31/03/2018</td>
-                                                    <td class="ng-binding">31/03/2018</td>
-                                                    <td class="ng-binding"></td>
-                                                    
+                                              <tr *ngFor="let item of employersList?.GetEmployeeListForAll | paginate:{ itemsPerPage: 10 , currentPage: p };" class="ng-scope">
+                                                    <td class="ng-binding">{{item?.EmployerID}}</td>
+                                                    <td class="ng-binding">{{item?.EmployerName}}</td>
+                                                    <td class="ng-binding">{{item?.ParentCompany}}</td>
+                                                    <td class="ng-binding">{{item?.DateOfInception}}</td>
+                                                    <td class="ng-binding">{{item?.DateOfInception}}</td>
+                                                    <td class="ng-binding">{{item?.AR_FistName}}</td>
                                                     <td>
-                                                        <a href="/Enterprise/ES/EmployerView?id=9" data-lity="">
-                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
+                                                        
+                                                        <a href="/Enterprise/ES/Employeeview?id=1" data-lity="">
+                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                         </a>
-                                                        <a href="#" ng-click="EditEmployer(Employer.emp_id)">
-                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
+                                                        <a >
+                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ></i>
                                                         </a>
-                                                        <a href="#">
-                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Deleteemployer(Employer.emp_id)"></i>
+                                                        <a >
+                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ></i>
                                                         </a>
-                                                       
                                                     </td>
-                                                </tr><!-- end ngRepeat: Employer in EmployerList --><tr ng-repeat="Employer in EmployerList" class="ng-scope">
-                                                    <td class="ng-binding">EP106</td>
-                                                    <td class="ng-binding">Prasad</td>
-                                                    <td class="ng-binding">Yes</td>
-                                                    <td class="ng-binding">28/02/2018</td>
-                                                    <td class="ng-binding">28/02/2018</td>
-                                                    <td class="ng-binding"></td>
-                                                    
-                                                    <td>
-                                                        <a href="/Enterprise/ES/EmployerView?id=8" data-lity="">
-                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#" ng-click="EditEmployer(Employer.emp_id)">
-                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#">
-                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Deleteemployer(Employer.emp_id)"></i>
-                                                        </a>
-                                                       
-                                                    </td>
-                                                </tr><!-- end ngRepeat: Employer in EmployerList --><tr ng-repeat="Employer in EmployerList" class="ng-scope">
-                                                    <td class="ng-binding">ESmart</td>
-                                                    <td class="ng-binding">Prasad</td>
-                                                    <td class="ng-binding">No</td>
-                                                    <td class="ng-binding">31/03/2018</td>
-                                                    <td class="ng-binding">31/03/2018</td>
-                                                    <td class="ng-binding">sdafdasfdsafasdfasdfdasf</td>
-                                                    
-                                                    <td>
-                                                        <a href="/Enterprise/ES/EmployerView?id=7" data-lity="">
-                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#" ng-click="EditEmployer(Employer.emp_id)">
-                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#">
-                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Deleteemployer(Employer.emp_id)"></i>
-                                                        </a>
-                                                       
-                                                    </td>
-                                                </tr><!-- end ngRepeat: Employer in EmployerList --><tr ng-repeat="Employer in EmployerList" class="ng-scope">
-                                                    <td class="ng-binding">ES106</td>
-                                                    <td class="ng-binding">Prasad</td>
-                                                    <td class="ng-binding">No</td>
-                                                    <td class="ng-binding">31/03/2018</td>
-                                                    <td class="ng-binding">31/03/2018</td>
-                                                    <td class="ng-binding"></td>
-                                                    
-                                                    <td>
-                                                        <a href="/Enterprise/ES/EmployerView?id=6" data-lity="">
-                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#" ng-click="EditEmployer(Employer.emp_id)">
-                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#">
-                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Deleteemployer(Employer.emp_id)"></i>
-                                                        </a>
-                                                       
-                                                    </td>
-                                                </tr><!-- end ngRepeat: Employer in EmployerList --><tr ng-repeat="Employer in EmployerList" class="ng-scope">
-                                                    <td class="ng-binding">ES103</td>
-                                                    <td class="ng-binding">Deepu</td>
-                                                    <td class="ng-binding">No</td>
-                                                    <td class="ng-binding">31/03/2018</td>
-                                                    <td class="ng-binding">31/03/2018</td>
-                                                    <td class="ng-binding">PrasadVP</td>
-                                                    
-                                                    <td>
-                                                        <a href="/Enterprise/ES/EmployerView?id=4" data-lity="">
-                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#" ng-click="EditEmployer(Employer.emp_id)">
-                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#">
-                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Deleteemployer(Employer.emp_id)"></i>
-                                                        </a>
-                                                       
-                                                    </td>
-                                                </tr><!-- end ngRepeat: Employer in EmployerList --><tr ng-repeat="Employer in EmployerList" class="ng-scope">
-                                                    <td class="ng-binding">ES102</td>
-                                                    <td class="ng-binding">Pandu</td>
-                                                    <td class="ng-binding">No</td>
-                                                    <td class="ng-binding">31/03/2018</td>
-                                                    <td class="ng-binding">31/03/2018</td>
-                                                    <td class="ng-binding"></td>
-                                                    
-                                                    <td>
-                                                        <a href="/Enterprise/ES/EmployerView?id=3" data-lity="">
-                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#" ng-click="EditEmployer(Employer.emp_id)">
-                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#">
-                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Deleteemployer(Employer.emp_id)"></i>
-                                                        </a>
-                                                       
-                                                    </td>
-                                                </tr><!-- end ngRepeat: Employer in EmployerList --><tr ng-repeat="Employer in EmployerList" class="ng-scope">
-                                                    <td class="ng-binding">ES101</td>
-                                                    <td class="ng-binding">Prasad</td>
-                                                    <td class="ng-binding">Yes</td>
-                                                    <td class="ng-binding">28/02/2018</td>
-                                                    <td class="ng-binding">28/02/2018</td>
-                                                    <td class="ng-binding"></td>
-                                                    
-                                                    <td>
-                                                        <a href="/Enterprise/ES/EmployerView?id=2" data-lity="">
-                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#" ng-click="EditEmployer(Employer.emp_id)">
-                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#">
-                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Deleteemployer(Employer.emp_id)"></i>
-                                                        </a>
-                                                       
-                                                    </td>
-                                                </tr><!-- end ngRepeat: Employer in EmployerList --><tr ng-repeat="Employer in EmployerList" class="ng-scope">
-                                                    <td class="ng-binding">EP105</td>
-                                                    <td class="ng-binding">Prasad</td>
-                                                    <td class="ng-binding">Yes</td>
-                                                    <td class="ng-binding">28/02/2018</td>
-                                                    <td class="ng-binding">28/02/2018</td>
-                                                    <td class="ng-binding"></td>
-                                                    
-                                                    <td>
-                                                        <a href="/Enterprise/ES/EmployerView?id=1" data-lity="">
-                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#" ng-click="EditEmployer(Employer.emp_id)">
-                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
-                                                        </a>
-                                                        <a href="#">
-                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Deleteemployer(Employer.emp_id)"></i>
-                                                        </a>
-                                                       
-                                                    </td>
-                                                </tr><!-- end ngRepeat: Employer in EmployerList -->
+                                                </tr>
+                  
+                  
+                  
                                             </tbody>
-                                            <!--   <tfoot>
-                                        <tr>
-                                        <th rowspan="1" colspan="1">Rendering engine</th>
-                                        <th rowspan="1" colspan="1">Browser</th>
-                                        <th rowspan="1" colspan="1">Platform(s)</th>
-                                        <th rowspan="1" colspan="1">Engine version</th>
-                                        <th rowspan="1" colspan="1">CSS grade</th></tr>
-                                        </tfoot> -->
+                                              <!-- <tfoot>
+                                            <tr>
+                                            <th rowspan="1" colspan="1">Rendering engine</th>
+                                            <th rowspan="1" colspan="1">Browser</th>
+                                            <th rowspan="1" colspan="1">Platform(s)</th>
+                                            <th rowspan="1" colspan="1">Engine version</th>
+                                            <th rowspan="1" colspan="1">CSS grade</th></tr>
+                                            </tfoot> -->
+                                            
                                         </table>
+                                        <div style="float:right;margin-top:20px;color:#102f66;font-weight:800">
+                                            <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                                           </div> 
+                                        <!-- <ag-grid-angular
+                                        style="width:100%; height:500px;min-height:200px;padding-left:50px"
+                                        class="ag-theme-alpine"
+                                        [columnDefs]="columnDefs"
+                                        (gridReady)="onGridReady($event)"
+                                        [rowData]="rowData "
+                                        [pagination]="true" 
+                                        [paginationAutoPageSize]="true"
+                                        enableSorting
+                                        enableFilter
+                                        >
+                                    </ag-grid-angular> -->
                                     </div>
                                 </div>
                                 <div class="row">
@@ -241,42 +124,46 @@
                                                 <!-- /.box-header -->
                                                 <!-- form start -->
 
-                                                <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
+                                                <form [formGroup]="employerForm" (ngSubmit)="onSubmitPrimary()" >
 
                                                     <div class="box-body">
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1"><span style="color:blue;">Enterprise ID</span><span style="color:red;">*</span></label>
-                                                            <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlentraid" ng-model="ddlentraid" id="ddlentraid" placeholder="Entraprise ID" required="">
-                                                                <option value="" disabled="" selected="selected">Select</option>
-                                                                <!-- ngRepeat: id in Enterpriseids --><option ng-repeat="id in Enterpriseids" value="1001" class="ng-binding ng-scope">sourab</option><!-- end ngRepeat: id in Enterpriseids --><option ng-repeat="id in Enterpriseids" value="1002" class="ng-binding ng-scope">srilatha</option><!-- end ngRepeat: id in Enterpriseids --><option ng-repeat="id in Enterpriseids" value="1003" class="ng-binding ng-scope">esmart</option><!-- end ngRepeat: id in Enterpriseids --><option ng-repeat="id in Enterpriseids" value="1004" class="ng-binding ng-scope">Sourab vij123</option><!-- end ngRepeat: id in Enterpriseids --><option ng-repeat="id in Enterpriseids" value="1005" class="ng-binding ng-scope">Sourab tech</option><!-- end ngRepeat: id in Enterpriseids --><option ng-repeat="id in Enterpriseids" value="EP201" class="ng-binding ng-scope">Dell</option><!-- end ngRepeat: id in Enterpriseids --><option ng-repeat="id in Enterpriseids" value="5006" class="ng-binding ng-scope">5006</option><!-- end ngRepeat: id in Enterpriseids --><option ng-repeat="id in Enterpriseids" value="231" class="ng-binding ng-scope">VARUN</option><!-- end ngRepeat: id in Enterpriseids --><option ng-repeat="id in Enterpriseids" value="1234" class="ng-binding ng-scope">SOURAB</option><!-- end ngRepeat: id in Enterpriseids -->
+                                                            <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlentraid" formControlName="ddlentraid" id="ddlentraid" placeholder="Entraprise ID" required="">
+                                                               
+                                                                <option value="" disabled="" selected="selected">--Select Enterprise Id--</option>
+                                                        <option *ngFor="let item of erpriseids" [value]="item.EnterpriseID">{{item.EnterpriseName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1"><span style="color:blue;">Employer ID</span><span style="color:red;">*</span></label>
 
-                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemprid" ng-model="txtemprid" id="txtemprid" placeholder="Employer ID" required="">
+                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemprid" formControlName="txtemprid" id="txtemprid" placeholder="Employer ID" required="">
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Employer Name</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrname" ng-model="txtemrname" id="txtemrname" placeholder="Employer Name" required="">
+                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrname" formControlName="txtemrname" id="txtemrname" placeholder="Employer Name" required="">
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputFile"><span style="color:blue;">Parent Company</span><span style="color:red;">*</span></label>
-                                                            <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlprtcpy" ng-model="ddlprtcpy" id="ddlprtcpy" required="">
+                                                            <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlprtcpy" formControlName="ddlprtcpy" id="ddlprtcpy" required="">
                                                                 <option value="" disabled="" selected="selected">Select</option>
-                                                                <!-- ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="EP105" class="ng-binding ng-scope">Prasad</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="ES101" class="ng-binding ng-scope">Prasad</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="ES102" class="ng-binding ng-scope">Pandu</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="ES103" class="ng-binding ng-scope">Deepu</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="ES104" class="ng-binding ng-scope">Prasad</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="ES106" class="ng-binding ng-scope">Prasad</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="ESmart" class="ng-binding ng-scope">Prasad</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="EP106" class="ng-binding ng-scope">Prasad</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="ES105" class="ng-binding ng-scope">Santhu</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="ES106" class="ng-binding ng-scope">Santhu</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="ES107" class="ng-binding ng-scope">Sawathi</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="sdfas" class="ng-binding ng-scope">sdfa</option><!-- end ngRepeat: empr in GetEmployeeriD --><option ng-repeat="empr in GetEmployeeriD" value="EMPLR101" class="ng-binding ng-scope">TestEmplr101</option><!-- end ngRepeat: empr in GetEmployeeriD -->
+                                                                <option *ngFor="let item of employeeriDList" [value]="item.emp_id">{{item.EmployerName}}</option>
 
                                                             </select>
                                                         </div>
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Permanent Registration</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtprtregno" ng-model="txtprtregno" id="txtprtregno" placeholder="Permanent Registration" required="">
+                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtprtregno" formControlName="txtprtregno" id="txtprtregno" placeholder="Permanent Registration" required="">
                                                         </div>
                                                         
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Date Of Inception</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" name="txtdtincp" ng-model="txtdtincp" id="txtdtincp" placeholder="Date Of Incpetion" required="">
+                                                            <input type="text"
+                                                            class="form-control"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="Date_inception" >
                                                         </div>
                                                         <!-- 	<div class="form-group col-md-3">
                                                       <label for="exampleInputPassword1">Start Date / Renewed Date</label>
@@ -285,7 +172,10 @@
                                                      -->
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Date Of Expiry</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" name="txtdtexp" ng-model="txtdtexp" id="txtdtexp" placeholder="Date Of Expiry" required="">
+                                                            <input type="text"
+                                                            class="form-control"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="date_Ecpiry" >
                                                         </div>
 
 
@@ -306,8 +196,8 @@
                             </div>
                         </div>
 
-                        <button type="button" class="btn bg-maroon margin" ng-show="Isedit==0" ng-disabled="employerform1.$invalid" ng-click="SetEmployerPrimarydet()" disabled="disabled">Save</button>
-                        <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isedit==1" ng-disabled="employerform1.$invalid" ng-click="updateEnployer('P')" disabled="disabled">Update</button>
+                        <button type="button" class="btn bg-maroon margin" ng-show="Isedit==0" ng-disabled="employerform1.$invalid"  >Save</button>
+                        <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isedit==1" ng-disabled="employerform1.$invalid" ng-click="updateEnployer('P')" >Update</button>
                         <button type="button" class="btn bg-maroon margin">Cancel</button>
                         <button type="button" class="btn bg-maroon margin" ng-click="RouteTofirst()">Exit</button>
                         <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin ng-hide">Renew</button>
@@ -351,7 +241,7 @@
 
 
                                         </div>
-                                        <div class="form-group col-md-3">
+                                        <div class="form-group col-md-4">
                                             <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin">Upload</button>
                                             <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isedit==1" ng-click="updateEnployer('E')">Update</button>
                                             <button type="button" class="btn bg-maroon margin" ng-click="RouteTofirst()">Exit</button>
@@ -439,7 +329,7 @@
 
 
                                         </div>
-                                        <div class="form-group col-md-3">
+                                        <div class="form-group col-md-4">
                                             <button type="button" class="btn bg-maroon margin" ng-show="Isedit==0" ng-disabled="employerform4.$invalid" ng-click="SetEmployerFinancialdet()" disabled="disabled">Submit</button>
                                             <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isedit==1" ng-disabled="employerform4.$invalid" ng-click="updateEnployer('F')" disabled="disabled">Update</button>
                                             <button type="button" class="btn bg-maroon margin" ng-click="RouteTofirst()">Exit</button>
@@ -653,7 +543,7 @@
                                     <div class="panel-heading" role="tab" id="headingThree">
                                         <h4 class="panel-title">
                                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                                                <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                                <i class="more-less glyphicon glyphicon-plus"></i>
                                                 Office Contact Person
                                             </a>
                                         </h4>

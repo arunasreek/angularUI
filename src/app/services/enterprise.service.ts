@@ -16,5 +16,10 @@ export class EnterpriseService {
             return res;
         }));
     }
+    getStatelist(country_id:number) {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/Getstate?${country_id}`).pipe(map((data: any) => {
+            return data;
+        }));
+    }
 
 }

@@ -12,6 +12,11 @@ declare var $:any;
 })
 export class EmployeeComponent implements OnInit {
 
+  private gridApi;
+  private gridColumnApi;
+  public rowData:{any};
+
+
   Isupdate:boolean;
   Isrenew:boolean;
   IsActive:boolean;
@@ -25,8 +30,10 @@ export class EmployeeComponent implements OnInit {
   Ed_cnrt_stdate: Date;
   Ed_cnrt_enddate: Date;
   Ed_dob: Date;
+  p: number=1;
   employeePrimaryForm: FormGroup;
   employeeWorkForm: FormGroup;
+  submitted=false;
 
   I_Date: Date;
   expdate: Date;
@@ -35,6 +42,9 @@ export class EmployeeComponent implements OnInit {
   WI_Date:Date;
   W_expdate: Date
   Ed_wrkstdate: Date
+  http: any;
+  Designation: string;
+  jobCatlogPriDetailes: any;
 
 
   constructor(public employeeService: EmployeeService,
@@ -44,12 +54,16 @@ export class EmployeeComponent implements OnInit {
     this.employeeAPIcall();
     this.emplyeeFormSetup();
     this.employeeWorkFormSetup();
+  //   this.employeeService.getEmployeedetList().subscribe(data => {
+         
+  //     console.log(data);
+  // });
   }
 
   emplyeeFormSetup() {
     this.employeePrimaryForm = this.formBuilder.group({
       employee_id: [''],
-      Ed_Employee_ID: [''],
+      Ed_Employee_ID: ['',[Validators.required,Validators.maxLength(6)]],
       Ed_Employer_ID: [''],
       Ed_Emplr_branch: [''],
       Ed_Emplr_org: [''],
@@ -60,7 +74,7 @@ export class EmployeeComponent implements OnInit {
       Ed_m_name: [''],
       Ed_l_name: [''],
       Ed_Email: [''],
-      // "ED_Designation":  $("#hiddendesignation").val(),
+      ED_Designation: [''],
       Ed_mobile: [''],
       Ed_Phone: [''],
       Ed_ext: [''],
@@ -110,8 +124,27 @@ export class EmployeeComponent implements OnInit {
     this.employeePrimaryForm.reset();
   }
 
+  Getjodcatdet(jobId:number,jobTitle:string){
+    console.log(jobTitle);
+    this.Designation=jobTitle;
+    this.employeePrimaryForm.patchValue({
+      Ed_A_Desig:jobTitle
+    });
+    $(document).ready(function() {
+      $('#Designation').modal('hide');
+    });
+    
+  }
+
   onSubmitPrimary() {
+
+    this.submitted = true;
     console.log(this.employeePrimaryForm.value)
+    // stop here if form is invalid
+    if (this.employeePrimaryForm.invalid) {
+        return;
+    }
+   
 
     let employeeData: IEmployeePost = {
       employee_id: this.employeePrimaryForm.value.employee_id?this.employeePrimaryForm.value.employee_id:0,
@@ -124,7 +157,7 @@ export class EmployeeComponent implements OnInit {
       ED_MiddleName: this.employeePrimaryForm.value.Ed_m_name,
       ED_LastName: this.employeePrimaryForm.value.Ed_l_name,
       ED_Email: this.employeePrimaryForm.value.Ed_Email,
-      ED_Designation: "1",
+      ED_Designation: this.Designation,
       MobileNo: this.employeePrimaryForm.value.Ed_mobile,
       PhoneNo: this.employeePrimaryForm.value.Ed_Phone,
       Ext: this.employeePrimaryForm.value.Ed_ext,
@@ -152,17 +185,23 @@ export class EmployeeComponent implements OnInit {
     }
 
     this.employeeService.setEmployeepdet(employeeData).subscribe((data: any) => {
-      console.log(data);
+      if(data.ResponseMsg){
+        this.toastr.success("Employer Branch Successfully Created.","Success");
 
       this.employeeService.getEmployeedetList().subscribe((data: any) => {
         this.employeedetList = data;
         this.Isupdate=true;
       });
+      $(document).ready(function() {
+        $("#tabfirst").click();
+      });
+    }
 
     });
 
 
   }
+
 
   deleteEmployee(empId: string) {
     let empDelete: IEmployeeDelete = {
@@ -170,11 +209,12 @@ export class EmployeeComponent implements OnInit {
     }
     this.employeeService.deleteEmployeepdet(empDelete).subscribe((data: any) => {
       if(data.ResponseStatus){
-        this.toastr.success('Deleted Successfully.','Success')
+        this.toastr.success('Deleted Successfully.','Success');
+        this.employeeService.getEmployeedetList().subscribe((data: any) => {
+          this.employeedetList = data;
+        });
       }
-      this.employeeService.getEmployeedetList().subscribe((data: any) => {
-        this.employeedetList = data;
-      });
+      
     });
   }
 
@@ -290,7 +330,39 @@ export class EmployeeComponent implements OnInit {
         }
     });
   }
+  columnDefs = [
+    {headerName: 'Employee ID', field: 'employee_id' },
+    {headerName: 'Employer ID', field: 'EmployeeID' },
+    {headerName: 'First Name', field: 'ED_FirstName' },
+    {headerName: 'Middle Name', field: 'ED_MiddleName' },
+    {headerName: 'Description', field: 'ED_Designation' },
+    { headerName: "Actions",
+    suppressMenu: true,
+    suppressSorting: true,
+    template:
+      `<button type="button" data-action-type="view"  class="fa fa-eye" style="border:none;background:none;color:#102f66;margin-left:-10px">
+         
+      </button>
+      
+      <button type="button" data-action-type="view"  class="fa fa-edit" style="border:none;background:none;color:#102f66">
+         
+       </button>
 
+      <button type="button" data-action-type="remove" class="fa fa-trash" style="border:none;background:none;color:#102f66">
+        
+      </button>`
+  }
+    
+];
+
+onGridReady(params) {
+  this.gridApi = params.api;
+  this.gridColumnApi = params.columnApi;
+       this.employeeService.getEmployeedetList().subscribe(data => {
+         
+        params.api.setRowData(data.GetEmployeeDetailsList);
+    });
+}
   employeeAPIcall() {
     this.employeeService.getEmployersList().subscribe((data: any) => {
       this.employersList = data;
@@ -309,7 +381,7 @@ export class EmployeeComponent implements OnInit {
     });
 
     this.employeeService.getJobCatlogPriDetailes().subscribe((data: any) => {
-      console.log(data);
+      this.jobCatlogPriDetailes=data;
     });
   }
 

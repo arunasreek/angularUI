@@ -1,0 +1,165 @@
+
+
+<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+    <div class="panel-body" ng-controller="Mycontroller" id="Divusercreation">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary " style="border-top:none;">
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs" style="background-attachment:fixed">
+                            <li class="active" id="lifirsttab1"><a href="#tab1" id="listtab" data-toggle="tab">user List</a></li>
+                            <li><a href="#tab2" id="firsttab" data-toggle="tab">user Creation</a></li>
+                            <li><a href="#tab_3" id="thirdtab" data-toggle="tab">Account Details</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="box tab-pane active" id="tab1">
+                                <div class="box-body">
+                                    <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-md-3">
+                                                    <label>From Date</label>
+                                                    <input type="text" id="txtfrmdate" class="form-control" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>To Date</label>
+                                                    <input type="text" id="txtTodate" class="form-control" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>Group Type</label>
+                                                    <select id="txtgrp_type" class="form-control">
+                                                        <option value="" selected>--All--</option>
+                                                        <option ng-repeat="UGP in Gropdeflist" value=""></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button class="btn btn-success" ng-click="GetUsercreation()">Search</button>
+                                                </div>
+                                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th>user ID</th>
+                                                            <th>User Name</th>
+                                                            <th>user Group Name</th>
+                                                            <th>User Email</th>
+                                                            <th>User Mobile</th>
+                                                            <th>Create Date</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="Ulist in Getusercreatelist">
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>
+                                                                <span ng-show="grp.G_Status==0">Active</span>
+                                                                    <span ng-show="grp.G_Status==1">Inactive</span>
+
+                                                                <label class="switch">
+                                                                    <input type="checkbox" checked>
+                                                                    <span class="slider round"></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.tab-content -->
+                                </div>
+
+
+                            </div>
+                            <div class="box tab-pane" id="tab2">
+
+                                <div class="box-body">
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">User Name</label>
+                                        <input type="text" id="txtUsername" class="form-control" />
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">User Group</label>
+                                        <select id="txtuserGrp" class="form-control">
+                                            <option value="" selected disabled>--Select User Group--</option>
+                                            <option ng-repeat="UGP in Gropdeflist" value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">Employye Name</label>
+                                        <select id="txtempid" class="form-control">
+                                            <option value="" selected disabled>--Select Employee Name--</option>
+                                            <option ng-repeat="emp in EmployerList" value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">Password</label>
+                                        <input type="password" id="txtpswd" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">Confirm password</label>
+                                        <input type="password" id="txtcnfpswd" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">User Email</label>
+                                        <input type="text" id="txtEmail" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">User Mobile</label>
+                                        <input type="text" id="txtMobile" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">Hint Question</label>
+                                        <select id="txthintqst" class="form-control">
+                                            <option value="" selected disabled>--Select Employee Name--</option>
+                                            <option ng-repeat="HQ in Getintqstlist" value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputEmail1">Hint Question Text</label>
+                                        <input type="text" id="txthintqstetxt" class="form-control">
+                                    </div><br />
+                                    <button id="" type="submit" class="btn bg-maroon margin" ng-click="SetUsercreation()">Save</button>
+                                    <button id="" type="submit" class="btn bg-maroon margin" ng-click="canceluser()">Cancel</button>
+                                    <button id="" type="submit" class="btn bg-maroon margin" ng-click="ExitUser()">Exit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var tdate = new Date();
+        var dd = tdate.getDate(); //yields day
+        var MM = tdate.getMonth() + 1; //yields month
+        var yyyy = tdate.getFullYear(); //yields year
+        var currentDate = dd + "/" + MM + "/" + yyyy;
+        $("#txtfrmdate").val(currentDate);
+        $("#txtTodate").val(currentDate);
+        $("#txtfrmdate").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+        $("#txtTodate").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+
+        $("#txtgrp_type").change(function () {
+            angular.element(document.getElementById('divgrpdefinition')).scope().Getgroupdefinition();
+        })
+        //function Changeempname() {
+        //    alert("in");
+        //}
+    })
+</script>

@@ -1,0 +1,279 @@
+<link rel="stylesheet" href="sales-order-report.component.css">
+<div>
+    <ol class="breadcrumb border-0 m-0" style="color: black;background-color: white;">
+        <li class="breadcrumb-item"><a href="#">SCM</a></li>
+        <li class="breadcrumb-item"><a href="#">Reports</a></li>
+        <li class="breadcrumb-item active">Pending SO Reports</li>
+        <!-- Breadcrumb Menu-->
+      </ol>
+</div>
+<div class="col-md-12" id="divcustomer" ng-controller="EnterpriseController">
+    <div class="scrollbar scrollbar-primary">
+        <div class="force-overflow">
+            <div class="nav-tabs-custom">
+                <div class="tab-content">
+                    <h1 style="margin-left: 43%;">ESMART</h1>
+                    <h3 style="margin-left: 40%;">Sales Order History</h3>
+                   
+
+                    <div class="panel panel-default panel-table">
+                            <div class="panel-heading">
+                              <div class="row">
+                                <div class="col col-xs-6">
+                                   
+                                    <input  type="search" placeholder="search" style="float: left;border-radius: 6px;margin-top: 15px;border-color: thistle;height: 40px;" size="30" >
+                                    <button type="button" class="btn btn-sm btn-primary btn-create" style="float: left;padding:10px 20px ; margin-top: 15px;font-size:16px;" > <i class="fa fa-search " aria-hidden="true" style="float: left;padding:10 px;" ></i></button>
+                                </div>
+                                <div class="col col-xs-6 text-right">
+                                   <i class="fa fa-file-excel-o fa-2x" aria-hidden="true" style="float: right;padding: 20px;color: #102f66;"></i>
+                                    <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="float: right;padding: 20px; color: #102f66;"></i>
+                                    <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float: right;padding: 20px;color: #102f66;"></i>   
+                                </div>
+                              </div>
+                            </div>
+       
+                <table class="table table-striped table-bordered table-list">
+                    <thead style="background-color: #0288d1;color: white;"> 
+                        <tr role="row">
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="  font-weight: bold;">DATE</th>
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="  font-weight: bold;">SALES ORDER#</th>
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="  font-weight: bold;">VENDOR</th>
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="  font-weight: bold;">REFERENCE#</th>
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="  font-weight: bold;">STATUS</th>
+                            
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style=" width: 150px; font-weight: bold;">EXPECTED DATE</th>
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="  font-weight: bold;">QTY ORDERED</th>
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="  font-weight: bold;">QTY RECEIVED</th>
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="  font-weight: bold;">SALES LOCATION</th>
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="  font-weight: bold;">AMOUNT</th>
+                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="  font-weight: bold;">PRINT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table1">
+                            <td >20-08-1999</td>
+                            <td>SO-00059</td>
+                            <td>Ambika Packaging</td>
+                            <td></td>
+                            <td>Received</td>
+                            <td>20-08-1999</td>
+                            <td>Vijayawada</td>
+                            <td style="text-align: right;">0</td>
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">52000</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                       
+                        <tr class="table1">
+                            <td>20-08-1999</td>
+                            <td>SO-00059</td>
+                            <td>Ambika Packaging</td>
+                            <td></td>
+                            <td>Received</td>
+                            <td>20-08-1999</td>
+                            <td>Vijayawada</td>
+                            <td style="text-align: right;">0</td>
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">52000</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                       
+                        <tr  class="table1">
+                            <td>20-08-1999</td>
+                            <td>SO-00059</td>
+                            <td>Ambika Packaging</td>
+                            <td></td>
+                            <td>Received</td>
+                            <td>20-08-1999</td>
+                            <td>Vijayawada</td>
+                            <td style="text-align: right;">0</td>
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">52000</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr  class="table1">
+                            <td>20-08-1999</td>
+                            <td>SO-00059</td>
+                            <td>Ambika Packaging</td>
+                            <td></td>
+                            <td>Received</td>
+                            <td>20-08-1999</td>
+                            <td>Vijayawada</td>
+                            <td style="text-align: right;">0</td>
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">52000</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr class="table1" >
+                            <td>20-08-1999</td>
+                            <td>SO-00059</td>
+                            <td>Ambika Packaging</td>
+                            <td></td>
+                            <td>Received</td>
+                            <td>20-08-1999</td>
+                            <td>Vijayawada</td>
+                            <td style="text-align: right;">0</td>
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">52000</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr class="table1" >
+                            <td>20-08-1999</td>
+                            <td>SO-00059</td>
+                            <td>Ambika Packaging</td>
+                            <td></td>
+                            <td>Received</td>
+                            <td>20-08-1999</td>
+                            <td>Vijayawada</td>
+                            <td style="text-align: right;">0</td>
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">52000</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr class="table1" >
+                            <td>20-08-1999</td>
+                            <td>SO-00059</td>
+                            <td>Ambika Packaging</td>
+                            <td></td>
+                            <td>Received</td>
+                            <td>20-08-1999</td>
+                            <td>Vijayawada</td>
+                            <td style="text-align: right;">0</td>
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">52000</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr class="table1" >
+                            <td>20-08-1999</td>
+                            <td>SO-00059</td>
+                            <td>Ambika Packaging</td>
+                            <td></td>
+                            <td>Received</td>
+                            <td>20-08-1999</td>
+                            <td>Vijayawada</td>
+                            <td style="text-align: right;">0</td>
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">52000</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printSOreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr class="table1" >
+                            <td>20-08-1999</td>
+                            <td>SO-00059</td>
+                            <td>Ambika Packaging</td>
+                            <td></td>
+                            <td>Received</td>
+                            <td>20-08-1999</td>
+                            <td>Vijayawada</td>
+                            <td style="text-align: right;">0</td>
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">52000</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printSOreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr  >
+                            <td colspan="7" style="font-weight: bold;">Total</td> 
+                            
+                            <td style="text-align: right;">5</td>
+                            <td style="text-align: right;">54</td>
+                            <td style="text-align: right;">552323</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                <div class="panel-footer">
+                <div class="row">
+                  <div class="col col-xs-4" style="margin-top: 30px;">Page 1 of 5
+                  </div>
+                  <div class="col col-xs-8">
+                    <ul class="pagination hidden-xs pull-right">
+                        <li><a href="#" >Prev Page</a></li>
+                      <li><a href="#" style="color: white;background-color: #0288d1;">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">4</a></li>
+                      <li><a href="#">5</a></li>
+                      <li><a href="#" >Next Page</a></li>
+                    </ul>
+                    <ul class="pagination visible-xs pull-right">
+                        <li><a href="#">«</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                  </div>
+                </div>
+            
+            </div>
+
+</div></div>
+</div>

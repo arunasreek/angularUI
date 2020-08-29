@@ -1,0 +1,47 @@
+.page-container{
+    height:auto;
+    background: white;
+
+}
+ .sidebar{
+
+height: auto;
+    
+   
+}
+.sidebar::after{
+    height:1000px;
+}
+.sidebar-menu{
+ padding-top:50px;
+}
+.sidebar-menu > li >a {
+    
+    padding: 10px 15px;
+    font-size:15px;
+    color:white;
+    position:relative;
+    
+}
+.nav >li :hover {
+    border:1px solid #26c6da;
+    background-color:#26c6da;
+    border-radius: 25px;
+    margin:0px 10px;
+    border-top: none;
+    
+}
+
+
+
+.list-item:hover::before{
+    opacity:1;
+    transform:scaleY(1);
+
+}
+.list-item i{
+    margin-right:15px;
+}
+.li:active{
+    background-color: violet;
+}

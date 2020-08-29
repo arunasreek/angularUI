@@ -1,0 +1,95 @@
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmployerView</title>
+    
+    
+    
+   
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Content/Scripts/Login.js"></script>
+
+    
+    <script src="~/Scripts/litty.js"></script>
+    <script src="~/Content/Scripts/Financial.js"></script>
+    <script>
+
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[1]);
+        }
+        $(document).ready(function () {
+           
+            if (parseFloat(vars) > 0) {
+               
+                angular.element(document.getElementById('diVJVVIEWprint')).scope().GetGv(vars);
+            }
+
+            setTimeout(function () {
+                window.print();
+            },1000)
+
+        });
+    </script>
+    <style>
+        .tbtextcolor {
+            color: black;
+            width: 100%;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body ng-app="Myapp" ng-controller="FinancController">
+   
+    <div class="divheight" id="diVJVVIEWprint">
+        <div class="tab-pane active tab1" id="tab_1">
+            <div ng-repeat="jvdet in GetJvlist | unique:'As_id'">
+                <div class="col-sm-12 col-md-12">
+                    <div class="col-md-3">
+                        <span>Jv Id:</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span>Employer Name:-</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span>Branch Name:-</span>
+                    </div>
+                </div>
+                <table id="example1" class="table">
+                    <thead class="thead-dark">
+                        <tr role="row">
+                            <th>Transaction Id</th>
+                            <th>Account Name</th>
+                            <th>Account Number</th>
+                            <th>Debit Amount</th>
+                            <th>Credit Amount</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="JV in GetJvlist" ng-show="GetJvlist.length>0">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div style="color:red; text-align:center" ng-show="GetJvlist.length==0">No Records  Found</div>
+        </div>
+    </div>
+</body>
+</html>
+

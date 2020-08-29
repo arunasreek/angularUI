@@ -1,0 +1,365 @@
+
+
+
+<div class="col-md-12" id="divSupplier" ng-controller="EnterpriseController">
+    <div class="scrollbar scrollbar-primary">
+        <div class="force-overflow">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs" id="inside">
+                    <li class="active tab1"><a href="#tab_1" id="firsttab" data-toggle="tab">Suppliers List</a></li>
+                    <li class="tab2"><a href="#tab_2" data-toggle="tab">Supplier Primary Details</a></li>
+
+                </ul>
+                <div class="tab-content">
+                   
+                    <div class="tab-pane active tab1" id="tab_1">
+                        <!-- <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Supplier Id</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Supplier Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Supplier Email</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Land Line</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Status</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Action</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="SuL in GetSupplierlist" ng-show="GetSupplierlist.length>0">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><span class="glyphicon glyphicon-ok-circle" style="color:#d81b60;cursor:pointer;font-size: 20px; padding: 05px;" title="approve"></span>
+                                        <span class="glyphicon glyphicon-remove-circle" style="color:#d81b60;cursor:pointer;font-size:20px; padding:05px;" title="reject"></span></td>
+                                    <td>
+                                       
+                                        <a href="/Enterprise/ES/Organizationlist?id=" data-lity style="display:none">
+                                            <i class="fa fa-eye fa-1x" style="font-size: 22px; padding: 05px;color: #d81b60;"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="fa fa-edit fa-1x" style="font-size: 22px; padding: 05px;color: #d81b60;" ng-click="EditSupplier(SuL)"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="fa fa-trash fa-1x" style="font-size: 22px;padding: 05px;color: #d81b60;" ng-click="DeleteSupplier(SuL)"></i>
+                                        </a>
+                                    </td>
+                                    <td><button class="btn bg-maroon margin" style="font-size: 15px;" ng-disabled="SuL.ledgeraccount_status==1" ng-click="CreateLedgeraccFromSupllier(SuL.supp_id)">Ledger Account</button></td>
+                                </tr>
+                            </tbody>
+                        </table> -->
+                        <ag-grid-angular
+                        style="width:100%; height:500px;min-height:200px"
+                        class="ag-theme-alpine"
+                      
+                        [columnDefs]="columnDefs"
+                        (gridReady)="onGridReady($event)"
+                        [rowData]="rowData"
+                        [pagination]="true" 
+                        [paginationAutoPageSize]="true"
+                        enableSorting
+                        enableFilter
+                        >
+                    </ag-grid-angular>
+                    </div>
+                    <!-- <div style="color:red; text-align:center" ng-show="GetSupplierlist.length==0">No Records Found</div> -->
+                
+                    <div class="tab-pane tab2" id="tab_2" >
+                        <form [formGroup]="supplierForm" (ngSubmit)="onSubmitPrimary()">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Supplier Details
+                                    </a>
+                                </h4>
+                            </div>
+                            <!-- in -->
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                                <h3 class="box-title">Quick Example</h3>
+                                              </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+                                        
+                                               
+
+                                                    <div class="box-body">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Supplier ID</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control" id="Supplier_Id" formControlName="Supplier_Id" name="Supplier_Id" placeholder="Supplier ID" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Supplier Name</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control" id="Supplier_Name" formControlName="Supplier_Name" name="Supplier_Name" placeholder="Supplier Name" required>
+                                                        </div>
+                                                        <!-- <div class="form-group col-md-3" style="display:none">
+                                                            <label>Create Account </label>
+                                                            <br />
+                                                            <select class="form-control" id="Supplier_Name" formControlName="Supplier_Name" name="Supplier_Name">
+                                                                <option disabled>--Select--</option>
+                                                                <option>Yes</option>
+                                                                <option>No</option>
+                                                            </select>
+                                                        </div> -->
+                                                        <div class="form-group col-md-3">
+                                                            <label>Prefrred Supplier</label>
+                                                            <br />
+                                                            <select class="form-control" id="Supplier_Prefrred"  name="Supplier_Prefrred">
+                                                                <option value="" disabled>--Select--</option>
+                                                                <option value="1">Yes</option>
+                                                                <option value="0">No</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label>Both Supplier & Customer</label>
+                                                            <br />
+
+                                                            <select class="form-control" id="Supplier_S_C" formControlName="Supplier_S_C" name="Supplier_S_C">
+                                                                <option value="" disabled>--Select--</option>
+                                                                <option value="1">Yes</option>
+                                                                <option value="0">No</option>
+
+                                                            </select>
+
+
+
+                                                        </div>
+                                                        <div class="form-group col-md-3" style="display:none">
+                                                            <label>Create Ledger Account</label>
+                                                            <br />
+
+                                                            <input type="checkbox" /> &nbsp;&nbsp;&nbsp; Yes
+                                                            &nbsp;&nbsp;&nbsp;  <input type="checkbox" /> &nbsp;&nbsp;&nbsp; No
+
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
+                                                   <button type="submit" class="btn btn-primary">Submit</button>
+                                                 </div> -->
+
+                                             
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Address
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                                <h3 class="box-title">Quick Example</h3>
+                                              </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                               
+
+                                                    <div class="box-body">
+                                                        <!-- Should Use Country ,State , City Exchanger Plugin-->
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Country</label>
+                                                            <select aria-controls="example1" class="form-control" formControlName="Country" name="Country" id="Country" ng-change="GetStateList()">
+                                                                <option value="" disabled>--Select Country Id--</option>
+                                                                <option *ngFor="let item of countryList" [value]="item.country_id">{{item.country_name}}({{item.country_code}})</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">State</label>
+                                                            <select aria-controls="example1" class="form-control" formControlName="State" name="State" id="State" ng-change="GetCityList()">
+                                                                <option value="" disabled>--Select State--</option>
+                                                                <option *ngFor="let item of stateList" [value]="item.state_id">{{item.state_name}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">City</label>
+                                                            <input type="text" class="form-control" id="supplier_city" formControlName="supplier_city" name="supplier_city" placeholder="City" />
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Address 1</label>
+                                                            <input type="text" class="form-control" id="Supplier_Add1" formControlName="Supplier_Add1" name="Supplier_Add1" placeholder="Address1">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Address 2</label>
+                                                            <input type="text" class="form-control" id="Supplier_Add2" formControlName="Supplier_Add2" name="Supplier_Add2" placeholder="Address 2">
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Post Box</label>
+                                                            <input type="text" class="form-control" id="Supplier_Post_Box" formControlName="Supplier_Post_Box" name="Supplier_Post_Box" placeholder="Post Box">
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Zip Code</label>
+                                                            <input type="text" class="form-control" id="Supplier_Zip_code" formControlName="Supplier_Zip_code" name="Supplier_Zip_code" placeholder="Zip Code">
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Land Line</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control" id="Supplier_Land_code" formControlName="Supplier_Land_code" name="Supplier_Zip_code" placeholder="Land Line" required>
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control" id="Supplier_Fax" formControlName="Supplier_Fax" name="Supplier_Fax" placeholder="Fax" required>
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Email Address</label>
+                                                            <input type="text" class="form-control" id="Supplier_Email" formControlName="Supplier_Email" name="Supplier_Email" placeholder="Email Address">
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Website</label>
+                                                            <input type="text" class="form-control" id="Supplier_Website" formControlName="Supplier_Website" name="Supplier_Website" placeholder="Website">
+
+                                                        </div>
+
+                                                    </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Office Contact Person
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                                <h3 class="box-title">Quick Example</h3>
+                                              </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                                
+
+                                                    <div class="box-body">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">First Name</label>
+                                                            <input type="text" class="form-control" id="Supplier_Fname" formControlName="Supplier_Fname" name="Supplier_Fname" placeholder="First Name">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Middle Name</label>
+                                                            <input type="text" class="form-control" id="Supplier_Mname" formControlName="Supplier_Mname" name="Supplier_Mname" placeholder="Middle Name">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Last Name</label>
+                                                            <input type="text" class="form-control" id="Supplier_Lname" formControlName="Supplier_Lname" name="Supplier_Lname" placeholder="Last Name">
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Email Address</label>
+                                                            <input type="text" class="form-control" id="Supplier_Office_email" formControlName="Supplier_Office_email" name="Supplier_Office_email" placeholder="Email Address">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Designation</label>
+                                                            <input type="text" class="form-control" id="Supplier_Office_Designation" formControlName="Supplier_Office_Designation" name="Supplier_Office_Designation">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control" id="Supplier_Office_Phone" formControlName="Supplier_Office_Phone" name="Supplier_Office_Phone" placeholder="Phone" required>
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control" id="Supplier_Office_Fax" formControlName="Supplier_Office_Fax" name="Supplier_Office_Fax" placeholder="Fax" required>
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control" id="Supplier_Office_MobileNo" formControlName="Supplier_Office_MobileNo" name="Supplier_Office_MobileNo" placeholder="Mobile No" required>
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-3" style="display:none;">
+                                                            <label> Preferred Contact Mode</label>
+                                                            <br />
+
+                                                            <input type="checkbox" /> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
+                                                            &nbsp;&nbsp;&nbsp;  <input type="checkbox" /> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
+                                                            &nbsp;&nbsp;&nbsp;  <input type="checkbox" /> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
+
+                                                        </div>
+                                                    </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn bg-maroon margin" ng-show="!IsSupplier" ng-disabled="Supform.$invalid" >Save</button>
+                        <button type="button" class="btn bg-maroon margin" ng-show="IsSupplier" ng-disabled="Supform.$invalid" ng-click="UpdateSupplier()">Update</button>
+                        <button type="button" class="btn bg-maroon margin" ng-click="ClearSupplierdata()">Cancel</button>
+                        <button type="button" class="btn bg-maroon margin" ng-click="exitsupplier()">Exit</button>
+
+                    </form>
+                </div>
+                </div>
+            </div>
+
+        </div>
+            </div>
+
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                angular.element(document.getElementById('divSupplier')).scope().GetSupplierlist();
+                angular.element(document.getElementById('divSupplier')).scope().GetCountryList();
+
+            });
+        </script>
+

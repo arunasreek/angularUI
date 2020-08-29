@@ -1,0 +1,382 @@
+
+
+<div id="ReceiptVoucher" ng-controller="PaymentVoucherController">
+    <div class="content">
+        <div class="row">
+
+
+            <div class="col-md-12">
+                <div class="scrollbar scrollbar-primary">
+                    <div class="force-overflow">
+                        <div class="nav-tabs-custom">
+
+                            <ul class="nav nav-tabs" style="background-attachment:fixed">
+                                <li class="active" id="lifirsttab1"><a href="#tab1" id="listtab" data-toggle="tab">PV List</a></li>
+                                <li><a href="#tab2" id="firsttab" data-toggle="tab" ng-click="secontabclick()">Primary Details</a></li>
+                                @*<li><a href="#tab_3" id="thirdtab" data-toggle="tab">Account Details</a></li>*@
+                            </ul>
+                            <div class="tab-content">
+                                @*Tab1*@
+                                <div class="box tab-pane active" id="tab1">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Data Table</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                        <thead>
+                                                            <tr role="row">
+                                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Voucher No</th>
+                                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Voucher Date</th>
+                                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Account Number</th>
+                                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Account Name</th>
+                                                                <th>Status</th>
+                                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Actions</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="rv in Getrvlist">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <span class="glyphicon glyphicon-ok-circle" style="color:#d81b60;cursor:pointer;font-size: 20px;padding: 05px;" title="approve"></span>
+                                                                    <span class="glyphicon glyphicon-remove-circle" style="color:#d81b60;cursor:pointer;font-size:20px;padding: 05px;" title="reject"></span>
+                                                                    @* <a href="#"><img src="~/Content/Images/Reject.png" style="height:30px;width:30px;"/></a>*@
+                                                                    @*<button>approve</button>*@
+
+                                                                </td>
+                                                                <td>
+                                                                    <a href="Financila/Fn/ReceiptVoucherView?id=" data-lity>
+                                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px;
+                                                                        padding: 05px;    color: #d81b60;
+                                                                    "></i>
+                                                                    </a>
+                                                                    <a href="#" ng-click="GetReceiptVoucherbyid(class.ReceiptVoucher_id)">
+                                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px;
+                                                                        padding: 05px;    color: #d81b60;
+                                                                    "></i>
+                                                                    </a>
+                                                                    <a href="#" ng-click="DltReceiptVoucherbyid(class.ReceiptVoucher_id)">
+                                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;
+                                                                        padding: 05px;    color: #d81b60;
+                                                                    "></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- /.tab-content -->
+                                    </div>
+                                </div>
+                                @*tab2*@
+                                <div class="tab-pane" id="tab2">
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="box box-primary" style="border-top:none;">
+                                                        <form role="form">
+                                                            <div class="box-body">
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputEmail" style="color:blue;">PV No</label><span style="color:#d81b60;">*</span>
+                                                                    <input type="text" class="form-control" id="receipt_no" ng-model="receipt_no" name="receipt_no" placeholder="Receipt No" />
+
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputEmail" style="color:blue;">Date</label><span style="color:#d81b60;">*</span>
+                                                                    <input type="text" class="form-control" id="date" ng-model="date" name="date" placeholder="dd/mm/yyyy" />
+
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputEmail" style="color:blue;">Paid Amount:</label><span style="color:#d81b60;">*</span>
+                                                                    <input type="text" class="form-control" id="received_amount" ng-model="received_amount" name="received_amount" placeholder="Received Amount" />
+
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputEmail">Amount In Words</label>
+                                                                    <input type="text" class="form-control" style="text-transform:uppercase;font-weight:bold" id="amount_in_words" value="" placeholder="Amount In Words" />
+
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputEmail" style="color:blue;">Paid To</label><span style="color:#d81b60;">*</span>
+                                                                    <input type="text" class="form-control" id="received_from" ng-model="received_from" name="received_from" placeholder="Received From" />
+
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <span>In Partial Settlement/Full Settlement Against</span>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputEmail" style="color:blue;">Invoice No</label><span style="color:#d81b60;">*</span>
+                                                                    <input type="text" class="form-control" id="invoice_no" ng-model="invoice_no" name="invoice_no" placeholder="Invoice No" />
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputFile" style="color:blue;">Employer ID</label><span style="color:red">*</span>
+                                                                    <select class="form-control" id="employer_id" ng-model="employer_id" name="employer_id" required>
+                                                                        <option value="" disabled>--Select Employer ID</option>
+                                                                        <option ng-repeat="EID in GetEmployeeriD" value=""></option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputFile" style="color:blue;">Branch ID</label><span style="color:red">*</span>
+                                                                    <select class="form-control" id="branchid" ng-model="branchid" name="branchid" required>
+                                                                        <option value="" disabled>--Select Branch ID</option>
+                                                                        <option ng-repeat="BiD in GetEmployeerbarchid" value=""></option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputFile" style="color:blue;">Organisation Unit ID</label><span style="color:red">*</span>
+                                                                    <select class="form-control" id="org_un_id" ng-model="org_un_id" name="org_un_id" required>
+                                                                        <option value="" disabled>--Select Organisation Unit ID</option>
+                                                                        <option ng-repeat="OID in GetOrganizationID" value=""></option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputFile" style="color:blue;">Project ID</label><span style="color:red">*</span>
+                                                                    <select class="form-control" id="projectid" ng-model="projectid" name="projectid" required>
+                                                                        <option value="" disabled>--Select Project ID</option>
+                                                                        <option ng-repeat="PID in Getprlist" value=""></option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputFile" style="color:blue;">Currency</label><span style="color:red">*</span>
+                                                                    <select class="form-control" id="currency" ng-model="currency" name="currency" required>
+                                                                        <option value="" disabled>--Select Currency</option>
+                                                                        <option value=""></option>
+                                                                        <option value=""></option>
+                                                                    </select>
+                                                                </div>
+
+                                                                @*<div class="form-group col-md-3">
+                                                                        <label for="exampleInputPassword1" style="color:blue;">Voucher No</label><span style="color:red">*</span>
+                                                                        <input type="text" class="form-control" ng-model="voucherno" name="voucherno" id="voucherno" placeholder="Voucher No" required>
+                                                                    </div>*@
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputPassword1" style="color:blue;">Narration</label><span style="color:red">*</span>
+                                                                    <textarea type="text" class="form-control" ng-model="narration" name="narration" id="narration" placeholder="Narration" required></textarea>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="col-md-10">
+                                                                        <label for="exampleInputEmail">Transaction Type:</label>
+                                                                        @*<select class="form-control" ng-model="trtype" name="trtype" id="trtype" ng-change="Tytypechange()">
+                                                                                <option value="B">Bank</option>
+                                                                                <option value="C">Cash</option>
+                                                                            </select>*@
+                                                                        <input type="radio" id="transaction_type" ng-model="transaction_type" name="transaction_type" value="bank" ng-click="Bankset()" />Bank
+                                                                        <input type="radio" id="transaction_type" ng-model="transaction_type" name="transaction_type" value="cash" ng-click="Cashset()" />Cash
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="box-body" id="bankdet" style="display:none;">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail" style="color:blue;">Bank Name:</label><span style="color:#d81b60;">*</span>
+                                                                        <select class="form-control" id="bankname" ng-model="bankname" name="bankname" ng-change="GetBanknamesbyid()">
+                                                                            <option value="" disabled>--Select Bank ID</option>
+                                                                            <option ng-repeat="bank in GetbanknameList" value="">()</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail" style="color:blue;">Branch:</label><span style="color:#d81b60;">*</span>
+                                                                        <select class="form-control" id="branch" ng-model="branch" name="branch">
+                                                                            <option value="" disabled>--Select Branch ID</option>
+                                                                            <option ng-repeat="BR in GetbanknameList1" value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail" style="color:blue;">Date Of Cheque:</label><span style="color:#d81b60;">*</span>
+                                                                        <input type="text" class="form-control" ng-model="date_of_cheque" id="date_of_cheque" name="date_of_cheque" placeholder="Date Of Cheque" />
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail" style="color:blue;">Cheque Number:</label><span style="color:#d81b60;">*</span>
+                                                                        <input type="text" class="form-control" ng-model="cheque_number" id="cheque_number" name="cheque_number" placeholder="Date Of Cheque" />
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail" style="color:blue;">Amount</label><span style="color:#d81b60;">*</span>
+                                                                        <input type="text" class="form-control" ng-model="Amount" id="Amount" name="Amount" placeholder="Amount" />
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <table id="tbl_accdet" class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="color:blue;">Account Number<span style="color:#d81b60;">*</span></th>
+                                                                            <th>Account Name</th>
+                                                                            <th>Debit Amount</th>
+                                                                            <th>Credit Amount</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tb_trdet1">
+                                                                        <tr>
+                                                                            <td data-toggle="modal" data-target="#Account">
+                                                                                <input type="text" id="Acno_number" ng-click="GetAccountnums1()" ng-model="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+
+                                                                            </td>
+                                                                            <td><input class="form-control" type="text" id="Ac_name" /></td>
+                                                                            <td><input type="text" class="form-control" id="dramount_0" onkeyup="Debitchange()" /></td>
+                                                                            <td><input type="text" class="form-control" onkeyup="Creditchange()" id="cramount_0" /></td>
+                                                                            <td><button class="btn bg-maroon margin" ng-click="AddNew()">Add</button></td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </div>
+                                                            @*dynamic table*@
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <table id="tbl_accdet" class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Account Number</th>
+                                                                            <th>Account Name</th>
+                                                                            <th>Debit Amount</th>
+                                                                            <th>Credit Amount</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tb_trdet"></tbody>
+                                                                </table>
+
+                                                            </div>
+                                                            <div>
+                                                                <p style="margin-left:474px;">Total Debit:-<b>.00</b><label style="margin-left: 137px;">Total Credit:-<b>.00</b></label></p>
+                                                                @*<p style="margin-left:50px;">Total Credit:-}</p>*@
+                                                            </div>
+                                                            <!-- Modal content-->
+
+                                                            <div class="modal fade" id="Account" role="dialog">
+                                                                <div class="modal-dialog">
+
+                                                                    <!-- Modal content-->
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title" style="text-align:center">Select Your Account Number</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="box-body">
+                                                                                <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-12">
+                                                                                            <div id="example1_filter" class="dataTables_filter">
+                                                                                                <label>Search:<input type="search" class="form-control input-lg" placeholder="" aria-controls="example1"></label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-12">
+                                                                                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                                                                <thead>
+                                                                                                    <tr role="row">
+                                                                                                        <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Account No</th>
+                                                                                                        <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Account Name</th>
+                                                                                                        <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Select Acc no</th>
+                                                                                                    </tr>
+                                                                                                </thead>
+                                                                                                <tbody>
+                                                                                                    <tr role="row" class="odd" ng-repeat="ac in GetAccountnums">
+                                                                                                        <td class="sorting_1"></td>
+                                                                                                        <td class="sorting_1"></td>
+                                                                                                        <td><button type="button" class="btn btn-default" ng-click="selectedaccno(ac)">Select</button></td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+
+                                                                                            </table>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="btn bg-maroon margin" ng-click="SetRV()">Save</button>
+                                                            <button type="button" class="btn bg-maroon margin" ng-click="SetRV()">Exit</button>
+                                                            <button type="button" class="btn bg-maroon margin" ng-click="SetRV()">Cancel</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="tab_3" class="tab-pane">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingThree">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordian" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                                    ReceiptVoucherDetails
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="box box-primary" style="border-top:none;">
+                                                            <form>
+                                                                <div class="box-body">
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="ReceiptVoucherform1.$invalid" ng-click="SetReceiptVoucher()">Save</button>
+                                                <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin" ng-disabled="ReceiptVoucherform1.$invalid" ng-click="SetReceiptVoucher()">Update</button>
+                                                <button type="button" class="btn bg-maroon margin">Cancel</button>
+                                                <button type="button" class="btn bg-maroon margin">Exit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#date").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+        $("#date1").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+        $("#date_of_cheque").datepicker({
+            showWeek: true,
+            dateFormat: "dd-mm-yy"
+        });
+    });
+</script>
+
+

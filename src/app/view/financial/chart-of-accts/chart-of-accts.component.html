@@ -1,0 +1,206 @@
+
+
+
+
+<div id="divempbranch" ng-controller="FinancController">
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+            <div class="scrollbar scrollbar-primary">
+                <div class="force-overflow">
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="active tab1"><a href="#tab_1" data-toggle="tab">Account List</a></li>
+                            <li class="tab2"><a href="#tab_2" data-toggle="tab">Primary Details</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active tab1" id="tab_1">
+
+                                <!-- <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Chat Of Account Id</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Account Number</th>
+                                            @*<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th>*@
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Account Name</th>
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Account Type</th>
+                                            
+
+
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Actions</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="CH in GetChatofaccList">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                @*edit*@
+                                                @*<a href="/Enterprise/ES/EmpbranchList?id=" data-lity>
+                                                <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                            </a>*@
+                                                <a href="#">
+                                                    <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Editchatofacc(CH)"></i>
+                                                </a>
+                                                @*<a href="#">
+                                                <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="BranchDelete(CH)"></i>
+                                            </a>*@
+                                            </td>
+                                        </tr>
+
+
+
+                                    </tbody>
+
+                                </table> -->
+                                <ag-grid-angular
+                                style="width:auto; height:500px;min-height:200px;padding-left:50px;margin-left: -30px;"
+                                class="ag-theme-alpine"
+                                [columnDefs]="columnDefs"
+                                (gridReady)="onGridReady($event)"
+                                [rowData]="rowData "
+                                [pagination]="true" 
+                                [paginationAutoPageSize]="true"
+                                enableSorting
+                                enableFilter
+                                >
+                            </ag-grid-angular>    
+                            </div>
+                            
+                            <div class="tab-pane tab2" id="tab_2" ng-form="chatofacc">
+                                <div class="col-md-12">
+                                    <div class="box box-primary " style="border-top:none;">
+                                        <div>
+                                            <h3 class="box-title "> Add New Ledger Account Codes </h3>
+                                        </div>
+                                        <form [formGroup]="chartForm" (ngSubmit)="onSubmitPrimary()">
+
+                                            <div class="box-body">
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1"><span style="color:blue;">Enterprise Id</span><span style="color:red;">*</span></label>
+
+                                                    <select aria-controls="example1" id="Enterprise_Id" class="form-control" formControlName="Enterprise_Id" name="Enterprise_Id" required>
+                                                        <option value="" disabled>--Select Enterprise Id--</option>
+                                                        <option *ngFor="let item of erpriseids " [value]="item.ep_id">{{item.EnterpriseID}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1"><span style="color:blue;">Employer ID</span><span style="color:red;">*</span></label>
+                                                    <select aria-controls="example1" id="Employer_Id" class="form-control" formControlName="Employer_Id" name="Employer_Id" required>
+                                                        <option value="" disabled>--Select Employer Id--</option>
+                                                        <option *ngFor="let item of employeerID " [value]="item.emp_id">{{item.EmployerID}}</option>
+                                                    </select>
+
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1"><span style="color:blue;">Branch ID</span><span style="color:red;">*</span></label>
+                                                    <select aria-controls="example1" id="Branch_Id" class="form-control" formControlName="Branch_Id" name="Branch_Id" required>
+                                                        <option value="" disabled>--Select Branch Id--</option>
+                                                        <option *ngFor="let item of branchList " [value]="item.b_id">{{item.BranchId}}</option>
+                                                    </select>
+
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1"><span style="color:blue;">Oraganization ID</span><span style="color:red;">*</span></label>
+                                                    <select aria-controls="example1" id="Oraganization_Id" class="form-control" formControlName="Oraganization_Id" name="Oraganization_Id" required>
+                                                        <option value="" disabled>--Select Oraganization Id--</option>
+                                                        <option *ngFor="let item of organizationID " [value]="item.o_id">{{item.Org_ID}}</option>
+                                                    </select>
+
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1"><span style="color:blue;">Project ID</span><span style="color:red;">*</span></label>
+                                                    <select aria-controls="example1" id="Project_Id" class="form-control" formControlName="Project_Id" name="Project_Id" required>
+                                                        <option value="" disabled>--Select Employer Id--</option>
+                                                        <option *ngFor="let item of employeerID " [value]="item.emp_id">{{item.EmployerID}}</option>
+                                                    </select>
+
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputPassword1"><span style="color:blue;">Account Number</span><span style="color:red;">*</span></label>
+                                                    <input type="text" class="form-control" id="Account_Number" formControlName="Account_Number" name="Account_Number" placeholder="Account Number" required>
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputPassword1">Account Name</label>
+                                                    <input type="text" class="form-control" id="Account_Name" formControlName="Account_Name" name="Account_Name" placeholder="Account Name">
+                                                </div>
+
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputFile"><span style="color:blue;">Account Type</span><span style="color:red;">*</span></label>
+                                                    <select class="form-control" id="Account_Type" formControlName="Account_Type" name="Account_Type" required>
+                                                        <option value="" disabled>--Select Account Type--</option>
+                                                        <option value="AH">AccountHead</option>
+                                                        <option value="AG">AccountGroup</option>
+                                                    </select>
+                                                </div>
+
+
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1"><span style="color:blue;">Parent Group</span><span style="color:red;">*</span></label>
+
+                                                    <select aria-controls="example1" class="form-control" formControlName="Parent_Group" name="Parent_Group" id="Parent_Group">
+                                                        <option value="" disabled>--Select Parent Group--</option>
+                                                        <option *ngFor="let item of chartList " [value]="item.id">{{item.AccountName}}</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputPassword1">Budget Amount</label>
+                                                    <input type="text" class="form-control" id="Budget_Amount" formControlName="Budget_Amount" name="Budget_Amount" placeholder="Budget Amount" required>
+                                                </div>
+
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1"><span style="color:blue;">Opening Balance Imported</span><span style="color:red;">*</span></label>
+                                                    <input type="text" class="form-control" id="Opening_Balance_Imported" formControlName="Opening_Balance_Imported" name="Opening_Balance_Imported" placeholder="Opening Balance Imported" readonly>
+
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1"><span style="color:blue;">Current Ledger balance</span><span style="color:red;">*</span></label>
+                                                    <input type="text" class="form-control" id="Current_Ledger_balance" formControlName="Current_Ledger_balance" name="Current_Ledger_balance" placeholder="Current Ledger balance" readonly>
+
+                                                </div>
+                                                <div>
+                                                    <input type="hidden" id="customer_id" />
+                                                    <input type="hidden" id="Supplier_id" value="" />
+                                                </div>
+
+                                                <!-- <div class="form-group col-md-3">
+                                                <label for="exampleInputEmail1"><span style="color:blue;">Choose CSV File</span><span style="color:red;">*</span></label>
+                                                <input type="text" class="form-control" id="B_Mobile_Number" formControlName="B_Mobile_Number" name="B_Mobile_Number" placeholder="B_Mobile_Number">
+
+                                            </div> -->
+                                            </div>
+
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-primary" ng-show="!ischflag" ng-click="Setchatofacc()" style="background-color:#102f66 !important">Submit</button> 
+                                                <button type="submit" class="btn btn-primary" ng-show="ischflag" ng-click="Updatechatofacc()" style="background-color:#102f66 !important">Update</button>
+                                                <button type="submit" class="btn btn-primary" ng-click="cancelchatofacc()" style="background-color:#102f66 !important">cancel</button>
+                                                <button type="submit" class="btn btn-primary" ng-click="cancelchatofacc()" style="background-color:#102f66 !important">Exit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<script type="text/javascript">
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('=');
+  //  alert(hashes);
+    $("#customer_id").val(hashes);
+</script>

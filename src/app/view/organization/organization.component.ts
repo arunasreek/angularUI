@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import{ OrganizationService } from '../../services/organization.service'
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { IOrganiationPost } from 'src/app/models';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 declare var $:any;
 
@@ -12,6 +15,11 @@ declare var $:any;
   styleUrls: ['./organization.component.css']
 })
 export class OrganizationComponent implements OnInit {
+  @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+  modalRef: BsModalRef;
+  private gridApi;
+  private gridColumnApi;
+public rowData:[any];
 
   branchList:any;
   countryList:any;
@@ -24,9 +32,10 @@ export class OrganizationComponent implements OnInit {
   Isorganizationupdate:boolean;
   Designation:string;
   o_id:number;
-
+ p:number=1;
 
   orgDepartmentForm:FormGroup;
+  submitted: boolean;
 
   constructor(public organizationService:OrganizationService,
               private formBuilder: FormBuilder,public toastr:ToastrService) { }
@@ -84,10 +93,9 @@ export class OrganizationComponent implements OnInit {
             this.organizationService.getOrganizationList(0).subscribe((data: any) => {
               this.organizationList=data
             });
-            $(document).ready(function() {
-              $("#tabfirst").click();
-            });
-           
+      //       this.staticTabs.tabs[0].active = true;
+      
+      //  this.submitted=false;
         }
     });
   }
@@ -146,6 +154,42 @@ export class OrganizationComponent implements OnInit {
     });
     
   }
+
+  columnDefs = [
+    {headerName: 'Organization ID',field:'Org_ID'},
+    {headerName: 'Organization Name', field: 'OrganizationName'},
+    {headerName: 'Manager Name', field: 'MD_FirstName' },
+    {headerName: 'Designation', field: 'MD_Designation' },
+    { headerName: "Actions",
+    suppressMenu: true,
+    suppressSorting: true,
+    width:150,
+    template:
+      `<button type="button" data-action-type="view"  class="fa fa-eye" style="border:none;background:none;color:#102f66;margin-left:-10px">
+         
+      </button>
+      
+      <button type="button" data-action-type="view"  class="fa fa-edit" style="border:none;background:none;color:#102f66">
+         
+       </button>
+
+      <button type="button" data-action-type="remove" class="fa fa-trash" style="border:none;background:none;color:#102f66">
+        
+      </button>`
+  }
+    
+];
+
+onGridReady(params) {
+  this.gridApi = params.api;
+  this.gridColumnApi = params.columnApi;
+ 
+  this.organizationService.getOrganizationList(0).subscribe(data => {
+    params.api.setRowData(data);
+    });
+  
+
+}
 
   organizationAPICall(){
     this.organizationService.getbranchlist(0).subscribe((data: any) => {

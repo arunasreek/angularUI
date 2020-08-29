@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EnterpriseService } from 'src/app/services';
 import { IEnterPriseDetailsPost } from 'src/app/models/enterprise.model';
+declare var $:any;
 
 @Component({
   selector: 'app-enterprise',
@@ -12,13 +13,20 @@ import { IEnterPriseDetailsPost } from 'src/app/models/enterprise.model';
 })
 export class EnterpriseComponent implements OnInit {
 
+
+  private gridApi;
+  private gridColumnApi;
+public rowData:any[];
+
   employeedetList: any;
+  stateList:any;
   countryList:any;
   erpriseids:any;
   jobCatlogPriDetailes:any;
   organizationList:any;
   Date_inception:Date;
   date_Ecpiry:Date;
+  p: number=1;
 
   Isupdate:boolean;
   Isrenew:boolean;
@@ -56,6 +64,45 @@ export class EnterpriseComponent implements OnInit {
       this.enterpriseDetailsForm.reset();
   }
 
+  columnDefs = [
+    {headerName: 'Enterprise ID',field:'EnterpriseID', width:135},
+    {headerName: 'Enterprise Name', field: 'EnterpriseName', width:160},
+    {headerName: 'Parent Enterprise', field: 'ParentEnterprise', width:160 },
+    {headerName: 'Date Of Inception ', field: 'DateOfInception ', width:170 },
+    {headerName: 'Date Of Expriy Date ', field: 'DateOfExpiry',width:175 },
+    {headerName: 'Functional currency ', field: 'PrimaryFunctionalCurrency',width:175},
+    {headerName: 'Financial Year', field: 'FinancialYearStartDate',width:150 },
+    { headerName: "Actions",
+    suppressMenu: true,
+    suppressSorting: true,
+    width:150,
+    template:
+      `<button type="button" data-action-type="view"  class="fa fa-eye" style="border:none;background:none;color:#102f66;margin-left:-10px">
+         
+      </button>
+      
+      <button type="button" data-action-type="view"  class="fa fa-edit" style="border:none;background:none;color:#102f66">
+         
+       </button>
+
+      <button type="button" data-action-type="remove" class="fa fa-trash" style="border:none;background:none;color:#102f66">
+        
+      </button>`
+  }
+    
+];
+
+onGridReady(params) {
+  this.gridApi = params.api;
+  this.gridColumnApi = params.columnApi;
+ 
+  this.commonService.getEnterprisealllist().subscribe(data => {
+    params.api.setRowData(data);
+    });
+  
+
+}
+
   onSubmitEnterpriseDetails(){
     let enterPriseDetailsPost:IEnterPriseDetailsPost={
         ep_id:0,
@@ -69,6 +116,13 @@ export class EnterpriseComponent implements OnInit {
     this.enterpriseService.setOrganization(enterPriseDetailsPost).subscribe((data:any)=>{
       if(data.ResponseMsg){
         this.toastr.success("Successfully Created.","Success");
+        this.commonService.getEnterprisealllist().subscribe((data: any) => {
+          this.employeedetList=data
+          this.Isupdate=true;
+        });
+        $(document).ready(function() {
+          $("#tabfirst").click();
+        });
       }
     });
   }
@@ -85,7 +139,10 @@ apiCall(){
   this.commonService.getEnterpriseids().subscribe((data: any) => {
     this.erpriseids=data
   });
-
+  this.enterpriseService.getStatelist(0).subscribe((data: any) => {
+    this.stateList=data
+    
+  });
   this.commonService.getJobCatlogPriDetailes().subscribe((data: any) => {
     this.jobCatlogPriDetailes=data
   });

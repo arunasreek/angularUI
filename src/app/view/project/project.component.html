@@ -32,19 +32,19 @@
                                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Name</th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Project Manager</th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Client</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- ngRepeat: proj in ProjectList --><tr ng-repeat="proj in ProjectList" class="ng-scope">
-                                                    <td class="sorting_1 ng-binding">pject120</td>
-                                                    <td class="ng-binding">Esmart</td>
-                                                    <td class="ng-binding">XYZ</td>
-                                                    <td class="ng-binding">sourab</td>
+                                               <tr *ngFor="let item of projectList?.UpdateProjectDetails | paginate:{ itemsPerPage: 10 , currentPage: p };" class="ng-scope">
+                                                    <td class="ng-binding">{{item?.ProjectID}}</td>
+                                                    <td class="ng-binding">{{item?.ProjectName}}</td>
+                                                    <td class="ng-binding">{{item?.Project_Manager}}</td>
+                                                    <td class="ng-binding">{{item?.Client}}</td>
                                                     <td>
                                                         <a href="/Enterprise/ES/ProjectItemView?id=1" data-lity="">
                                                             <i class="fa fa-eye fa-1x" style="font-size: 14px;
-                                                    padding: 05px;    color: #d81b60;
-                                                "></i>
+                                                    padding: 05px;    color: #d81b60; "></i>
                                                         </a>
                                                         <a href="#" ng-click="GetprojctListbyid(proj.project_id)">
                                                             <i class="fa fa-edit fa-1x" style="font-size: 14px;
@@ -57,31 +57,26 @@
                                                 "></i>
                                                         </a>
                                                     </td>
-                                                </tr><!-- end ngRepeat: proj in ProjectList --><tr ng-repeat="proj in ProjectList" class="ng-scope">
-                                                    <td class="sorting_1 ng-binding">project6</td>
-                                                    <td class="ng-binding">Naven</td>
-                                                    <td class="ng-binding">Arun</td>
-                                                    <td class="ng-binding">sORAB</td>
-                                                    <td>
-                                                        <a href="/Enterprise/ES/ProjectItemView?id=4" data-lity="">
-                                                            <i class="fa fa-eye fa-1x" style="font-size: 14px;
-                                                    padding: 05px;    color: #d81b60;
-                                                "></i>
-                                                        </a>
-                                                        <a href="#" ng-click="GetprojctListbyid(proj.project_id)">
-                                                            <i class="fa fa-edit fa-1x" style="font-size: 14px;
-                                                    padding: 05px;    color: #d81b60;
-                                                "></i>
-                                                        </a>
-                                                        <a href="#" ng-click="DltProjectItembyid(proj.project_id)">
-                                                            <i class="fa fa-trash fa-1x" style="font-size: 14px;
-                                                    padding: 05px;    color: #d81b60;
-                                                "></i>
-                                                        </a>
-                                                    </td>
-                                                </tr><!-- end ngRepeat: proj in ProjectList -->
+                                                </tr>
+                                              
                                             </tbody>
+                                            
                                         </table>
+                                        <div style="float:right;margin-top:20px;color:#102f66;font-weight:800">
+                                            <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                                           </div> 
+                                        <!-- <ag-grid-angular
+                                        style="width:100%; height:500px;min-height:200px;padding-left:50px"
+                                        class="ag-theme-alpine"
+                                        [columnDefs]="columnDefs"
+                                        (gridReady)="onGridReady($event)"
+                                        [rowData]="rowData"
+                                        [pagination]="true" 
+                                        [paginationAutoPageSize]="true"
+                                        enableSorting
+                                        enableFilter
+                                        >
+                                    </ag-grid-angular> -->
                                     </div>
                                 </div>
                             </div>
@@ -90,6 +85,7 @@
                         </div>
                     </div>
                     <div class="tab-pane ng-dirty ng-valid-parse ng-invalid ng-invalid-required" id="tab_a" ng-form="Projectform1">
+                        <form [formGroup]="projectForm" (ngSubmit)="onSubmitPrimary()"> 
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="box-primary" style="border-top:none;">
@@ -134,7 +130,7 @@
                                                                             
                                                                             <select class="form-control ng-untouched ng-valid ng-empty ng-dirty ng-valid-parse" id="Reporting_to" ng-model="Reporting_org" name="Reporting_org">
                                                                                 <option value="" disabled="" selected="selected">Select</option>
-                                                                                <!-- ngRepeat: org in OrganizationList --><option ng-repeat="org in OrganizationList" value="1" class="ng-binding ng-scope">smp</option><!-- end ngRepeat: org in OrganizationList --><option ng-repeat="org in OrganizationList" value="2" class="ng-binding ng-scope">rcb</option><!-- end ngRepeat: org in OrganizationList --><option ng-repeat="org in OrganizationList" value="3" class="ng-binding ng-scope">csk</option><!-- end ngRepeat: org in OrganizationList -->
+                                                                                <option *ngFor="let item of organizationList" [value]="item.o_id">{{item.OrganizationName}}</option>
                                                                             </select>
 
                                                                         </div>
@@ -152,23 +148,36 @@
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputEmail1" style="color:blue;">Planned Start Date</label><span style="color:red">*</span>
-                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="pl_str" ng-model="pl_str" placeholder="dd-mm-yyyy" required="">
+                                                                            <input type="text"
+                                                                            class="form-control"
+                                                                            fromContolName="pl_str"
+                                                                             #dp="bsDatepicker"
+                                                                            bsDatepicker >  
 
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputEmail1" style="color:blue;">Actual Start Date</label><span style="color:red">*</span>
-                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="Al_str" ng-model="Al_str" placeholder="dd-mm-yyyy" required="">
-
+                                                                            <input type="text"
+                                                                            class="form-control"
+                                                                            fromContolName="Al_str"
+                                                                             #dp="bsDatepicker"
+                                                                            bsDatepicker >  
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputEmail1" style="color:blue;">Planned End Date</label><span style="color:red">*</span>
-                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="pl_end" ng-model="pl_end" placeholder="dd-mm-yyyy" required="">
-
+                                                                            <input type="text"
+                                                                            class="form-control"
+                                                                            fromContolName="pl_end"
+                                                                             #dp="bsDatepicker"
+                                                                            bsDatepicker>  
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputEmail1" style="color:blue;">Actual End Date</label><span style="color:red">*</span>
-                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="Al_end" ng-model="Al_end" placeholder="dd-mm-yyyy" required="">
-
+                                                                            <input type="text"
+                                                                            class="form-control"
+                                                                            fromContolName="Al_end"
+                                                                             #dp="bsDatepicker"
+                                                                            bsDatepicker >  
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputEmail1" style="color:blue;">Risk Description</label>
@@ -217,13 +226,19 @@
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputEmail1" style="color:blue;">Contact Start Date</label><span style="color:red">*</span>
-                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="cntctstr" ng-model="cntctstr" placeholder="dd-mm-yyyy" required="">
-
+                                                                            <input type="text"
+                                                                            class="form-control"
+                                                                            fromContolName="cntctstr"
+                                                                             #dp="bsDatepicker"
+                                                                            bsDatepicker >  
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputEmail1" style="color:blue;">Contact End Date</label><span style="color:red">*</span>
-                                                                            <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" id="cntctend" ng-model="cntctend" placeholder="dd-mm-yyyy" required="">
-
+                                                                            <input type="text"
+                                                            class="form-control"
+                                                             #dp="bsDatepicker"
+                                                             fromContolName="Al_str"
+                                                            bsDatepicker >  
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputEmail1" style="color:blue;">Project Reference Number</label>
@@ -239,7 +254,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="Projectform1.$invalid" ng-click="SetprojctList()" disabled="disabled">Save</button>
+                                        <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="Projectform1.$invalid" ng-click="SetprojctList()" >Save</button>
                                         <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin ng-hide" ng-disabled="Projectform1.$invalid" ng-click="SetprojctList()" disabled="disabled">Update</button>
                                         <button type="button" class="btn bg-maroon margin">Cancel</button>
                                         <button type="button" class="btn bg-maroon margin">Exit</button>
@@ -247,7 +262,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
+                </div>
 
                     <div class="tab-pane " id="tab_1">
                         <div class="row">

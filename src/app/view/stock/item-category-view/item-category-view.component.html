@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>JobcategoryView</title>
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Content/Scripts/Login.js"></script>    
+     <script src="~/Content/Scripts/EEE.js"></script> 
+    <script src="~/Content/Scripts/Stockmgmt.js"></script>
+    <script src="~/Scripts/litty.js"></script>
+    <script>
+
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[1]);
+        }
+        $(document).ready(function () {
+            if (parseFloat(vars) > 0) {
+                angular.element(document.getElementById('itemcategoryController')).scope().EditItemCategoryList(vars[0]);
+            }
+
+        });
+    </script>
+</head>
+<body ng-app="Myapp" ng-controller="ItemCategoryController">
+
+   
+    <div class="row" id="itemcategoryController">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                   
+                    <li>
+                        <a href="#tab_1" id="asecondtab" data-toggle="tab">
+                            Add ItemCategory
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        ItemCategory Details
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                                  <h3 class="box-title">Quick Example</h3>
+                                                </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                                <form role="form">
+
+                                                    <div class="box-body" ng-repeat="Itcat in ItemCategoryViewList">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1" style="color:blue;">ItemCategory ID <span style="color:red">*</span></label>
+                                                            <label type="text" class="form-control" ng-model="ItemCategoryId" name="ItemCategoryId" id="ItemCategoryId" placeholder="ItemCategory ID"></label>
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1" style="color:blue;">ItemCategory Description<span style="color:red">*</span></label>
+                                                            <label type="text" class="form-control" ng-model="ItemCategorydesc" name="ItemCategorydesc" id="ItemCategorydesc" placeholder="ItemCategory Description"></label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
+                                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div> -->
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

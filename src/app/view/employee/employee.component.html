@@ -32,7 +32,7 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                <tr *ngFor="let item of employeedetList?.GetEmployeeDetailsList" class="ng-scope">
+                                <tr *ngFor="let item of employeedetList?.GetEmployeeDetailsList | paginate:{ itemsPerPage: 10 , currentPage: p };" class="ng-scope">
                                       <td class="ng-binding">{{item?.employee_id}}</td>
                                       <td class="ng-binding">{{item?.EmployeeID}}</td>
                                       <td class="ng-binding">{{item?.ED_FirstName}}</td>
@@ -55,7 +55,7 @@
     
     
                               </tbody>
-                              <!--   <tfoot>
+                                <!-- <tfoot>
                               <tr>
                               <th rowspan="1" colspan="1">Rendering engine</th>
                               <th rowspan="1" colspan="1">Browser</th>
@@ -64,7 +64,24 @@
                               <th rowspan="1" colspan="1">CSS grade</th></tr>
                               </tfoot> -->
                           </table>
-                      </div>
+                          <div style="float:right;margin-top:20px;color:#102f66;font-weight:800">
+                            <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                           </div>  
+                          <!-- <ag-grid-angular
+                          style="width:100%; height:500px;min-height:200px;padding-left:50px"
+                          class="ag-theme-alpine"
+                        
+                          [columnDefs]="columnDefs"
+                          (gridReady)="onGridReady($event)"
+                          [rowData]="rowData"
+                          [pagination]="true" 
+                          [paginationAutoPageSize]="true"
+                          enableSorting
+                          enableFilter
+                          >
+                      </ag-grid-angular> -->
+                      
+                        </div>
                   </div>
               </div>
               <div class="tab-pane" id="tab_a" style="height:800px;overflow:scroll">
@@ -95,8 +112,11 @@
                                               <div class="box-body">
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1" style="color:blue;">Employee ID</label><span style="color:#d81b60;">*</span>
-                                                      <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID">
-    
+                                                      <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID"  [ngClass]="{ 'is-invalid':submitted && employeePrimaryForm.get('Ed_Employee_ID').touched && employeePrimaryForm.get('Ed_Employee_ID').invalid }">
+                                                      <div  *ngIf="submitted && f.Ed_Employee_ID.errors" class="help-block">
+                                                        <div *ngIf="submitted && f.Ed_Employee_ID.errors.required" style="color:red">EmployeeID is required</div>
+                                                        <div *ngIf="submitted && f.Ed_Employee_ID.errors.maxLength" style="color:red">EmployeeID must atleast 6 characters</div>
+                                                    </div>
                                                   </div>
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1" style="color:blue;">Employer ID</label><span style="color:#d81b60">*</span>
@@ -148,7 +168,7 @@
                                                   </div>
                                                   <div class="form-group col-md-3">
                                                       <label for="exampleInputEmail1" style="color:blue;">Designation</label><span style="color:#d81b60;">*</span>
-                                                      <input type="text" class="form-control " data-toggle="modal" id="Ed_A_Desig" formControlName="Ed_A_Desig" name="Ed_A_Desig" data-target="#Designation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+                                                      <input type="text" class="form-control "  id="Ed_A_Desig" formControlName="Ed_A_Desig" name="Ed_A_Desig" data-toggle="modal" data-target="#Designation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
     
                                                   </div>
                                                   <div class="form-group col-md-3">
@@ -336,7 +356,7 @@
                   </div>
                   <input type="hidden" id="epid" ng-model="epid" name="epid" autocomplete="off" class="">
     
-                  <button type="submit" class="btn bg-maroon margin" *ngIf="!Isupdate">Save</button>
+                  <button type="submit" class="btn bg-maroon margin" >Save</button>
                   <button type="submit" class="btn bg-maroon margin ng-hide" *ngIf="Isupdate">Update</button>
     
                   <button type="button" class="btn bg-maroon margin" (click)="clearEmployeedata()">Cancel</button>
@@ -594,39 +614,11 @@
                                                   </tr>
                                               </thead>
                                               <tbody>
-                                                  <!-- ngRepeat: job in JobCatalougeList | filter:txtsearch --><tr role="row" class="odd ng-scope" ng-repeat="job in JobCatalougeList | filter:txtsearch">
-                                                      <td><button type="button" name="chkjob" ng-click="Getjodcatdet(job)"><i class="fa fa-hand-pointer"></i></button></td>
-                                                      <td class="sorting_1 ng-binding">101.0</td>
-                                                      <td class="ng-binding">Programmer</td>
-                                                  </tr><!-- end ngRepeat: job in JobCatalougeList | filter:txtsearch --><tr role="row" class="odd ng-scope" ng-repeat="job in JobCatalougeList | filter:txtsearch">
-                                                      <td><button type="button" name="chkjob" ng-click="Getjodcatdet(job)"><i class="fa fa-hand-pointer"></i></button></td>
-                                                      <td class="sorting_1 ng-binding">102.0</td>
-                                                      <td class="ng-binding">Designer</td>
-                                                  </tr><!-- end ngRepeat: job in JobCatalougeList | filter:txtsearch --><tr role="row" class="odd ng-scope" ng-repeat="job in JobCatalougeList | filter:txtsearch">
-                                                      <td><button type="button" name="chkjob" ng-click="Getjodcatdet(job)"><i class="fa fa-hand-pointer"></i></button></td>
-                                                      <td class="sorting_1 ng-binding">103.0</td>
-                                                      <td class="ng-binding">web programmer</td>
-                                                  </tr><!-- end ngRepeat: job in JobCatalougeList | filter:txtsearch --><tr role="row" class="odd ng-scope" ng-repeat="job in JobCatalougeList | filter:txtsearch">
-                                                      <td><button type="button" name="chkjob" ng-click="Getjodcatdet(job)"><i class="fa fa-hand-pointer"></i></button></td>
-                                                      <td class="sorting_1 ng-binding">104.0</td>
-                                                      <td class="ng-binding">Trainee</td>
-                                                  </tr><!-- end ngRepeat: job in JobCatalougeList | filter:txtsearch --><tr role="row" class="odd ng-scope" ng-repeat="job in JobCatalougeList | filter:txtsearch">
-                                                      <td><button type="button" name="chkjob" ng-click="Getjodcatdet(job)"><i class="fa fa-hand-pointer"></i></button></td>
-                                                      <td class="sorting_1 ng-binding">105.0</td>
-                                                      <td class="ng-binding">Sr programmer</td>
-                                                  </tr><!-- end ngRepeat: job in JobCatalougeList | filter:txtsearch --><tr role="row" class="odd ng-scope" ng-repeat="job in JobCatalougeList | filter:txtsearch">
-                                                      <td><button type="button" name="chkjob" ng-click="Getjodcatdet(job)"><i class="fa fa-hand-pointer"></i></button></td>
-                                                      <td class="sorting_1 ng-binding">106.0</td>
-                                                      <td class="ng-binding">Jr programmer</td>
-                                                  </tr><!-- end ngRepeat: job in JobCatalougeList | filter:txtsearch --><tr role="row" class="odd ng-scope" ng-repeat="job in JobCatalougeList | filter:txtsearch">
-                                                      <td><button type="button" name="chkjob" ng-click="Getjodcatdet(job)"><i class="fa fa-hand-pointer"></i></button></td>
-                                                      <td class="sorting_1 ng-binding">107.0</td>
-                                                      <td class="ng-binding">Manager</td>
-                                                  </tr><!-- end ngRepeat: job in JobCatalougeList | filter:txtsearch --><tr role="row" class="odd ng-scope" ng-repeat="job in JobCatalougeList | filter:txtsearch">
-                                                      <td><button type="button" name="chkjob" ng-click="Getjodcatdet(job)"><i class="fa fa-hand-pointer"></i></button></td>
-                                                      <td class="sorting_1 ng-binding">108.0</td>
-                                                      <td class="ng-binding">CEO</td>
-                                                  </tr><!-- end ngRepeat: job in JobCatalougeList | filter:txtsearch -->
+                                                <tr role="row" class="odd ng-scope" *ngFor="let job of jobCatlogPriDetailes?.GetJobCatalouge">
+                                                    <td><button type="button" name="chkjob" (click)="Getjodcatdet(job?.JCatalouge_id,job?.JobTitle)"><i class="fa fa-hand-pointer"></i></button></td>
+                                                    <td class="sorting_1 ng-binding">{{job?.JobCode}}</td>
+                                                    <td class="ng-binding">{{job?.JobTitle}}</td>
+                                                </tr>
                                               </tbody>
                                           </table>
                                       </div>

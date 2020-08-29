@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmployerView</title>
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Content/Scripts/Login.js"></script>
+    <script src="~/Scripts/litty.js"></script>
+    <script src="~/Content/Scripts/Reports.js"></script>
+    <script>
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[1]);
+        }
+        $(document).ready(function () {
+           
+            //if (parseFloat(vars) > 0) {
+            //    angular.element(document.getElementById('divglp')).scope().btnsearch(vars);
+            //}
+            angular.element(document.getElementById('divglp')).scope().btnsearch();
+            setTimeout(function () {
+                window.print();
+            },1000)
+
+        });
+    </script>
+    </head>
+    <body ng-app="Myapp" ng-controller="GeneralLedgercontroller">
+        <div class="divheight" id="divglp">
+            <div id="bankdeatilsbulk">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>SL.NO</th>
+                            <th>Transaction Date</th>
+                            <th>Voucher Number</th>
+                            <th>Narration</th>
+                            <th>Debit Amount</th>
+                            <th>Credit Amount</th>
+                            <th>Balance</th>
+                            <th>Type</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody id="txttbody">
+                        <tr ng-repeat="dt in Getgendrlist">
+                            <td><input type="text" class="form-control" value="$index" readonly /></td>
+                            <td><input type="text" class="form-control" value="dt.trans_date" readonly /></td>
+                            <td><input type="text" class="form-control" value="dt.VoucherNumber" readonly /></td>
+                            <td><input type="text" class="form-control" value="dt.Narration" readonly /></td>
+                            <td><input type="text" class="form-control" value="dt.DebitAmount" readonly /></td>
+                            <td><input type="text" class="form-control" value="dt.CreditAmount" readonly /></td>
+                            <td><input type="text" class="form-control" value="dt.RunningBalance" readonly /></td>
+                            <td><input type="text" class="form-control" value="dt.Balance_type" readonly /></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </body>
+</html>

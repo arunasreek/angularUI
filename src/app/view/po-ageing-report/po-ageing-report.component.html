@@ -1,0 +1,247 @@
+<link rel="stylesheet" href="po-ageing-report.component.css">
+<div>
+    <ol class="breadcrumb border-0 m-0" style="color: black;background-color: white;">
+        <li class="breadcrumb-item"><a href="#">SCM</a></li>
+        <li class="breadcrumb-item"><a href="#">Reports</a></li>
+        <li class="breadcrumb-item active">PO Ageing Reports</li>
+        <!-- Breadcrumb Menu-->
+      </ol>
+</div>
+<div class="col-md-12" id="divcustomer" ng-controller="EnterpriseController">
+    <div class="scrollbar scrollbar-primary">
+        <div class="force-overflow">
+            <div class="nav-tabs-custom">
+                <div class="tab-content">
+                    <h1 style="margin-left: 43%;">ESMART</h1>
+                    <h3 style="margin-left: 38%;">Purchase Order Ageing Report</h3>
+                   
+                    <div class="panel panel-default panel-table">
+
+                            <div class="panel-heading">
+                                <div class="row">
+
+                                    <div class="col col-xs-6">
+                                       
+                                        <input  type="search" placeholder="search" style="float: left;border-radius: 6px;margin-top: 15px;border-color: thistle;height: 40px;" size="30" >
+                                        <button type="button" class="btn btn-sm btn-primary btn-create" style="float: left;padding:10px 20px ; margin-top: 15px;font-size:16px;" > <i class="fa fa-search " aria-hidden="true" style="float: left;padding:10 px;" ></i></button>
+                                    </div>
+                                    <div class="col col-xs-6 text-right">
+                                       <i class="fa fa-file-excel-o fa-2x" aria-hidden="true" style="float: right;padding: 20px;color: #102f66;"></i>
+                                        <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="float: right;padding: 20px; color: #102f66;"></i>
+                                        <i class="fa fa-file-word-o fa-2x" aria-hidden="true" style="float: right;padding: 20px;color: #102f66;"></i>   
+                                    </div>
+                                  </div>
+                                  <div class="panel panel-default panel-table">
+                                <div class="row">
+                                    <div class="col col-xs-6">
+                                        <table>
+                                            <tr style="width: 200px;">
+                                                <td style="width: 200px;font-weight: bold;font-size: 18px;">PO Number</td>
+                                                <td style="width: 200px;font-size: 18px;">05-13069</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 200px;font-weight: bold;font-size: 18px;">Description</td>
+                                                <td style="width: 500px;font-size: 18px;">risers,upper section,c</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 200px;font-weight: bold;font-size: 18px;">Vendor</td>
+                                                <td style="width: 500px;font-size: 18px;">2552, Pipeline Supply Co. Inc.</td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </div>
+                                    <div class="col col-xs-6 text-right">
+                                        <table style="float: right;">
+                                            <tr>
+                                                <td style="width: 200px;font-weight: bold;font-size: 18px;">Order Date</td>
+                                                <td style="width: 200px;float: left;font-size: 18px;">05/12/2020</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 200px;font-weight: bold;font-size: 18px;">Estimated Delivery</td>
+                                                <td style="width: 200px;float: left;font-size: 18px;">07/20/2020</td>
+                                            </tr>
+                                            
+
+
+                                        </table>
+
+                                    </div>
+                                </div>
+                             
+                            </div>
+       
+                <table class="table table-striped table-bordered table-list">
+                    <thead style="background-color: #0288d1;color: white;"> 
+                        <tr role="row" >
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" rowspan="2" style="float: center;text-align: center;">COMMODITY</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" rowspan="2" style="float: center;text-align: center;">ITEM</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" colspan="2" style="float: center;text-align: center;">ORDERED</th>                           
+                            <th tabindex="0" aria-controls="example1" style=" width: 150px; font-weight: bold;" colspan="2" style="float: center;text-align: center;">RECEIVED</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" colspan="2" style="float: center;text-align: center;">VARIANCE</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" colspan="2" style="float: middle;text-align: center;">OUTSTANDING</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" rowspan="2" style="float: middle;text-align: center;">PRINT</th>
+                            
+                        </tr>
+                        <tr >
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" style="float: middle;text-align: center;">UNITS</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" style="float: middle;text-align: center;">AMOUNT</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" style="float: middle;text-align: center;">UNITS</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" style="float: middle;text-align: center;">AMOUNT</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" style="float: middle;text-align: center;">UNITS</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" style="float: middle;text-align: center;">AMOUNT</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" style="float: middle;text-align: center;">UNITS</th>
+                            <th tabindex="0" aria-controls="example1" style="  font-weight: bold;" style="float: middle;text-align: center;">AMOUNT</th>                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table1">
+                            <td>Copy</td>
+                            <td>risers,upper section,c</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                       
+                        <tr class="table1">
+                            <td>Copy</td>
+                            <td>risers,upper section,c</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr class="table1">
+                            <td>Copy</td>
+                            <td>risers,upper section,c</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr class="table1">
+                            <td>Copy</td>
+                            <td>risers,upper section,c</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr class="table1">
+                            <td>Copy</td>
+                            <td>risers,upper section,c</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td style="text-align: right;">0.00</td>
+                            <td style="text-align: right;">1151.81</td>
+                            <td>
+                                <a data-lity style="display:none">
+                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-print fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click=" printsoreport(CuL)"></i>
+                                </a>
+                                
+                            </td>   
+                        </tr>
+                        <tr  >
+                            <td colspan="2"  style="font-weight: bold;">Total</td> 
+                            
+                            <td style="text-align: right;">5.00</td>
+                            <td style="text-align: right;">54253.00</td>
+                            <td style="text-align: right;">5.00</td>
+                            <td style="text-align: right;">54253.00</td>
+                            <td style="text-align: right;">5.00</td>
+                            <td style="text-align: right;">54253.00</td>
+                            <td style="text-align: right;">5.00</td>
+                            <td style="text-align: right;">54253.00</td>
+                           
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                  <div class="col col-xs-4" style="margin-top: 30px;">Page 1 of 5
+                  </div>
+                  <div class="col col-xs-8">
+                    <ul class="pagination hidden-xs pull-right">
+                        <li><a href="#" >Prev Page</a></li>
+                      <li class="list1"><a routerLink="/po-ageing-report">1</a></li>
+                      <li><a routerLink="/po-ageing-report">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">4</a></li>
+                      <li><a href="#">5</a></li>
+                      <li><a href="#" >Next Page</a></li>
+                    </ul>
+                    <ul class="pagination visible-xs pull-right">
+                        <li><a href="#">«</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                  </div>
+                </div>
+            
+            </div>
+</div>
+</div></div>
+</div>

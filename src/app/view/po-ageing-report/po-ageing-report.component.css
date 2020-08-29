@@ -1,0 +1,36 @@
+::-webkit-input-placeholder {
+    padding: 7px;
+    font-size: 18px;
+  }
+  .table-layout {
+    text-align: center;
+    border: 1px solid gray;
+    border-collapse: collapse;
+    font-family:"Trebuchet MS";
+    margin: 0 auto 0;
+  }
+  
+  .table1{
+    color: black;
+    background-color: white;
+  }
+  .table1:hover{
+    color:white;
+    background-color: #0288d1;
+  }
+  .table-striped > tbody > tr:nth-child(odd) > td{
+    background-color: #f9f9f9;
+    
+  }
+  .table-striped:hover > tbody:hover > tr:nth-child(odd):hover > td{
+    background-color: #0288d1;
+    
+  }
+  .list1:hover{
+    color: white;
+    background-color: #0288d1;
+  }
+  .list1:active{
+    color: white;
+    background-color: #0288d1;
+  }

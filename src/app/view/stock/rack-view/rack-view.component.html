@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RackView</title>
+    
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Content/Scripts/Login.js"></script>
+    <script src="~/Content/Scripts/EEE.js"></script>
+    
+    <script src="~/Scripts/litty.js"></script>
+    <script src="~/Content/Scripts/Stockmgmt.js"></script>
+    <script>  
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[1]);
+        }
+        $(document).ready(function () {
+           
+            if (parseFloat(vars) > 0) {
+                angular.element(document.getElementById('rackController')).scope().GetRackviewbyid(vars[0]);
+            }
+
+        });
+    </script>
+    <style>
+        .tbtextcolor {
+            color: black;
+            width: 100%;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body ng-app="Myapp" ng-controller="InvRackController">
+
+
+     <script>
+            $(document).ready(function () {
+                angular.element(document.getElementById('JobClassController')).scope().GetRackList();
+            });
+        </script> 
+    <div class="row" id="rackController">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                     <li class="active" id="lifirsttab1"><a href="#lifirsttab" id="afirsttab" data-toggle="tab"> Rack List</a></li> 
+                    <li class="active"><a href="#tab_1" id="asecondtab" data-toggle="tab"> Add Rack</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Rack Details
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                                  <h3 class="box-title">Quick Example</h3>
+                                                </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                                <form role="form">
+
+                                                    <div class="box-body" ng-repeat="rack in RackViewList">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1" style="color:blue;">Rack ID <span style="color:red">*</span></label>
+                                                            <label type="text" class="form-control" ng-model="RackId" name="RackId" id="RackId" placeholder="Rack Id"></label>
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1" style="color:blue;">Rack Description<span style="color:red">*</span></label>
+                                                            <label type="text" class="form-control" ng-model="Rackdesc" name="Rackdesc" id="Rackdesc" placeholder="Rack Description"></label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
+                                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div> -->
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="rackform1.$invalid" ng-click="SetRack()">Save</button>
+                                        <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin" ng-disabled="rackform1.$invalid" ng-click="SetRack()">Update</button>
+                                        <button type="button" class="btn bg-maroon margin">Cancel</button>
+                                        <button type="button" class="btn bg-maroon margin">Exit</button> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+</html>
+
