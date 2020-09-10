@@ -22,9 +22,9 @@
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Chat Of Account Id</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Account Number</th>
-                                            @*<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
+                                            <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th>*@
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th>*@ -->
 
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Account Name</th>
 
@@ -42,22 +42,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="CH in GetChatofaccList">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                        <tr *ngFor="let item of chartList">
+                                            <td>{{item.id}}</td>
+                                            <td>{{item.AccountNumber}}</td>
+                                            <td>{{item.AccountName}}</td>
+                                            <td>{{item.id}}</td>
                                             <td>
-                                                @*edit*@
-                                                @*<a href="/Enterprise/ES/EmpbranchList?id=" data-lity>
-                                                <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
-                                            </a>*@
+                                               
+                                                <a href="/Enterprise/ES/EmpbranchList?id=" data-lity>
+                                                <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;"></i>
+                                            </a>
                                                 <a href="#">
-                                                    <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Editchatofacc(CH)"></i>
+                                                    <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click="Editchatofacc(CH)"></i>
                                                 </a>
-                                                @*<a href="#">
-                                                <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="BranchDelete(CH)"></i>
-                                            </a>*@
+                                                <a href="#">
+                                                <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #102f66;" ng-click="BranchDelete(CH)"></i>
+                                            </a>
                                             </td>
                                         </tr>
 
@@ -81,12 +81,7 @@
                             </ag-grid-angular>     -->
                             </div>
                             
-=======
-                                </table>
 
-                            </div>
-                            @*create*@
->>>>>>> c76dc101f298fc077f4ceac323c784afedd7f4fc
                             <div class="tab-pane tab2" id="tab_2" ng-form="chatofacc">
                                 <div class="col-md-12">
                                     <div class="box box-primary " style="border-top:none;">

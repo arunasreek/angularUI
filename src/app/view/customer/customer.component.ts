@@ -24,9 +24,12 @@ export class CustomerComponent implements OnInit {
   enterprisealllist: any;
   erpriseids: any;
   countryList: any;
+  p: number=1;
   jobCatlogPriDetailes: any;
   organizationList: any;
   stateList: any;
+  cust_id: number;
+  Iscustomerupdate: boolean;
 
   constructor(public commonService:CommonService,
     private formBuilder: FormBuilder,public toastr:ToastrService,
@@ -39,7 +42,7 @@ export class CustomerComponent implements OnInit {
  
   customerFormSetup(){
     this.customerForm = this.formBuilder.group({
-      cust_id: [''],
+     
       Customer_Id: [''],
       Customer_Name: [''],
       Customer_S_C: [''],
@@ -85,7 +88,6 @@ export class CustomerComponent implements OnInit {
       Customer_ID: this.customerForm.value.Customer_Id,
       Customer_Name: this.customerForm.value.Customer_Name,
       Both_Supplier_Customer: this.customerForm.value.Customer_S_C,
-      Customer_c_Legeracc:this.customerForm.value. Customer_c_Legeracc,
       country_id: this.customerForm.value.Country,
       state_id: this.customerForm.value.State,
       city_id:this.customerForm.value.customer_city,
@@ -130,63 +132,63 @@ export class CustomerComponent implements OnInit {
   
   }
 
-  columnDefs = [
-    {headerName: 'Customer ID', field: 'Customer_ID', width:150},
-    {headerName: 'Customer Name', field: 'Customer_Name', width:170 },
-    {headerName: 'Customer Email', field: 'Email_Address', width:200 },
-    {headerName: 'Land Line', field: 'Fax', width:150 },
-    { headerName: "Status",
-    suppressMenu: true,
-     width:100,
-    suppressSorting: true,
-    template:
-      `<i  class="fa fa-check-circle" style="border:none;background:none;color:#102f66">
+//   columnDefs = [
+//     {headerName: 'Customer ID', field: 'Customer_ID', width:150},
+//     {headerName: 'Customer Name', field: 'Customer_Name', width:170 },
+//     {headerName: 'Customer Email', field: 'Email_Address', width:200 },
+//     {headerName: 'Land Line', field: 'Fax', width:150 },
+//     { headerName: "Status",
+//     suppressMenu: true,
+//      width:100,
+//     suppressSorting: true,
+//     template:
+//       `<i  class="fa fa-check-circle" style="border:none;background:none;color:#102f66">
          
-      </i>
+//       </i>
       
-      <i  class="fa fa-remove" style="border:none;background:none;color:#102f66;margin-left:5px">
+//       <i  class="fa fa-remove" style="border:none;background:none;color:#102f66;margin-left:5px">
          
-       </i>`
-  },
-    { headerName: "Actions",
-    suppressMenu: true,
-    width:100,
-    suppressSorting: true,
-    template:
-      `    <button type="button" data-action-type="view"  class="fa fa-edit" style="border:none;background:none;color:#102f66">
+//        </i>`
+//   },
+//     { headerName: "Actions",
+//     suppressMenu: true,
+//     width:100,
+//     suppressSorting: true,
+//     template:
+//       `    <button type="button" data-action-type="view"  class="fa fa-edit" style="border:none;background:none;color:#102f66">
       
-       </button>
+//        </button>
 
-      <button type="button" data-action-type="remove" class="fa fa-trash" style="border:none;background:none;color:#102f66">
+//       <button type="button" data-action-type="remove" class="fa fa-trash" style="border:none;background:none;color:#102f66">
         
-      </button>`
-  },
-  { 
-  suppressMenu: true,
-  width:150,
-  suppressSorting: true,
-  template:
-    `<button class="btn bg-maroon margin" style="margin-top:-5px">Ledger Account</button>`
-}
+//       </button>`
+//   },
+//   { 
+//   suppressMenu: true,
+//   width:150,
+//   suppressSorting: true,
+//   template:
+//     `<button class="btn bg-maroon margin" style="margin-top:-5px">Ledger Account</button>`
+// }
     
-];
+// ];
 
-onGridReady(params) {
-  this.gridApi = params.api;
-  this.gridColumnApi = params.columnApi;
-  this.customerService. getCustomerList(0).subscribe(data => {
-        params.api.setRowData(data);
-    });
-}
+// onGridReady(params) {
+//   this.gridApi = params.api;
+//   this.gridColumnApi = params.columnApi;
+//   this.customerService. getCustomerList(0).subscribe(data => {
+//         params.api.setRowData(data);
+//     });
+// }
   customerServiceAPICall(){
     this.commonService. getEnterprisealllist().subscribe((data: any) => {
       this.enterprisealllist=data
      
     });
-    // this.customerService. getCustomerList(0).subscribe((data: any) => {
+    this.customerService. getCustomerList(0).subscribe((data: any) => {
      
-    //   this.customerList=data
-    // });
+      this.customerList=data
+    });
     this.commonService. getEnterpriseids().subscribe((data: any) => {
        this.erpriseids=data
       // console.log(data);

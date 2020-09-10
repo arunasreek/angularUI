@@ -13,7 +13,7 @@
                         </ul>
                         <div class="tab-content">
 
-                            @*LIst*@
+                           
                             <div class="box tab-pane active" id="firsttab">
                                 <div class="box-header">
                                     <h3 class="box-title">Data Table</h3>
@@ -36,11 +36,11 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr ng-repeat="as in Getassetlist">
-                                                            <td class="sorting_1"></td>
-                                                            <td> </td>
-                                                            <td></td>
-                                                            <td></td>
+                                                        <tr *ngFor="let item of assetList">
+                                                            <td class="sorting_1">{{item.AssetID}}</td>
+                                                            <td>{{item.VD_FirstName}}{{item.VD_MiddleName}}{{item.VD_LastName}} </td>
+                                                            <td>{{item.AcquireDate}}</td>
+                                                            <td>{{item.WarrentyExpiryDate}}</td>
                                                             <td><span class="glyphicon glyphicon-ok-circle" style="color:#d81b60;cursor:pointer;font-size: 20px" title="approve"></span>
                                                                 <span class="glyphicon glyphicon-remove-circle" style="color:#d81b60;cursor:pointer;font-size:20px;" title="reject"></span></td>
                                                             <td><button class="btn bg-maroon margin" ng-click="CreateLedgeraccforasset(as.asset_id)">Ledger Account</button></td>
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
 
-                            @*create*@
+                           \
                             <div class="tab-pane" id="tab_1" ng-form="assetform1">
                                 <form role="form">
                                     <div class="panel panel-default">
@@ -78,7 +78,7 @@
                                                                         <label for="exampleInputEmail"><span style="color:blue;">Vendor Name</span><span style="color:red;">*</span></label>
                                                                         <select class="form-control" id="vender_id" ng-model="vender_id" name="vender_id">
                                                                             <option value="" disabled>--Select Vendor Id--</option>
-                                                                            <option ng-repeat="Vi in GetSuplist" value="">()</option>
+                                                                            <option ng-repeat="Vi in GetSuplist" value=""></option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group col-md-3">
@@ -103,7 +103,7 @@
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail"><span style="color:blue;">Asset Type</span><span style="color:red;">*</span></label>
                                                                         <select class="form-control" id="Ass_type" ng-model="Ass_type" name="Ass_type" placeholder="" required>
-                                                                            <option value="" disabled>--select Asset Type</option>
+                                                                            <option value="" >--select Asset Type</option>
                                                                             <option value="N">New Account</option>
                                                                             <option value="E">Exit Account</option>
                                                                         </select>
@@ -141,7 +141,7 @@
 
                             </div>
 
-                            @*Tab 3*@
+                           
                             <div class="tab-pane tab2" id="tab_2">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">

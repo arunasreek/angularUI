@@ -6,3 +6,5 @@ export * from './employee.model';
 export * from './organization.model';
 export * from './financial.model';
 export * from './customer.model';
+export * from './warehouse.model';
+export * from './procurement.model';

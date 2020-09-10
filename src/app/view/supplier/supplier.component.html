@@ -13,7 +13,7 @@
                 <div class="tab-content">
                    
                     <div class="tab-pane active tab1" id="tab_1">
-                        <!-- <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                             <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Supplier Id</th>
@@ -26,11 +26,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="SuL in GetSupplierlist" ng-show="GetSupplierlist.length>0">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                <tr *ngFor="let item of SupplierList">
+                                    <td>{{item.Supplier_ID}}</td>
+                                    <td>{{item.Supplier_Name}}</td>
+                                    <td>{{item.Email_Address}}</td>
+                                    <td>{{item.Fax}}</td>
                                     <td><span class="glyphicon glyphicon-ok-circle" style="color:#d81b60;cursor:pointer;font-size: 20px; padding: 05px;" title="approve"></span>
                                         <span class="glyphicon glyphicon-remove-circle" style="color:#d81b60;cursor:pointer;font-size:20px; padding:05px;" title="reject"></span></td>
                                     <td>
@@ -48,8 +48,8 @@
                                     <td><button class="btn bg-maroon margin" style="font-size: 15px;" ng-disabled="SuL.ledgeraccount_status==1" ng-click="CreateLedgeraccFromSupllier(SuL.supp_id)">Ledger Account</button></td>
                                 </tr>
                             </tbody>
-                        </table> -->
-                        <ag-grid-angular
+                        </table>
+                        <!-- <ag-grid-angular
                         style="width:100%; height:500px;min-height:200px"
                         class="ag-theme-alpine"
                       
@@ -61,7 +61,7 @@
                         enableSorting
                         enableFilter
                         >
-                    </ag-grid-angular>
+                    </ag-grid-angular> -->
                     </div>
                     <!-- <div style="color:red; text-align:center" ng-show="GetSupplierlist.length==0">No Records Found</div> -->
                 
@@ -340,7 +340,7 @@
                             </div>
                         </div>
 
-                        <button type="button" class="btn bg-maroon margin" ng-show="!IsSupplier" ng-disabled="Supform.$invalid" >Save</button>
+                        <button type="submit" class="btn bg-maroon margin" >Save</button>
                         <button type="button" class="btn bg-maroon margin" ng-show="IsSupplier" ng-disabled="Supform.$invalid" ng-click="UpdateSupplier()">Update</button>
                         <button type="button" class="btn bg-maroon margin" ng-click="ClearSupplierdata()">Cancel</button>
                         <button type="button" class="btn bg-maroon margin" ng-click="exitsupplier()">Exit</button>

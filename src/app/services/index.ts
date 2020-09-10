@@ -11,5 +11,9 @@ export * from './employer.service';
 export * from './project.service';
 export * from './warehouse.service';
 export * from './charofaccts.service';
-export * from './customer.service';
+export * from './receipt.service';
+export * from './journal.service';
+export * from './policies.service';
+export * from './procurement.service';
+export * from './assests.service';
 

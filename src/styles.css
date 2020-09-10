@@ -10,6 +10,30 @@ html,body {
 .theme-green .bs-datepicker-head {
     background-color: #102f66;
 }
+th{
+    background-color:#102f66 ;
+    color:white;
+}
+tr:hover{
+ background-color: #83c9ff;
+}
+.breadcrumb {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 20px 0;
+    margin-left: 0;
+    background: none;
+  }
+  
+  .breadcrumb span,
+  .breadcrumb a {
+    margin-right: 10px;
+    text-transform: capitalize;
+  }
+
+a{
+    color:#102f66;
+}
 .theme-green .bs-datepicker-body table td.week span {
     color: #102f66 ;
 }

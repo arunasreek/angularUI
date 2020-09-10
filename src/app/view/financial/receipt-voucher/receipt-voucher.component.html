@@ -14,10 +14,10 @@
                             <ul class="nav nav-tabs" style="background-attachment:fixed">
                                 <li class="active" id="lifirsttab1"><a href="#tab1" id="listtab" data-toggle="tab">RV List</a></li>
                                 <li><a href="#tab2" id="firsttab" data-toggle="tab" ng-click="secontabclick()">Primary Details</a></li>
-                                @*<li><a href="#tab_3" id="thirdtab" data-toggle="tab">Account Details</a></li>*@
+                                <li><a href="#tab_3" id="thirdtab" data-toggle="tab">Account Details</a></li>
                             </ul>
                             <div class="tab-content">
-                                @*Tab1*@
+                               
                                 <div class="box tab-pane active" id="tab1">
                                     <div class="box-header">
                                         <h3 class="box-title">Data Table</h3>
@@ -40,36 +40,36 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="rv in Getrvlist">
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
+                                                            <tr *ngFor="let item of RVlist">
+                                                                <td>{{item.VoucherUserNo}}</td>
+                                                                <td>{{item.VoucherDate}}</td>
+                                                                <td>{{item.AccountNumber}}</td>
+                                                                <td>{{item.AccountName}}</td>
                                                                 <td>
-                                                                    <span ng-show="rv.approved_status==0">Pending</span>
-                                                                    <span ng-show="rv.approved_status==1">Approve</span>
-                                                                    <span ng-show="rv.approved_status==2">Reject</span>
-                                                                    <span ng-show="rv.approved_status==3">Hold</span>
+                                                                    <span *ngIf="item.approved_status==0">Pending</span>
+                                                                    <span *ngIf="item.approved_status==1">Approve</span>
+                                                                    <span *ngIf="item.approved_status==2">Reject</span>
+                                                                    <span *ngIf="item.approved_status==3">Hold</span>
                                                                 </td>
                                                                 <td>
                                                                     <a href="Financila/Fn/ReceiptVoucherView?id=" data-lity>
                                                                         <i class="fa fa-eye fa-1x" style="font-size: 14px;
-                                                                        padding: 05px;    color: #d81b60;
+                                                                        padding: 05px;    color: #102f66;
                                                                     "></i>
                                                                     </a>
                                                                     <a href="#" ng-click="GetReceiptVoucherbyid(class.ReceiptVoucher_id)">
                                                                         <i class="fa fa-edit fa-1x" style="font-size: 14px;
-                                                                        padding: 05px;    color: #d81b60;
+                                                                        padding: 05px;    color: #102f66;
                                                                     "></i>
                                                                     </a>
                                                                     <a href="#" ng-click="DltReceiptVoucherbyid(class.ReceiptVoucher_id)">
                                                                         <i class="fa fa-trash fa-1x" style="font-size: 14px;
-                                                                        padding: 05px;    color: #d81b60;
+                                                                        padding: 05px;    color: #102f66;
                                                                     "></i>
                                                                     </a>
                                                                     <a href="Financila/Fn/ReceiptVoucherPrint?id=" data-lity>
                                                                         <i class="fa fa-eye fa-1x" style="font-size: 14px;
-                                                                        padding: 05px;    color: #d81b60;
+                                                                        padding: 05px;    color: #102f66;
                                                                     "></i>
                                                                     </a>
                                                                 </td>
@@ -83,7 +83,7 @@
                                         <!-- /.tab-content -->
                                     </div>
                                 </div>
-                                @*tab2*@
+                               
                                 <div class="tab-pane" id="tab2">
                                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                         <div class="panel-body">
@@ -93,17 +93,21 @@
                                                         <form role="form">
                                                             <div class="box-body">
                                                                 <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail" style="color:blue;">Receipt No</label><span style="color:#d81b60;">*</span>
+                                                                    <label for="exampleInputEmail" style="color:blue;">Receipt No</label><span style="color:#102f66;">*</span>
                                                                     <input type="text" class="form-control" id="receipt_no" ng-model="receipt_no" name="receipt_no" placeholder="Receipt No" />
 
                                                                 </div>
                                                                 <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail" style="color:blue;">Date</label><span style="color:#d81b60;">*</span>
-                                                                    <input type="text" class="form-control" id="date" ng-model="date" name="date" placeholder="dd/mm/yyyy" />
-
+                                                                    <label for="exampleInputEmail" style="color:blue;">Date</label><span style="color:#102f66;">*</span>
+                                                                    <!-- <input type="text" class="form-control" id="date" ng-model="date" name="date" placeholder="dd/mm/yyyy" /> -->
+                                                                    <input type="text"
+                                                                    placeholder="dd/mm/yyyy"
+                                                                    class="form-control"
+                                                                     #dp="bsDatepicker"
+                                                                    bsDatepicker [(bsValue)]="date" >  
                                                                 </div>
                                                                 <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail" style="color:blue;">Received Amount:</label><span style="color:#d81b60;">*</span>
+                                                                    <label for="exampleInputEmail" style="color:blue;">Received Amount:</label><span style="color:#102f66;">*</span>
                                                                     <input type="text" class="form-control" id="received_amount" ng-model="received_amount" name="received_amount" placeholder="Received Amount" />
 
                                                                 </div>
@@ -113,7 +117,7 @@
 
                                                                 </div>
                                                                 <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail" style="color:blue;">Received From</label><span style="color:#d81b60;">*</span>
+                                                                    <label for="exampleInputEmail" style="color:blue;">Received From</label><span style="color:#102f66;">*</span>
                                                                     <input type="text" class="form-control" id="received_from" ng-model="received_from" name="received_from" placeholder="Received From" />
 
                                                                 </div>
@@ -121,7 +125,7 @@
                                                                     <span>In Partial Settlement/Full Settlement Against</span>
                                                                 </div>
                                                                 <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail" style="color:blue;">Invoice No</label><span style="color:#d81b60;">*</span>
+                                                                    <label for="exampleInputEmail" style="color:blue;">Invoice No</label><span style="color:#102f66;">*</span>
                                                                     <input type="text" class="form-control" id="invoice_no" ng-model="invoice_no" name="invoice_no" placeholder="Invoice No" />
                                                                 </div>
                                                                 <div class="form-group col-md-3">
@@ -185,31 +189,31 @@
                                                             <div class="box-body" id="bankdet" style="display:none;">
                                                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                                                     <div class="form-group col-md-3">
-                                                                        <label for="exampleInputEmail" style="color:blue;">Bank Name:</label><span style="color:#d81b60;">*</span>
+                                                                        <label for="exampleInputEmail" style="color:blue;">Bank Name:</label><span style="color:#102f66;">*</span>
                                                                         <select class="form-control" id="bankname" ng-model="bankname" name="bankname" ng-change="GetBanknamesbyid()">
                                                                             <option value="" disabled>--Select Bank ID</option>
                                                                             <option ng-repeat="bank in GetbanknameList" value="">()</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group col-md-3">
-                                                                        <label for="exampleInputEmail" style="color:blue;">Branch:</label><span style="color:#d81b60;">*</span>
+                                                                        <label for="exampleInputEmail" style="color:blue;">Branch:</label><span style="color:#102f66;">*</span>
                                                                         <select class="form-control" id="branch" ng-model="branch" name="branch">
                                                                             <option value="" disabled>--Select Branch ID</option>
                                                                             <option ng-repeat="BR in GetbanknameList1" value=""></option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group col-md-3">
-                                                                        <label for="exampleInputEmail" style="color:blue;">Date Of Cheque:</label><span style="color:#d81b60;">*</span>
+                                                                        <label for="exampleInputEmail" style="color:blue;">Date Of Cheque:</label><span style="color:#102f66;">*</span>
                                                                         <input type="text" class="form-control" ng-model="date_of_cheque" id="date_of_cheque" name="date_of_cheque" placeholder="Date Of Cheque" />
 
                                                                     </div>
                                                                     <div class="form-group col-md-3">
-                                                                        <label for="exampleInputEmail" style="color:blue;">Cheque Number:</label><span style="color:#d81b60;">*</span>
+                                                                        <label for="exampleInputEmail" style="color:blue;">Cheque Number:</label><span style="color:#102f66;">*</span>
                                                                         <input type="text" class="form-control" ng-model="cheque_number" id="cheque_number" name="cheque_number" placeholder="Date Of Cheque" />
 
                                                                     </div>
                                                                     <div class="form-group col-md-3">
-                                                                        <label for="exampleInputEmail" style="color:blue;">Amount</label><span style="color:#d81b60;">*</span>
+                                                                        <label for="exampleInputEmail" style="color:blue;">Amount</label><span style="color:#102f66;">*</span>
                                                                         <input type="text" class="form-control" ng-model="Amount" id="Amount" name="Amount" placeholder="Amount" />
 
                                                                     </div>
@@ -220,7 +224,7 @@
                                                                 <table id="tbl_accdet" class="table">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th style="color:blue;">Account Number<span style="color:#d81b60;">*</span></th>
+                                                                            <th style="color:blue;">Account Number<span style="color:#102f66;">*</span></th>
                                                                             <th>Account Name</th>
                                                                             <th>Debit Amount</th>
                                                                             <th>Credit Amount</th>
@@ -230,7 +234,7 @@
                                                                     <tbody id="tb_trdet1">
                                                                         <tr>
                                                                             <td data-toggle="modal" data-target="#Account">
-                                                                                <input type="text" id="Acno_number" ng-click="GetAccountnums1()" ng-model="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+                                                                                <input type="text" id="Acno_number" ng-click="GetAccountnums1()" ng-model="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #102f66;">
 
                                                                             </td>
                                                                             <td><input class="form-control" type="text" id="Ac_name" /></td>
@@ -328,7 +332,7 @@
                                         <div class="panel-heading" role="tab" id="headingThree">
                                             <h4 class="panel-title">
                                                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordian" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                                    <i class="more-less glyphicon glyphicon-plus" style="color:#102f66;"></i>
                                                     ReceiptVoucherDetails
                                                 </a>
                                             </h4>

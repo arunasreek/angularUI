@@ -13,7 +13,11 @@ import {
     ProjectService,
     WarehouseService,
     CharofAcctsService,
-
+    ReceiptService,
+    PoliciesService,
+    ProcurementService,
+    JournalService,
+    AssestsService,
     
 } from './'
 
@@ -34,7 +38,12 @@ import {
         WarehouseService,
         CharofAcctsService ,
 
-        CustomerService 
+        CustomerService,
+        ReceiptService ,
+        PoliciesService,
+        ProcurementService,
+        JournalService,
+        AssestsService
 
     ]
 })

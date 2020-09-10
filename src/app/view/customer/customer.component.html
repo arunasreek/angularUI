@@ -1,4 +1,5 @@
 
+
 <div class="col-md-12" id="divcustomer" ng-controller="EnterpriseController">
     <div class="scrollbar scrollbar-primary">
         <div class="force-overflow">
@@ -9,12 +10,9 @@
 
                 </ul>
                 <div class="tab-content">
-                  
+                   
                     <div class="tab-pane active tab1" id="tab_1">
-
-                        <!-- <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                         <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-
                             <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Customer Id</th>
@@ -26,62 +24,41 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <tr *ngFor="let item of  customerList">
+                                <tr *ngFor="let item of customerList  | paginate:{ itemsPerPage: 10 , currentPage: p };" >
                                     <td>{{item.Customer_ID}}</td>
                                     <td>{{item.Customer_Name}}</td>
                                     <td>{{item.Email_Address}}</td>
                                     <td>{{item.Fax}}</td>
-
-                                    <td><span class="glyphicon glyphicon-ok-circle" style="color:#d81b60;cursor:pointer;font-size: 20px;padding:05px;" title="approve"></span>
-                                        <span class="glyphicon glyphicon-remove-circle" style="color:#d81b60;cursor:pointer;font-size:20px;padding:05px;" title="reject"></span></td>
+                                    <td><span class="glyphicon glyphicon-ok-circle" style="color:#102f66;cursor:pointer;font-size: 20px;padding:05px;" title="approve"></span>
+                                        <span class="glyphicon glyphicon-remove-circle" style="color:#102f66;cursor:pointer;font-size:20px;padding:05px;" title="reject"></span></td>
                                     <td>
-                                      
-                                        <a href="/Enterprise/ES/Organizationlist?id=" data-lity style="display:none">
-                                            <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ></i>
+                                        
+                                        <a href="/Enterprise/ES/Organizationlist?id" data-lity style="display:none">
+                                            <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
                                         </a>
                                         <a href="#">
-                                            <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Editcustomer(CuL)"></i>
+                                            <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click="Editcustomer(CuL)"></i>
                                         </a>
                                         <a href="#">
-                                            <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="Deletecustomer(CuL)"></i>
+                                            <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #102f66;" ng-click="Deletecustomer(CuL)"></i>
                                         </a>
                                     </td>
                                     <td><button class="btn bg-maroon margin" ng-disabled="CuL.ledgeraccount_status==1" ng-click="CreateLedgeraccFromCustomer(CuL.cust_id)">Ledger Account</button></td>
                                 </tr>
                             </tbody>
-
-                        </table> -->
-                        <ag-grid-angular
-                          style="width:100%; height:500px;min-height:200px"
-                          class="ag-theme-alpine"
-                        
-                          [columnDefs]="columnDefs"
-                          (gridReady)="onGridReady($event)"
-                          [rowData]="rowData"
-                          [pagination]="true" 
-                          [paginationAutoPageSize]="true"
-                          enableSorting
-                          enableFilter
-                          >
-                      </ag-grid-angular>
-                   
-                    </div>
-                  
-                    
-                    <div class="tab-pane tab2" id="tab_2">
-
                         </table>
+                        <div style="float:right;margin-top:20px;color:102f66;font-weight:800">
+                            <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                           </div>  
                     </div>
-                    <div style="color:red; text-align:center" ng-show="GetCustomerList.length==0">No Records Found</div>
-                    
+                   
                     <div class="tab-pane tab2" id="tab_2" ng-form="Csform">
-
+                        <form  [formGroup]="customerForm" (ngSubmit)="onSubmitPrimary()">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <i class="more-less glyphicon glyphicon-plus" style="color: #d81b60;"></i>
+                                        <i class="more-less glyphicon glyphicon-plus" style="color: #102f66;"></i>
                                         Customer Details
                                     </a>
                                 </h4>
@@ -100,36 +77,21 @@
                                                 <!-- /.box-header -->
                                                 <!-- form start -->
 
-
-                                                <form [formGroup]="customerForm" (ngSubmit)="onSubmitPrimary()">
-
+                                                
 
                                                     <div class="box-body">
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1"><span style="color:blue;">Customer ID</span><span style="color:red;">*</span></label>
-
                                                             <input type="text" class="form-control" id="Customer_Id" formControlName="Customer_Id" name="Customer_Id" placeholder="Employer ID" required>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Customer Name</span><span style="color:red;">*</span></label>
                                                             <input type="text" class="form-control" id="Customer_Name" formControlName="Customer_Name" name="Customer_Name" placeholder="Employer Name" required>
                                                         </div>
-                                                        <!-- <div class="form-group col-md-3" style="display:none">
-                                                            <label>Create Account </label>
-                                                            <br />
-                                                            <select class="form-control" id="Customer_Name"  name="Customer_Name">
-=======
-                                                            <input type="text" class="form-control" id="Customer_Id" ng-model="Customer_Id" name="Customer_Id" placeholder="Employer ID" required>
-                                                        </div>
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1"><span style="color:blue;">Customer Name</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control" id="Customer_Name" ng-model="Customer_Name" name="Customer_Name" placeholder="Employer Name" required>
-                                                        </div>
                                                         <div class="form-group col-md-3" style="display:none">
                                                             <label>Create Account </label>
                                                             <br />
-                                                            <select class="form-control" id="Customer_Name" ng-model="Customer_Name" name="Customer_Name">
-
+                                                            <select class="form-control" id="Customer_Name" formControlName="Customer_Name" name="Customer_Name">
                                                                 <option disabled>--Select--</option>
                                                                 <option>Yes</option>
                                                                 <option>No</option>
@@ -138,19 +100,12 @@
 
 
 
-
-                                                        </div> -->
-
-                                                        </div>
-
+                                                       </div>
                                                         <div class="form-group col-md-3">
                                                             <label>Both Supplier & Customer</label>
                                                             <br />
 
-
                                                             <select class="form-control" id="Customer_S_C" formControlName="Customer_S_C" name="Customer_S_C">
-
-
                                                                 <option value="" disabled>--Select--</option>
                                                                 <option value="1">Yes</option>
                                                                 <option value="0">No</option>
@@ -163,9 +118,7 @@
                                                         <div class="form-group col-md-3" ng-show="Iscustomer">
                                                         <label>Create Ledger Account</label>
                                                         <br />
-
                                                         <select class="form-control" id="Customer_c_Legeracc" formControlName="Customer_c_Legeracc" name="Customer_c_Legeracc"  ng-change="CreateLedgeraccFromCustomer()">
-
                                                             <option value="" disabled>--Select--</option>
                                                             <option value="1">Yes</option>
                                                             <option value="0">No</option>
@@ -180,7 +133,7 @@
                                               <button type="submit" class="btn btn-primary">Submit</button>
                                             </div> -->
 
-                                                </form>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -192,7 +145,7 @@
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <i class="more-less glyphicon glyphicon-plus" style="color: #d81b60;"></i>
+                                        <i class="more-less glyphicon glyphicon-plus" style="color: #102f66;"></i>
                                         Address
                                     </a>
                                 </h4>
@@ -208,100 +161,78 @@
                                                 <!-- /.box-header -->
                                                 <!-- form start -->
 
-
-                                                <form [formGroup]="customerForm" (ngSubmit)="onSubmitPrimary()">
-
+                                               
 
                                                     <div class="box-body">
                                                         <!-- Should Use Country ,State , City Exchanger Plugin-->
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Country</label>
-
                                                             <select aria-controls="example1" class="form-control" formControlName="Country" name="Country" id="Country" ng-change="GetStateList()">
-                                                                <option value="" disabled>--Select Country Id--</option>
+                                                                <option value="" disabled="" selected="selected">--Select Country Id--</option>                                                      
+                        
                                                                 <option *ngFor="let item of countryList" [value]="item.country_id">{{item.country_name}}({{item.country_code}})</option>
-
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">State</label>
-
                                                             <select aria-controls="example1" class="form-control" formControlName="State" name="State" id="State" ng-change="GetCityList()">
-                                                                <option value="" disabled>--Select State--</option>
-                                                                <option *ngFor="let item of stateList" [value]="item.state_id">{{item.state_name}}</option>
-
+                                                                <option value="" disabled="" selected="selected">--Select State--</option>
+                                                        <!-- ngRepeat: S in Satelist -->
+                                                        <option *ngFor="let item of stateList" [value]="item.state_id">{{item.state_name}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">City</label>
-
                                                             <input type="text" class="form-control" id="customer_city" formControlName="customer_city" name="customer_city" placeholder="City" />                                                        
-
                                                         </div>
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Address 1</label>
-
                                                             <input type="text" class="form-control" id="Customer_Add1" formControlName="Customer_Add1" name="Customer_Add1" placeholder="Address1">
-
 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Address 2</label>
-
                                                             <input type="text" class="form-control" id="Customer_Add2" formControlName="Customer_Add2" name="Customer_Add2" placeholder="Address 2">
-
 
                                                         </div>
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Post Box</label>
-
                                                             <input type="text" class="form-control" id="Customer_Post_Box" formControlName="Customer_Post_Box" name="Customer_Post_Box" placeholder="Post Box">
-
 
                                                         </div>
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Zip Code</label>
-
                                                             <input type="text" class="form-control" id="Customer_Zip_code" formControlName="Customer_Zip_code" name="Customer_Zip_code" placeholder="Zip Code">
-
 
                                                         </div>
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1"><span style="color:blue;">Land Line</span><span style="color:red;">*</span></label>
-
                                                             <input type="text" class="form-control" id="Customer_Land_code" formControlName="Customer_Land_code" name="Customer_Land_code" placeholder="Land Line" required>
-
 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-
                                                             <input type="text" class="form-control" id="Customer_Fax" formControlName="Customer_Fax" name="Customer_Fax" placeholder="Fax" required>
-
 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Email Address</label>
-
                                                             <input type="text" class="form-control" id="Customer_Email" formControlName="Customer_Email" name="Customer_Email" placeholder="Email Address">
-
 
                                                         </div>
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Website</label>
-
                                                             <input type="text" class="form-control" id="Customer_Website" formControlName="Customer_Website" name="Customer_Website" placeholder="Website">
-
 
                                                         </div>
 
                                                     </div>
-                                                </form>
+                                               \
                                             </div>
                                         </div>
                                     </div>
@@ -313,7 +244,7 @@
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                                        <i class="more-less glyphicon glyphicon-plus" style="color: #d81b60;"></i>
+                                        <i class="more-less glyphicon glyphicon-plus" style="color: #102f66;"></i>
                                         Office Contact Person
                                     </a>
                                 </h4>
@@ -329,46 +260,33 @@
                                                 <!-- /.box-header -->
                                                 <!-- form start -->
 
-
-                                                <form [formGroup]="customerForm" (ngSubmit)="onSubmitPrimary()">
-
+                                              
 
                                                     <div class="box-body">
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">First Name</label>
-
                                                             <input type="text" class="form-control" id="Customer_Fname" formControlName="Customer_Fname" name="Customer_Fname" placeholder="First Name">
-
 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Middle Name</label>
-
                                                             <input type="text" class="form-control" id="Customer_Mname" formControlName="Customer_Mname" name="Customer_Mname" placeholder="Middle Name">
-
-
 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Last Name</label>
-
                                                             <input type="text" class="form-control" id="Customer_Lname" formControlName="Customer_Lname" name="Customer_Lname" placeholder="Last Name">
-
 
                                                         </div>
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Email Address</label>
-
                                                             <input type="text" class="form-control" id="Customer_Office_email" formControlName="Customer_Office_email" name="Customer_Office_email" placeholder="Email Address">
-
 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Designation</label>
-
                                                             <input type="text" class="form-control" id="Customer_Office_Designation" formControlName="Customer_Office_Designation" name="Customer_Office_Designation">
-
 
                                                         </div>
                                                         <div class="form-group col-md-3">
@@ -401,7 +319,7 @@
 
 
                                                     </div>
-                                                </form>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -409,12 +327,13 @@
                             </div>
                         </div>
 
-                        <button type="button" class="btn bg-maroon margin" ng-click="SetCoustomer()">Save</button>
+                        <button type="submit" class="btn bg-maroon margin" >Save</button>
                         <button type="button" class="btn bg-maroon margin" ng-show="Iscustomer" ng-disabled="Csform.$invalid" ng-click="Updatecustomer()">Update</button>
                         <button type="button" class="btn bg-maroon margin" ng-click="Clearcustomerdata()">Cancel</button>
                         <button type="button" class="btn bg-maroon margin" ng-click="exitcustomer()">Exit</button>
 
-                    </div>
+                    </form>
+                </div>
                 </div>
             </div>
 

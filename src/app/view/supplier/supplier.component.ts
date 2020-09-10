@@ -26,6 +26,7 @@ export class SupplierComponent implements OnInit {
   organizationList: any;
   stateList: any;
   supplierList: any;
+  SupplierList: any;
 
   constructor(public commonService:CommonService,
     private formBuilder: FormBuilder,public toastr:ToastrService,
@@ -128,46 +129,46 @@ export class SupplierComponent implements OnInit {
   
   }
 
-  columnDefs = [
-    {headerName: 'Supplier ID', field: 'Supplier_ID', width:150},
-    {headerName: 'Supplier Name', field: 'Supplier_Name', width:170 },
-    {headerName: 'Supplier Email', field: 'Email_Address', width:200 },
-    {headerName: 'Land Line', field: 'Fax', width:150 },
-    { headerName: "Status",
-    suppressMenu: true,
-     width:100,
-    suppressSorting: true,
-    template:
-      `<i  class="fa fa-check-circle" style="border:none;background:none;color:#102f66">
+//   columnDefs = [
+//     {headerName: 'Supplier ID', field: 'Supplier_ID', width:150},
+//     {headerName: 'Supplier Name', field: 'Supplier_Name', width:170 },
+//     {headerName: 'Supplier Email', field: 'Email_Address', width:200 },
+//     {headerName: 'Land Line', field: 'Fax', width:150 },
+//     { headerName: "Status",
+//     suppressMenu: true,
+//      width:100,
+//     suppressSorting: true,
+//     template:
+//       `<i  class="fa fa-check-circle" style="border:none;background:none;color:#102f66">
          
-      </i>
+//       </i>
       
-      <i  class="fa fa-remove" style="border:none;background:none;color:#102f66;margin-left:5px">
+//       <i  class="fa fa-remove" style="border:none;background:none;color:#102f66;margin-left:5px">
          
-       </i>`
-  },
-    { headerName: "Actions",
-    suppressMenu: true,
-    width:100,
-    suppressSorting: true,
-    template:
-      `    <button type="button" data-action-type="view"  class="fa fa-edit" style="border:none;background:none;color:#102f66">
+//        </i>`
+//   },
+//     { headerName: "Actions",
+//     suppressMenu: true,
+//     width:100,
+//     suppressSorting: true,
+//     template:
+//       `    <button type="button" data-action-type="view"  class="fa fa-edit" style="border:none;background:none;color:#102f66">
       
-       </button>
+//        </button>
 
-      <button type="button" data-action-type="remove" class="fa fa-trash" style="border:none;background:none;color:#102f66">
+//       <button type="button" data-action-type="remove" class="fa fa-trash" style="border:none;background:none;color:#102f66">
         
-      </button>`
-  },
-  { 
-  suppressMenu: true,
-  width:150,
-  suppressSorting: true,
-  template:
-    `<button class="btn bg-maroon margin" style="margin-top:-5px">Ledger Account</button>`
-}
+//       </button>`
+//   },
+//   { 
+//   suppressMenu: true,
+//   width:150,
+//   suppressSorting: true,
+//   template:
+//     `<button class="btn bg-maroon margin" style="margin-top:-5px">Ledger Account</button>`
+// }
     
-];
+// ];
 
 onGridReady(params) {
   this.gridApi = params.api;
@@ -181,10 +182,10 @@ onGridReady(params) {
       this.enterprisealllist=data
      
     });
-    // this.SupplierService. getSupplierList(0).subscribe((data: any) => {
+    this.SupplierService. getSupplierList(0).subscribe((data: any) => {
      
-    //   this.SupplierList=data
-    // });
+      this.SupplierList=data
+    });
     this.commonService. getEnterpriseids().subscribe((data: any) => {
        this.erpriseids=data
       // console.log(data);

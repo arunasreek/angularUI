@@ -30,9 +30,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="rack in Rackdet">
-                                                <td class="sorting_1"></td>
-                                                <td></td>
+                                            <tr *ngFor="let item of rackList?.GetRackDet">
+                                                <td class="sorting_1">{{item?.RackID}}</td>
+                                                <td>{{item?.RackDescription}}</td>
+
 
                                                 <td>
                                                     <a href="/Stk/mgmt/InventRackView?id" data-lity>
@@ -75,33 +76,31 @@
                                         <!-- /.box-header -->
                                         <!-- form start -->
 
-                                        <form role="form">
+                                        <form  [formGroup]="RackForm" (ngSubmit)="onSubmitPrimary()">
 
                                             <div class="box-body">
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1" style="color:blue;">Rack ID <span style="color:red">*</span></label>
-                                                    <input type="text" class="form-control" ng-model="RackId" name="RackId" id="RackId" placeholder="Rack Id" required>
+                                                    <input type="text" class="form-control" formControlName="RackId" name="RackId" id="RackId" placeholder="Rack Id" required>
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1" style="color:blue;">Rack Description<span style="color:red">*</span></label>
-                                                    <input type="text" class="form-control" ng-model="Rackdesc" name="Rackdesc" id="Rackdesc" placeholder="Rack Description" required>
+                                                    <input type="text" class="form-control" formControlName="Rackdesc" name="Rackdesc" id="Rackdesc" placeholder="Rack Description" required>
                                                 </div>
                                             </div>
 
                                             <!-- /.box-body -->
-                                            <!--  <div class="box-footer">
-                                              <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div> -->
+                                            <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="rackform1.$invalid" ng-click="SetRackdet()">Save</button>
+                                            <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin" ng-disabled="rackform1.$invalid" ng-click="SetRackdet()">Update</button>
+                                            <button type="button" class="btn bg-maroon margin">Cancel</button>
+                                            <button type="button" class="btn bg-maroon margin">Exit</button>
 
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="rackform1.$invalid" ng-click="SetRackdet()">Save</button>
-                            <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin" ng-disabled="rackform1.$invalid" ng-click="SetRackdet()">Update</button>
-                            <button type="button" class="btn bg-maroon margin">Cancel</button>
-                            <button type="button" class="btn bg-maroon margin">Exit</button>
+                            
                         </div>
                     </div>
                 </div>

@@ -17,8 +17,7 @@
                             <li id="tab2" class="tab2"><a href="#tab_2" data-toggle="tab">JournalVoucher Create</a></li>
                         </ul>
                         <div class="tab-content">
-                            @*Tab1*@
-                            @*http://demo.dotnetawesome.com/infinite-scroll-for-facebook-like-pagination-angularjs*@
+                           
                             <div class="tab-pane active tab1" id="tab_1">
                                 <div>
                                     <label>Search</label>
@@ -42,33 +41,33 @@
 
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="JV in GetJvlist | filter:txtsearch" ng-show="GetJvlist.length>0">
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <tr *ngFor="let item of JVlist">
+                                                <td>{{item.As_id}}</td>
+                                                <td>{{item.trans_date}}</td>
+                                                <td>{{item.EmployerName}}</td>
+                                                <td>{{item.EmployerName}}</td>
+                                                <td>{{item.BranchName}}</td>
+                                                <td>{{item.OrganizationName}}</td>
+                                                <td>{{item.ProjectName}}</td>
                                                 <td>
                                                     <a href="/Financila/Fn/JournalVocherView?id=" data-lity>
-                                                        @*?id=*@
+                                                      
                                                     <i class="fa fa-eye fa-1x" style="font-size: 20px;
-                                                                        padding: 05px;    color: #d81b60;
+                                                                        padding: 05px;    color: #102f66;
                                                                     "></i>
                                                 </a>
                                                 <a href="#" ng-click="GetReceiptVoucherbyid(class.ReceiptVoucher_id)">
                                                     <i class="fa fa-edit fa-1x" style="font-size: 20px;
-                                                                        padding: 05px;    color: #d81b60;
+                                                                        padding: 05px;    color: #102f66;
                                                                     "></i>
                                                 </a>
                                                 <a href="#" ng-click="DltReceiptVoucherbyid(class.ReceiptVoucher_id)">
                                                     <i class="fa fa-trash fa-1x" style="font-size: 20px;
-                                                                        padding: 05px;    color: #d81b60;
+                                                                        padding: 05px;    color: #102f66;
                                                                     "></i>
                                                 </a>
                                                 <a href="/Financila/Fn/JvPrint?id=" data-lity>
-                                                    <span class="glyphicon glyphicon-print" style="color:green;font-size:20px;"></span>
+                                                    <span class="fa fa-print" style="color:green;font-size:20px;"></span>
                                                 </a>
                                             </td>
                                         </tr>
@@ -76,9 +75,9 @@
 
                                 </table>
                             </div>
-                                <div style="color:red; text-align:center" ng-show="GetJvlist.length==0">No Records  Found</div>
+                                <!-- <div style="color:red; text-align:center" ng-show="GetJvlist.length==0">No Records  Found</div> -->
                             </div>
-                            @*create*@
+                          
                             <div class="tab-pane tab2" id="tab_2">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
@@ -144,7 +143,7 @@
                                                                     <table id="tbl_accdet" class="table">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th style="color:blue;">Account Number<span style="color:#d81b60;">*</span></th>
+                                                                                <th style="color:blue;">Account Number<span style="color:#102f66;">*</span></th>
                                                                                 <th>Account Name</th>
                                                                                 <th>Debit Amount</th>
                                                                                 <th>Credit Amount</th>
@@ -154,7 +153,7 @@
                                                                         <tbody id="tb_trdet1">
                                                                             <tr>
                                                                                 <td data-toggle="modal" data-target="#Account">
-                                                                                    <input type="text" id="Acno_number" ng-click="GetAccountnums()" ng-model="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+                                                                                    <input type="text" id="Acno_number" ng-click="GetAccountnums()" ng-model="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #102f66;">
 
                                                                                 </td>
                                                                                 <td><input class="form-control" type="text" id="Ac_name" /></td>

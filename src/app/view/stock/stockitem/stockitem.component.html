@@ -40,13 +40,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="ST in GetStockitems">
-                                                <td class="sorting_1"></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td ng-if="ST.SIStatus == 0">Available</td>
-                                                <td ng-if="ST.SIStatus == 1">Not Available</td>
-                                                <td></td>
+                                            <tr *ngFor="let item of stockitemList?.GetStockItems">
+                                                <td class="sorting_1">{{item?.ItemCode}}</td>
+                                                <td>{{item?.ItemName}}</td>
+                                                <td>{{item?.ReorderLevelQuantity}}</td>
+                                                <td *ngIf="item?.SIStatus == 0">Available</td>
+                                                <td *ngIf="item?.SIStatus == 1">Not Available</td>
+                                                <td>{{item?.Closing_Balance}}</td>
 
                                                 <td>
                                                     <a href="/Stk/mgmt/ItemStockview?id" data-lity>
@@ -88,55 +88,55 @@
                                         <!-- /.box-header -->
                                         <!-- form start -->
 
-                                        <form role="form">
+                                        <form  [formGroup]="ItemMasterForm" (ngSubmit)="onSubmitPrimary()">
 
 
                                             <div class="box-body">
 
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1" style="color:blue;">Item Code</label><span style="color:red">*</span>
-                                                    <input type="text" class="form-control" ng-model="ItemCode" name="ItemCode" id="ItemCode" placeholder="Item Code">
+                                                    <input type="text" class="form-control" formControlName="ItemCode" name="ItemCode" id="ItemCode" placeholder="Item Code">
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1" style="color:blue;">Item Name</label><span style="color:red">*</span>
-                                                    <input type="text" class="form-control" ng-model="ItemName" name="ItemName" id="ItemName" placeholder="Item Name">
+                                                    <input type="text" class="form-control" formControlName="ItemName" name="ItemName" id="ItemName" placeholder="Item Name">
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputFile" style="color:blue;">Item Category</label><span style="color:red">*</span>
-                                                    <select class="form-control" id="ItemCategory" ng-model="ItemCategory" name="ItemCategory">
-                                                        <option value="" disabled>select Item category</option>
-                                                      <option ng-repeat="itcat in GetItemCategorylist" value=""></option>
+                                                    <select class="form-control" id="ItemCategory" formControlName="ItemCategory" name="ItemCategory">
+                                                        <option value="" >select Item category</option>
+                                                      <option *ngFor="let item of itemcategoryList?.GetItemCategory" value="{{item?.itemcat_id}}">{{item?.ItemCategoryID}}</option>
 
                                                     </select>
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputFile" style="color:blue;">Item Group</label><span style="color:red">*</span>
-                                                    <select class="form-control" id="ItemGroup" ng-model="ItemGroup" name="ItemGroup">
-                                                        <option value="" disabled>Select Item Group</option>
-                                                        <option ng-repeat="itemgrp in ItemGroupList" value=""><option>
+                                                    <select class="form-control" id="ItemGroup" formControlName="ItemGroup" name="ItemGroup">
+                                                        <option value="" >Select Item Group</option>
+                                                        <option *ngFor="let item of itemgroupList?.GetItemGroups" value="{{item?.itemgroup_id}}">{{item?.ItemGroupID}}<option>
                                                     </select>
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1" style="color:blue;">Unit Of Measure</label><span style="color:red">*</span>
-                                                    <select class="form-control" id="UnitOfMeasure" ng-model="UnitOfMeasure" name="UnitOfMeasure">
+                                                    <select class="form-control" id="UnitOfMeasure" formControlName="UnitOfMeasure" name="UnitOfMeasure">
                                                         <option value="">Select</option>
-                                                        <option ng-repeat="uom in GetunitOfMeasurelist" value=""></option>
+                                                        <option *ngFor="let item of uomList?.GetunitOfMeasure" value="{{item?.unit_id}}">{{item?.UnitOfMeasure}}</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1" style="color:blue;">Rate</label><span style="color:red">*</span>
-                                                    <input type="text" class="form-control" ng-model="Rate" name="Rate" id="Rate" placeholder="Rate" >
+                                                    <input type="text" class="form-control" formControlName="Rate" name="Rate" id="Rate" placeholder="Rate" >
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1" style="color:blue;">SI Status</label><span style="color:red">*</span>
-                                                     <input type="text" class="form-control" ng-model="SI_Status" name="SI_Status" id="SI_Status" placeholder="SI Status"> 
-                                                    <select ng-model="SI_Status" name="SI_Status" id="SI_Status" class="form-control">
-                                                        <option value="" disabled>Select</option>
+                                                     <!-- <input type="text" class="form-control" formControlName="SI_Status" name="SI_Status" id="SI_Status" placeholder="SI Status">  -->
+                                                    <select formControlName="SI_Status" name="SI_Status" id="SI_Status" class="form-control">
+                                                        <option value="">Select</option>
                                                         <option value="0">Available</option>
                                                         <option value="1">UnAvailable</option>
                                                     </select>
@@ -144,27 +144,30 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1" style="color:blue;">Tax Rate</label><span style="color:red">*</span>
-                                                    <input type="text" class="form-control" ng-model="Tax_Rate" name="Tax_Rate" id="Tax_Rate" placeholder="Tax Rate" >
+                                                    <input type="text" class="form-control" formControlName="Tax_Rate" name="Tax_Rate" id="Tax_Rate" placeholder="Tax Rate" >
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1" style="color:blue;">Tax Rate Effective Date</label><span style="color:red">*</span>
-                                                    <input type="text" class="form-control" ng-model="Tax_Rate_Effective_Date" name="Tax_Rate_Effective_Date" id="Tax_Rate_Effective_Date" placeholder="Tax Rate Effective Date" required>
-
+                                                    <!-- <input type="text" class="form-control" formControlName="Tax_Rate_Effective_Date" name="Tax_Rate_Effective_Date" id="Tax_Rate_Effective_Date" placeholder="Tax Rate Effective Date" required> -->
+                                                    <input type="text"
+                                                    class="form-control"
+                                                     #dp="bsDatepicker"
+                                                    bsDatepicker [(bsValue)]="Tax_Rate_Effective_Date" >
                                                 </div>
                                                 <div class="form-group col-md-3" style="display:none;">
                                                     <label for="exampleInputPassword1" style="color:blue;">Open Balance</label><span style="color:red">*</span>
-                                                    <input type="text" class="form-control" ng-model="Open_Balance" name="Open_Balance" id="Open_Balance" placeholder="Open Balance" readonly>
+                                                    <input type="text" class="form-control" formControlName="Open_Balance" name="Open_Balance" id="Open_Balance" placeholder="Open Balance" readonly>
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1" style="color:blue;">Reorder Quantity</label><span style="color:red">*</span>
-                                                    <input type="text" class="form-control" ng-model="Reorder_Quantity" name="Reorder_Quantity" id="Reorder_Quantity" placeholder="Reorder Quantity" >
+                                                    <input type="text" class="form-control" formControlName="Reorder_Quantity" name="Reorder_Quantity" id="Reorder_Quantity" placeholder="Reorder Quantity" >
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1" style="color:blue;">Current Balance</label><span style="color:red">*</span>
-                                                    <input type="text" class="form-control" ng-model="Current_Balance" name="Current_Balance" id="Current_Balance" placeholder="Current Balance" readonly>
+                                                    <input type="text" class="form-control" formControlName="Current_Balance" name="Current_Balance" id="Current_Balance" placeholder="Current Balance" readonly>
 
                                                 </div>
 
@@ -174,15 +177,15 @@
                                             <!--  <div class="box-footer">
                                               <button type="submit" class="btn btn-primary">Submit</button>
                                             </div> -->
-
+                                            <button type="submit"  class="btn bg-maroon margin" >Save</button>
+                                            <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin"  ng-click="UpdateStockItem()">Update</button>
+                                            <button type="button" class="btn bg-maroon margin">Cancel</button>
+                                            <button type="button" class="btn bg-maroon margin">Exit</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin" ng-click="SetStockItem()">Save</button>
-                            <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin"  ng-click="UpdateStockItem()">Update</button>
-                            <button type="button" class="btn bg-maroon margin">Cancel</button>
-                            <button type="button" class="btn bg-maroon margin">Exit</button>
+                           
                         </div>
                     </div>
                 </div>

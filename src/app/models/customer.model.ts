@@ -3,7 +3,7 @@ export interface IcustomerPost {
     Customer_ID: string,
     Customer_Name: string,
     Both_Supplier_Customer: string,
-    Customer_c_Legeracc:string,
+    
     country_id: string,
     state_id: string,
     city_id:string,

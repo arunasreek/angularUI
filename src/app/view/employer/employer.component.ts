@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EmployerService } from 'src/app/services';
 import { IEmployerPost, IEmployeeDelete, IEmployeeEdit, IEmployeeWorkPermit } from 'src/app/models/employer.model';
 import { map } from 'rxjs/operators';
+import {NgxPaginationModule} from 'ngx-pagination';
 declare var $:any;
 
 @Component({
@@ -45,7 +46,7 @@ branchList:any;
   
   constructor(public commonService:CommonService,
     private formBuilder: FormBuilder,public toastr:ToastrService,
-    public employerService:EmployerService) { }
+    public employerService:EmployerService,public pagination:NgxPaginationModule) { }
 
   ngOnInit(): void {
     this.employerServiceAPICall();
