@@ -17,6 +17,11 @@ export class MaterialRequisitionComponent implements OnInit {
   materialItem: any;
   organizationlist: any;
   projectList: any;
+  branchList: any;
+  mat_proj_strt_date:Date;
+  mat_dt_delvry:Date;
+  employeeList: any;
+
 
   constructor(public procurementService:ProcurementService,
     private formBuilder: FormBuilder,public toastr:ToastrService) { }
@@ -32,11 +37,16 @@ export class MaterialRequisitionComponent implements OnInit {
     this.procurementService.GetStockItems().subscribe((data: any) => {
       this.stockItems=data
     });
+    this.procurementService.GetEmployeedetList().subscribe((data: any) => {
+      this.employeeList=data
+    });
 
     this.procurementService.GetMaterialItemdetbyid().subscribe((data: any) => {
       this.materialItem=data
     });
-
+    this.procurementService.getbranchlist(0).subscribe((data: any) => {
+      this.branchList=data
+    });
     this.procurementService.GetOrganizationList().subscribe((data: any) => {
       this.organizationlist=data
     });

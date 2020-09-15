@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConfig, APP_CONFIG } from '../config/app.config.module';
 import { map } from 'rxjs/operators';
-import { IProjectPost} from 'src/app/models/project.model';
+import { JVPost} from 'src/app/models/vouchers.model';
 
 @Injectable()
 export class JournalService {
@@ -42,10 +42,20 @@ export class JournalService {
             return data;
         }));
     } 
+    GetAccountnums() {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Financila/Fn/GetAccountnums`).pipe(map((data: any) => {
+            return data;
+        }));
+    } 
     
     GetJv(id:number) {
         return this.http.get<any>(`${this.config.apiEndpoint}/Financila/Fn/GetJv?id=${id}`).pipe(map((data: any) => {
             return data;
+        }));
+    }
+    SetJvBulk(postData:JVPost){
+        return this.http.post<any>(`${this.config.apiEndpoint}/Financila/Fn/SetJvBulk`, postData).pipe(map((res: any) => {
+            return res;
         }));
     }
     

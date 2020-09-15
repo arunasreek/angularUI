@@ -101,29 +101,29 @@
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Employer ID</label>
                                                             <select class="form-control" ng-model="mat_emp_id" name="mat_emp_id" id="mat_emp_id" onchange="GetEmplrbarchllist()">
-                                                                <option value="" disabled>select</option>
-                                                                <option ng-repeat="empr in GetEmployeeriD" value=""></option>
+                                                                <option value="">select</option>
+                                                                <option *ngFor="let item of employerId" value="{{item.EmployerID}}">{{item.EmployerName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Employer Branch</label>
                                                             <select class="form-control" ng-model="mat_emp_brnch" name="mat_emp_brnch" id="mat_emp_brnch">
-                                                                <option value="" disabled>select</option>
-                                                                <option ng-repeat="branch in GetEmployeerbarchllist" value=""></option>
+                                                                <option value="">select</option>
+                                                                <option *ngFor="let item of branchList" value="{{item.BranchId}}">{{item.BranchName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Organisation Unit</label>
                                                             <select class="form-control" ng-model="mat_orgunit" name="mat_orgunit" id="mat_orgunit">
-                                                                <option value="" disabled>select</option>
-                                                                <option ng-repeat="org in OrganizationList" value=""></option>
+                                                                <option value="" >select</option>
+                                                                <option *ngFor="let item of organizationlist" value="{{item.Org_ID}}">{{item.OrganizationName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Project</label>
                                                             <select class="form-control" ng-model="mat_project" name="mat_project" id="mat_project">
-                                                                <option value="" disabled>select</option>
-                                                                <option ng-repeat="Proj in ProjectList" value=""></option>
+                                                                <option value="">select</option>
+                                                                <option *ngFor="let item of projectList?.UpdateProjectDetails " value="{{item?.ProjectID}}">{{item?.ProjectName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
@@ -146,14 +146,24 @@
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Project Start Date</label>
-                                                            <input type="text" class="form-control" id="mat_proj_strt_date" ng-model="mat_proj_strt_date" name="mat_proj_strt_date" placeholder="dd-mm-yy">
-                                                        </div>
+                                                            <!-- <input type="text" class="form-control" id="mat_proj_strt_date" ng-model="mat_proj_strt_date" name="mat_proj_strt_date" placeholder="dd-mm-yy"> -->
+                                                            <input type="text"
+                                                            placeholder="dd-mm-yy"
+                                                            class="form-control"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="mat_proj_strt_date" > 
+                                                    </div>
 
 
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Date Of Delivery</label>
-                                                            <input type="text" class="form-control" id="mat_dt_delvry" ng-model="mat_dt_delvry" name="mat_dt_delvry" placeholder="dd-mm-yy">
+                                                            <!-- <input type="text" class="form-control" id="mat_dt_delvry" ng-model="mat_dt_delvry" name="mat_dt_delvry" placeholder="dd-mm-yy"> -->
+                                                            <input type="text"
+                                                            placeholder="dd-mm-yy"
+                                                            class="form-control"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="mat_dt_delvry" > 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Delivery Location</label>
@@ -201,7 +211,11 @@
 
                                                     </div>
 
-
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetMtrlRqtiondet()">Save</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="Isupdate" ng-click="UpateMaterialReq()">Update</button>
+                        
+                                                    <button type="button" class="btn bg-maroon margin" ng-click="clearMaterialRequisitiondata()">Cancel</button>
+                                                    <button type="button" class="btn bg-maroon margin" >Exit</button>
 
                                                 </form>
                                             </div>
@@ -210,7 +224,7 @@
                                 </div>
                             </div>
                             <input type="hidden" id="epid" ng-model="epid" name="epid" />
-
+                           
                             
 
                         </div>
@@ -418,21 +432,21 @@
                                         <div class="box-body">
                                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                                 <div class="row">
-                                                     <div class="col-sm-6">
+                                                     <!-- <div class="col-sm-6">
                                                             <label for="exampleinput1">Supplier ID</label>
                                                             <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <label for="exampleinput1">Supplier</label>
                                                             <input type="text" id="desc" ng-model="desc" name="desc" />
-                                                        </div> 
-                                                    <div class="text-center">
+                                                        </div>  -->
+                                                    <!-- <div class="text-center">
 
                                                     </div>
                                                     <div class="text-right col-sm-12">
                                                         <label for="exampleinput">Search</label>
                                                         <input type="search" id="mat_search" ng-model="mat_search" name="mat_search" />
-                                                    </div>
+                                                    </div> -->
 
                                                     <div id="prdct_details" class="row">
                                                         <table class="table table-bordered table-striped dataTable" role="grid">
@@ -442,20 +456,20 @@
                                                                     <th>Employee ID</th>
                                                                     <th>Employee Name</th>
                                                                     <th>Designation</th>
-                                                                     <th>Available Quantity</th>
-                                                                        <th>Reorder Level Quantity</th> 
+                                                                     <!-- <th>Available Quantity</th>
+                                                                        <th>Reorder Level Quantity</th>  -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr ng-repeat="Emp in EmployeeList">
+                                                                <tr *ngFor="let item of employeeList?.GetEmployeeDetailsList">
                                                                     <td>
                                                                         <input type="radio" name="Empcheckgrp" data="" id="" value="" ng-model="Empcheckgrp" ng-click="GetEmpdet(EmployeeList)" />
                                                                     </td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                     <td></td>
-                                                                        <td></td> 
+                                                                    <td>{{item?.employee_id}}</td>
+                                                                    <td>{{item?.ED_FirstName}} {{item?.ED_MiddleName}} {{item?.ED_LastName}}</td>
+                                                                    <td>{{item?.ED_Designation}}</td>
+                                                                     <!-- <td></td>
+                                                                        <td></td>  -->
                                                                 </tr>
                                                             </tbody>
 

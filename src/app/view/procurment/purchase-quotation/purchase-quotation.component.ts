@@ -23,6 +23,8 @@ export class PurchaseQuotationComponent implements OnInit {
   purchaseReq: any;
   purQuatdet: any;
   countryList: any;
+  branchList: any;
+  pur_quo_dt_delvry:Date;
   
 
   constructor(public procurementService:ProcurementService,public commonService:CommonService,
@@ -53,9 +55,11 @@ export class PurchaseQuotationComponent implements OnInit {
     this.procurementService.GetOrganizationList().subscribe((data: any) => {
       this.organizationlist=data
     });
-
     this.procurementService.GetprojctList().subscribe((data: any) => {
       this.projectList=data
+    });
+    this.procurementService.getbranchlist(0).subscribe((data: any) => {
+      this.branchList=data
     });
     this.commonService.getCountry().subscribe((data: any) => {
       this.countryList=data

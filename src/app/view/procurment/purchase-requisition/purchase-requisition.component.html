@@ -196,7 +196,7 @@
                                                                 <tbody id="txtbody">
                                                                     <tr ng-repeat="item in ItemsList" ng-if="item.status<3">
                                                                         <td><input type="text" class="form-control" id="slno_" value="" placeholder="S.No" readonly /></td>
-                                                                        <td id="td"><input type="text" class="form-control" id="itemid" data-target="#pur_mat_req_id" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="itemid" data-target="#pur_item_id" ng-model="item.itemid"  placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
                                                                         <td><input type="text" name="description_$index" ng-model="item.description" id="description" class="form-control" readonly></td>
                                                                         <td width="150"><input ng-model="item.quantity" id="quantity" type="text" class="form-control"></td>
                                                                         <td width="150"><input ng-model="item.unitmeasure" id="unitmeasure" type="text" class="form-control" readonly></td>

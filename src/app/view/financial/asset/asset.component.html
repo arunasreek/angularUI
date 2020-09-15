@@ -72,37 +72,37 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="box box-primary" style="border-top:none">
-                                                            <form role="form">
+                                                            <form [formGroup]="AssestsForm" (ngSubmit)="onSubmitPrimary()">
                                                                 <div class="box-body">
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail"><span style="color:blue;">Vendor Name</span><span style="color:red;">*</span></label>
-                                                                        <select class="form-control" id="vender_id" ng-model="vender_id" name="vender_id">
-                                                                            <option value="" disabled>--Select Vendor Id--</option>
-                                                                            <option ng-repeat="Vi in GetSuplist" value=""></option>
+                                                                        <select class="form-control" id="vender_id" formControlName="vender_id" name="vender_id">
+                                                                            <option value="">--Select Vendor Id--</option>
+                                                                            <option *ngFor="let item of supList" value="{{item.supp_id}}">{{item.Supplier_ID}}({{item.Supplier_Name}})</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail"><span style="color:blue;">Asset ID</span><span style="color:red;">*</span></label>
-                                                                        <input type="text" class="form-control" id="Ass_id" ng-model="Ass_id" name="Ass_id" placeholder="Enter asset id">
+                                                                        <input type="text" class="form-control" id="Ass_id" formControlName="Ass_id" name="Ass_id" placeholder="Enter asset id">
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail"><span style="color:blue;">Employer ID</span><span style="color:red;">*</span></label>
-                                                                        <select class="form-control" id="Emp_id" ng-model="Emp_id" name="Emp_id">
-                                                                            <option value="" disabled>--Select Employer Id--</option>
-                                                                            <option ng-repeat="EID in GetEmployeeriD" value=""></option>
+                                                                        <select class="form-control" id="Emp_id" formControlName="Emp_id" name="Emp_id">
+                                                                            <option value="">--Select Employer Id--</option>
+                                                                            <option *ngFor="let item of employeerID" value="{{item.emp_id}">{{item.EmployerID}}</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail"><span style="color:blue;">Branch ID</span><span style="color:red;">*</span></label>
-                                                                        <select class="form-control" id="b_id" ng-model="b_id" name="b_id" placeholder="">
-                                                                            <option value="" disabled>--Select Branch Id--</option>
-                                                                            <option ng-repeat="BiD in GetEmployeerbarchid" value=""></option>
+                                                                        <select class="form-control" id="b_id" formControlName="b_id" name="b_id" placeholder="">
+                                                                            <option value="">--Select Branch Id--</option>
+                                                                            <option *ngFor="let item of branchList" value="{{item.b_id}}">{{item.BranchId}}</option>
 
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail"><span style="color:blue;">Asset Type</span><span style="color:red;">*</span></label>
-                                                                        <select class="form-control" id="Ass_type" ng-model="Ass_type" name="Ass_type" placeholder="" required>
+                                                                        <select class="form-control" id="Ass_type" formControlName="Ass_type" name="Ass_type" placeholder="" required>
                                                                             <option value="" >--select Asset Type</option>
                                                                             <option value="N">New Account</option>
                                                                             <option value="E">Exit Account</option>
@@ -110,15 +110,25 @@
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail"><span style="color:blue;">Asset Description</span><span style="color:red;">*</span></label>
-                                                                        <input type="text" class="form-control" id="Ass_desc" ng-model="Ass_desc" name="Ass_desc" placeholder="Asset Description" required>
+                                                                        <input type="text" class="form-control" id="Ass_desc" formControlName="Ass_desc" name="Ass_desc" placeholder="Asset Description" required>
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail"><span style="color:blue;">Acquire Date</span><span style="color:red;">*</span></label>
-                                                                        <input type="text" class="form-control" id="Acq_date" ng-model="Acq_date" name="Acq_date" placeholder="dd-mm-yy" required>
+                                                                        <!-- <input type="text" class="form-control" id="Acq_date" formControlName="Acq_date" name="Acq_date" placeholder="dd-mm-yy" required> -->
+                                                                        <input type="text"
+                                                                        placeholder="dd/mm/yyyy"
+                                                                        class="form-control"
+                                                                         #dp="bsDatepicker"
+                                                                        bsDatepicker [(bsValue)]="Acq_date" > 
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail"><span style="color:blue;">Warranty Expiry Date</span><span style="color:red;">*</span></label>
-                                                                        <input type="text" class="form-control" id="War_Exp_date" ng-model="War_Exp_date" name="War_Exp_date" placeholder="dd-mm-yy" required>
+                                                                        <!-- <input type="text" class="form-control" id="War_Exp_date" formControlName="War_Exp_date" name="War_Exp_date" placeholder="dd-mm-yy" required> -->
+                                                                        <input type="text"
+                                                                        placeholder="dd/mm/yyyy"
+                                                                        class="form-control"
+                                                                         #dp="bsDatepicker"
+                                                                        bsDatepicker [(bsValue)]="War_Exp_date" > 
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -128,16 +138,16 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <button type="submit" class="btn bg-maroon margin" >Save</button>
+                                    <button type="button" class="btn bg-maroon margin" ng-show="Isedit==1" ng-disabled="assetform.$invalid" ng-click="SetAssetdetails()">Update</button>
+                                    <button type="button" class="btn bg-maroon margin" ng-click="setAsset()">Exit</button>
+                                    <button type="button" class="btn bg-maroon margin" ng-click="clearassetdata()">Cancel</button>
+                                    <button type="button" class="btn bg-maroon margin" ng-show="Isrenew">Renew</button>
+                                    <button type="button" class="btn bg-maroon margin" ng-show="IsActive">Active</button>
+                                    <button type="button" class="btn bg-maroon margin" ng-show="IsInactive">Inactive</button>
                                 </form>
 
-                                <button type="button" class="btn bg-maroon margin" ng-click="setAsset()">Save</button>
-                                <button type="button" class="btn bg-maroon margin" ng-show="Isedit==1" ng-disabled="assetform.$invalid" ng-click="SetAssetdetails()">Update</button>
-                                <button type="button" class="btn bg-maroon margin" ng-click="setAsset()">Exit</button>
-                                <button type="button" class="btn bg-maroon margin" ng-click="clearassetdata()">Cancel</button>
-                                <button type="button" class="btn bg-maroon margin" ng-show="Isrenew">Renew</button>
-                                <button type="button" class="btn bg-maroon margin" ng-show="IsActive">Active</button>
-                                <button type="button" class="btn bg-maroon margin" ng-show="IsInactive">Inactive</button>
+                                
 
                             </div>
 
@@ -159,15 +169,20 @@
                                                                 <div class="box-body">
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail1"><span style="color:blue;">Asset ID</span><span style="color:red;">*</span></label>
-                                                                        <select aria-controls="example1" id="AssetID" class="form-control" ng-model="AssetID" name="AssetID">
-                                                                            <option value="" disabled>--Select Asset Id--</option>
-                                                                            <option ng-repeat="AID in Getassetlist" value=""></option>
+                                                                        <select aria-controls="example1" id="AssetID" class="form-control" formControlName="AssetID" name="AssetID">
+                                                                            <option value="">--Select Asset Id--</option>
+                                                                            <option  *ngFor="let item of assetList"  value="{{item.asset_id}}">{{item.AssetID}}</option>
                                                                         </select>
 
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail1"><span style="color:blue;">Transaction date</span><span style="color:red;">*</span></label>
-                                                                        <input type="text" class="form-control" id="textdate" ng-model="textdate" name="textdate" />
+                                                                        <!-- <input type="text" class="form-control" id="textdate" formControlName="textdate" name="textdate" /> -->
+                                                                        <input type="text"
+                                                                        placeholder="dd/mm/yyyy"
+                                                                        class="form-control"
+                                                                         #dp="bsDatepicker"
+                                                                        bsDatepicker [(bsValue)]="textdate" > 
                                                                     </div>
                                                                 </div>
 
@@ -185,7 +200,7 @@
                                                                         <tbody id="tb_trdet1">
                                                                             <tr>
                                                                                 <td data-toggle="modal" data-target="#Account">
-                                                                                    <input type="text" id="Acno_number" ng-click="GetAccountnums()" ng-model="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+                                                                                    <input type="text" id="Acno_number" ng-click="GetAccountnums()" formControlName="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
 
                                                                                 </td>
                                                                                 <td><input class="form-control" type="text" id="Ac_name" /></td>
@@ -198,7 +213,7 @@
                                                                     </table>
 
                                                                 </div>
-                                                                @*dynamic table*@
+                                                                
                                                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                                                     <table id="tbl_accdet" class="table">
                                                                         <thead>
@@ -215,7 +230,7 @@
                                                                 </div>
                                                                 <div>
                                                                     <p style="margin-left:474px;">Total Debit:-<b>.00</b><label style="margin-left: 137px;">Total Credit:-<b>.00</b></label></p>
-                                                                    @*<p style="margin-left:50px;">Total Credit:-</p>*@
+                                                                    <!-- @*<p style="margin-left:50px;">Total Credit:-</p>*@ -->
                                                                 </div>
                                                                 <div style="float:right">
                                                                     <button class="btn bg-maroon margin" ng-click="SetassetaccountmapBulk()">Submit</button>
@@ -274,7 +289,7 @@
                                                                         <tr role="row" class="odd" ng-repeat="ac in GetAccountnums">
                                                                             <td class="sorting_1"></td>
                                                                             <td class="sorting_1"></td>
-                                                                            @*<td><input type="checkbox" id="txtcheckval_" /></td>*@
+                                                                            <!-- @*<td><input type="checkbox" id="txtcheckval_" /></td>*@ -->
                                                                             <td><button type="button" class="btn btn-default" ng-click="selectedaccno(ac)">Select</button></td>
                                                                         </tr>
                                                                     </tbody>
@@ -283,7 +298,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            @*<div class="col-sm-5">
+                                                            <!-- @*<div class="col-sm-5">
                                                 <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 3 of 57 entries</div>
                                             </div>*@
                                                             @*<div class="col-sm-7">
@@ -312,8 +327,8 @@
                                             </div>*@
                                                             @*<div class="modal-footer">
 
-                                            </div>*@
-                                                        </div>
+                                            </div>*@ -->
+                                                      
                                                     </div>
                                                 </div>
                                             </div>

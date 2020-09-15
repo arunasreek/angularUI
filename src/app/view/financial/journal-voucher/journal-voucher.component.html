@@ -21,7 +21,7 @@
                             <div class="tab-pane active tab1" id="tab_1">
                                 <div>
                                     <label>Search</label>
-                                    <input type="text" class="form-control" style="width: 300px;" ng-model="txtsearch"  name="txtsearch" id="txtsearch" />
+                                    <input type="text" class="form-control" style="width: 300px;" formControlName="txtsearch"  name="txtsearch" id="txtsearch" />
                                 </div>
                                 <div infinityscroll="NextPage()" style="height:400px; overflow:auto;">
 
@@ -91,51 +91,56 @@
                                                     <div class="col-md-12">
                                                         <div class="box box-primary " style="border-top:none;">
 
-                                                            <form role="form">
+                                                            <form [formGroup]="JvForm" (ngSubmit)="onSubmitPrimary()">
                                                                 <div class="box-body">
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail1"><span style="color:blue;">Employer ID</span><span style="color:red;">*</span></label>
-                                                                        <select aria-controls="example1" id="Employer_Id" class="form-control" ng-model="Employer_Id" name="Employer_Id" required>
-                                                                            <option value="" disabled>--Select Employer Id--</option>
-                                                                            <option ng-repeat="EID in GetEmployeeriD" value=""></option>
+                                                                        <select aria-controls="example1" id="Employer_Id" class="form-control" formControlName="Employer_Id" name="Employer_Id" required>
+                                                                            <option value="" >--Select Employer Id--</option>
+                                                                            <option *ngFor="let item of employerId" value="{{item.emp_id}">{{item.EmployerID}}</option>
                                                                         </select>
 
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail1"><span style="color:blue;">Branch ID</span><span style="color:red;">*</span></label>
-                                                                        <select aria-controls="example1" id="Branch_Id" class="form-control" ng-model="Branch_Id" name="Branch_Id" required>
-                                                                            <option value="" disabled>--Select Branch Id--</option>
-                                                                            <option ng-repeat="BiD in GetEmployeerbarchid" value=""></option>
+                                                                        <select aria-controls="example1" id="Branch_Id" class="form-control" formControlName="Branch_Id" name="Branch_Id" required>
+                                                                            <option value="" >--Select Branch Id--</option>
+                                                                            <option *ngFor="let item of branchList" value="{{item.b_id}}">{{item.BranchId}}</option>
                                                                         </select>
 
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail1"><span style="color:blue;">Oraganization ID</span><span style="color:red;">*</span></label>
-                                                                        <select aria-controls="example1" id="Oraganization_Id" class="form-control" ng-model="Oraganization_Id" name="Oraganization_Id" required>
-                                                                            <option value="" disabled>--Select Oraganization Id--</option>
-                                                                            <option ng-repeat="OID in GetOrganizationID" value=""></option>
+                                                                        <select aria-controls="example1" id="Oraganization_Id" class="form-control" formControlName="Oraganization_Id" name="Oraganization_Id" required>
+                                                                            <option value="" >--Select Oraganization Id--</option>
+                                                                            <option *ngFor="let item of organizationID" value="{{item.o_id}">{{item.Org_ID}}</option>
                                                                         </select>
 
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail1"><span style="color:blue;">Project ID</span><span style="color:red;">*</span></label>
-                                                                        <select aria-controls="example1" id="Project_Id" class="form-control" ng-model="Project_Id" name="Project_Id" required>
-                                                                            <option value="" disabled>--Select project Id--</option>
-                                                                            <option ng-repeat="PID in Getprlist" value=""></option>
+                                                                        <select aria-controls="example1" id="Project_Id" class="form-control" formControlName="Project_Id" name="Project_Id" required>
+                                                                            <option value="" >--Select project Id--</option>
+                                                                            <option *ngFor="let item of projectList" value="{{item.project_id}}">{{item.ProjectID}}</option>
                                                                         </select>
 
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputPassword1"><span style="color:blue;">Vocher No</span><span style="color:red;">*</span></label>
-                                                                        <input type="text" class="form-control" name="Vocher_No" ng-model="Vocher_No" id="Vocher_No" placeholder="Vocher No">
+                                                                        <input type="text" class="form-control" name="Vocher_No" formControlName="Vocher_No" id="Vocher_No" placeholder="Vocher No">
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputPassword1"><span style="color:blue;">Narration</span><span style="color:red;">*</span></label>
-                                                                        <textarea type="text" class="form-control" name="Narration" ng-model="Narration" id="Narration" placeholder="Narration"></textarea>
+                                                                        <textarea type="text" class="form-control" name="Narration" formControlName="Narration" id="Narration" placeholder="Narration"></textarea>
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputPassword1"><span style="color:blue;">Transaction Date</span><span style="color:red;">*</span></label>
-                                                                        <input type="text" class="form-control" name="txtdate" ng-model="txtdate" id="txtdate" placeholder="Date">
+                                                                        <!-- <input type="text" class="form-control" name="txtdate" formControlName="txtdate" id="txtdate" placeholder="Date"> -->
+                                                                        <input type="text"
+                                                                        placeholder="dd/mm/yyyy"
+                                                                        class="form-control"
+                                                                         #dp="bsDatepicker"
+                                                                        bsDatepicker [(bsValue)]="txtdate" >  
                                                                     </div>
                                                                 </div>
 
@@ -153,7 +158,7 @@
                                                                         <tbody id="tb_trdet1">
                                                                             <tr>
                                                                                 <td data-toggle="modal" data-target="#Account">
-                                                                                    <input type="text" id="Acno_number" ng-click="GetAccountnums()" ng-model="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #102f66;">
+                                                                                    <input type="text" id="Acno_number" formControlName="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #102f66;">
 
                                                                                 </td>
                                                                                 <td><input class="form-control" type="text" id="Ac_name" /></td>
@@ -166,7 +171,7 @@
                                                                     </table>
 
                                                                 </div>
-                                                                @*dynamic table*@
+                                                               
                                                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                                                     <table id="tbl_accdet" class="table">
                                                                         <thead>
@@ -183,10 +188,10 @@
                                                                 </div>
                                                                 <div>
                                                                     <p style="margin-left:474px;">Total Debit:-<b>.00</b><label style="margin-left: 137px;">Total Credit:-<b>.00</b></label></p>
-                                                                    @*<p style="margin-left:50px;">Total Credit:-</p>*@
+                                                                    <p style="margin-left:50px;">Total Credit:-</p>
                                                                 </div>
                                                                 <div style="float:right">
-                                                                    <button class="btn bg-maroon margin" ng-click="SetJvBulk()">Submit</button>
+                                                                    <button class="btn bg-maroon margin" type="submit">Submit</button>
                                                                 </div>
                                                                 <!-- /.box-body -->
                                                                 <!--  <div class="box-footer">
@@ -239,11 +244,11 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr role="row" class="odd" ng-repeat="ac in GetAccountnums">
-                                                                            <td class="sorting_1"></td>
-                                                                            <td class="sorting_1"></td>
-                                                                            @*<td><input type="checkbox" id="txtcheckval_" /></td>*@
-                                                                            <td><button type="button" class="btn btn-default" ng-click="selectedaccno(ac)">Select</button></td>
+                                                                        <tr role="row" class="odd" *ngFor="let item of Accno">
+                                                                            <td class="sorting_1">{{item.AccountNumber}}</td>
+                                                                            <td class="sorting_1">{{item.AccountName}}</td>
+                                                                            <!-- <td><input type="checkbox" id="txtcheckval_" /></td> -->
+                                                                            <td><button type="button" class="btn btn-default" (click)="selectedaccno(item.AccountNumber)">Select</button></td>
                                                                         </tr>
                                                                     </tbody>
 
@@ -251,10 +256,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            @*<div class="col-sm-5">
+                                                            <!-- <div class="col-sm-5">
                                                 <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 3 of 57 entries</div>
-                                            </div>*@
-                                                            @*<div class="col-sm-7">
+                                            </div>
+                                                            <div class="col-sm-7">
                                             <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
                                                 <ul class="pagination">
                                                     <li class="paginate_button previous disabled" id="example1_previous">
@@ -280,8 +285,8 @@
                                             </div>*@
                                                             @*<div class="modal-footer">
 
-                                            </div>*@
-                                                        </div>
+                                            </div>*@ -->
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

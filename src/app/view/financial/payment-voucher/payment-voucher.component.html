@@ -85,21 +85,25 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="box box-primary" style="border-top:none;">
-                                                        <form role="form">
+                                                        <form [formGroup]="PvForm" (ngSubmit)="onSubmitPrimary()">
                                                             <div class="box-body">
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputEmail" style="color:blue;">PV No</label><span style="color:#102f66;">*</span>
-                                                                    <input type="text" class="form-control" id="receipt_no" ng-model="receipt_no" name="receipt_no" placeholder="Receipt No" />
+                                                                    <input type="text" class="form-control" id="receipt_no" formControlName="receipt_no" name="receipt_no" placeholder="Receipt No" />
 
                                                                 </div>
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputEmail" style="color:blue;">Date</label><span style="color:#102f66;">*</span>
-                                                                    <input type="text" class="form-control" id="date" ng-model="date" name="date" placeholder="dd/mm/yyyy" />
-
+                                                                    <!-- <input type="text" class="form-control" id="date" formControlName="date" name="date" placeholder="dd/mm/yyyy" /> -->
+                                                                    <input type="text"
+                                                                    placeholder="dd/mm/yyyy"
+                                                                    class="form-control"
+                                                                     #dp="bsDatepicker"
+                                                                    bsDatepicker [(bsValue)]="date" > 
                                                                 </div>
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputEmail" style="color:blue;">Paid Amount:</label><span style="color:#102f66;">*</span>
-                                                                    <input type="text" class="form-control" id="received_amount" ng-model="received_amount" name="received_amount" placeholder="Received Amount" />
+                                                                    <input type="text" class="form-control" id="received_amount" formControlName="received_amount" name="received_amount" placeholder="Received Amount" />
 
                                                                 </div>
                                                                 <div class="form-group col-md-3">
@@ -109,7 +113,7 @@
                                                                 </div>
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputEmail" style="color:blue;">Paid To</label><span style="color:#102f66;">*</span>
-                                                                    <input type="text" class="form-control" id="received_from" ng-model="received_from" name="received_from" placeholder="Received From" />
+                                                                    <input type="text" class="form-control" id="received_from" formControlName="received_from" name="received_from" placeholder="Received From" />
 
                                                                 </div>
                                                                 <div class="form-group col-md-3">
@@ -117,62 +121,62 @@
                                                                 </div>
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputEmail" style="color:blue;">Invoice No</label><span style="color:#102f66;">*</span>
-                                                                    <input type="text" class="form-control" id="invoice_no" ng-model="invoice_no" name="invoice_no" placeholder="Invoice No" />
+                                                                    <input type="text" class="form-control" id="invoice_no" formControlName="invoice_no" name="invoice_no" placeholder="Invoice No" />
                                                                 </div>
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputFile" style="color:blue;">Employer ID</label><span style="color:red">*</span>
-                                                                    <select class="form-control" id="employer_id" ng-model="employer_id" name="employer_id" required>
-                                                                        <option value="" disabled>--Select Employer ID</option>
-                                                                        <option ng-repeat="EID in GetEmployeeriD" value=""></option>
+                                                                    <select class="form-control" id="employer_id" formControlName="employer_id" name="employer_id" required>
+                                                                        <option value="">--Select Employer ID</option>
+                                                                        <option *ngFor="let item of employerId" value="{{item.emp_id}">{{item.EmployerID}}</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputFile" style="color:blue;">Branch ID</label><span style="color:red">*</span>
-                                                                    <select class="form-control" id="branchid" ng-model="branchid" name="branchid" required>
-                                                                        <option value="" disabled>--Select Branch ID</option>
-                                                                        <option ng-repeat="BiD in GetEmployeerbarchid" value=""></option>
+                                                                    <select class="form-control" id="branchid" formControlName="branchid" name="branchid" required>
+                                                                        <option value="">--Select Branch ID</option>
+                                                                        <option *ngFor="let item of branchList" value="{{item.b_id}}">{{item.BranchId}}</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputFile" style="color:blue;">Organisation Unit ID</label><span style="color:red">*</span>
-                                                                    <select class="form-control" id="org_un_id" ng-model="org_un_id" name="org_un_id" required>
-                                                                        <option value="" disabled>--Select Organisation Unit ID</option>
-                                                                        <option ng-repeat="OID in GetOrganizationID" value=""></option>
+                                                                    <select class="form-control" id="org_un_id" formControlName="org_un_id" name="org_un_id" required>
+                                                                        <option value="">--Select Organisation Unit ID</option>
+                                                                        <option *ngFor="let item of organizationID" value="{{item.o_id}">{{item.Org_ID}}</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputFile" style="color:blue;">Project ID</label><span style="color:red">*</span>
-                                                                    <select class="form-control" id="projectid" ng-model="projectid" name="projectid" required>
-                                                                        <option value="" disabled>--Select Project ID</option>
-                                                                        <option ng-repeat="PID in Getprlist" value=""></option>
+                                                                    <select class="form-control" id="projectid" formControlName="projectid" name="projectid" required>
+                                                                        <option value="">--Select Project ID</option>
+                                                                        <option *ngFor="let item of projectList" value="{{item.project_id}}">{{item.ProjectID}}</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputFile" style="color:blue;">Currency</label><span style="color:red">*</span>
-                                                                    <select class="form-control" id="currency" ng-model="currency" name="currency" required>
+                                                                    <select class="form-control" id="currency" formControlName="currency" name="currency" required>
                                                                         <option value="" disabled>--Select Currency</option>
                                                                         <option value=""></option>
                                                                         <option value=""></option>
                                                                     </select>
                                                                 </div>
 
-                                                                @*<div class="form-group col-md-3">
+                                                                <!-- @*<div class="form-group col-md-3">
                                                                         <label for="exampleInputPassword1" style="color:blue;">Voucher No</label><span style="color:red">*</span>
-                                                                        <input type="text" class="form-control" ng-model="voucherno" name="voucherno" id="voucherno" placeholder="Voucher No" required>
-                                                                    </div>*@
+                                                                        <input type="text" class="form-control" formControlName="voucherno" name="voucherno" id="voucherno" placeholder="Voucher No" required>
+                                                                    </div>*@ -->
                                                                 <div class="form-group col-md-3">
                                                                     <label for="exampleInputPassword1" style="color:blue;">Narration</label><span style="color:red">*</span>
-                                                                    <textarea type="text" class="form-control" ng-model="narration" name="narration" id="narration" placeholder="Narration" required></textarea>
+                                                                    <textarea type="text" class="form-control" formControlName="narration" name="narration" id="narration" placeholder="Narration" required></textarea>
                                                                 </div>
                                                                 <div>
                                                                     <div class="col-md-10">
                                                                         <label for="exampleInputEmail">Transaction Type:</label>
-                                                                        @*<select class="form-control" ng-model="trtype" name="trtype" id="trtype" ng-change="Tytypechange()">
+                                                                        <!-- @*<select class="form-control" formControlName="trtype" name="trtype" id="trtype" ng-change="Tytypechange()">
                                                                                 <option value="B">Bank</option>
                                                                                 <option value="C">Cash</option>
-                                                                            </select>*@
-                                                                        <input type="radio" id="transaction_type" ng-model="transaction_type" name="transaction_type" value="bank" ng-click="Bankset()" />Bank
-                                                                        <input type="radio" id="transaction_type" ng-model="transaction_type" name="transaction_type" value="cash" ng-click="Cashset()" />Cash
+                                                                            </select>*@ -->
+                                                                        <input type="radio" id="transaction_type" formControlName="transaction_type" name="transaction_type" value="bank" ng-click="Bankset()" />Bank
+                                                                        <input type="radio" id="transaction_type" formControlName="transaction_type" name="transaction_type" value="cash" ng-click="Cashset()" />Cash
                                                                     </div>
                                                                 </div>
 
@@ -181,31 +185,31 @@
                                                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail" style="color:blue;">Bank Name:</label><span style="color:#102f66;">*</span>
-                                                                        <select class="form-control" id="bankname" ng-model="bankname" name="bankname" ng-change="GetBanknamesbyid()">
+                                                                        <select class="form-control" id="bankname" formControlName="bankname" name="bankname" ng-change="GetBanknamesbyid()">
                                                                             <option value="" disabled>--Select Bank ID</option>
-                                                                            <option ng-repeat="bank in GetbanknameList" value="">()</option>
+                                                                            <option *ngFor="let item of bankNames" value="{{item.Bank_id}}">{{item.Bank_Name}}({{item.Bank_Code}})</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail" style="color:blue;">Branch:</label><span style="color:#102f66;">*</span>
-                                                                        <select class="form-control" id="branch" ng-model="branch" name="branch">
+                                                                        <select class="form-control" id="branch" formControlName="branch" name="branch">
                                                                             <option value="" disabled>--Select Branch ID</option>
-                                                                            <option ng-repeat="BR in GetbanknameList1" value=""></option>
+                                                                            <option *ngFor="let item of branchList" value="{{item.Branch_name}}">{{item.Branch_name}}</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail" style="color:blue;">Date Of Cheque:</label><span style="color:#102f66;">*</span>
-                                                                        <input type="text" class="form-control" ng-model="date_of_cheque" id="date_of_cheque" name="date_of_cheque" placeholder="Date Of Cheque" />
+                                                                        <input type="text" class="form-control" formControlName="date_of_cheque" id="date_of_cheque" name="date_of_cheque" placeholder="Date Of Cheque" />
 
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail" style="color:blue;">Cheque Number:</label><span style="color:#102f66;">*</span>
-                                                                        <input type="text" class="form-control" ng-model="cheque_number" id="cheque_number" name="cheque_number" placeholder="Date Of Cheque" />
+                                                                        <input type="text" class="form-control" formControlName="cheque_number" id="cheque_number" name="cheque_number" placeholder="Date Of Cheque" />
 
                                                                     </div>
                                                                     <div class="form-group col-md-3">
                                                                         <label for="exampleInputEmail" style="color:blue;">Amount</label><span style="color:#102f66;">*</span>
-                                                                        <input type="text" class="form-control" ng-model="Amount" id="Amount" name="Amount" placeholder="Amount" />
+                                                                        <input type="text" class="form-control" formControlName="Amount" id="Amount" name="Amount" placeholder="Amount" />
 
                                                                     </div>
                                                                 </div>
@@ -225,7 +229,7 @@
                                                                     <tbody id="tb_trdet1">
                                                                         <tr>
                                                                             <td data-toggle="modal" data-target="#Account">
-                                                                                <input type="text" id="Acno_number" ng-click="GetAccountnums1()" ng-model="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #102f66;">
+                                                                                <input type="text" id="Acno_number" ng-click="GetAccountnums1()" formControlName="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #102f66;">
 
                                                                             </td>
                                                                             <td><input class="form-control" type="text" id="Ac_name" /></td>
@@ -238,7 +242,7 @@
                                                                 </table>
 
                                                             </div>
-                                                            @*dynamic table*@
+                                                           
                                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                                 <table id="tbl_accdet" class="table">
                                                                     <thead>
@@ -255,7 +259,7 @@
                                                             </div>
                                                             <div>
                                                                 <p style="margin-left:474px;">Total Debit:-<b>.00</b><label style="margin-left: 137px;">Total Credit:-<b>.00</b></label></p>
-                                                                @*<p style="margin-left:50px;">Total Credit:-}</p>*@
+                                                                <!-- @*<p style="margin-left:50px;">Total Credit:-}</p>*@ -->
                                                             </div>
                                                             <!-- Modal content-->
 
@@ -289,10 +293,11 @@
                                                                                                     </tr>
                                                                                                 </thead>
                                                                                                 <tbody>
-                                                                                                    <tr role="row" class="odd" ng-repeat="ac in GetAccountnums">
-                                                                                                        <td class="sorting_1"></td>
-                                                                                                        <td class="sorting_1"></td>
-                                                                                                        <td><button type="button" class="btn btn-default" ng-click="selectedaccno(ac)">Select</button></td>
+                                                                                                    <tr role="row" class="odd" *ngFor="let item of Accno">
+                                                                                                        <td class="sorting_1">{{item.AccountNumber}}</td>
+                                                                                                        <td class="sorting_1">{{item.AccountName}}</td>
+                                                                                                        <!-- <td><input type="checkbox" id="txtcheckval_" /></td> -->
+                                                                                                        <td><button type="button" class="btn btn-default" (click)="selectedaccno(item.AccountNumber)">Select</button></td>
                                                                                                     </tr>
                                                                                                 </tbody>
 

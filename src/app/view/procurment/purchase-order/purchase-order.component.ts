@@ -23,7 +23,8 @@ export class PurchaseOrderComponent implements OnInit {
   purQuatdet: any;
   countryList: any;
   purchaseOrder: any;
-
+  branchList: any;
+  pur_ord_date:Date;
 
   constructor(public procurementService:ProcurementService,public commonService:CommonService,
     private formBuilder: FormBuilder,public toastr:ToastrService) { }
@@ -41,7 +42,9 @@ export class PurchaseOrderComponent implements OnInit {
     this.procurementService.GetEmployeeriD().subscribe((data: any) => {
       this.employerId=data
     });
-
+    this.procurementService.getbranchlist(0).subscribe((data: any) => {
+      this.branchList=data
+    });
     this.procurementService.GetStockItems().subscribe((data: any) => {
       this.stockItems=data
     });

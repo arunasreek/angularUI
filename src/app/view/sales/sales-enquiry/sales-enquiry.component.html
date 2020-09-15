@@ -100,43 +100,43 @@
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Employer ID</label>
                                                             <select class="form-control" id="emp_id" ng-model="pur_emp_id" name="pur_emp_id" onchange="GetEmplrbarchllist()">
-                                                                <option value="" disabled>select</option>
-                                                                <option ng-repeat="empr in GetEmployeeriD" value=""></option>
+                                                                <option value="">select</option>
+                                                                <option *ngFor="let item of employerId" value="{{item.EmployerID}}">{{item.EmployerName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Employer Branch</label>
                                                             <select class="form-control" id="emp_brnch" ng-model="pur_emp_brnch" name="pur_emp_brnch">
-                                                                <option value="0" disabled>select</option>
-                                                                <option ng-repeat="branch in GetEmployeerbarchllist" value=""></option>
+                                                                <option value="0">select</option>
+                                                                <option *ngFor="let item of branchList" value="{{item.BranchId}}">{{item.BranchName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Organisation Unit</label>
                                                             <select class="form-control" id="orgunit" ng-model="pur_orgunit" name="pur_orgunit">
-                                                                <option value="" disabled>select</option>
-                                                                <option ng-repeat="org in OrganizationList" value=""></option>
+                                                                <option value="">select</option>
+                                                                <option *ngFor="let item of organizationlist" value="{{item.Org_ID}}">{{item.OrganizationName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Project</label>
                                                             <select class="form-control" id="project" ng-model="pur_project" name="pur_project">
-                                                                <option value="" disabled>select</option>
-                                                                <option ng-repeat="Proj in ProjectList" value=""></option>
+                                                                <option value="">select</option>
+                                                                <option *ngFor="let item of projectList?.UpdateProjectDetails " value="{{item?.ProjectID}}">{{item?.ProjectName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Material Request ID</label>
-                                                            <input type="text" class="form-control" data-target="#pur_mat_req_id" id="mat_req_id" data-toggle="modal" ng-model="pur_mat_req_id" name="pur_mat_req_id" data-target="#material" placeholder="&#61442;" style="font-family: FontAwesome;">
+                                                            <input type="text" class="form-control" data-target="#pur_mat_req_id" id="mat_req_id" data-toggle="modal" ng-model="pur_mat_req_id" name="pur_mat_req_id"  placeholder="&#61442;" style="font-family: FontAwesome;">
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleinputemail1">purchase requisition id</label>
+                                                            <label for="exampleinputemail1">Sales requisition id</label>
                                                             <input type="text" class="form-control" id="pur_req_id" placeholder="purchase requisition id" ng-model="pur_req_id" name="pur_req_id">
 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Customer Name</label>
-                                                            <input type="text" class="form-control" data-target="#pur_sup" data-toggle="modal" id="sup_name" ng-model="pur_sup_name" name="pur_sup_name" data-target="#Designation" placeholder="&#61442;" style="font-family: FontAwesome;">
+                                                            <input type="text" class="form-control" data-target="#pur_sup" data-toggle="modal" id="sup_name" ng-model="pur_sup_name" name="pur_sup_name"  placeholder="&#61442;" style="font-family: FontAwesome;">
                                                         </div>
                                                        
                                                         <div class="form-group col-md-3">
@@ -160,7 +160,12 @@
                                                          -->
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Date Of Delivery</label>
-                                                            <input type="text" class="form-control" id="pur_dt_delvry" ng-model="pur_dt_delvry" name="pur_dt_delvry" placeholder="dd-mm-yy">
+                                                            <!-- <input type="text" class="form-control" id="pur_dt_delvry" ng-model="pur_dt_delvry" name="pur_dt_delvry" placeholder="dd-mm-yy"> -->
+                                                            <input type="text"
+                                                            placeholder="dd-mm-yy"
+                                                            class="form-control"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="pur_dt_delvry" > 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Delivery Location</label>
@@ -275,14 +280,14 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title" style="text-align:center">Select Item</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="box-body">
                                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                                 <div class="row">
-                                                     <div class="col-sm-6">
+                                                     <!-- <div class="col-sm-6">
                                                             <label for="exampleinput1">Customer ID</label>
                                                             <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
                                                         </div>
@@ -296,7 +301,7 @@
                                                     <div class="text-right col-sm-12">
                                                         <label for="exampleinput">Search</label>
                                                         <input type="search" id="pur_search" ng-model="pur_search" name="pur_search" />
-                                                    </div> 
+                                                    </div>  -->
 
                                                     <div id="prdct_details" class="row">
                                                         <table class="table table-bordered table-striped dataTable" role="grid">
@@ -305,20 +310,20 @@
                                                                     <th>&nbsp;</th>
                                                                     <th>Material Request ID</th>
                                                                     <th>Project Name</th>
-                                                                     <th>UM</th>
+                                                                     <!-- <th>UM</th>
                                                                         <th>Available Quantity</th>
-                                                                        <th>Reorder Level Quantity</th> 
+                                                                        <th>Reorder Level Quantity</th>  -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr ng-repeat="Metirial in MaterialReqdet">
-                                                                    <td><input type="radio" name="Empcheckgrp" id="itemcheck" value="" ng-model="Itemcheck" ng-click="GetReqIdItemdet(Metirial)" /></td>
+                                                                <tr *ngFor="let item of materialItemdet?.GetMeterialReqDet">
+                                                                    <td><input type="radio" name="Empcheckgrp" id="itemcheck" value="" ng-model="Itemcheck" ng-click="GetReqIdItemdet(item)" /></td>
                                                                     <td style="display:none;"></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                     <td></td>
+                                                                    <td>{{item?.materialrequestID}}</td>
+                                                                    <td>{{item?.ProjectName}}</td>
+                                                                     <!-- <td></td>
                                                                         <td></td>
-                                                                        <td></td> 
+                                                                        <td></td>  -->
                                                                 </tr>
                                                             </tbody>
 
@@ -330,7 +335,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
                                     </div>
                                 </div>
                             </div>
@@ -339,21 +344,21 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title" style="text-align:center">Select Item</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="box-body">
                                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                                 <div class="row">
-                                                     <div class="col-sm-6">
+                                                     <!-- <div class="col-sm-6">
                                                             <label for="exampleinput1">Customer ID</label>
                                                             <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <label for="exampleinput1">Customer</label>
                                                             <input type="text" id="desc" ng-model="desc" name="desc" />
-                                                        </div>                                                    
+                                                        </div>                                                     -->
 
                                                     <div id="prdct_details" class="row">
                                                         <table class="table table-bordered table-striped dataTable" role="grid">
@@ -365,11 +370,11 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr ng-repeat="suplist in GetCustomeritemsList">
-                                                                    <td><input type="radio" name="item" ng-click="GetindividuvalSupdet(suplist)" /></td>
-                                                                    <td></td>
-                                                                    <td></td>                                                                  
-                                                                </tr>
+                                                                <tr *ngFor="let item of customerList">
+                                                                    <td><input type="radio" name="supitem" ng-click="GetindividuvalSupdetforQta(suplist)" /></td>
+                                                                    <td>{{item.Customer_ID}}</td>
+                                                                    <td>{{item.Customer_Name}}</td>
+                                                                </tr>  
                                                             </tbody>                                                            
                                                         </table>
                                                         <input type="hidden" id="hdnsuppid" />
@@ -380,7 +385,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
                                     </div>
                                 </div>
                             </div>

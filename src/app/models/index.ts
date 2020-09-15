@@ -8,3 +8,5 @@ export * from './financial.model';
 export * from './customer.model';
 export * from './warehouse.model';
 export * from './procurement.model';
+export * from './vouchers.model';
+export * from './assests.model';

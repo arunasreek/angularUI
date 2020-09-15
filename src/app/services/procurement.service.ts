@@ -32,6 +32,19 @@ export class ProcurementService {
         }));
       
     }
+    GetEmployeedetList() {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetEmployeedetList`).pipe(map((data: any) => {
+            return data;
+        }));
+      
+    }
+    getCustomerList(cust_id:number) {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetCustomerList?${cust_id}`).pipe(map((data: any) => {
+            return data;
+        }));
+      
+    }
+   
     GetOrganizationList() {
         return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetOrganizationList`).pipe(map((data: any) => {
             return data;

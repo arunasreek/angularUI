@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConfig, APP_CONFIG } from '../config/app.config.module';
 import { map } from 'rxjs/operators';
-import { IcustomerPost } from 'src/app/models/customer.model';
+import { AssestsPost } from 'src/app/models/assests.model';
 import { IChartPost } from 'src/app/models/financial.model';
 
 @Injectable()
@@ -19,6 +19,16 @@ export class AssestsService {
     Getsuplist(){
         return this.http.get<any>(`${this.config.apiEndpoint}/Financila/Fn/Getsuplist`).pipe(map((data: any) => {
             return data;
+        }));
+    }
+    GetAccountnums() {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Financila/Fn/GetAccountnums`).pipe(map((data: any) => {
+            return data;
+        }));
+    } 
+    Getbranchlist(){
+        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/Getbranchlist`).pipe(map((res: any) => {
+            return res;
         }));
     }
     getEmployeeriD() {
@@ -61,5 +71,9 @@ export class AssestsService {
             return data;
         }));
     }
-    
+    SetAsset(postData:AssestsPost){
+        return this.http.post<any>(`${this.config.apiEndpoint}/Financila/Fn/SetAsset`, postData).pipe(map((res: any) => {
+            return res;
+        }));
+    }
 }
