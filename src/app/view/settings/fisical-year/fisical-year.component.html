@@ -1,0 +1,400 @@
+<div class="row ng-scope" id="divemployee" ng-controller="EmployeeController">
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+          <ul class="nav nav-tabs">
+              <li class="active">
+                  <a href="#tab_0" id="tabfirst" data-toggle="tab">Fisical Year List</a></li>
+              <li><a href="#tab_a" id="tabsecond" data-toggle="tab">Fisical Year Details</a></li>
+              <li><a href="#tab_1" id="tabthird" data-toggle="tab">Fisical Period Details</a>
+          </li></ul>
+          <div class="tab-content">
+              <div class="tab-pane active" id="tab_0">
+                  <div class="row divheight">
+                      <div class="col-lg-12">
+                          <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                              <thead>
+                                  <tr role="row">
+                                      <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Fisical year</th>
+                                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Start Date</th>
+                                      
+    
+                                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">End Date</th>
+    
+    
+                                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">No.Of Positions Approved</th>
+                                      <!-- concatenation Of Office Contact Person First , Middle   , LAst Names -->
+                                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Total Budgeted Cost</th>
+    
+                                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Total Position Assigned</th>
+                                      <!-- concatenation Of Office Contact Person First , Middle   , LAst Names -->
+                                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Total Position Allocated</th>
+                                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Total Position Vacant</th>
+                                      <!-- concatenation Of Office Contact Person First , Middle   , LAst Names -->
+                                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Total Capacity to Date</th>
+
+                                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Status</th>
+                                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Actions</th>
+    
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="ng-scope">
+                                      <td class="ng-binding"></td>
+                                      <td class="ng-binding"></td>
+                                      <td class="ng-binding"></td>
+                                      <td class="ng-binding"></td>
+                                      <td class="ng-binding"></td>
+                                      <td class="ng-binding"></td>
+                                      <td class="ng-binding"></td>
+                                      <td class="ng-binding"></td>
+                                      <td class="ng-binding"></td>
+                                      <td class="ng-binding"></td>
+                                      <td>
+                                          
+                                          <a href="/Enterprise/ES/Employeeview?id=1" data-lity="">
+                                              <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                          </a>
+                                          <a >
+                                              <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ></i>
+                                          </a>
+                                          <a >
+                                              <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ></i>
+                                          </a>
+                                      </td>
+                                  </tr>
+    
+    
+    
+                              </tbody>
+                                <!-- <tfoot>
+                              <tr>
+                              <th rowspan="1" colspan="1">Rendering engine</th>
+                              <th rowspan="1" colspan="1">Browser</th>
+                              <th rowspan="1" colspan="1">Platform(s)</th>
+                              <th rowspan="1" colspan="1">Engine version</th>
+                              <th rowspan="1" colspan="1">CSS grade</th></tr>
+                              </tfoot> -->
+                          </table>
+                          <!-- <div style="float:right;margin-top:20px;color:#102f66;font-weight:800">
+                            <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                           </div>   -->
+                          <!-- <ag-grid-angular
+                          style="width:100%; height:500px;min-height:200px;padding-left:50px"
+                          class="ag-theme-alpine"
+                        
+                          [columnDefs]="columnDefs"
+                          (gridReady)="onGridReady($event)"
+                          [rowData]="rowData"
+                          [pagination]="true" 
+                          [paginationAutoPageSize]="true"
+                          enableSorting
+                          enableFilter
+                          >
+                      </ag-grid-angular> -->
+                      
+                        </div>
+                  </div>
+              </div>
+              <div class="tab-pane" id="tab_a" style="height:800px;overflow:scroll">
+                <form >
+                  <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingOne">
+                          <h4 class="panel-title">
+                              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                  <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                  Fisical year
+                              </a>
+                          </h4>
+                      </div>
+                      <!-- in -->
+                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+    
+    
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="box box-primary " style="border-top:none;">
+                                          <!--   <div class="box-header with-border">
+                                            <h3 class="box-title">Quick Example</h3>
+                                          </div> -->
+                                          <!-- /.box-header -->
+                                          <!-- form start -->
+    
+                                              <div class="box-body">
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Fisical Year</label><span style="color:#d81b60;">*</span>
+                                                    
+                                                    <select class="form-control " id="Ed_Emplr_branch" formControlName="Ed_Emplr_branch"  name="Ed_Emplr_branch">
+                                                        <option value="" disabled="" selected="selected">Select</option>
+                                                       
+                                                    </select>
+                                                </div>
+
+                                                    <div class="form-group col-md-3">
+                                                        <label for="exampleInputEmail1" style="color:blue;">Fisical year type</label><span style="color:#d81b60;">*</span>
+                                                        
+                                                        <select class="form-control" id="Ed_prj" formControlName="Ed_prj" name="Ed_prj">
+                                                            <option value=""  selected="selected">Select</option>
+                                                            
+                                                            <option value="">Yearly</option>
+                                                            <option value="">Monthly</option>
+                                                        </select>
+      
+                                                    </div>
+  
+                                               
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1">Start Date</label>
+                                                    <input type="text"
+                                                    class="form-control"
+                                                    #dp="bsDatepicker"
+                                                    placeholder="mm/dd/yyyy"
+                                                    bsDatepicker [(bsValue)]="start_date" 
+                                                   >    
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1">End Date</label>
+                                                    <input type="text"
+                                                    class="form-control"
+                                                    #dp="bsDatepicker"
+                                                    placeholder="mm/dd/yyyy"
+                                                    bsDatepicker [(bsValue)]="end_date" > 
+                                                     
+                                                </div>
+                                                  <div class="form-group col-md-3">
+                                                      <label for="exampleInputEmail1" style="color:blue;">Number of positions CFY</label><span style="color:#d81b60;">*</span>
+                                                      <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID"  >
+                                                     
+                                                  </div>
+                                                  <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Total Budgeted Cost</label><span style="color:#d81b60;">*</span>
+                                                    <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID"  >
+                                                   
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Total position Assigned</label><span style="color:#d81b60;">*</span>
+                                                    <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID"  >
+                                                   
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Total position Allocated</label><span style="color:#d81b60;">*</span>
+                                                    <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID"  >
+                                                   
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Total position Vacant</label><span style="color:#d81b60;">*</span>
+                                                    <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID"  >
+                                                   
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Total Capacity to Date</label><span style="color:#d81b60;">*</span>
+                                                    <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID"  >
+                                                   
+                                                </div>
+                                                 
+                                                    
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Status</label><span style="color:#d81b60;">*</span>
+                                                    
+                                                    <select class="form-control" id="Ed_prj" formControlName="Ed_prj" name="Ed_prj">
+                                                        <option value=""  selected="selected">Select</option>
+                                                        
+                                                        <option value="">Active</option>
+                                                        <option value="">Inactive</option>
+                                                    </select>
+  
+                                                </div>
+                                                  
+                                              </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+    
+                 
+                  <input type="hidden" id="epid" ng-model="epid" name="epid" autocomplete="off" class="">
+    
+                  <button type="submit" class="btn bg-maroon margin" >Save</button>
+                  <button type="submit" class="btn bg-maroon margin ng-hide" >Update</button>
+    
+                  <button type="button" class="btn bg-maroon margin" >Cancel</button>
+                  <button type="button" class="btn bg-maroon margin"  ng-click="SetEmployeePrimarydet()">Exit</button>
+                  <!-- <button type="button" class="btn bg-maroon margin ng-hide" >Renew</button>
+                  <button type="button" class="btn bg-maroon margin ng-hide" >Active</button>
+                  <button type="button" class="btn bg-maroon margin ng-hide" >Inactive</button> -->
+                  <!-- <input type="hidden" id="hiddenorganisation" autocomplete="off">
+                  <input type="hidden" id="hiddendesignation" autocomplete="off"> -->
+                </form>
+              </div>
+
+              <div class="tab-pane panel panel-default" id="tab_1">
+                <div class="row divheight">
+                    <div class="col-lg-12">
+                        <a (click)="addFiscalPeriod()"><button type="submit" class="btn bg-maroon margin" style="float:right"><i class="fa fa-plus"></i>Add Fisical Period</button></a>
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Fisical Period Code</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Fisical Period Description</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Start Date</th>
+                                    
+  
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">End Date</th>
+  
+  
+                                   
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Actions</th>
+  
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="ng-scope">
+                                    <td class="ng-binding"></td>
+                                    <td class="ng-binding"></td>
+                                    <td class="ng-binding"></td>
+                                    <td class="ng-binding"></td>
+                                   
+                          
+                                   
+                                    <td>
+                                        
+                                        <a href="/Enterprise/ES/Employeeview?id=1" data-lity="">
+                                            <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                        </a>
+                                        <a >
+                                            <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ></i>
+                                        </a>
+                                        <a >
+                                            <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ></i>
+                                        </a>
+                                    </td>
+                                </tr>
+  
+  
+  
+                            </tbody>
+                              <!-- <tfoot>
+                            <tr>
+                            <th rowspan="1" colspan="1">Rendering engine</th>
+                            <th rowspan="1" colspan="1">Browser</th>
+                            <th rowspan="1" colspan="1">Platform(s)</th>
+                            <th rowspan="1" colspan="1">Engine version</th>
+                            <th rowspan="1" colspan="1">CSS grade</th></tr>
+                            </tfoot> -->
+                        </table>
+                        <!-- <div style="float:right;margin-top:20px;color:#102f66;font-weight:800">
+                          <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                         </div>   -->
+                        <!-- <ag-grid-angular
+                        style="width:100%; height:500px;min-height:200px;padding-left:50px"
+                        class="ag-theme-alpine"
+                      
+                        [columnDefs]="columnDefs"
+                        (gridReady)="onGridReady($event)"
+                        [rowData]="rowData"
+                        [pagination]="true" 
+                        [paginationAutoPageSize]="true"
+                        enableSorting
+                        enableFilter
+                        >
+                    </ag-grid-angular> -->
+                    
+                      </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab_2" style="height:800px;overflow:scroll">
+                <form  class="form1">
+                  <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingthree">
+                          <h4 class="panel-title">
+                              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                  <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                  Fisical Period
+                              </a>
+                          </h4>
+                      </div>
+                      <!-- in -->
+                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+    
+    
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="box box-primary " style="border-top:none;">
+                                          <!--   <div class="box-header with-border">
+                                            <h3 class="box-title">Quick Example</h3>
+                                          </div> -->
+                                          <!-- /.box-header -->
+                                          <!-- form start -->
+    
+                                              <div class="box-body">
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Fisical Year</label><span style="color:#d81b60;">*</span>
+                                                    
+                                                    <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID"  >
+                                                </div>
+
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Fisical Period Code</label><span style="color:#d81b60;">*</span>
+                                                    
+                                                    <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID"  >
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Fisical Period Description</label><span style="color:#d81b60;">*</span>
+                                                    
+                                                    <input type="text" class="form-control" id="Ed_Employee_ID" placeholder="Employee_ID" formControlName="Ed_Employee_ID" name="Employee_ID"  >
+                                                </div>
+  
+                                               
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1">Start Date</label>
+                                                    <input type="text"
+                                                    class="form-control"
+                                                    #dp="bsDatepicker"
+                                                    placeholder="mm/dd/yyyy"
+                                                    bsDatepicker [(bsValue)]="start_date" 
+                                                   >    
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1">End Date</label>
+                                                    <input type="text"
+                                                    class="form-control"
+                                                    #dp="bsDatepicker"
+                                                    placeholder="mm/dd/yyyy"
+                                                    bsDatepicker [(bsValue)]="end_date" > 
+                                                     
+                                                </div>
+                                                  
+                                                  
+                                              </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+    
+                 
+                  <input type="hidden" id="epid" ng-model="epid" name="epid" autocomplete="off" class="">
+    
+                  <button type="submit" class="btn bg-maroon margin" >Save</button>
+                  <button type="submit" class="btn bg-maroon margin ng-hide" >Update</button>
+    
+                  <button type="button" class="btn bg-maroon margin" >Cancel</button>
+                  <button type="button" class="btn bg-maroon margin"  ng-click="SetEmployeePrimarydet()">Exit</button>
+                  <!-- <button type="button" class="btn bg-maroon margin ng-hide" >Renew</button>
+                  <button type="button" class="btn bg-maroon margin ng-hide" >Active</button>
+                  <button type="button" class="btn bg-maroon margin ng-hide" >Inactive</button> -->
+                  <!-- <input type="hidden" id="hiddenorganisation" autocomplete="off">
+                  <input type="hidden" id="hiddendesignation" autocomplete="off"> -->
+                </form>
+              </div>
+    
+          </div>
+      </div>
+    </div>
+    
+    
+    </div>

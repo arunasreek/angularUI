@@ -5,16 +5,16 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">PurchaseOrder List</a></li>
-                    <li><a href="#tab_1" id="primarytab" data-toggle="tab">PurchaseOrder Details</a></li>
-                    <li><a href="#tab_2" id="secondtab" data-toggle="tab">Shipping Details</a></li>
+                    <!-- <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">PurchaseOrder List</a></li> -->
+                    <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">Stock Movement Register Details</a></li>
+                    <!-- <li><a href="#tab_2" id="secondtab" data-toggle="tab">Shipping Details</a></li>
                     <li><a href="#tab_3" id="thirdtab" data-toggle="tab">Invoiceing Details</a></li>
-                    <li><a href="#tab_4" id="thirdtab" data-toggle="tab">Accounting Entry</a></li>
+                    <li><a href="#tab_4" id="thirdtab" data-toggle="tab">Accounting Entry</a></li> -->
                 </ul>
                 <div class="tab-content">
 
 
-                    <div class="tab-pane active in" id="tab_a">
+                    <!-- <div class="tab-pane active in" id="tab_a">
                         <div class="row divheight">
                             <div class="col-lg-12">
                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
@@ -30,7 +30,7 @@
 
 
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Delivery</th>
-                                            <!-- concatenation Of Office Contact Person First , Middle  , LAst Names -->
+                                            concatenation Of Office Contact Person First , Middle  , LAst Names
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Status</th>
 
 
@@ -70,25 +70,25 @@
 
 
                                     </tbody>
-                                    <!--   <tfoot>
+                                      <tfoot>
                                     <tr>
                                     <th rowspan="1" colspan="1">Rendering engine</th>
                                     <th rowspan="1" colspan="1">Browser</th>
                                     <th rowspan="1" colspan="1">Platform(s)</th>
                                     <th rowspan="1" colspan="1">Engine version</th>
                                     <th rowspan="1" colspan="1">CSS grade</th></tr>
-                                    </tfoot> -->
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane" id="tab_1">
+                    </div> -->
+                    <div class="tab-pane active in" id="tab_a">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
-                                        PurchaseOrder Details
+                                        Stock Movement Register Details
                                     </a>
                                 </h4>
                             </div>
@@ -138,32 +138,9 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputEmail1">Quotation ID</label>
-                                                            <input type="text" class="form-control" data-target="#purorder_quo_modal" id="pur_ord_quo_id" data-toggle="modal" ng-model="pur_ord_quo_id" name="pur_ord_quo_id"  placeholder="&#61442;" style="font-family: FontAwesome;">
-                                                        </div>
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputEmail1"><span style="color:blue;">Purchase Order ID</span><span style="color:#d81b60;">*</span></label>
-                                                            <input type="text" class="form-control" id="pur_order_id" placeholder="Purchase Order ID" ng-model="pur_order_id" name="pur_order_id" required>
-
-                                                        </div>
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1"><span style="color:blue;">Supplier Name</span><span style="color:#d81b60;">*</span></label>
-                                                            <input type="text" class="form-control" id="pur_order_sup_name" data-target="#pur_order_sup" data-toggle="modal" ng-model="pur_order_sup_name" name="pur_order_sup_name" placeholder="&#61442;" style="font-family: FontAwesome;" required>
-                                                        </div>
-                                                       
-                                                        <br />
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1">Contact Person Name</label>
-                                                            <input type="text" class="form-control" id="pur_order_cnt_per_name" ng-model="pur_order_cnt_per_name" name="pur_order_cnt_per_name" placeholder="Contact Person Name" readonly>
-                                                        </div>
-
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1">Contact Person Mobile No</label>
-                                                            <input type="text" class="form-control" id="pur_order_cnt_per_mobno" ng-model="pur_order_cnt_per_mobno" name="pur_order_cnt_per_mobno" placeholder="" readonly>
-                                                        </div>
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputFile">Supplier Address</label>
-                                                            <textarea class="form-control" id="pur_order_sup_add" ng-model="pur_order_sup_add" name="pur_order_sup_add" readonly></textarea>
+                                                            <label for="exampleInputPassword1">Remarks</label>
+                                                            <textarea class="form-control" id="mat_remarks" ng-model="mat_remarks" name="mat_remarks" placeholder="Remarks"></textarea>
+                                                            <input type="hidden" id="hdnmareqid" />
                                                         </div>
                                                         <!-- 	<div class="form-group col-md-3">
                                                           <label for="exampleInputPassword1">Start Date / Renewed Date</label>
@@ -179,45 +156,51 @@
                                                         <br />
                                                         <input type="hidden" id="hdnindex" />
                                                         <input type="hidden" id="hdnoderid" />
-                                                        <div class="form-group col-md-10">
+                                                        <!-- <div class="form-group col-md-10">
                                                             <label for="exampleInputEmail">Select Item</label>
-                                                        </div>
+                                                        </div> -->
                                                         <br />
                                                         <div class="row">
                                                             <table style="width:100%;">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>S.No</th>
+                                                                        <th>Date</th>
+                                                                        <th>Voucher No</th>
                                                                         <th>Item Id</th>
                                                                         <th>Description</th>
+                                                                        <th> UM</th>
                                                                         <th>Qty</th>
-                                                                        <th>UM</th>
-                                                                        <th>Price</th> 
-                                                                        <th>Tax Amount</th>   
+                                                                        <th>Movement Type</th>
+                                                                        <th>Warehouse</th> 
+                                                                        <th>Floor</th>
+                                                                        <th>Row</th> 
+                                                                        <th>Rack</th>
+                                                                        
+                                                                        <!-- <th>Tax Amount</th>   
                                                                         <th>Discount Type</th>                                                                   
                                                                         <th>Discount</th>                                                                                                                                             
-                                                                        <th>Total Amount</th>
+                                                                        <th>Total Amount</th> -->
                                                                     </tr>
                                                                 </thead>                                                                
                                                                 <tbody id="txtbody">
                                                                     <tr ng-repeat="item in ItemsList" ng-if="item.status<3">
                                                                         <td><input type="text" class="form-control" id="slno" value="" placeholder="S.No" readonly /></td>
+                                                                        <td ><input ng-model="item.quantity" id="quantity" type="text" class="form-control"></td>
+                                                                        <td ><input ng-model="item.quantity" id="quantity" type="text" class="form-control"></td>
                                                                         <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
-                                                                        <td><input type="text" name="description_$index" ng-model="item.description" id="description" class="form-control" readonly></td>
-                                                                        <td width="150"><input ng-model="item.quantity" id="quantity" type="text" class="form-control"></td>
-                                                                        <td width="150"><input ng-model="item.unitmeasure" id="unitmeasure" type="text" class="form-control" readonly></td>
+                                                                        <td ><input ng-model="item.quantity" id="quantity" type="text" class="form-control"></td>
+                                                                        <td ><input ng-model="item.unitmeasure" id="unitmeasure" type="text" class="form-control" ></td>
                                                                         <td><input ng-model="item.price" id="price" type="text" class="form-control" ng-keyup="GetOrderTaxamount($index)"></td>
                                                                         <td><input ng-model="item.taxamt" id="taxamt" type="text" class="form-control"></td>
-                                                                        <td width="150">
-                                                                            <select ng-model="item.distype" id="distype" name="discnttype" class="form-control" ng-change="Getclearamt($index)">
-                                                                                <option value="" selected>Select</option>
-                                                                                <option value="A">Amount</option>
-                                                                                <option value="P">Percentage</option>
-                                                                            </select>
-                                                                        </td>
-                                                                        <td><input ng-model="item.discountamt" id="discountamt" type="text" class="form-control" ng-keyup="GetcaltotAmt($index)"></td>
-                                                                        <td><input ng-model="item.totamt" id="totamt" type="text" class="form-control"></td>
-
+                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                       
+                                                                        
+                                                                       
+                                                                        
                                                                         <td ng-click="deletrow($index,item.PQTrans_Id)"></td>
                                                                         <td style="display:none;">
                                                                             <input type="hidden" id="hiditemid" />
@@ -228,6 +211,9 @@
                                                                     </tr>      
                                                                 </tbody>
                                                             </table>
+                                                            <div class="form-group col-md-10" style="float:right;margin-left:400px;margin-top:20px">
+                                                                <label for="exampleInputEmail">Grand Total</label>
+                                                            </div>
                                                         </div>
 
                                                     </div>

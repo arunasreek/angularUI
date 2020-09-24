@@ -1,0 +1,227 @@
+
+
+<section class="content">
+    <div class="row" ng-controller="PurchaseOrderController" id="PurchaseOrderController">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <!-- <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">PurchaseOrder List</a></li> -->
+                    <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">Account allocation Segments</a></li>
+                    <!-- <li><a href="#tab_2" id="secondtab" data-toggle="tab">Shipping Details</a></li>
+                    <li><a href="#tab_3" id="thirdtab" data-toggle="tab">Invoiceing Details</a></li>
+                    <li><a href="#tab_4" id="thirdtab" data-toggle="tab">Accounting Entry</a></li> -->
+                </ul>
+                <div class="tab-content">
+
+                    <div class="tab-pane active in" id="tab_a">
+                        <div class="panel panel-default">
+                            
+                            <!-- in -->
+                            <table width="100%"  cellpadding="4" cellspacing="4">
+                                <tr>
+                                 <td>
+                                    <fieldset><legend class="FormLabel"><span class="Mandatory">First Segment</span></legend>
+                                    <table width="100%"  cellpadding="2" cellspacing="2">
+                                       <tr valign="top">
+                                         <td width="92%">
+                                              <table width="100%" border="0" cellpadding="2" cellspacing="2">
+                                               <tr>
+                                                                                </tr><tr>								 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment11" name="txt_Segment1" value="CompanyCode"  onclick="ShowHideCCTextBox(1,'CompanyCode');"/>Default Code</label></td>
+                                                                                                                 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment12" name="txt_Segment1" value="GlCode"  onclick="ShowHideCCTextBox(1,'GlCode');"/>Employer Code</label></td>
+                                                                                                                 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment13" name="txt_Segment1" value="FundSource"  onclick="ShowHideCCTextBox(1,'FundSource');"/>Employer Branch Code</label></td>
+                                                                                                                 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment14" name="txt_Segment1" value="OrgCode"  onclick="ShowHideCCTextBox(1,'OrgCode');"/>Organization Code</label></td>
+                                                                                                                 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment15" name="txt_Segment1" value="ProjectCode"  onclick="ShowHideCCTextBox(1,'ProjectCode');"/>Project Code</label></td>
+                                                                                </tr><tr>					
+                                                                                
+                                                                                                                 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment110" name="txt_Segment1" value="EmployeeCode"  onclick="ShowHideCCTextBox(1,'EmployeeCode');"/>Employee Code</label></td>
+                                                                                								 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment111" name="txt_Segment1" value="CostItemCode"  onclick="ShowHideCCTextBox(1,'CostItemCode');"/>Cost Item</label></td>
+                                                                                                                 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment112" name="txt_Segment1" value="BudgetItem"  onclick="ShowHideCCTextBox(1,'BudgetItem');"/>Budget Item</label></td>
+                                                                                                                
+                                                                                                                 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment114" name="txt_Segment1" value="None" checked onclick="ShowHideCCTextBox(1,'None');"/>None</label></td>
+                                                                             </tr> 
+                                                
+                                               </table>
+                                               
+                                               <table width="100%" cellspacing="0" cellpadding="0">
+                                               <tr>
+                                               <td>&nbsp;</td>    <td><span  id="DivDefaultCC1"  style="display:none;"><label style="margin-left:5px;" class="FormLabel"> Default Code&nbsp;&nbsp;<input type="text" name="txt_CCVAL_SEG1" class="TextBox" value=""></label>
+                                               
+                                               </span> </td>
+                                               
+                                               </tr>
+                                               </table>
+                   
+                                            </td> 
+                                            <td width="8%" nowrap="nowrap" class="FormLabel"  style="padding-top:10px;">Separator<br /><input name="txt_Segment_Sep_1" type="text" id="txt_Segment_Sep_1" value=""  class="TextBox" size='1'/></td>
+                                       </tr>
+                    
+                                    </table>
+                               
+                                    <table width="100%"  cellpadding="4" cellspacing="4">
+                                        <tr>
+                                         <td>
+                                            <fieldset><legend class="FormLabel"><span class="Mandatory">Second Segment</span></legend>
+                                                <table width="100%"  cellpadding="2" cellspacing="2">
+                                                    <tr valign="top">
+                                                      <td width="92%">
+                                                           <table width="100%" border="0" cellpadding="2" cellspacing="2">
+                                                            <tr>
+                                                                                             </tr><tr>								 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment11" name="txt_Segment1" value="CompanyCode"  onclick="ShowHideCCTextBox(1,'CompanyCode');"/>Default Code</label></td>
+                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment12" name="txt_Segment1" value="GlCode"  onclick="ShowHideCCTextBox(1,'GlCode');"/>Employer Code</label></td>
+                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment13" name="txt_Segment1" value="FundSource"  onclick="ShowHideCCTextBox(1,'FundSource');"/>Employer Branch Code</label></td>
+                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment14" name="txt_Segment1" value="OrgCode"  onclick="ShowHideCCTextBox(1,'OrgCode');"/>Organization Code</label></td>
+                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment15" name="txt_Segment1" value="ProjectCode"  onclick="ShowHideCCTextBox(1,'ProjectCode');"/>Project Code</label></td>
+                                                                                             </tr><tr>					
+                                                                                             
+                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment110" name="txt_Segment1" value="EmployeeCode"  onclick="ShowHideCCTextBox(1,'EmployeeCode');"/>Employee Code</label></td>
+                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment111" name="txt_Segment1" value="CostItemCode"  onclick="ShowHideCCTextBox(1,'CostItemCode');"/>Cost Item</label></td>
+                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment112" name="txt_Segment1" value="BudgetItem"  onclick="ShowHideCCTextBox(1,'BudgetItem');"/>Budget Item</label></td>
+                                                                                                                             
+                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment114" name="txt_Segment1" value="None" checked onclick="ShowHideCCTextBox(1,'None');"/>None</label></td>
+                                                                                          </tr> 
+                                                             
+                                                            </table>
+                                                            
+                                                            <table width="100%" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                            <td>&nbsp;</td>    <td><span  id="DivDefaultCC1"  style="display:none;"><label style="margin-left:5px;" class="FormLabel"> Default Code&nbsp;&nbsp;<input type="text" name="txt_CCVAL_SEG1" class="TextBox" value=""></label>
+                                                            
+                                                            </span> </td>
+                                                            
+                                                            </tr>
+                                                            </table>
+                                
+                                                         </td> 
+                                                         <td width="8%" nowrap="nowrap" class="FormLabel"  style="padding-top:10px;">Separator<br /><input name="txt_Segment_Sep_1" type="text" id="txt_Segment_Sep_1" value=""  class="TextBox" size='1'/></td>
+                                                    </tr>
+                                 
+                                                 </table>
+                                            <table width="100%"  cellpadding="4" cellspacing="4">
+                                                <tr>
+                                                 <td>
+                                                    <fieldset><legend class="FormLabel"><span class="Mandatory">Third Segment</span></legend>
+                                                        <table width="100%"  cellpadding="2" cellspacing="2">
+                                                            <tr valign="top">
+                                                              <td width="92%">
+                                                                   <table width="100%" border="0" cellpadding="2" cellspacing="2">
+                                                                    <tr>
+                                                                                                     </tr><tr>								 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment11" name="txt_Segment1" value="CompanyCode"  onclick="ShowHideCCTextBox(1,'CompanyCode');"/>Default Code</label></td>
+                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment12" name="txt_Segment1" value="GlCode"  onclick="ShowHideCCTextBox(1,'GlCode');"/>Employer Code</label></td>
+                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment13" name="txt_Segment1" value="FundSource"  onclick="ShowHideCCTextBox(1,'FundSource');"/>Employer Branch Code</label></td>
+                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment14" name="txt_Segment1" value="OrgCode"  onclick="ShowHideCCTextBox(1,'OrgCode');"/>Organization Code</label></td>
+                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment15" name="txt_Segment1" value="ProjectCode"  onclick="ShowHideCCTextBox(1,'ProjectCode');"/>Project Code</label></td>
+                                                                                                     </tr><tr>					
+                                                                                                     
+                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment110" name="txt_Segment1" value="EmployeeCode"  onclick="ShowHideCCTextBox(1,'EmployeeCode');"/>Employee Code</label></td>
+                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment111" name="txt_Segment1" value="CostItemCode"  onclick="ShowHideCCTextBox(1,'CostItemCode');"/>Cost Item</label></td>
+                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment112" name="txt_Segment1" value="BudgetItem"  onclick="ShowHideCCTextBox(1,'BudgetItem');"/>Budget Item</label></td>
+                                                                                                                                     
+                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment114" name="txt_Segment1" value="None" checked onclick="ShowHideCCTextBox(1,'None');"/>None</label></td>
+                                                                                                  </tr> 
+                                                                     
+                                                                    </table>
+                                                                    
+                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                    <td>&nbsp;</td>    <td><span  id="DivDefaultCC1"  style="display:none;"><label style="margin-left:5px;" class="FormLabel"> Default Code&nbsp;&nbsp;<input type="text" name="txt_CCVAL_SEG1" class="TextBox" value=""></label>
+                                                                    
+                                                                    </span> </td>
+                                                                    
+                                                                    </tr>
+                                                                    </table>
+                                        
+                                                                 </td> 
+                                                                 <td width="8%" nowrap="nowrap" class="FormLabel"  style="padding-top:10px;">Separator<br /><input name="txt_Segment_Sep_1" type="text" id="txt_Segment_Sep_1" value=""  class="TextBox" size='1'/></td>
+                                                            </tr>
+                                         
+                                                         </table>
+                                                    <table width="100%"  cellpadding="4" cellspacing="4">
+                                                        <tr>
+                                                         <td>
+                                                            <fieldset><legend class="FormLabel"><span class="Mandatory">Fourth Segment</span></legend>
+                                                                <table width="100%"  cellpadding="2" cellspacing="2">
+                                                                    <tr valign="top">
+                                                                      <td width="92%">
+                                                                           <table width="100%" border="0" cellpadding="2" cellspacing="2">
+                                                                            <tr>
+                                                                                                             </tr><tr>								 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment11" name="txt_Segment1" value="CompanyCode"  onclick="ShowHideCCTextBox(1,'CompanyCode');"/>Default Code</label></td>
+                                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment12" name="txt_Segment1" value="GlCode"  onclick="ShowHideCCTextBox(1,'GlCode');"/>Employer Code</label></td>
+                                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment13" name="txt_Segment1" value="FundSource"  onclick="ShowHideCCTextBox(1,'FundSource');"/>Employer Branch Code</label></td>
+                                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment14" name="txt_Segment1" value="OrgCode"  onclick="ShowHideCCTextBox(1,'OrgCode');"/>Organization Code</label></td>
+                                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment15" name="txt_Segment1" value="ProjectCode"  onclick="ShowHideCCTextBox(1,'ProjectCode');"/>Project Code</label></td>
+                                                                                                             </tr><tr>					
+                                                                                                             
+                                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment110" name="txt_Segment1" value="EmployeeCode"  onclick="ShowHideCCTextBox(1,'EmployeeCode');"/>Employee Code</label></td>
+                                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment111" name="txt_Segment1" value="CostItemCode"  onclick="ShowHideCCTextBox(1,'CostItemCode');"/>Cost Item</label></td>
+                                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment112" name="txt_Segment1" value="BudgetItem"  onclick="ShowHideCCTextBox(1,'BudgetItem');"/>Budget Item</label></td>
+                                                                                                                                             
+                                                                                                                                              <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment114" name="txt_Segment1" value="None" checked onclick="ShowHideCCTextBox(1,'None');"/>None</label></td>
+                                                                                                          </tr> 
+                                                                             
+                                                                            </table>
+                                                                            
+                                                                            <table width="100%" cellspacing="0" cellpadding="0">
+                                                                            <tr>
+                                                                            <td>&nbsp;</td>    <td><span  id="DivDefaultCC1"  style="display:none;"><label style="margin-left:5px;" class="FormLabel"> Default Code&nbsp;&nbsp;<input type="text" name="txt_CCVAL_SEG1" class="TextBox" value=""></label>
+                                                                            
+                                                                            </span> </td>
+                                                                            
+                                                                            </tr>
+                                                                            </table>
+                                                
+                                                                         </td> 
+                                                                         <td width="8%" nowrap="nowrap" class="FormLabel"  style="padding-top:10px;">Separator<br /><input name="txt_Segment_Sep_1" type="text" id="txt_Segment_Sep_1" value=""  class="TextBox" size='1'/></td>
+                                                                    </tr>
+                                                 
+                                                                 </table>
+                                                            <table width="100%"  cellpadding="4" cellspacing="4">
+                                                                <tr>
+                                                                 <td>
+                                                                    <fieldset><legend class="FormLabel"><span class="Mandatory">Fifth Segment</span></legend>
+                                                                        <table width="100%"  cellpadding="2" cellspacing="2">
+                                                                            <tr valign="top">
+                                                                              <td width="92%">
+                                                                                   <table width="100%" border="0" cellpadding="2" cellspacing="2">
+                                                                                    <tr>
+                                                                                                                     </tr><tr>								 <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment11" name="txt_Segment1" value="CompanyCode"  onclick="ShowHideCCTextBox(1,'CompanyCode');"/>Default Code</label></td>
+                                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment12" name="txt_Segment1" value="GlCode"  onclick="ShowHideCCTextBox(1,'GlCode');"/>Employer Code</label></td>
+                                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment13" name="txt_Segment1" value="FundSource"  onclick="ShowHideCCTextBox(1,'FundSource');"/>Employer Branch Code</label></td>
+                                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment14" name="txt_Segment1" value="OrgCode"  onclick="ShowHideCCTextBox(1,'OrgCode');"/>Organization Code</label></td>
+                                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment15" name="txt_Segment1" value="ProjectCode"  onclick="ShowHideCCTextBox(1,'ProjectCode');"/>Project Code</label></td>
+                                                                                                                     </tr><tr>					
+                                                                                                                     
+                                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment110" name="txt_Segment1" value="EmployeeCode"  onclick="ShowHideCCTextBox(1,'EmployeeCode');"/>Employee Code</label></td>
+                                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment111" name="txt_Segment1" value="CostItemCode"  onclick="ShowHideCCTextBox(1,'CostItemCode');"/>Cost Item</label></td>
+                                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment112" name="txt_Segment1" value="BudgetItem"  onclick="ShowHideCCTextBox(1,'BudgetItem');"/>Budget Item</label></td>
+                                                                                                                                                     
+                                                                                                                                                      <td class="FormLabel" nowrap="nowrap"><label><input type="radio" id="txt_Segment114" name="txt_Segment1" value="None" checked onclick="ShowHideCCTextBox(1,'None');"/>None</label></td>
+                                                                                                                  </tr> 
+                                                                                     
+                                                                                    </table>
+                                                                                    
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                    <tr>
+                                                                                    <td>&nbsp;</td>    <td><span  id="DivDefaultCC1"  style="display:none;"><label style="margin-left:5px;" class="FormLabel"> Default Code&nbsp;&nbsp;<input type="text" name="txt_CCVAL_SEG1" class="TextBox" value=""></label>
+                                                                                    
+                                                                                    </span> </td>
+                                                                                    
+                                                                                    </tr>
+                                                                                    </table>
+                                                        
+                                                                                 </td> 
+                                                                                 <td width="8%" nowrap="nowrap" class="FormLabel"  style="padding-top:10px;">Separator<br /><input name="txt_Segment_Sep_1" type="text" id="txt_Segment_Sep_1" value=""  class="TextBox" size='1'/></td>
+                                                                            </tr>
+                                                         
+                                                                         </table>
+                                                                         
+                                                                         <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Save</button>
+                                                                         <button type="button" class="btn bg-maroon margin" ng-show="Isupdate" ng-click="SetPurchaseOrderdetails()">Update</button>
+                                             
+                                                                         <button type="button" class="btn bg-maroon margin" ng-click="clearPurchaseOrderdata()">Cancel</button>
+                                                                         <button type="button" class="btn bg-maroon margin" >Exit</button>
+                                                                         <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Approve</button>
+                                                                         <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Reject</button>
+                                                                         <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Post</button>
+                   
+
+         

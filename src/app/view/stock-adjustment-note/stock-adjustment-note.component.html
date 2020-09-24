@@ -21,14 +21,14 @@
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Adjsutment ID</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Project</th>
-                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th> 
+                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Employer ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Employer Branch</th>
+                                                <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Organization unit</th>  -->
 
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Delivery Location</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Reason for Adjustment</th>
 
 
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Delivery</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Adjustment\</th>
                                             <!-- concatenation Of Office Contact Person First , Middle  , LAst Names -->
 
 
@@ -44,11 +44,11 @@
                                             <td></td>
                                              <td></td>
                                                 <td></td>
-                                                <td></td> 
+                                                <!-- <td></td>  -->
                                             <td></td>
                                             <td></td>
                                             <td>
-                                                 edit 
+                                              
                                                 <a href="/procure/pc/materialview?M_id" data-lity>
                                                     <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                 </a>
@@ -125,7 +125,7 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputpassword">Requesting Project</label>
+                                                            <label for="exampleInputpassword">Project</label>
                                                             <select class="form-control" ng-model="mat_project" name="mat_project" id="mat_project">
                                                                 <option value="" disabled>select</option>
                                                                 <option ng-repeat="Proj in ProjectList" value=""></option>
@@ -136,34 +136,13 @@
                                                             <input type="text" class="form-control" ng-model="mat_req_id" name="mat_req_id" id="mat_req_id" placeholder="Material Request ID">
                                                         </div>
 
-                                                       
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1">Project Start Date</label>
-                                                            <input type="text" class="form-control" id="mat_proj_strt_date" ng-model="mat_proj_strt_date" name="mat_proj_strt_date" placeholder="dd-mm-yy">
-                                                        </div>
-
-
-
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1">Date Of Delivery</label>
-                                                            <input type="text" class="form-control" id="mat_dt_delvry" ng-model="mat_dt_delvry" name="mat_dt_delvry" placeholder="dd-mm-yy">
-                                                        </div>
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1">Delivery Location</label>
-                                                            <input type="text" class="form-control" id="mat_del_loc" ng-model="mat_del_loc" name="mat_del_loc" placeholder="Delivery Location">
-                                                        </div>
+                                                      
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Remarks</label>
                                                             <textarea class="form-control" id="mat_remarks" ng-model="mat_remarks" name="mat_remarks" placeholder="Remarks"></textarea>
                                                             <input type="hidden" id="hdnmareqid" />
                                                         </div>
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputpassword">Issuing Project</label>
-                                                            <select class="form-control" ng-model="mat_project" name="mat_project" id="mat_project">
-                                                                <option value="" disabled>select</option>
-                                                                <option ng-repeat="Proj in ProjectList" value=""></option>
-                                                            </select>
-                                                        </div>
+                                                        
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Reason for Adjustment</label>
                                                             <textarea class="form-control" id="mat_remarks" ng-model="mat_remarks" name="mat_remarks" placeholder="Remarks"></textarea>
@@ -175,14 +154,16 @@
                                                             <label for="exampleInputEmail">Select Item</label>
                                                       
                                                         <div id="purchasedetails">
-                                                            <!-- <table id="tblitem">
+                                                            <table id="tblitem">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>S.No</th>
                                                                         <th>Item Id</th>
                                                                         <th>Description</th>
-                                                                        <th>Qty</th>
                                                                         <th>UM</th>
+                                                                        <th>Qty in Hand</th>
+                                                                        <th>New Qty</th>
+                                                                        <th>Qty Difference</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody id="itembody">
@@ -192,6 +173,8 @@
                                                                         <td><input type="text" name="description_$index" ng-model="item.description" id="" class="form-control" readonly></td>
                                                                         <td width="150"><input ng-model="item.quantity" id="" type="text" class="form-control"></td>
                                                                         <td width="150"><input ng-model="item.unitmeasure" id="" type="text" class="form-control" readonly></td>
+                                                                        <td width="150"><input ng-model="item.unitmeasure" id="" type="text" class="form-control"></td>
+                                                                        <td width="150"><input ng-model="item.unitmeasure" id="" type="text" class="form-control" ></td>
                                                                         <td ng-show="$index!=0" ng-click="deletrow($index,item.Req_TransId)"><button type="button"><i class="fa fa-trash-o delete" style="font-size: 14px;padding: 05px;color:#d81b60;"></i></button></td>
                                                                         <td style="display:none;">
                                                                             <input type="hidden" id="" />
@@ -200,19 +183,8 @@
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
-                                                            </table> -->
-                                                            <ag-grid-angular
-                                                            style="width:105%; height:500px;min-height:200px;padding-left:100px"
-                                                            class="ag-theme-alpine"
-                                                            [rowData]="rowData"
-                                                            [columnDefs]="columnDefs"
-                                                            [pagination]="true" 
-                                                            [paginationAutoPageSize]="true"
-                                                            (rowClicked)='onRowClicked($event)'
-                                                            enableSorting
-                                                            enableFilter
-                                                            >
-                                                        </ag-grid-angular>
+                                                            </table>
+                                                         
                                                         </div> 
                                                     </div>
                                                     </div>
@@ -234,68 +206,7 @@
 
 
                         <div>
-                            <table id="tblReceiptVoucher">
-                                <caption>Receipt Voucher</caption>
-                                <tr>
-                                    <td></td>
-                                </tr>
-
-
-                                <tr>
-                                    <td></td>
-                                </tr>
-
-
-                                <tr>
-                                    <td>
-                                        <table>
-                                            <thead>Product-wise Details</thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td rowspan="2">Sr No.</td>
-                                                    <td rowspan="2" colspan="2">Product Description</td>
-                                                    <td rowspan="2">Refund Amount</td>
-                                                    <td colspan="2">CGST</td>
-                                                    <td colspan="2">SGST</td>
-                                                    <td colspan="2">IGST</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rate%</td>
-                                                    <td>Amount</td>
-                                                    <td>Rate%</td>
-                                                    <td>Amount</td>
-                                                    <td>Rate%</td>
-                                                    <td>Amount</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td colspan="2"></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td colspan="3">Total</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </td>
-                                </tr>
-
-                            </table>
+                           
                         </div>
 
 
@@ -533,15 +444,15 @@
                                                             <input type="text" class="form-control" id="mat_cnt_per_desgn" ng-model="mat_cnt_per_desgn" name="mat_cnt_per_desgn" placeholder="Contact Person Designation" readonly>
                                                         </div>
                                                         <div class="form-group col-md-4">
-                                                            <label for="exampleInputPassword1">Issuing Contact Person Name</label>
+                                                            <label for="exampleInputPassword1">Warehouse Contact Person Name</label>
                                                             <input type="text" class="form-control" id="mat_cnt_per_mobno" ng-model="mat_cnt_per_mobno" name="mat_cnt_per_mobno" placeholder="Contact Person Name">
                                                         </div>
                                                         <div class="form-group col-md-4">
-                                                            <label for="exampleInputPassword1">Issuing Contact Person Mobile No</label>
+                                                            <label for="exampleInputPassword1">Warehouse Contact Person Mobile No</label>
                                                             <input type="text" class="form-control" id="mat_cnt_per_mobno" ng-model="mat_cnt_per_mobno" name="mat_cnt_per_mobno" placeholder="Contact Person Mobile No">
                                                         </div>
                                                         <div class="form-group col-md-4">
-                                                            <label for="exampleInputPassword1">Issuing Contact Person Designation</label>
+                                                            <label for="exampleInputPassword1">Warehouse Contact Person Designation</label>
                                                             <input type="text" class="form-control" id="mat_cnt_per_desgn" ng-model="mat_cnt_per_desgn" name="mat_cnt_per_desgn" placeholder="Contact Person Designation" readonly>
                                                         </div>
                                                         <br />

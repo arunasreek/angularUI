@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./good-receipt-note.component.css']
 })
 export class GoodReceiptNoteComponent implements OnInit {
-
+  
+  sup_do_date:Date;
+  
   constructor() { }
 
   ngOnInit(): void {

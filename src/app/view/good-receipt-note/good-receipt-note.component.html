@@ -5,10 +5,10 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">PurchaseOrder List</a></li>
-                    <li><a href="#tab_1" id="primarytab" data-toggle="tab">PurchaseOrder Details</a></li>
+                    <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">GRN List</a></li>
+                    <li><a href="#tab_1" id="primarytab" data-toggle="tab">GRN Details</a></li>
                     <li><a href="#tab_2" id="secondtab" data-toggle="tab">Shipping Details</a></li>
-                    <li><a href="#tab_3" id="thirdtab" data-toggle="tab">Invoiceing Details</a></li>
+                    <!-- <li><a href="#tab_3" id="thirdtab" data-toggle="tab">Invoiceing Details</a></li> -->
                     <li><a href="#tab_4" id="thirdtab" data-toggle="tab">Accounting Entry</a></li>
                 </ul>
                 <div class="tab-content">
@@ -20,7 +20,7 @@
                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">PurchaseOrder ID</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">GRN ID</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Supplier Name</th>
                                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
@@ -88,7 +88,7 @@
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
-                                        PurchaseOrder Details
+                                        GRN Details
                                     </a>
                                 </h4>
                             </div>
@@ -138,11 +138,11 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputEmail1">Quotation ID</label>
+                                                            <label for="exampleInputEmail1">Purchase Order ID</label>
                                                             <input type="text" class="form-control" data-target="#purorder_quo_modal" id="pur_ord_quo_id" data-toggle="modal" ng-model="pur_ord_quo_id" name="pur_ord_quo_id"  placeholder="&#61442;" style="font-family: FontAwesome;">
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputEmail1"><span style="color:blue;">Purchase Order ID</span><span style="color:#d81b60;">*</span></label>
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">GRN ID</span><span style="color:#d81b60;">*</span></label>
                                                             <input type="text" class="form-control" id="pur_order_id" placeholder="Purchase Order ID" ng-model="pur_order_id" name="pur_order_id" required>
 
                                                         </div>
@@ -164,6 +164,26 @@
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputFile">Supplier Address</label>
                                                             <textarea class="form-control" id="pur_order_sup_add" ng-model="pur_order_sup_add" name="pur_order_sup_add" readonly></textarea>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Supplier DO ID</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_id" placeholder="Purchase Order ID" ng-model="pur_order_id" name="pur_order_id" required>
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Supplier DO Date</span><span style="color:#d81b60;">*</span></label>
+                                                            <!-- <input type="text" class="form-control" id="pur_order_id" placeholder="Purchase Order ID" ng-model="pur_order_id" name="pur_order_id" required> -->
+                                                            <input type="text"
+                                                            placeholder="dd-mm-yy"
+                                                            class="form-control"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="sup_do_date" > 
+                                                        
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Remarks</label>
+                                                            <textarea class="form-control" id="mat_remarks" ng-model="mat_remarks" name="mat_remarks" placeholder="Remarks"></textarea>
+                                                            <input type="hidden" id="hdnmareqid" />
                                                         </div>
                                                         <!-- 	<div class="form-group col-md-3">
                                                           <label for="exampleInputPassword1">Start Date / Renewed Date</label>
@@ -192,11 +212,12 @@
                                                                         <th>Description</th>
                                                                         <th>Qty</th>
                                                                         <th>UM</th>
-                                                                        <th>Price</th> 
-                                                                        <th>Tax Amount</th>   
-                                                                        <th>Discount Type</th>                                                                   
-                                                                        <th>Discount</th>                                                                                                                                             
-                                                                        <th>Total Amount</th>
+                                                                        <th>Warehouse</th> 
+                                                                        <th>Floor</th>   
+                                                                        <th>Row</th>                                                                   
+                                                                        <th>Rack</th>                                                                                                                                             
+                                                                        <th>Manftg. Date</th>
+                                                                        <th>Expiry Date</th>
                                                                     </tr>
                                                                 </thead>                                                                
                                                                 <tbody id="txtbody">
@@ -206,18 +227,12 @@
                                                                         <td><input type="text" name="description_$index" ng-model="item.description" id="description" class="form-control" readonly></td>
                                                                         <td width="150"><input ng-model="item.quantity" id="quantity" type="text" class="form-control"></td>
                                                                         <td width="150"><input ng-model="item.unitmeasure" id="unitmeasure" type="text" class="form-control" readonly></td>
-                                                                        <td><input ng-model="item.price" id="price" type="text" class="form-control" ng-keyup="GetOrderTaxamount($index)"></td>
-                                                                        <td><input ng-model="item.taxamt" id="taxamt" type="text" class="form-control"></td>
-                                                                        <td width="150">
-                                                                            <select ng-model="item.distype" id="distype" name="discnttype" class="form-control" ng-change="Getclearamt($index)">
-                                                                                <option value="" selected>Select</option>
-                                                                                <option value="A">Amount</option>
-                                                                                <option value="P">Percentage</option>
-                                                                            </select>
-                                                                        </td>
-                                                                        <td><input ng-model="item.discountamt" id="discountamt" type="text" class="form-control" ng-keyup="GetcaltotAmt($index)"></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
                                                                         <td><input ng-model="item.totamt" id="totamt" type="text" class="form-control"></td>
-
+                                                                        <td><input ng-model="item.totamt" id="totamt" type="text" class="form-control"></td>
                                                                         <td ng-click="deletrow($index,item.PQTrans_Id)"></td>
                                                                         <td style="display:none;">
                                                                             <input type="hidden" id="hiditemid" />
@@ -453,7 +468,7 @@
 
                                                     <div class="box-body">
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputEmail1"><span style="color:blue;">Name Of Receiving Company</span><span style="color:#d81b60;">*</span></label>
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Name Of Supplier Company</span><span style="color:#d81b60;">*</span></label>
                                                             <input type="text" class="form-control"   ng-model="pur_order_rec_compny" name="pur_order_rec_compny" placeholder="Name Of Receiving Company" required>
                                                         </div>
                                                         <div class="form-group col-md-3">
@@ -475,7 +490,7 @@
                                                             <input type="text" class="form-control" id="pur_order_fax" ng-model="pur_order_fax" name="pur_order_fax" placeholder="Fax">
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputpassword"><span style="color:blue;">Receiving Company Tax ID</span><span style="color:#d81b60;">*</span></label>
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Supplier Company Tax ID</span><span style="color:#d81b60;">*</span></label>
                                                             <input type="text" class="form-control" id="pur_order_recng_com_tax_id" ng-model="pur_order_recng_com_tax_id" name="pur_order_recng_com_tax_id" placeholder="Receiving Company Tax ID" required>
                                                         </div>
                                                         <div class="form-group col-md-3">
@@ -509,25 +524,29 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1"><span style="color:blue;">Date Of Delivery</span><span style="color:#d81b60;">*</span></label>
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Date Of Shipping</span><span style="color:#d81b60;">*</span></label>
                                                             <input type="text" class="form-control" id="pur_order_dt_delvry" ng-model="pur_order_dt_delvry" name="pur_order_dt_delvry" placeholder="dd/mm/yy" required>
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1"><span style="color:blue;">Delivery Country</span><span style="color:#d81b60;">*</span></label>
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Expected Date of Delivery</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_dt_delvry" ng-model="pur_order_dt_delvry" name="pur_order_dt_delvry" placeholder="dd/mm/yy" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Origin Country</span><span style="color:#d81b60;">*</span></label>
                                                             <input type="text" class="form-control" id="pur_order_del_loc" ng-model="pur_order_del_cntry" name="pur_order_del_cntry" placeholder="Delivery Country" required>
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1"><span style="color:blue;">Delivery State</span><span style="color:#d81b60;">*</span></label>
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Origin State</span><span style="color:#d81b60;">*</span></label>
                                                             <input type="text" class="form-control" id="pur_order_del_loc" ng-model="pur_order_del_state" name="pur_order_del_state" placeholder="Delivery State" required>
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputPassword1"><span style="color:blue;">Delivery City</span><span style="color:#d81b60;">*</span></label>
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Origin City</span><span style="color:#d81b60;">*</span></label>
                                                             <input type="text" class="form-control" id="pur_order_del_loc" ng-model="pur_order_del_city" name="pur_order_del_city" placeholder="Delivery City" required>
                                                         </div>
                                                         
                                                        
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputpassword"><span style="color:blue;">Delivery Address</span><span style="color:#d81b60;">*</span></label>
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Origin Address</span><span style="color:#d81b60;">*</span></label>
                                                             <textarea class="form-control" id="pur_order_del_add" ng-model="pur_order_del_add" name="pur_order_del_add" placeholder="Delivery Address" required></textarea>
                                                         </div>
                                                         <div class="form-group col-md-3">

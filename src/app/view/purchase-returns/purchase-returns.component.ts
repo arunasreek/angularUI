@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./purchase-returns.component.css']
 })
 export class PurchaseReturnsComponent implements OnInit {
-
+  sup_do_date:Date;
   constructor() { }
 
   ngOnInit(): void {

@@ -5,9 +5,9 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">PurchaseOrder List</a></li>
-                    <li><a href="#tab_1" id="primarytab" data-toggle="tab">PurchaseOrder Details</a></li>
-                    <li><a href="#tab_2" id="secondtab" data-toggle="tab">Shipping Details</a></li>
+                    <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">Supplier Invoice List</a></li>
+                    <li><a href="#tab_1" id="primarytab" data-toggle="tab">Supplier Invoice Details</a></li>
+                    <!-- <li><a href="#tab_2" id="secondtab" data-toggle="tab">Shipping Details</a></li> -->
                     <li><a href="#tab_3" id="thirdtab" data-toggle="tab">Invoiceing Details</a></li>
                     <li><a href="#tab_4" id="thirdtab" data-toggle="tab">Accounting Entry</a></li>
                 </ul>
@@ -20,11 +20,11 @@
                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">PurchaseOrder ID</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Supplier Invoice ID</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Supplier Name</th>
-                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
+                                             <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th> 
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th>  -->
 
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Supplier Contact Person</th>
 
@@ -41,16 +41,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="Qte in GetPurchaseQuatationList">
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-                                                <td></td>
-                                                <td></td> 
+                                        <tr *ngFor="let item of purchaseOrder?.GetPurchaseOrderDet">
+                                            <td>{{item?.POrderID}}</td>
+                                            <td>{{item?.Supplier_Name}}</td>
                                             <td></td>
                                             <td></td>
                                             <td>
-                                                <span class="glyphicon glyphicon-ok-circle" style="color:#d81b60;cursor:pointer;font-size:20px;padding:05px;" title="approve"></span>
+                                                <span class="glyphicon glyphicon-ok-circle" style="color:#c292a4;cursor:pointer;font-size:20px;padding:05px;" title="approve"></span>
                                                 <span class="glyphicon glyicon-remove-circle" style="color:#d81b60;cursor:pointer; font-size:20px;padding:05px;" title="reject"></span>
                                             </td>
                                             <td>
@@ -112,37 +109,37 @@
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword"><span style="color:blue;">Employer ID</span><span style="color:#d81b60;">*</span></label>
                                                             <select class="form-control" ng-model="pur_order_emp_id" name="pur_order_emp_id" required ng-change="GetEmployeerbarchllistdet()">
-                                                                <option value="0" disabled>select</option>
-                                                                <option ng-repeat="empr in GetEmployeeriD" value=""></option>
+                                                                <option value="0">select</option>
+                                                                <option *ngFor="let item of employerId" value="{{item.EmployerID}}">{{item.EmployerName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword"><span style="color:blue;">Employer Branch</span><span style="color:#d81b60;">*</span></label>
                                                             <select class="form-control" ng-model="pur_order_emp_brnch" name="pur_order_emp_brnch" required>
-                                                                <option value="0" disabled>select</option>
-                                                                <option ng-repeat="branch in GetEmployeerbarchllist" value=""></option>
+                                                                <option value="0">select</option>
+                                                                <option *ngFor="let item of branchList" value="{{item.BranchId}}">{{item.BranchName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword"><span style="color:blue;">Organisation Unit</span><span style="color:#d81b60;">*</span></label>
                                                             <select class="form-control" ng-model="pur_order_orgunit" name="pur_order_orgunit" required>
-                                                                <option value="0" disabled>select</option>
-                                                                <option ng-repeat="org in OrganizationList" value=""></option>
+                                                                <option value="0">select</option>
+                                                                <option *ngFor="let item of organizationlist" value="{{item.Org_ID}}">{{item.OrganizationName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword"><span style="color:blue;">Project</span><span style="color:#d81b60;">*</span></label>
                                                             <select class="form-control" ng-model="pur_order_project" name="pur_order_project" required>
-                                                                <option value="0" disabled>select</option>
-                                                                <option ng-repeat="Proj in ProjectList" value=""></option>
+                                                                <option value="0">select</option>
+                                                                <option *ngFor="let item of projectList?.UpdateProjectDetails " value="{{item?.ProjectID}}">{{item?.ProjectName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputEmail1">Quotation ID</label>
+                                                            <label for="exampleInputEmail1">Purchase Order ID</label>
                                                             <input type="text" class="form-control" data-target="#purorder_quo_modal" id="pur_ord_quo_id" data-toggle="modal" ng-model="pur_ord_quo_id" name="pur_ord_quo_id"  placeholder="&#61442;" style="font-family: FontAwesome;">
                                                         </div>
                                                         <div class="form-group col-md-3">
-                                                            <label for="exampleInputEmail1"><span style="color:blue;">Purchase Order ID</span><span style="color:#d81b60;">*</span></label>
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Supplier Invoice ID</span><span style="color:#d81b60;">*</span></label>
                                                             <input type="text" class="form-control" id="pur_order_id" placeholder="Purchase Order ID" ng-model="pur_order_id" name="pur_order_id" required>
 
                                                         </div>
@@ -236,7 +233,14 @@
                                                     <!--  <div class="box-footer">
                                                       <button type="submit" class="btn btn-primary">Submit</button>
                                                     </div> -->
-
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Save</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="Isupdate" ng-click="SetPurchaseOrderdetails()">Update</button>
+                        
+                                                    <button type="button" class="btn bg-maroon margin" ng-click="clearPurchaseOrderdata()">Cancel</button>
+                                                    <button type="button" class="btn bg-maroon margin" >Exit</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Approve</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Reject</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Post</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -312,21 +316,21 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title" style="text-align:center">Select Item</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="box-body">
                                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                                 <div class="row">
-                                                     <div class="col-sm-6">
+                                                     <!-- <div class="col-sm-6">
                                                             <label for="exampleinput1">Supplier ID</label>
                                                             <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <label for="exampleinput1">Supplier</label>
                                                             <input type="text" id="desc" ng-model="desc" name="desc" />
-                                                        </div>                                                     
+                                                        </div>                                                      -->
                                                     <div id="prdct_details" class="row">
                                                         <table class="table table-bordered table-striped dataTable" role="grid">
                                                             <thead>
@@ -358,7 +362,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
                                     </div>
                                 </div>
                             </div>
@@ -367,14 +371,14 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title" style="text-align:center">Select Item</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="box-body">
                                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                                 <div class="row">
-                                                     <div class="col-sm-6">
+                                                     <!-- <div class="col-sm-6">
                                                             <label for="exampleinput1">Supplier ID</label>
                                                             <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
                                                         </div>
@@ -388,7 +392,7 @@
                                                     <div class="text-right col-sm-12">
                                                         <label for="exampleinput">Search</label>
                                                         <input type="search" id="pur_search" ng-model="pur_search" name="pur_search" />
-                                                    </div> 
+                                                    </div>  -->
 
                                                     <div id="prdct_details" class="row">
                                                         <table class="table table-bordered table-striped dataTable" role="grid">
@@ -397,17 +401,17 @@
                                                                     <th>&nbsp;</th>
                                                                     <th>Supplier ID</th>
                                                                     <th>Supplier Name</th>
-                                                                     <th>UM</th>
+                                                                     <!-- <th>UM</th>
                                                                         <th>Available Quantity</th>
-                                                                        <th>Reorder Level Quantity</th> 
+                                                                        <th>Reorder Level Quantity</th>  -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr ng-repeat="suplist in GetSupplieritemsList">
-                                                                    <td><input type="radio" name="supitem" ng-click="GetindividuvalSupdetforQta(suplist)" /></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>  
+                                                                <tr *ngFor="let item of supplierList?.GetSupplierList">
+                                                                    <td><input type="radio" name="supitem" ng-click="GetindividuvalSupdet(suplist)" /></td>
+                                                                    <td>{{item?.Supplier_ID}}</td>
+                                                                    <td>{{item?.Supplier_Name}}</td>
+                                                                </tr>            
                                                             </tbody>                                                            
                                                         </table>
                                                         <input type="hidden" id="hdnsuppid" />
@@ -418,7 +422,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
                                     </div>
                                 </div>
                             </div>
@@ -699,8 +703,12 @@
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1" style="color:blue;">Date</label><span style="color:red">*</span>
-                                                            <input type="text" class="form-control" ng-model="pur_ord_date" name="pur_ord_date" id="pur_ord_date" placeholder="dd/mm/yy" required>
-
+                                                            <!-- <input type="text" class="form-control" ng-model="pur_ord_date" name="pur_ord_date" id="pur_ord_date" placeholder="dd/mm/yy" required> -->
+                                                            <input type="text"
+                                                            placeholder="dd-mm-yy"
+                                                            class="form-control"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="pur_ord_date" > 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1" style="color:blue;">Voucher No</label><span style="color:red">*</span>

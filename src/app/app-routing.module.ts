@@ -104,6 +104,16 @@ import { GoodReceiptNoteComponent } from './view/good-receipt-note/good-receipt-
 import { SalesReturnsComponent } from './view/sales-returns/sales-returns.component';
 import { PurchaseReturnsComponent } from './view/purchase-returns/purchase-returns.component';
 import { SupplierComponent } from './view/supplier/supplier.component';
+import { AllocationSegmentsComponent } from './view/finance/allocation-segments/allocation-segments.component';
+import { FisicalYearComponent } from './view/settings/fisical-year/fisical-year.component';
+import { FinfisYearClosingComponent } from './view/settings/finfis-year-closing/finfis-year-closing.component';
+import { FinfisMonthClosingComponent } from './view/settings/finfis-month-closing/finfis-month-closing.component';
+import { FinancialYearComponent } from './view/settings/financial-year/financial-year.component';
+import { BudgetingOfGLsComponent } from './view/budgeting-of-gls/budgeting-of-gls.component';
+import { CreditNoteComponent } from './view/financial/credit-note/credit-note.component';
+import { DebitNoteComponent } from './view/financial/debit-note/debit-note.component';
+
+
 
 
 const routes: Routes = [
@@ -203,8 +213,14 @@ const routes: Routes = [
   {path:'sales-returns',component:SalesReturnsComponent},
   {path:'purchase-returns',component:PurchaseReturnsComponent},
   {path:'supplier',component:SupplierComponent},
-
-
+  {path:'allocation-segments',component:AllocationSegmentsComponent},
+  {path:'fisical-year',component:FisicalYearComponent},
+  {path:'finfis-year-closing',component:FinfisYearClosingComponent},
+  {path:'finfis-month-closing',component:FinfisMonthClosingComponent},
+  {path:'financial-year',component:FinancialYearComponent},
+  {path:'budgeting-of-gls',component:BudgetingOfGLsComponent},
+  {path:'credit-note',component:CreditNoteComponent},
+  {path:'debit-note',component:DebitNoteComponent},
 ];
 
 @NgModule({
