@@ -1,0 +1,879 @@
+
+<script src="~/Content/Scripts/Procurment.js"></script>
+<section class="content">
+    <div class="row" ng-controller="PurchaseOrderController" id="PurchaseOrderController">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">PurchaseOrder List</a></li>
+                    <li><a href="#tab_1" id="primarytab" data-toggle="tab">Group Definition</a></li>
+                    <li><a href="#tab_2" id="secondtab" data-toggle="tab">Group Users</a></li>
+                    <li><a href="#tab_3" id="thirdtab" data-toggle="tab">Forms/reports Access</a></li>
+                    <li><a href="#tab_4" id="thirdtab" data-toggle="tab">Organisation Unit Access</a></li>
+                </ul>
+                <div class="tab-content">
+
+
+                    <div class="tab-pane active in" id="tab_a">
+                        <div class="row divheight">
+                            <div class="col-lg-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">PurchaseOrder ID</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Supplier Name</th>
+                                             <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th>  -->
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Supplier Contact Person</th>
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Delivery</th>
+                                            <!-- concatenation Of Office Contact Person First , Middle  , LAst Names -->
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Status</th>
+
+
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Actions</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr >
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <span class="glyphicon glyphicon-ok-circle" style="color:#c292a4;cursor:pointer;font-size:20px;padding:05px;" title="approve"></span>
+                                                <span class="glyphicon glyicon-remove-circle" style="color:#d81b60;cursor:pointer; font-size:20px;padding:05px;" title="reject"></span>
+                                            </td>
+                                            <td>
+                                                
+                                                <a href="/Jobs/jb/PurchaseOrderListView?id" data-lity>
+                                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="GetEditPurchaseOrderalllist(Qte.ep_id)"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="PurchaseOrderDelete(Qte)"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                    <!--   <tfoot>
+                                    <tr>
+                                    <th rowspan="1" colspan="1">Rendering engine</th>
+                                    <th rowspan="1" colspan="1">Browser</th>
+                                    <th rowspan="1" colspan="1">Platform(s)</th>
+                                    <th rowspan="1" colspan="1">Engine version</th>
+                                    <th rowspan="1" colspan="1">CSS grade</th></tr>
+                                    </tfoot> -->
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab_1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Group Definition Details
+                                    </a>
+                                </h4>
+                            </div>
+                            <!-- in -->
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                                  <h3 class="box-title">Quick Example</h3>
+                                                </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                                <form role="form">
+
+                                                    <div class="box-body">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Employer ID</span><span style="color:#d81b60;">*</span></label>
+                                                            <select class="form-control" ng-model="pur_order_emp_id" name="pur_order_emp_id" required ng-change="GetEmployeerbarchllistdet()">
+                                                                <option value="0">select</option>
+                                                                <option  value=""></option>
+                                                            </select>
+                                                        </div>
+                                                       
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Employer Branch</span><span style="color:#d81b60;">*</span></label>
+                                                            <select class="form-control" ng-model="pur_order_emp_brnch" name="pur_order_emp_brnch" required>
+                                                                <option value="0">select</option>
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Organisation Unit</span><span style="color:#d81b60;">*</span></label>
+                                                            <select class="form-control" ng-model="pur_order_orgunit" name="pur_order_orgunit" required>
+                                                                <option value="0">select</option>
+                                                                <option  value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Project</span><span style="color:#d81b60;">*</span></label>
+                                                            <select class="form-control" ng-model="pur_order_project" name="pur_order_project" required>
+                                                                <option value="0">select</option>
+                                                                <option  value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputpassword"><span style="color:blue;">Employer Name</span><span style="color:#d81b60;">*</span></label>
+                                                                <select class="form-control" ng-model="pur_order_emp_id" name="pur_order_emp_id" required ng-change="GetEmployeerbarchllistdet()">
+                                                                    <option value="0">select</option>
+                                                                    <option  value=""></option>
+                                                                </select>
+                                                            </div>
+                                                            
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputpassword"><span style="color:blue;">Group Active Status</span><span style="color:#d81b60;">*</span></label>
+                                                                    <select class="form-control" ng-model="pur_order_emp_id" name="pur_order_emp_id" required ng-change="GetEmployeerbarchllistdet()">
+                                                                        <option value="0">select</option>
+                                                                        <option  value="">Active</option>
+                                                                        <option  value="">Inactive</option>
+                                                                    </select>
+                                                                </div>
+                                                                
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputpassword"><span style="color:blue;">Group Type</span><span style="color:#d81b60;">*</span></label>
+                                                                        <select class="form-control" ng-model="pur_order_emp_id" name="pur_order_emp_id" required ng-change="GetEmployeerbarchllistdet()">
+                                                                            <option value="0">select</option>
+                                                                            <option  value="">Internal</option>
+                                                                            <option  value="">External</option>
+                                                                        </select>
+                                                                    </div>
+                                                     
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputFile">Group Description</label>
+                                                            <textarea class="form-control" id="pur_order_sup_add" ng-model="pur_order_sup_add" name="pur_order_sup_add"></textarea>
+                                                        </div>
+                                                        <!-- 	<div class="form-group col-md-3">
+                                                          <label for="exampleInputPassword1">Start Date / Renewed Date</label>
+                                                          <input type="date" class="form-control"  id="datepicker" placeholder="Start Date / Renewal Date">
+                                                        </div>
+                                                         -->
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+                                                        <br />
+                                                        <br />
+                                                        <input type="hidden" id="hdnindex" />
+                                                        <input type="hidden" id="hdnoderid" />
+                                                        <!-- <div class="form-group col-md-10">
+                                                            <label for="exampleInputEmail">Select Item</label>
+                                                        </div> -->
+                                                        <br />
+                                                        <div class="row">
+                                                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                                <thead>
+                                                                    <tr role="row">
+                                                                        <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="3" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Group Access Days</th>
+                                                                        
+                                                                    </tr>
+                                
+                                                                    <tr role="row">
+                                                                        <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Day</th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Start time</th>
+                                                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">End time</th>
+                                                                          
+                                                                    </tr>
+                                                                </thead>
+                                                                
+                                                                <tbody>
+                                                                    <tr >
+                                                                        <td>Sunday</td>
+                                                                        <td align="center"><input name="txtSun_Start_Hour" value="00:00" type="text" class="TextBox" onBlur="ValidateTime(this.value,'Start Time',this)" size="6" maxlength="5" ></td>
+                                <td align="center"> <input name="txtSun_End_Hour" value="23:59" type="text" class="TextBox" onBlur="ValidateTime(this.value,'End Time',this)" size="6" maxlength="5" > </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr >
+                                                                        <td>Monday</td>
+                                                                        <td align="center"><input name="txtSun_Start_Hour" value="00:00" type="text" class="TextBox" onBlur="ValidateTime(this.value,'Start Time',this)" size="6" maxlength="5" ></td>
+                                <td align="center"> <input name="txtSun_End_Hour" value="23:59" type="text" class="TextBox" onBlur="ValidateTime(this.value,'End Time',this)" size="6" maxlength="5" > </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr >
+                                                                        <td>Tuesday</td>
+                                                                        <td align="center"><input name="txtSun_Start_Hour" value="00:00" type="text" class="TextBox" onBlur="ValidateTime(this.value,'Start Time',this)" size="6" maxlength="5" ></td>
+                                                                        <td align="center"> <input name="txtSun_End_Hour" value="23:59" type="text" class="TextBox" onBlur="ValidateTime(this.value,'End Time',this)" size="6" maxlength="5" > </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr >
+                                                                        <td>Wednesday</td>
+                                                                        <td align="center"><input name="txtSun_Start_Hour" value="00:00" type="text" class="TextBox" onBlur="ValidateTime(this.value,'Start Time',this)" size="6" maxlength="5" ></td>
+                                                                        <td align="center"> <input name="txtSun_End_Hour" value="23:59" type="text" class="TextBox" onBlur="ValidateTime(this.value,'End Time',this)" size="6" maxlength="5" > </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr >
+                                                                        <td>Thursday</td>
+                                                                        <td align="center"><input name="txtSun_Start_Hour" value="00:00" type="text" class="TextBox" onBlur="ValidateTime(this.value,'Start Time',this)" size="6" maxlength="5" ></td>
+                                <td align="center"> <input name="txtSun_End_Hour" value="23:59" type="text" class="TextBox" onBlur="ValidateTime(this.value,'End Time',this)" size="6" maxlength="5" > </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr >
+                                                                        <td>Friday</td>
+                                                                        <td align="center"><input name="txtSun_Start_Hour" value="00:00" type="text" class="TextBox" onBlur="ValidateTime(this.value,'Start Time',this)" size="6" maxlength="5" ></td>
+                                                                        <td align="center"> <input name="txtSun_End_Hour" value="23:59" type="text" class="TextBox" onBlur="ValidateTime(this.value,'End Time',this)" size="6" maxlength="5" > </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr >
+                                                                        <td>Saturday</td>
+                                                                        <td align="center"><input name="txtSun_Start_Hour" value="00:00" type="text" class="TextBox" onBlur="ValidateTime(this.value,'Start Time',this)" size="6" maxlength="5" ></td>
+                                <td align="center"> <input name="txtSun_End_Hour" value="23:59" type="text" class="TextBox" onBlur="ValidateTime(this.value,'End Time',this)" size="6" maxlength="5" > </td>
+                                                                        
+                                                                    </tr>
+                                
+                                
+                                
+                                                                </tbody>
+                                                                <!--   <tfoot>
+                                                                <tr>
+                                                                <th rowspan="1" colspan="1">Rendering engine</th>
+                                                                <th rowspan="1" colspan="1">Browser</th>
+                                                                <th rowspan="1" colspan="1">Platform(s)</th>
+                                                                <th rowspan="1" colspan="1">Engine version</th>
+                                                                <th rowspan="1" colspan="1">CSS grade</th></tr>
+                                                                </tfoot> -->
+                                                            </table>
+
+
+                                                           
+                                                        </div>
+
+                                                    </div>
+
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
+                                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div> -->
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Save</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="Isupdate" ng-click="SetPurchaseOrderdetails()">Update</button>
+                        
+                                                    <button type="button" class="btn bg-maroon margin" ng-click="clearPurchaseOrderdata()">Cancel</button>
+                                                    <button type="button" class="btn bg-maroon margin" >Exit</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Approve</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Reject</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-show="!Isupdate" ng-click="SetPurchaseOrderdetails()">Post</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="epid" ng-model="epid" name="epid" />
+                        </div>
+
+                        <div class="modal fade" id="pur_order_item_id" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                     <div class="col-sm-6">
+                                                            <label for="exampleinput1">Product ID</label>
+                                                            <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label for="exampleinput1">Description</label>
+                                                            <input type="text" id="desc" ng-model="desc" name="desc" />
+                                                        </div> 
+                                                     <div class="text-center">
+                                                        
+                                                    </div>
+                                                    <div class="text-right col-sm-12">
+                                                        <label for="exampleinput">Search</label>
+                                                        <input type="search" id="pur_search" ng-model="pur_search" name="pur_search" />
+                                                    </div> 
+
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Item ID</th>
+                                                                    <th>Item Description</th>
+                                                                    <th>UM</th>
+                                                                     <th>Available Quantity</th>
+                                                                    <th>Reorder Level Quantity</th> 
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="item in GetStockitemsList">
+                                                                    <td><input type="radio" name="Empcheckgrp" id="" value="" ng-model="Itemcheck" ng-click="GetItemdet(item)" /></td>
+                                                                    <td style="display:none;"><label id=""></label></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="purorder_quo_modal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                     <!-- <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier ID</label>
+                                                            <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier</label>
+                                                            <input type="text" id="desc" ng-model="desc" name="desc" />
+                                                        </div>                                                      -->
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Quotation ID</th>
+                                                                    <th>Supplier Name</th>
+                                                                     <th>UM</th>
+                                                                        <th>Available Quantity</th>
+                                                                        <th>Reorder Level Quantity</th> 
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="Qta in GetPurQuatationList">
+                                                                    <td><input type="radio" name="Quatation" ng-click="GetQuatationdetbyid(Qta,$index)" /></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                     <td></td>
+                                                                        <td></td>
+                                                                        <td></td> 
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="pur_order_sup" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                     <!-- <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier ID</label>
+                                                            <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier</label>
+                                                            <input type="text" id="desc" ng-model="desc" name="desc" />
+                                                        </div> 
+                                                     <div class="text-center">
+                                                        
+                                                    </div>
+                                                    <div class="text-right col-sm-12">
+                                                        <label for="exampleinput">Search</label>
+                                                        <input type="search" id="pur_search" ng-model="pur_search" name="pur_search" />
+                                                    </div>  -->
+
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Supplier ID</th>
+                                                                    <th>Supplier Name</th>
+                                                                     <!-- <th>UM</th>
+                                                                        <th>Available Quantity</th>
+                                                                        <th>Reorder Level Quantity</th>  -->
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr >
+                                                                    <td><input type="radio" name="supitem" ng-click="GetindividuvalSupdet(suplist)" /></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>            
+                                                            </tbody>                                                            
+                                                        </table>
+                                                        <input type="hidden" id="hdnsuppid" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="tab_2">
+                        <!-- <div class="panel panel-default"> -->
+                            <!-- <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Shipping Details
+                                    </a>
+                                </h4>
+                            </div> -->
+                            <!-- in -->
+                            <a ><button type="submit" class="btn bg-maroon margin" style="float:right;margin-bottom: 20px;"><i class="fa fa-plus"></i>Add New User</button></a>
+                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">User</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="2" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;text-align:center">Status</th>
+                                         <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th>  -->
+
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="7" aria-label="Engine version: activate to sort column ascending" style="width: 136px; text-align:center">Group Access Time Schedule</th>
+
+
+                                       
+                                    </tr>
+
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;"><input type="text" class="TextBox" style="width:95%;" name="group_user_name" id="group_user_name" onkeyup="javascript:sendData(event);" onselectstart="(arguments[0]||window.event).cancelBubble=true;"></th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="2" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">SUN</th>
+                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">MON</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">TUE</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">WED</th> 
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">THU</th> 
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">FRI</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">SAT</th>
+
+                                       
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr >
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                           
+                                        </td>
+                                        <td>
+                                           
+                                        </td>
+                                    </tr>
+
+
+
+                                </tbody>
+                                <!--   <tfoot>
+                                <tr>
+                                <th rowspan="1" colspan="1">Rendering engine</th>
+                                <th rowspan="1" colspan="1">Browser</th>
+                                <th rowspan="1" colspan="1">Platform(s)</th>
+                                <th rowspan="1" colspan="1">Engine version</th>
+                                <th rowspan="1" colspan="1">CSS grade</th></tr>
+                                </tfoot> -->
+                            </table>
+                            <input type="hidden" id="epid" ng-model="epid" name="epid" />
+
+                            
+                        <!-- </div> -->
+
+                      
+
+                    </div>
+                     <div class="tab-pane" id="tab_3">
+                        <div class="panel panel-default">
+                            <!-- <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Invoicing Details
+                                    </a>
+                                </h4>
+                            </div> -->
+                            <!-- in -->
+                            <div style="margin-top:10px">
+                            <div class="form-group col-md-3">
+                                <label for="exampleInputpassword"><span style="color:blue;">Form Group</span><span style="color:#d81b60;">*</span></label>
+                                <select class="form-control" ng-model="pur_order_emp_id" name="pur_order_emp_id" required ng-change="GetEmployeerbarchllistdet()">
+                                    <option value="">All</option>
+                                    <option value="Access Control">Access Control</option>
+      <option value="Accrued Benefits &amp; Earning Records">Accrued Benefits &amp; Earning Records</option>
+      <option value="Alarm Management">Alarm Management</option>
+      <option value="Alerts">Alerts</option>
+      <option value="Allowances Reports">Allowances Reports</option>
+      <option value="Annual Bonus">Annual Bonus</option>
+      <option value="Applicants">Applicants</option>
+      <option value="Application Messages">Application Messages</option>
+      <option value="Applications Awaiting Approval">Applications Awaiting Approval</option>
+      <option value="Appraisals">Appraisals</option>
+      <option value="Asset Management">Asset Management</option>
+      <option value="Attendance System Interface">Attendance System Interface</option>
+      <option value="Audit &amp; Reconciliation Reports">Audit &amp; Reconciliation Reports</option>
+      <option value="Background Check">Background Check</option>
+      <option value="Badge Management">Badge Management</option>
+      <option value="Banks &amp; Accounts Reports">Banks &amp; Accounts Reports</option>
+      <option value="Benefit Planning &amp; Enrollment">Benefit Planning &amp; Enrollment</option>
+      <option value="Billing management">Billing management</option>
+      <option value="Business Line Classification">Business Line Classification</option>
+      <option value="Canada Taxes">Canada Taxes</option>
+      <option value="Career Planning">Career Planning</option>
+      <option value="Career Planning Reports">Career Planning Repots</option>
+      <option value="Change Password">Change Password</option>
+      <option value="Checks, Cash &amp; Deposits Reports">Checks, Cash &amp; Deposits Reports</option>
+      <option value="Checks, Cash &amp; Deposits Reports">Checks, Cash &amp; Deposits Reports</option>
+      <option value="Clients Management">Clients Management</option>
+      <option value="CNSS Reports">CNSS Reports</option>
+      <option value="COBRA">COBRA</option>
+      <option value="Commission Management">Commission Management</option>
+      <option value="Competencies">Competencies</option>
+      <option value="Competencies Reports">Competencies Reports</option>
+      <option value="Contract &amp; Hiring Reports">Contract &amp; Hiring Reports</option>
+      <option value="Contract Management">Contract Management</option>
+      <option value="Contracting &amp; Hiring">Contracting &amp; Hiring</option>
+      <option value="Cost Analysis Reports">Cost Analysis Reports</option>
+      <option value="Deductions Reports">Deductions Reports</option>
+      <option value="Disciplinary Actions">Disciplinary Actions</option>
+      <option value="Earning &amp; Benefits Reports">Earning &amp; Benefits Reports</option>
+      <option value="Edit Profile">Edit Profile</option>
+      <option value="Employee Contracts &amp; New Hire Reports">Employee Contracts &amp; New Hire Reports</option>
+      <option value="Employee Demographics">Employee Demographics</option>
+      <option value="Employee Housing">Employee Housing</option>
+      <option value="Employee Housing Management">Employee Housing Management</option>
+      <option value="Employee Job &amp; Compensations">Employee Job &amp; Compensations</option>
+      <option value="Employee Profile Reports">Employee Profile Reports</option>
+      <option value="End of Service Payroll">End of Service Payroll</option>
+      <option value="Exam/Procedures and Diagnosis">Exam/Procedures and Diagnosis</option>
+      <option value="Expense Sheet Request">Expense Sheet Request</option>
+      <option value="Export">Export</option>
+      <option value="Final Payroll">Final Payroll</option>
+      <option value="Financial Rules">Financial Rules</option>
+      <option value="Fiscal Year">Fiscal Year</option>
+      <option value="Forms">Forms</option>
+      <option value="Garnishments">Garnishments</option>
+      <option value="General">General</option>
+      <option value="GL/JV Reports">GL/JV Reports</option>
+      <option value="Grants Management ">Grants Management </option>
+      <option value="Health &amp; Safety">Health &amp; Safety</option>
+      <option value="Health &amp; Safety Reports">Health &amp; Safety Reports</option>
+      <option value="Help Desk">Help Desk</option>
+      <option value="Housing Reports">Housing Reports</option>
+      <option value="Hr Actions">Hr Actions</option>
+      <option value="HR-XML Web Services">HR-XML Web Services</option>
+      <option value="Import Oracle Hr Data Setup">Import Oracle Hr Data Setup</option>
+      <option value="Indemnity Payments">Indemnity Payments</option>
+      <option value="Indemnity Payments Reports">Indemnity Payments Reports</option>
+      <option value="Interfaces ">Interfaces </option>
+      <option value="Investment Fund Accumulated Amount Detail Reports">Investment Fund Accumulated Amount Detail Reports</option>
+      <option value="Investment Funds">Investment Funds</option>
+      <option value="Jasper Reports">Jasper Reports</option>
+      <option value="Job Advertisement">Job Advertisement</option>
+      <option value="Job Advt.awaiting Approval">Job Advt.awaiting Approval</option>
+      <option value="Job Catalogue">Job Catalogue</option>
+      <option value="Job Classification">Job Classification</option>
+      <option value="Job Classification Reports">Job Classification Reports</option>
+      <option value="Labor Allocation &amp; Distribution Reports">Labor Allocation &amp; Distribution Reports</option>
+      <option value="Labor Card">Labor Card</option>
+      <option value="Labor Distribution">Labor Distribution</option>
+      <option value="Latest Application">Latest Application</option>
+      <option value="Latest Offers">Latest Offers</option>
+      <option value="Latest Payment to Recruiter">Latest Payment to Recruiter</option>
+      <option value="Leave Accrual &amp; Balances">Leave Accrual &amp; Balances</option>
+      <option value="Leave and Attendance Management">Leave and Attendance Management</option>
+      <option value="Leave Management Reports">Leave Management Reports</option>
+      <option value="Leave plan">Leave plan</option>
+      <option value="Leave Request &amp; Return">Leave Request &amp; Return</option>
+      <option value="List of all Employees">List of all Employees</option>
+      <option value="Loans">Loans</option>
+      <option value="Loans Reports">Loans Reports</option>
+      <option value="Maintenance">Maintenance</option>
+      <option value="Managers and Supervisors ">Managers and Supervisors </option>
+      <option value="Mass Update">Mass Update</option>
+      <option value="My Page">My Page</option>
+      <option value="My Performance">My Performance</option>
+      <option value="Normal Payroll Cycle Schedule">Normal Payroll Cycle Schedule</option>
+      <option value="Number of Applicants">Number of Applicants</option>
+      <option value="Off-Cycle &amp; EOS Reports">Off-Cycle &amp; EOS Reports</option>
+      <option value="Off-Cycle Payroll">Off-Cycle Payroll</option>
+      <option value="Office Space Management">Office Space Management</option>
+      <option value="Onboarding">onboarding</option>
+      <option value="Onboarding Requests">Onboarding Requests</option>
+      <option value="Organization">Organization</option>
+      <option value="Organization &amp; Job Classification">Organization &amp; Job Classification</option>
+      <option value="Organization Management">Organization Management</option>
+      <option value="Organization Management Reports">Organization Management Reports</option>
+      <option value="Organization Unit">Organization Unit</option>
+      <option value="Others">Others</option>
+      <option value="Overtime Payment Reports">Overtime Payment Reports</option>
+      <option value="Overtime Pre-Approval Request ">Overtime Pre-Approval Request </option>
+      <option value="Parking Management">Parking Management</option>
+      <option value="Passport &amp; Visa">Passport &amp; Visa</option>
+      <option value="Passport &amp; Visa Reports">Passport &amp; Visa Reports</option>
+      <option value="Pay Slips Reports">Pay Slips Reports</option>
+      <option value="Payroll Closing">Payroll Closing</option>
+      <option value="Payroll General Setup">Payroll General Setup</option>
+      <option value="Payroll Management">Payroll Management</option>
+      <option value="Payroll Registers Reports">Payroll Registers Reports</option>
+      <option value="Payroll Summary Reports">Payroll Summary Reports</option>
+      <option value="Payroll Whiz">Payroll Whiz</option>
+      <option value="Pending Interviews">Pending Interviews</option>
+      <option value="Pension Fund Management">Pension Fund Management</option>
+      <option value="Performance &amp; Promotion Reports">Performance &amp; Promotion Reports</option>
+      <option value="Performance Appraisal">Performance Appraisal</option>
+      <option value="Performance Management">Performance Management</option>
+      <option value="Performance Reports">Performance Reports</option>
+      <option value="Philippines Payroll Reports">Philippines Payroll Reports</option>
+      <option value="Policies">Policies</option>
+      <option value="Policy Publishing">Policy Publishing</option>
+      <option value="Position &amp; Budgeting Reports">Position &amp; Budgeting Reports</option>
+      <option value="Position Budget">Position Budget</option>
+      <option value="Probation Assessment Reports">Probation Assessment Reports</option>
+      <option value="Probation Management">Probation Management</option>
+      <option value="Product Management">Product Management</option>
+      <option value="Progress Management">Progress Management</option>
+      <option value="Project Reports">Project Reports</option>
+      <option value="QM Indicators">QM Indicators</option>
+      <option value="Recruiter Contract">Recruiter Contract</option>
+      <option value="Recruiter Invoice">Recruiter Invoice</option>
+      <option value="Recruiters">Recruiters</option>
+      <option value="Recruitment">Recruitment</option>
+      <option value="Recruitment Reports">Recruitment Reports</option>
+      <option value="Redundancy">Redundancy</option>
+      <option value="Reference Letters and Certificates">Reference Letters and Certificates</option>
+      <option value="Reports">Reports</option>
+      <option value="Requisitions">Requisitions</option>
+      <option value="Residency Management">Residency Management</option>
+      <option value="Resources Scheduling">Resources Schedulint</option>
+      <option value="Retroactive Payroll">Retroactive Payroll</option>
+      <option value="Risk Management">Risk Management</option>
+      <option value="Salary Advance &amp; Loans Reports">Salary Advance &amp; Loans Reports</option>
+      <option value="Scheduled Interview">Scheduled Interview</option>
+      <option value="Search">Search</option>
+      <option value="Staffing &amp; Scheduling Reports">Staffing &amp; Scheduling Reports</option>
+      <option value="Statistics &amp; Counts Reports">Statistics &amp; Counts Reports</option>
+      <option value="Sticky Notes">Sticky Notes</option>
+      <option value="Succession Planning">Succession Planning</option>
+      <option value="Suggestion Box">Suggestion Box</option>
+      <option value="Tax &amp; Social Security Reports">Tax &amp; Social Security Reports</option>
+      <option value="Taxes &amp; Social Security Reports">Taxes &amp; Social Security Reports</option>
+      <option value="Tenure &amp; Seniority Reports">Tenure &amp; Seniority Reports</option>
+      <option value="Termination">Termination</option>
+      <option value="Termination, Transfers, &amp; Renewals Reports">Termination, Transfers, &amp; Renewals Reports</option>
+      <option value="Termination, Transfers, &amp; Renewals Reports">Termination, Transfers, &amp; Renewals Reports</option>
+      <option value="Third Party Payables">Third Party Payables</option>
+      <option value="Time Clock and Access Control Management">Time Clock and Access Control Management</option>
+      <option value="Time Clock Management">Time Clock Management</option>
+      <option value="Time Management Reports">Time Management Reports</option>
+      <option value="Timesheets">Timesheets</option>
+      <option value="Timesheets &amp; Exceptions">Timesheets &amp; Exceptions</option>
+      <option value="Timesheets Auditing">Timesheets Auditing</option>
+      <option value="Training Evaluation">Training Evaluation</option>
+      <option value="Training Management">Training Management</option>
+      <option value="Training Reports">Training Reports</option>
+      <option value="Transfer &amp; Promotion">Transfer &amp; Promotion</option>
+      <option value="Travel">Travel</option>
+      <option value="Travel Reports">Travel Reports</option>
+      <option value="Trial Payroll">Trial Payroll</option>
+      <option value="US Payroll">US Payroll</option>
+      <option value="User Access Management">User Access Management</option>
+      <option value="User Defined Report">User Defined Report</option>
+      <option value="User Management Reports">User Management  Reports</option>
+      <option value="User Session Management">User Session Management</option>
+      <option value="Verification &amp; Initialization">Verification &amp; Initialization</option>
+      <option value="Visa Applications">Visa Applications</option>
+      <option value="Visa Request">Visa Request</option>
+      <option value="Work Schedules">Work Schedules</option>
+      <option value="Workflow">Workflow</option>
+                                </select>
+                            </div>
+             
+                <div class="form-group col-md-3">
+                    <label for="exampleInputFile">Form Title / URL</label>
+                    <input class="form-control" id="pur_order_sup_add" ng-model="pur_order_sup_add" name="pur_order_sup_add">
+                </div>
+
+                <a ><button type="submit" class="btn bg-maroon margin" style="margin-top:20px;" >Search</button></a>
+                        </div>
+                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="3" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Form Title</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="7" aria-label="Browser: activate to sort column ascending" style="width: 203px;text-align:center">Form Action</th>
+                             <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th>  -->
+
+                        </tr>
+
+                        <tr role="row">
+                           
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;text-align: center;">Approve</th>
+                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;text-align: center;">Delete</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;text-align: center;">Insert</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;text-align: center;">Print</th> 
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;text-align: center;">Search</th> 
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;text-align: center;">Update</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;text-align: center;">View</th>
+                           
+                        </tr>
+
+                        <tr role="row">
+                           
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;text-align: center;"><input type="checkbox"></th>
+                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;text-align: center;"><input type="checkbox"></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;text-align: center;"><input type="checkbox"></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;text-align: center;"><input type="checkbox"></th> 
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;text-align: center;"><input type="checkbox"></th> 
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;text-align: center;"><input type="checkbox"></th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;text-align: center;"><input type="checkbox"></th>
+                           
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr >
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                               
+                            </td>
+                           
+                        </tr>
+
+
+
+                    </tbody>
+                    <!--   <tfoot>
+                    <tr>
+                    <th rowspan="1" colspan="1">Rendering engine</th>
+                    <th rowspan="1" colspan="1">Browser</th>
+                    <th rowspan="1" colspan="1">Platform(s)</th>
+                    <th rowspan="1" colspan="1">Engine version</th>
+                    <th rowspan="1" colspan="1">CSS grade</th></tr>
+                    </tfoot> -->
+                </table>
+                            <input type="hidden" id="epid" ng-model="epid" name="epid" />
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="tab-pane" id="tab_4">
+                        <div class="panel panel-default">
+
+                            
+                            
+                            <input type="hidden" id="epid" ng-model="epid" name="epid" />
+
+                        </div>
+
+
+
+                    </div>
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    function addrow() {
+        var html = '<tr>' +
+                    '<td><input type="text" class="form-control"  placeholder="S.No"/></td>' +
+                    '<td onclick="addrow()"><input type="text" class="form-control"  data-target="#pur_order_prod_id" data-toggle="modal" placeholder="&#61442;"style="font-family:FontAwesome;"/></td>' +
+                    '<td><input type="text" class="form-control" readonly></td>' +
+                    '<td width="150"><input type="text" class="form-control"></select></td>' +
+                    '<td width="150"><select class="form-control"><option value="2">kgs</option></select></td>' +
+                     '<td><input type="text" class="form-control" placeholder="Price" /></td>' +
+                     '<td><select class="form-control"><option value="">Amount</option><option value="">Percentage</option></select></td>' +
+                     '<td><input type="text" class="form-control" placeholder="Discount"/></td>' +
+                     '<td><input type="text" class="form-control" placeholder="Total Amount"/></td>' +
+                     '<td><input type="text" class="form-control" placeholder="Tax Amount"/></td>' +
+                    '<td><td>' +
+                    '</tr>'
+        $(html).appendTo($("#txtbody"))
+    };
+    function deleterow() {
+        var par = $(this).parent().parent();
+        par.remove();
+    };
+    $("#txtbody").on("click", ".BtnMinus", deleterow);
+    $(document).ready(function () {
+        var html
+        $("#pur_order_dt_delvry").datepicker({
+            showWeek: "true",
+            dateFormat: "dd-mm-yy"
+        });
+        $("#pur_ord_date").datepicker({
+            showWeek: "true",
+            dateFormat: "dd-mm-yy"
+        });
+    });
+</script>

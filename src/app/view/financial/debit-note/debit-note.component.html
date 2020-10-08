@@ -15,6 +15,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active tab1" id="tab1"><a href="#tab_1" data-toggle="tab">Debit Note List</a></li>
                             <li id="tab2" class="tab2"><a href="#tab_2" data-toggle="tab">Debit Note Create</a></li>
+                            <li id="tab3" class="tab3"><a href="#tab_3" data-toggle="tab">Voucher Allocations</a></li>
                         </ul>
                         <div class="tab-content">
                            
@@ -28,7 +29,7 @@
                                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">JV ID</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">DN ID</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Transaction Date</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Voucher Number</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Employer Name</th>
@@ -286,6 +287,7 @@
                                                             @*<div class="modal-footer">
 
                                             </div>*@ -->
+                                           
                                                         
                                                     </div>
                                                 </div>
@@ -295,6 +297,249 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane tab3" id="tab_3">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+
+                                    <!-- in -->
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="box box-primary " style="border-top:none;">
+
+                                                        <form >
+                                                            <div class="box-body">
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Supplier</span><span style="color:red;">*</span></label>
+                                                                    <select aria-controls="example1" id="Employer_Id" class="form-control" formControlName="Employer_Id" name="Employer_Id" required>
+                                                                        <option value="" >--Select Supplier--</option>
+                                                                        <option  value=""></option>
+                                                                    </select>
+
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Bank</span><span style="color:red;">*</span></label>
+                                                                    <select aria-controls="example1" id="Branch_Id" class="form-control" formControlName="Branch_Id" name="Branch_Id" required>
+                                                                        <option value="" >--Select Bank--</option>
+                                                                        <option  value=""></option>
+                                                                    </select>
+
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Job No.</span><span style="color:red;">*</span></label>
+                                                                    <select aria-controls="example1" id="Oraganization_Id" class="form-control" formControlName="Oraganization_Id" name="Oraganization_Id" required>
+                                                                        <option value="" >--Select Job No--</option>
+                                                                        <option  value=""></option>
+                                                                    </select>
+
+                                                                </div>
+                                                                <!-- <div class="form-group col-md-3">
+                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Project ID</span><span style="color:red;">*</span></label>
+                                                                    <select aria-controls="example1" id="Project_Id" class="form-control" formControlName="Project_Id" name="Project_Id" required>
+                                                                        <option value="" >--Select project Id--</option>
+                                                                        <option  value=""></option>
+                                                                    </select>
+
+                                                                </div> -->
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputPassword1"><span style="color:blue;">Pay Amount</span><span style="color:red;">*</span></label>
+                                                                    <input type="text" class="form-control" name="Vocher_No" formControlName="Vocher_No" id="Vocher_No" placeholder="Vocher No">
+                                                                    
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputPassword1"><span style="color:blue;">A/c Balance</span><span style="color:red;">*</span></label>
+                                                                    <input type="text" class="form-control" name="Vocher_No" formControlName="Vocher_No" id="Vocher_No" placeholder="Vocher No">
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputPassword1"><span style="color:blue;">Ref/Cheque No</span><span style="color:red;">*</span></label>
+                                                                    <input type="text" class="form-control" name="Vocher_No" formControlName="Vocher_No" id="Vocher_No" placeholder="Vocher No">
+                                                                </div>
+                                                               
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="exampleInputPassword1"><span style="color:blue;">Transaction Date</span><span style="color:red;">*</span></label>
+                                                                    <!-- <input type="text" class="form-control" name="txtdate" formControlName="txtdate" id="txtdate" placeholder="Date"> -->
+                                                                    <input type="text"
+                                                                    placeholder="dd/mm/yyyy"
+                                                                    class="form-control"
+                                                                     #dp="bsDatepicker"
+                                                                    bsDatepicker [(bsValue)]="txtdate" >  
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1"><span style="color:blue;">Description</span><span style="color:red;">*</span></label>
+                                                                <textarea type="text" class="form-control" name="Narration" formControlName="Narration" id="Narration" placeholder="Narration"></textarea>
+                                                            </div>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <table id="tbl_accdet" class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Type<span style="color:#102f66;">*</span></th>
+                                                                            <th>Int Ref</th>
+                                                                            <th>Transaction Date</th>
+                                                                            <th>Description</th>
+                                                                            <th>Total</th>
+                                                                            <th>Allocated</th>
+                                                                            <th>Outstanding</th>
+                                                                            <th>Allocate</th>
+                                                                            <th>Discount</th>
+                                                                            
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tb_trdet1">
+                                                                        <tr>
+                                                                            <td data-toggle="modal" data-target="#Type">
+                                                                                <input type="text" id="Acno_number" formControlName="account_no" class="form-control" placeholder="" style="font-family: FontAwesome;color: #102f66;">
+
+                                                                            </td>
+                                                                            <td><input class="form-control" type="text" id="Ac_name" /></td>
+                                                                            <td><input class="form-control" type="text" id="Ac_name" /></td>
+                                                                            <td><input class="form-control" type="text" id="Ac_name" /></td>
+                                                                            <td><input class="form-control" type="text" id="Ac_name" /></td>
+                                                                            <td><input class="form-control" type="text" id="Ac_name" /></td>
+                                                                            <td><input class="form-control" type="text" id="Ac_name" /></td>
+                                                                            
+                                                                            <td><input type="text" class="form-control" id="dramount_0" onkeyup="Debitchange()" /></td>
+                                                                            <td><input type="text" class="form-control" onkeyup="Creditchange()" id="cramount_0" /></td>
+
+                                                                            <td><button class="btn bg-maroon margin" ng-click="AddNew()">Add</button></td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </div>
+                                                           
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <table id="tbl_accdet" class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Type</th>
+                                                                            <th>Int Ref</th>
+                                                                            <th>Transaction Date</th>
+                                                                            <th>Description</th>
+                                                                            <th>Total</th>
+                                                                            <th>Allocated</th>
+                                                                            <th>Outstanding</th>
+                                                                            <th>Allocate</th>
+                                                                            <th>Discount</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tb_trdet"></tbody>
+                                                                </table>
+
+                                                            </div>
+                                                            <div>
+                                                                <p style="margin-left:474px;">Total Debit:-<b>.00</b><label style="margin-left: 137px;">Total Credit:-<b>.00</b></label></p>
+                                                                <p style="margin-left:50px;">Total Credit:-</p>
+                                                            </div>
+                                                            <div style="float:right">
+                                                                <button class="btn bg-maroon margin" type="submit">Submit</button>
+                                                            </div>
+                                                            <!-- /.box-body -->
+                                                            <!--  <div class="box-footer">
+                                          <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div> -->
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn bg-maroon margin" ng-show="!Isorganizationupdate" ng-disabled="organisationform2.$invalid" ng-click="SetOrganization()">Save</button>
+                                <button type="button" class="btn bg-maroon margin" ng-show="Isorganizationupdate" ng-disabled="organisationform2.$invalid" ng-click="updateOrganization()">Update</button>
+                                <button type="button" class="btn bg-maroon margin">Cancel</button>
+                                <button type="button" class="btn bg-maroon margin">Exit</button>
+                            </div>
+                            <!-- Modal content-->
+
+                            <div class="modal fade" id="Type" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title" style="text-align:center">Select Your Account Number</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="box-body">
+                                                <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                    <div class="row">
+
+                                                        <div class="col-sm-12">
+                                                            <div id="example1_filter" class="dataTables_filter">
+                                                                <label>Search:<input type="search" class="form-control input-lg" placeholder="" aria-controls="example1"></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                                <thead>
+                                                                    <tr role="row">
+                                                                        <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">PR ID</th>
+                                                                        <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Supplier Name</th>
+                                                                        <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Select PR ID</th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr role="row" class="odd" >
+                                                                        <td class="sorting_1"></td>
+                                                                        <td class="sorting_1"></td>
+                                                                        <!-- <td><input type="checkbox" id="txtcheckval_" /></td> -->
+                                                                        <td><button type="button" class="btn btn-default" >Select</button></td>
+                                                                    </tr>
+                                                                </tbody>
+
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <!-- <div class="col-sm-5">
+                                            <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 3 of 57 entries</div>
+                                        </div>
+                                                        <div class="col-sm-7">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous disabled" id="example1_previous">
+                                                    <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
+                                                </li>
+                                                <li class="paginate_button active">
+                                                    <a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
+                                                </li>
+                                                <li class="paginate_button ">
+                                                    <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a>
+                                                </li>
+                                                <li class="paginate_button ">
+                                                    <a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a>
+                                                </li>
+                                                <li class="paginate_button ">
+                                                    <a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a>
+                                                </li>
+
+                                                <li class="paginate_button next" id="example1_next">
+                                                    <a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>*@
+                                                        @*<div class="modal-footer">
+
+                                        </div>*@ -->
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                             </div>
                         </div>

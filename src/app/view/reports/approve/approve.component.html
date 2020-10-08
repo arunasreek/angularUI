@@ -1,4 +1,4 @@
-
+<!-- 
 <style>
     .fieldset {
     position: relative;
@@ -25,12 +25,12 @@
     display: inline-block;
     overflow: visible;
 }
-</style>
+</style> -->
 <div id="approve" ng-controller="Approvecontroller">
 
     <div class="page-container">
         <div class="page-content">
-            <div class="row">
+            <div class="row" style="margin-left: 0px;">
                 <div class="col-md-12">
                     <form class="form-horizontal ng-pristine ng-valid">
 
@@ -42,7 +42,7 @@
                                 <div class="activity_box">
                                     <div class="scrollbar1" id="style-2">
                                         <div class="container-fluid">
-                                            <div class="row">
+                                            <div class="row" style="margin-left: 5px;margin-top: 5px;">
                                                 <div class="col-md-12  col-sm-12">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -54,7 +54,7 @@
                                                                 <option value="2">Reject</option>
                                                                 <option value="3">Hold</option>
                                                             </select>
-                                                             <i class="fa fa-chevron-down"></i> 
+                                                             <!-- <i class="fa fa-chevron-down"></i>  -->
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3 col-sm-3 col-xs-3">
@@ -63,7 +63,7 @@
                                                             <option value="">All</option>
                                                                 <option ng-repeat="esv in Esmservicelist" value="esv.Eservice_id"></option>
                                                         </select>
-                                                         <i class="fa fa-chevron-down"></i> 
+                                                         <!-- <i class="fa fa-chevron-down"></i>  -->
                                                     </div>
 
                                                     <div class="col-md-4 col-sm-4 zebracal">
@@ -78,7 +78,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-2 search_button">
-                                                            <button type="button" id="btnapprove" ng-click="Approvedata();" class="btn btn-success">Search</button>
+                                                            <button type="button" id="btnapprove" ng-click="Approvedata();" class="btn btn-success" style="background-color:#102f66;margin-top:25px">Search</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -86,7 +86,7 @@
                                             <!-- ngRepeat: item in Approvalsdatalist -->
                                             <div id="divapproves" style="border-bottom: double;" ng-show="Approvedatalist.length>0" class="col-md-12 col-sm-12 approval_form ng-scope" ng-repeat="aprvl in Approvedatalist">
                                                 <div class="col-md-12">
-                                                    <div class="row">
+                                                    <div class="row" style="margin-top:10px">
                                                          <span>This is the title</span> 
                                                             <div class="col-md-4">
                                                                 <label class="form_labels">Service Name <span class="colon3">:</span></label>
@@ -142,13 +142,13 @@
                                                          <button type="button" ng-click="ApprovalWithRemarks(9,item.rhistory_id);" class="btn btn-green" ng-show="item.status==7 || item.status==0" style="display: none;">Approve</button>
                                                         <button type="button" ng-click="ApprovalWithRemarks(8,item.rhistory_id);" class="btn btn-red" ng-show="item.status==7 || item.status==0" style="display: none;">Reject</button>
                                                         <button type="button" ng-click="ApprovalWithRemarks(7,item.rhistory_id);" class="btn btn-hold" ng-show="item.status==0" style="display: none;">Hold</button> 
-                                                        <button type="button"  class="btn btn-success" ng-click="btnapprove('A',aprvl.As_id,aprvl.Type)">Approve</button>
-                                                        <button type="button" ng-click="btnapprove('R',aprvl.As_id,aprvl.Type)" class="btn btn-warning">Reject</button>
-                                                        <button type="button" ng-click="btnapprove('H',aprvl.As_id,aprvl.Type)" class="btn btn-danger">Hold</button>
+                                                        <button type="button"  class="btn btn-success" ng-click="btnapprove('A',aprvl.As_id,aprvl.Type)" style="margin-right: 5px;">Approve</button>
+                                                        <button type="button" ng-click="btnapprove('R',aprvl.As_id,aprvl.Type)" class="btn btn-warning" style="margin-right: 5px;">Reject</button>
+                                                        <button type="button" ng-click="btnapprove('H',aprvl.As_id,aprvl.Type)" class="btn btn-danger" style="margin-right: 5px;">Hold</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div ng-show="Approvedatalist.length==0" style="color:red;font-weight:bold;text-align:center">No Records Found</div>
+                                            <!-- <div ng-show="Approvedatalist.length==0" style="color:red;font-weight:bold;text-align:center">No Records Found</div> -->
                                            
                                             <div id="myModal" class="modal fade" role="dialog">
                                                 <div class="modal-dialog">

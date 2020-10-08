@@ -127,7 +127,7 @@
                                             <li><a routerLink="/financial-year">Financial year setting</a></li>
                                             <li><a routerLink="/finfis-month-closing">Fisical & financial month closing</a></li>
                                             <li><a routerLink="/finfis-year-closing">Fisical & financial year closing</a></li>
-                                        
+                                            <li><a routerLink="/alert-settings">Alert Settings</a></li>
                                 </ul>
                             </li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Templates</a></li>
@@ -149,6 +149,7 @@
                                     <li><a routerLink="/customer-invoice">Customer Invoice</a></li>
                                     <li><a routerLink="/credit-note">Credit Note</a></li>
                                     <li><a routerLink="/debit-note">Debit Note</a></li>
+                            
  </ul>
                     </li>
                     <li class="dropdown-submenu">
@@ -165,8 +166,8 @@
 
                         </ul>
                     </li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bank Reconcilation Statement</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CDC & PDC management</a></li>
+                    <li><a routerLink="/bank-reconcilation">Bank Reconcilation Statement</a></li>
+                    <li ><a role="menuitem" tabindex="-1" href="#">CDC & PDC management</a></li>
                    
 
                 </ul>
@@ -177,7 +178,8 @@
                     PROJECT MANAGEMENT <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Policies</a></li>
+                    <li ><a role="menuitem" tabindex="-1" href="#">Policies</a></li>
+                    <li ><a routerLink="/gantt-chart">Gantt Chart</a></li>
                     <li class="dropdown-submenu">
                         <a class="test" tabindex="-1" href="#">Project Master<span class="caret"></span></a>
 
@@ -235,15 +237,16 @@
                     CRM <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Solutions</a></li>
+                    <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Solutions</a></li> -->
                     <li class="dropdown-submenu">
                         <a class="test" tabindex="-1" href="#">Marketing <span class="caret"></span></a>
 
                         <ul class="dropdown-menu">
 
-                                    <li><a href="/Job/jb/Jobgroup">Contacts</a></li>
-                                    <li><a href="/Job/jb/Jobclass">Campaigns</a></li>
-                                    <li><a href="/Job/jb/Jobcategory">Quick Campaigns</a></li>
+                                    <li><a routerLink="/customer">Contacts</a></li>
+                                    <li><a routerLink="/campaign">Campaigns</a></li>
+                                    <li><a routerLink="/campaign">Campaign Activites</a></li>
+                                    <li><a routerLink="/quick-campaign">Quick Campaigns</a></li>
                              
                                 
                         </ul>
@@ -254,11 +257,11 @@
                         <ul class="dropdown-menu">
 
                                     <li><a href="/Job/jb/Jobgroup">Leads</a></li>
-                                    <li><a href="/Job/jb/Jobclass">Opportunities</a></li>
+                                    <li><a  routerLink="/sales-enquiry">Opportunities</a></li>
                                     <li><a href="/Job/jb/Jobcategory">Compitetors</a></li>
-                                    <li><a href="/Job/jb/Jobcategory">Products</a></li>
-                                    <li><a href="/Job/jb/Jobcategory">Quotes</a></li>
-                                    <li><a href="/Job/jb/Jobcategory">Orders</a></li>
+                                    <li><a routerLink="/stockitem">Products</a></li>
+                                    <li><a routerLink="/outgoing-quotation">Quotes</a></li>
+                                    <li><a routerLink="/sales-order">Orders</a></li>
                                     <li><a href="/Job/jb/Jobcategory">Invoice</a></li>
                              
                                 
@@ -360,10 +363,13 @@
                         <ul class="dropdown-menu">
 
                             <li><a routerLink="/usercreation">User Creation</a></li>
-                                    <li><a href="/Job/jb/Jobclass">User Rolles</a></li>
+                            <li><a routerLink="/group-creation">User Group Creation</a></li>
+                            <li><a routerLink="/form-management">Form Management</a></li>
+                            <!-- <li><a routerLink="/user-management">User Management</a></li> -->
+                                    <!-- <li><a href="/Job/jb/Jobclass">User Rolles</a></li>
                                     <li><a href="/Job/jb/Jobcategory">User Access levels Setup</a></li>
                                     <li><a href="/Job/jb/Jobcategory">User Acess Interface</a></li>
-                   
+                    -->
                         </ul>
                     </li>
                     <li class="dropdown-submenu">

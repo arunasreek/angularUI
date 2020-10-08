@@ -112,6 +112,15 @@ import { FinancialYearComponent } from './view/settings/financial-year/financial
 import { BudgetingOfGLsComponent } from './view/budgeting-of-gls/budgeting-of-gls.component';
 import { CreditNoteComponent } from './view/financial/credit-note/credit-note.component';
 import { DebitNoteComponent } from './view/financial/debit-note/debit-note.component';
+import { AlertSettingsComponent } from './view/settings/alert-settings/alert-settings.component';
+import { GroupCreationComponent } from './view/user-management/group-creation/group-creation.component';
+import { FormManagementComponent } from './view/user-management/form-management/form-management.component';
+import { UserManagementComponent } from './view/user-management/user-management/user-management.component';
+import { CampaignComponent } from './view/marketing/campaign/campaign.component';
+import { QuickCampaignComponent } from './view/marketing/quick-campaign/quick-campaign.component';
+import { BankReconcilationComponent } from './view/finance/bank-reconcilation/bank-reconcilation.component';
+import { GanttChartComponent } from './view/project-management/gantt-chart/gantt-chart.component';
+
 
 
 
@@ -221,6 +230,14 @@ const routes: Routes = [
   {path:'budgeting-of-gls',component:BudgetingOfGLsComponent},
   {path:'credit-note',component:CreditNoteComponent},
   {path:'debit-note',component:DebitNoteComponent},
+  {path:'alert-settings',component:AlertSettingsComponent},
+  {path:'group-creation',component:GroupCreationComponent},
+  {path:'form-management',component:FormManagementComponent},
+  {path:'user-management',component:UserManagementComponent},
+  {path:'campaign',component:CampaignComponent},
+  {path:'quick-campaign',component:QuickCampaignComponent},
+  {path:'bank-reconcilation',component:BankReconcilationComponent},
+  {path:'gantt-chart',component:GanttChartComponent},
 ];
 
 @NgModule({

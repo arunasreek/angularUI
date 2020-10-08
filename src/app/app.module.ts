@@ -6,6 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { AgGridModule } from 'ag-grid-angular';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { GanttModule, ResizeService, SortService, FilterService, SelectionService, ReorderService,
+  EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -134,6 +137,14 @@ import { FinancialYearComponent } from './view/settings/financial-year/financial
 import { BudgetingOfGLsComponent } from './view/budgeting-of-gls/budgeting-of-gls.component';
 import { CreditNoteComponent } from './view/financial/credit-note/credit-note.component';
 import { DebitNoteComponent } from './view/financial/debit-note/debit-note.component';
+import { AlertSettingsComponent } from './view/settings/alert-settings/alert-settings.component';
+import { GroupCreationComponent } from './view/user-management/group-creation/group-creation.component';
+import { FormManagementComponent } from './view/user-management/form-management/form-management.component';
+import { UserManagementComponent } from './view/user-management/user-management/user-management.component';
+import { CampaignComponent } from './view/marketing/campaign/campaign.component';
+import { QuickCampaignComponent } from './view/marketing/quick-campaign/quick-campaign.component';
+import { BankReconcilationComponent } from './view/finance/bank-reconcilation/bank-reconcilation.component';
+import { GanttChartComponent } from './view/project-management/gantt-chart/gantt-chart.component';
 
 
 
@@ -252,6 +263,22 @@ import { DebitNoteComponent } from './view/financial/debit-note/debit-note.compo
     CreditNoteComponent,
     
     DebitNoteComponent,
+    
+    AlertSettingsComponent,
+    
+    GroupCreationComponent,
+    
+    FormManagementComponent,
+    
+    UserManagementComponent,
+    
+    CampaignComponent,
+    
+    QuickCampaignComponent,
+    
+    BankReconcilationComponent,
+    
+    GanttChartComponent,
 
   ],
   imports: [
@@ -266,11 +293,13 @@ import { DebitNoteComponent } from './view/financial/debit-note/debit-note.compo
     DatepickerModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule,
+    GanttModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     AgGridModule.withComponents([null]) 
   ],
-  providers: [AppConfig],
+  providers: [AppConfig, ResizeService, SortService, FilterService, SelectionService, ReorderService,
+    EditService, DayMarkersService, ToolbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
