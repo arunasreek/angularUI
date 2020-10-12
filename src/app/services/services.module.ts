@@ -18,6 +18,8 @@ import {
     ProcurementService,
     JournalService,
     AssestsService,
+    LinkService,
+    TaskService,
     
 } from './'
 
@@ -43,7 +45,9 @@ import {
         PoliciesService,
         ProcurementService,
         JournalService,
-        AssestsService
+        AssestsService,
+        LinkService,
+        TaskService
 
     ]
 })

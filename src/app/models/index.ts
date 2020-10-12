@@ -10,3 +10,5 @@ export * from './warehouse.model';
 export * from './procurement.model';
 export * from './vouchers.model';
 export * from './assests.model';
+export * from './link.model';
+export * from './task.model';

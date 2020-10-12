@@ -32,7 +32,8 @@
             ],
             "scripts": [
               "src/assets/js/bootstrap.js",
-              "src/assets/js/common.js"
+              "src/assets/js/common.js",
+              "src/assets/js/loader.js"
             ]
           },
           "configurations": {

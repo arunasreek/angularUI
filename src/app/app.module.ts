@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,7 +8,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { GanttModule, ResizeService, SortService, FilterService, SelectionService, ReorderService,
   EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
-
+  import { GoogleChartModule } from './google-chart/google-chart.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -294,12 +294,16 @@ import { GanttChartComponent } from './view/project-management/gantt-chart/gantt
     BrowserAnimationsModule,
     FormsModule,
     GanttModule,
+  GoogleChartModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     AgGridModule.withComponents([null]) 
   ],
   providers: [AppConfig, ResizeService, SortService, FilterService, SelectionService, ReorderService,
     EditService, DayMarkersService, ToolbarService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
 export class AppModule { }

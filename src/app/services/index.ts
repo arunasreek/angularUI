@@ -16,4 +16,5 @@ export * from './journal.service';
 export * from './policies.service';
 export * from './procurement.service';
 export * from './assests.service';
-
+export * from './task.service';
+export * from './link.service';
