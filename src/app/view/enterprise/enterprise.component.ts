@@ -129,26 +129,26 @@ onGridReady(params) {
 
 apiCall(){
   this.commonService.getEnterprisealllist().subscribe((data: any) => {
-    this.employeedetList=data;
+    this.employeedetList=data.Result;
   });
 
   this.commonService.getCountry().subscribe((data: any) => {
-    this.countryList=data
+    this.countryList=data.Result;
   });
 
   this.commonService.getEnterpriseids().subscribe((data: any) => {
-    this.erpriseids=data
+    this.erpriseids=data.Result;
   });
   this.enterpriseService.getStatelist(0).subscribe((data: any) => {
-    this.stateList=data
+    this.stateList=data.Result;
     
   });
   this.commonService.getJobCatlogPriDetailes().subscribe((data: any) => {
-    this.jobCatlogPriDetailes=data
+    this.jobCatlogPriDetailes=data.Result;
   });
 
   this.commonService.getOrganizationList(0).subscribe((data: any) => {
-    this.organizationList=data
+    this.organizationList=data.Result;
   });
 
 }

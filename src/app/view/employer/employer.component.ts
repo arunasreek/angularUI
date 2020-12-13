@@ -131,7 +131,7 @@ onSubmitPrimary() {
     if(data.ResponseMsg){
       this.toastr.success("Employer  Successfully Created.","Success");
     this.employerService.getEmployersList().subscribe((data: any) => {
-          this.employersList=data
+          this.employersList=data;
           this.Isupdate=true;
        
       });
@@ -146,24 +146,24 @@ onSubmitPrimary() {
 }
   employerServiceAPICall(){
     this.employerService.getEmployersList().subscribe((data: any) => {
-      this.employersList=data
+      this.employersList=data.Result;
     
   });
 
     this.commonService. getEnterpriseids().subscribe((data: any) => {
-      this.erpriseids=data
+      this.erpriseids=data.Result;
      
     });
     this.commonService.getCountry().subscribe((data: any) => {
-      this.countryList=data
+      this.countryList=data.Result;
      
     });
     this.commonService.getJobCatlogPriDetailes().subscribe((data: any) => {
-      this.jobCatlogPriDetailes=data
+      this.jobCatlogPriDetailes=data.Result;
       
     });
     this.employerService.getEmployeeriD().subscribe((data: any) => {
-      this.employeeriDList=data
+      this.employeeriDList=data.Result;
       
     });
 

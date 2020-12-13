@@ -2,7 +2,7 @@
     "name": "esmart",
     "version": "1.0.0",
     "scripts": {
-        "ng": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng",
+        "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
         "test": "ng test",

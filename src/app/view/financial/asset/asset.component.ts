@@ -110,22 +110,22 @@ export class AssetComponent implements OnInit {
   }
   apiCall(){
     this.assestsService.GetAssetlist().subscribe(data => {
-      this.assetList=data;
+      this.assetList=data.Result;
       });
     this.assestsService.getEmployeeriD().subscribe((data: any) => {
-      this.employeerID=data;
+      this.employeerID=data.Result;
     });
     this.assestsService.Getbranchlist().subscribe((data: any) => {
-      this.branchList=data
+      this.branchList=data.Result;
     });
     this.assestsService.GetprojctList().subscribe((data: any) => {
-      this.projectList=data
+      this.projectList=data.Result;
     });
     this.assestsService.GetAccountnums().subscribe((data: any) => {
-      this.Accno=data
+      this.Accno=data.Result;
     });
     this.assestsService.Getsuplist().subscribe((data: any) => {
-      this.supList=data
+      this.supList=data.Result;
     });
   
   

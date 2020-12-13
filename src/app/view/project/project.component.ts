@@ -150,7 +150,7 @@ onGridReady(params) {
 }
   projectAPIcall() {
     this.projectService.GetprojctList().subscribe((data: any) => {
-      this.projectList = data;
+      this.projectList = data.Result;
       
     });
 

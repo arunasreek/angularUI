@@ -365,11 +365,11 @@ onGridReady(params) {
 }
   employeeAPIcall() {
     this.employeeService.getEmployersList().subscribe((data: any) => {
-      this.employersList = data;
+      this.employersList = data.Result;
     });
 
     this.employeeService.getEmployeedetList().subscribe((data: any) => {
-      this.employeedetList = data;
+      this.employeedetList = data.Result;
     });
 
     this.employeeService.getOrganizationList(0).subscribe((data: any) => {
@@ -377,11 +377,11 @@ onGridReady(params) {
     });
 
     this.employeeService.getbranchlist(0).subscribe((data: any) => {
-      this.empbranchlist = data;
+      this.empbranchlist = data.Result;
     });
 
     this.employeeService.getJobCatlogPriDetailes().subscribe((data: any) => {
-      this.jobCatlogPriDetailes=data;
+      this.jobCatlogPriDetailes=data.Result;
     });
   }
 

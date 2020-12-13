@@ -154,29 +154,29 @@ onGridReady(params) {
 
 apiCall(){
   this.charofAcctsService.GetChatofaccList().subscribe(data => {
-    this.chartList=data;
+    this.chartList=data.Result;
     });
   this.charofAcctsService.getEmployeeriD().subscribe((data: any) => {
-    this.employeerID=data;
+    this.employeerID=data.Result;
   });
 
   this.charofAcctsService.GetprojctList().subscribe((data: any) => {
-    this.projectList=data
+    this.projectList=data.Result;
   });
 
   this.charofAcctsService.getEnterpriseids().subscribe((data: any) => {
-    this.erpriseids=data
+    this.erpriseids=data.Result;
   });
   this.charofAcctsService.getJv(0).subscribe((data: any) => {
     this.JV=data
     
   });
   this.charofAcctsService.getbranchlist().subscribe((data: any) => {
-    this.branchList=data
+    this.branchList=data.Result;
   });
 
   this.charofAcctsService.getOrganizationID().subscribe((data: any) => {
-    this.organizationID=data
+    this.organizationID=data.Result;
   });
 
 }

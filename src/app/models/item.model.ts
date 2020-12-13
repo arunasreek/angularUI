@@ -13,7 +13,7 @@ export interface IStockItemPost {
     stockitem_id: number,
     ItemCode: any,
     ItemName: any,
-    itemgroup_id:number,
+    itemgroup_id:string,
     itemcat_id:string,//$scope.ItemCategory,
     UnitOfMeasure: string,
     Rate: number,

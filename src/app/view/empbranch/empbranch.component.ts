@@ -212,7 +212,7 @@ onSubmitPrimary() {
 
   empBranchServiceAPICall(){
     this.commonService. getEnterprisealllist().subscribe((data: any) => {
-      this.enterprisealllist=data
+      this.enterprisealllist=data.Result;
      
     });
     this.commonService. getEnterpriseids().subscribe((data: any) => {
@@ -220,32 +220,28 @@ onSubmitPrimary() {
       console.log(data);
     });
     this.commonService.getCountry().subscribe((data: any) => {
-      this.countryList=data
+      this.countryList=data.Result;
      
     });
     this.commonService.getJobCatlogPriDetailes().subscribe((data: any) => {
-      this.jobCatlogPriDetailes=data
+      this.jobCatlogPriDetailes=data.Result;
       
     });
     this.employerBranchService.getbranchlist(0).subscribe((data: any) => {
-       this.branchList=data
+       this.branchList=data.Result;
      
      });
    
     this.employerBranchService.getEmployeeriD().subscribe((data: any) => {
-      this.employeeriDList=data
-      
-    });
-    this.commonService.getCountry().subscribe((data: any) => {
-      this.countryList=data
+      this.employeeriDList=data.Result;
       
     });
     this.commonService.getOrganizationList(0).subscribe((data: any) => {
-      this.organizationList=data
+      this.organizationList=data.Result;
      
     });
     this.employerBranchService.getStatelist(0).subscribe((data: any) => {
-      this.stateList=data
+      this.stateList=data.Result;
       
     });
   }

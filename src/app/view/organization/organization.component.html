@@ -5,10 +5,10 @@
                 <div class="force-overflow">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs" #staticTabs>
-                            <li class="active"  >
+                            <li class="active">
                                 <a id="tabsecond" id="tabfirst" href="#tab_1" data-toggle="tab">Organization list</a></li>
                             <li>
-                                <a href="#tab_2"  id="tabsecond" data-toggle="tab">Primary Details</a></li>
+                                <a href="#tab_2" id="tabsecond" data-toggle="tab">Primary Details</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
@@ -17,14 +17,14 @@
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Organization Id</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Organization Name</th>
-                                            
+
 
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Manager Name</th>
 
 
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Designation</th>
                                             <!-- concatenation Of Office Contact Person First , Middle  , LAst Names -->
-                                         
+
 
 
 
@@ -33,13 +33,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      <tr *ngFor="let item of organizationList | paginate:{ itemsPerPage: 10 , currentPage: p };">
+                                        <tr *ngFor="let item of organizationList | paginate:{ itemsPerPage: 10 , currentPage: p };">
                                             <td class="ng-binding">{{item.Org_ID}}</td>
                                             <td class="ng-binding">{{item.OrganizationName}}</td>
                                             <td class="ng-binding">{{item.MD_FirstName}}</td>
                                             <td class="ng-binding">{{item.MD_Designation}}</td>
                                             <td>
-                                                
+
                                                 <a href="/Enterprise/ES/Organizationlist?id=1" data-lity="">
                                                     <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                 </a>
@@ -47,7 +47,7 @@
                                                     <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                 </a>
                                                 <a (click)="deleteOrg(item.o_id)">
-                                                    <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ></i>
+                                                    <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -56,7 +56,7 @@
                                 </table>
                                 <div style="float:right;margin-top:20px;color:#102f66;font-weight:800">
                                     <pagination-controls (pageChange)="p=$event"></pagination-controls>
-                                   </div> 
+                                </div>
                                 <!-- <div style="color:red; text-align:center" ng-show="GetOrganizationList.length==0" class="ng-hide">No Records  Found</div> -->
                                 <!-- <ag-grid-angular
                           style="width:100%; height:500px;min-height:200px;padding-left:50px"
@@ -71,7 +71,7 @@
                           >
                       </ag-grid-angular> -->
                             </div>
-                            
+
                             <div class="tab-pane tab2 ng-pristine ng-invalid ng-invalid-required" id="tab_2" ng-form="organisationform2">
                                 <form [formGroup]="orgDepartmentForm" (ngSubmit)="onSubmitOrgDepartment()">
                                     <div class="col-md-12">
@@ -79,8 +79,7 @@
                                             <div class="panel-heading" role="tab" id="headingOne">
                                                 <h4 class="panel-title">
                                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
-                                                        Details Of Department
+                                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i> Details Of Department
                                                     </a>
                                                 </h4>
                                             </div>
@@ -98,52 +97,52 @@
                                                                 <!-- /.box-header -->
                                                                 <!-- form start -->
 
-                                                                    <div class="box-body form-group" >
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputEmail1"><span style="color:blue;">Oraganization ID</span><span style="color:red;">*</span></label>
-                                                                            <input type="text" class="form-control " id="O_Department_Id" formControlName="O_Department_Id" name="O_Department_Id" placeholder="Department ID" required="">
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputPassword1"><span style="color:blue;">Oraganization Name</span><span style="color:red;">*</span></label>
-                                                                            <input type="text" class="form-control " id="O_Department_Name" formControlName="O_Department_Name" name="O_Department_Name" placeholder="Enterprise Name" required="">
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputPassword1"><span style="color:blue;">Employeer ID</span><span style="color:red;">*</span></label>
-                                                                            <select aria-controls="example1" id="O_Eployeer_Id" class="form-control" formControlName="O_Eployeer_Id" name="O_Eployeer_Id" required="">
+                                                                <div class="box-body form-group">
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Oraganization ID</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="O_Department_Id" formControlName="O_Department_Id" name="O_Department_Id" placeholder="Department ID" required="">
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputPassword1"><span style="color:blue;">Oraganization Name</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="O_Department_Name" formControlName="O_Department_Name" name="O_Department_Name" placeholder="Enterprise Name" required="">
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputPassword1"><span style="color:blue;">Employeer ID</span><span style="color:red;">*</span></label>
+                                                                        <select aria-controls="example1" id="O_Eployeer_Id" class="form-control" formControlName="O_Eployeer_Id" name="O_Eployeer_Id" required="">
                                                                                 <option value="" disabled="" selected="selected">--Select Eployeer Id--</option>
                                                                                 <option *ngFor="let item of employeeriDList" [value]="item.emp_id">{{item.EmployerID}}</option>
                                                                             </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputPassword1"><span style="color:blue;">Branch Id</span><span style="color:red;">*</span></label>
-                                                                            <select aria-controls="example1" id="O_Branch_Id" class="form-control " formControlName="O_Branch_Id" name="O_Branch_Id" required="">
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputPassword1"><span style="color:blue;">Branch Id</span><span style="color:red;">*</span></label>
+                                                                        <select aria-controls="example1" id="O_Branch_Id" class="form-control " formControlName="O_Branch_Id" name="O_Branch_Id" required="">
                                                                                 <option value="" disabled="" selected="selected">--Select Branch Id--</option>
                                                                                 <option *ngFor="let item of branchList" [value]="item.b_id">{{item.BranchId +"("+item.BranchName+")"}}</option>
                                                                             </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputPassword1"><span style="color:blue;">Reporting Department ID</span><span style="color:red;">*</span></label>
-                                                                            <select aria-controls="example1" id="O_Reporting_Department_Id" class="form-control " formControlName="O_Reporting_Department_Id" name="O_Reporting_Department_Id" required="">
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputPassword1"><span style="color:blue;">Reporting Department ID</span><span style="color:red;">*</span></label>
+                                                                        <select aria-controls="example1" id="O_Reporting_Department_Id" class="form-control " formControlName="O_Reporting_Department_Id" name="O_Reporting_Department_Id" required="">
                                                                                 <option value="" disabled="" selected="selected">--Select Reporting Department ID--</option>
                                                                                 <option *ngFor="let item of organizationList" [value]="item.o_id">{{item.OrganizationName +"("+item.Org_ID+")"}}</option>
                                                                             </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputFile"><span style="color:blue;">Cost Center</span><span style="color:red;">*</span></label>
-                                                                            <select class="form-control " formControlName="O_Costcenter" name="O_Costcenter" id="O_Costcenter" required=""><option value="? undefined:undefined ?" selected="selected"></option>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputFile"><span style="color:blue;">Cost Center</span><span style="color:red;">*</span></label>
+                                                                        <select class="form-control " formControlName="O_Costcenter" name="O_Costcenter" id="O_Costcenter" required=""><option value="? undefined:undefined ?" selected="selected"></option>
                                                                                 <option value="0">Yes</option>
                                                                                 <option value="1">No</option>
 
                                                                             </select>
-                                                                        </div>
                                                                     </div>
+                                                                </div>
 
-                                                                    <!-- /.box-body -->
-                                                                    <!--  <div class="box-footer">
+                                                                <!-- /.box-body -->
+                                                                <!--  <div class="box-footer">
                                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                                                 </div> -->
 
-                                                            
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -155,8 +154,7 @@
                                             <div class="panel-heading" role="tab" id="headingTwo">
                                                 <h4 class="panel-title">
                                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
-                                                        Manager Details
+                                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i> Manager Details
                                                     </a>
                                                 </h4>
                                             </div>
@@ -170,62 +168,63 @@
                                                             </div> -->
                                                                 <!-- /.box-header -->
                                                                 <!-- form start -->
-                                                                    <div class="box-body">
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputEmail1">First Name</label>
-                                                                            <input type="text" class="form-control" id="O_First_Name" formControlName="O_First_Name" name="O_First_Name" placeholder="First Name">
-
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputEmail1">Middle Name</label>
-                                                                            <input type="text" class="form-control" id="O_Middle_Name" formControlName="O_Middle_Name" name="O_Middle_Name" placeholder="Middle Name">
-
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputEmail1">Last Name</label>
-                                                                            <input type="text" class="form-control" id="O_Last_Name" formControlName="O_Last_Name" name="O_Last_Name" placeholder="Last Name">
-
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputEmail1">Designation</label>
-                                                                            <input type="text" class="form-control" id="O_Designation" formControlName="O_Designation" name="O_Designation" data-toggle="modal" data-target="#Designation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
-
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputEmail1">Email Address</label>
-                                                                            <input type="text" class="form-control" id="O_Email_Address" formControlName="O_Email_Address" name="O_Email_Address" placeholder="Email Address">
-
-                                                                        </div>
-
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
-                                                                            <input type="text" class="form-control " id="O_Phone" formControlName="O_Phone" name="O_Phone" placeholder="Phone" required="">
-
-                                                                        </div>
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                            <input type="text" class="form-control " id="O_Fax" formControlName="O_Fax" name="O_Fax" placeholder="Fax" required="">
-
-                                                                        </div>
-
-                                                                        <div class="form-group col-md-3">
-                                                                            <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
-                                                                            <input type="text" class="form-control " id="O_Mobile_No" formControlName="O_Mobile_No" name="O_Mobile_No" placeholder="Mobile No" required="">
-
-                                                                        </div>
-
-                                                                        <div class="form-group col-md-3">
-                                                                            <label> Preferred Contact Mode</label>
-                                                                            <br>
-
-                                                                            <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
-                                                                            &nbsp;&nbsp;&nbsp;  <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
-                                                                            &nbsp;&nbsp;&nbsp;  <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
-
-                                                                        </div>
+                                                                <div class="box-body">
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">First Name</label>
+                                                                        <input type="text" class="form-control" id="O_First_Name" formControlName="O_First_Name" name="O_First_Name" placeholder="First Name">
 
                                                                     </div>
-                                                            
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Middle Name</label>
+                                                                        <input type="text" class="form-control" id="O_Middle_Name" formControlName="O_Middle_Name" name="O_Middle_Name" placeholder="Middle Name">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Last Name</label>
+                                                                        <input type="text" class="form-control" id="O_Last_Name" formControlName="O_Last_Name" name="O_Last_Name" placeholder="Last Name">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Designation</label>
+                                                                        <input type="text" class="form-control" id="O_Designation" formControlName="O_Designation" name="O_Designation" data-toggle="modal" data-target="#Designation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Email Address</label>
+                                                                        <input type="text" class="form-control" id="O_Email_Address" formControlName="O_Email_Address" name="O_Email_Address" placeholder="Email Address">
+
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="O_Phone" formControlName="O_Phone" name="O_Phone" placeholder="Phone" required="">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="O_Fax" formControlName="O_Fax" name="O_Fax" placeholder="Fax" required="">
+
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="O_Mobile_No" formControlName="O_Mobile_No" name="O_Mobile_No" placeholder="Mobile No" required="">
+
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label> Preferred Contact Mode</label>
+                                                                        <br>
+
+                                                                        <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i> &nbsp;&nbsp;&nbsp; <input type="checkbox"> &nbsp;&nbsp;&nbsp;
+                                                                        <i
+                                                                            class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
+                                                                            &nbsp;&nbsp;&nbsp; <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
+
+                                                                    </div>
+
+                                                                </div>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -249,7 +248,7 @@
             <ng-template #template>
                 <div class="modal-header">
                     <h4 class="modal-title pull-left">Modal</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" >
+                    <button type="button" class="close pull-right" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -260,8 +259,7 @@
                                 <div class="panel-heading" role="tab" id="headingOne">
                                     <h4 class="panel-title">
                                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
-                                            Details Of Department
+                                            <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i> Details Of Department
                                         </a>
                                     </h4>
                                 </div>
@@ -279,52 +277,52 @@
                                                     <!-- /.box-header -->
                                                     <!-- form start -->
 
-                                                        <div class="box-body form-group" >
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputEmail1"><span style="color:blue;">Oraganization ID</span><span style="color:red;">*</span></label>
-                                                                <input type="text" class="form-control " id="O_Department_Id" formControlName="O_Department_Id" name="O_Department_Id" placeholder="Department ID" required="">
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputPassword1"><span style="color:blue;">Oraganization Name</span><span style="color:red;">*</span></label>
-                                                                <input type="text" class="form-control " id="O_Department_Name" formControlName="O_Department_Name" name="O_Department_Name" placeholder="Enterprise Name" required="">
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputPassword1"><span style="color:blue;">Employeer ID</span><span style="color:red;">*</span></label>
-                                                                <select aria-controls="example1" id="O_Eployeer_Id" class="form-control" formControlName="O_Eployeer_Id" name="O_Eployeer_Id" required="">
+                                                    <div class="box-body form-group">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Oraganization ID</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control " id="O_Department_Id" formControlName="O_Department_Id" name="O_Department_Id" placeholder="Department ID" required="">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Oraganization Name</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control " id="O_Department_Name" formControlName="O_Department_Name" name="O_Department_Name" placeholder="Enterprise Name" required="">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Employeer ID</span><span style="color:red;">*</span></label>
+                                                            <select aria-controls="example1" id="O_Eployeer_Id" class="form-control" formControlName="O_Eployeer_Id" name="O_Eployeer_Id" required="">
                                                                     <option value="" disabled="" selected="selected">--Select Eployeer Id--</option>
                                                                     <option *ngFor="let item of employeeriDList" [value]="item.emp_id">{{item.EmployerID}}</option>
                                                                 </select>
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputPassword1"><span style="color:blue;">Branch Id</span><span style="color:red;">*</span></label>
-                                                                <select aria-controls="example1" id="O_Branch_Id" class="form-control " formControlName="O_Branch_Id" name="O_Branch_Id" required="">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Branch Id</span><span style="color:red;">*</span></label>
+                                                            <select aria-controls="example1" id="O_Branch_Id" class="form-control " formControlName="O_Branch_Id" name="O_Branch_Id" required="">
                                                                     <option value="" disabled="" selected="selected">--Select Branch Id--</option>
                                                                     <option *ngFor="let item of branchList" [value]="item.b_id">{{item.BranchId +"("+item.BranchName+")"}}</option>
                                                                 </select>
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputPassword1"><span style="color:blue;">Reporting Department ID</span><span style="color:red;">*</span></label>
-                                                                <select aria-controls="example1" id="O_Reporting_Department_Id" class="form-control " formControlName="O_Reporting_Department_Id" name="O_Reporting_Department_Id" required="">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Reporting Department ID</span><span style="color:red;">*</span></label>
+                                                            <select aria-controls="example1" id="O_Reporting_Department_Id" class="form-control " formControlName="O_Reporting_Department_Id" name="O_Reporting_Department_Id" required="">
                                                                     <option value="" disabled="" selected="selected">--Select Reporting Department ID--</option>
                                                                     <option *ngFor="let item of organizationList" [value]="item.o_id">{{item.OrganizationName +"("+item.Org_ID+")"}}</option>
                                                                 </select>
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputFile"><span style="color:blue;">Cost Center</span><span style="color:red;">*</span></label>
-                                                                <select class="form-control " formControlName="O_Costcenter" name="O_Costcenter" id="O_Costcenter" required=""><option value="? undefined:undefined ?" selected="selected"></option>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputFile"><span style="color:blue;">Cost Center</span><span style="color:red;">*</span></label>
+                                                            <select class="form-control " formControlName="O_Costcenter" name="O_Costcenter" id="O_Costcenter" required=""><option value="? undefined:undefined ?" selected="selected"></option>
                                                                     <option value="0">Yes</option>
                                                                     <option value="1">No</option>
 
                                                                 </select>
-                                                            </div>
                                                         </div>
+                                                    </div>
 
-                                                        <!-- /.box-body -->
-                                                        <!--  <div class="box-footer">
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                     </div> -->
 
-                                                
+
                                                 </div>
                                             </div>
                                         </div>
@@ -336,8 +334,7 @@
                                 <div class="panel-heading" role="tab" id="headingTwo">
                                     <h4 class="panel-title">
                                         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
-                                            Manager Details
+                                            <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i> Manager Details
                                         </a>
                                     </h4>
                                 </div>
@@ -351,62 +348,61 @@
                                                 </div> -->
                                                     <!-- /.box-header -->
                                                     <!-- form start -->
-                                                        <div class="box-body">
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputEmail1">First Name</label>
-                                                                <input type="text" class="form-control" id="O_First_Name" formControlName="O_First_Name" name="O_First_Name" placeholder="First Name">
-
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputEmail1">Middle Name</label>
-                                                                <input type="text" class="form-control" id="O_Middle_Name" formControlName="O_Middle_Name" name="O_Middle_Name" placeholder="Middle Name">
-
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputEmail1">Last Name</label>
-                                                                <input type="text" class="form-control" id="O_Last_Name" formControlName="O_Last_Name" name="O_Last_Name" placeholder="Last Name">
-
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputEmail1">Designation</label>
-                                                                <input type="text" class="form-control" id="O_Designation" formControlName="O_Designation" name="O_Designation" data-toggle="modal" data-target="#Designation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
-
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputEmail1">Email Address</label>
-                                                                <input type="text" class="form-control" id="O_Email_Address" formControlName="O_Email_Address" name="O_Email_Address" placeholder="Email Address">
-
-                                                            </div>
-
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
-                                                                <input type="text" class="form-control " id="O_Phone" formControlName="O_Phone" name="O_Phone" placeholder="Phone" required="">
-
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                <input type="text" class="form-control " id="O_Fax" formControlName="O_Fax" name="O_Fax" placeholder="Fax" required="">
-
-                                                            </div>
-
-                                                            <div class="form-group col-md-3">
-                                                                <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
-                                                                <input type="text" class="form-control " id="O_Mobile_No" formControlName="O_Mobile_No" name="O_Mobile_No" placeholder="Mobile No" required="">
-
-                                                            </div>
-
-                                                            <div class="form-group col-md-3">
-                                                                <label> Preferred Contact Mode</label>
-                                                                <br>
-
-                                                                <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
-                                                                &nbsp;&nbsp;&nbsp;  <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
-                                                                &nbsp;&nbsp;&nbsp;  <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
-
-                                                            </div>
+                                                    <div class="box-body">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">First Name</label>
+                                                            <input type="text" class="form-control" id="O_First_Name" formControlName="O_First_Name" name="O_First_Name" placeholder="First Name">
 
                                                         </div>
-                                                
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Middle Name</label>
+                                                            <input type="text" class="form-control" id="O_Middle_Name" formControlName="O_Middle_Name" name="O_Middle_Name" placeholder="Middle Name">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Last Name</label>
+                                                            <input type="text" class="form-control" id="O_Last_Name" formControlName="O_Last_Name" name="O_Last_Name" placeholder="Last Name">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Designation</label>
+                                                            <input type="text" class="form-control" id="O_Designation" formControlName="O_Designation" name="O_Designation" data-toggle="modal" data-target="#Designation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Email Address</label>
+                                                            <input type="text" class="form-control" id="O_Email_Address" formControlName="O_Email_Address" name="O_Email_Address" placeholder="Email Address">
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control " id="O_Phone" formControlName="O_Phone" name="O_Phone" placeholder="Phone" required="">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control " id="O_Fax" formControlName="O_Fax" name="O_Fax" placeholder="Fax" required="">
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
+                                                            <input type="text" class="form-control " id="O_Mobile_No" formControlName="O_Mobile_No" name="O_Mobile_No" placeholder="Mobile No" required="">
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label> Preferred Contact Mode</label>
+                                                            <br>
+
+                                                            <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i> &nbsp;&nbsp;&nbsp; <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone"
+                                                                title="Telephone No" style="font-size:23px;"></i> &nbsp;&nbsp;&nbsp; <input type="checkbox"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
+
+                                                        </div>
+
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -424,7 +420,7 @@
                 </div>
             </ng-template>
 
-            <div  class="modal fade" id="Designation" role="dialog" style="display: none;">
+            <div class="modal fade" id="Designation" role="dialog" style="display: none;">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
@@ -434,49 +430,49 @@
                             <h4 class="modal-title">Select Designation</h4>
                         </div>
                         <div class="modal-body">
-                          
-                                <div class="box-body">
-                                    <!--  <div class="box-header">
+
+                            <div class="box-body">
+                                <!--  <div class="box-header">
                                   <h3 class="box-title">Data Table</h3>
                                 </div> -->
-                                    <!-- /.box-header -->
-                                    <div class="box-body">
-                                        <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <div id="example1_filter" class="dataTables_filter">
-                                                        <label id="lblheading">Job ID/Title :<input type="text" class="form-control input-sm" placeholder="" aria-controls="example1" formControlName="txtsearch" name="txtsearch"></label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12" style="max-height:500px;overflow:scroll;">
-                                                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                                                        <thead>
-                                                            <tr role="row">
-                                                                <th></th>
-                                                                <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Job ID</th>
-                                                                <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Job Title</th>
-
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                           <tr role="row" class="odd ng-scope" *ngFor="let job of jobCatlogPriDetailes?.GetJobCatalouge">
-                                                                <td><button type="button" name="chkjob" (click)="Getjodcatdet(job?.JCatalouge_id,job?.JobTitle)"><i class="fa fa-hand-pointer"></i></button></td>
-                                                                <td class="sorting_1 ng-binding">{{job?.JobCode}}</td>
-                                                                <td class="ng-binding">{{job?.JobTitle}}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div id="example1_filter" class="dataTables_filter">
+                                                    <label id="lblheading">Job ID/Title :<input type="text" class="form-control input-sm" placeholder="" aria-controls="example1" formControlName="txtsearch" name="txtsearch"></label>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-sm-12" style="max-height:500px;overflow:scroll;">
+                                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th></th>
+                                                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Job ID</th>
+                                                            <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Job Title</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr role="row" class="odd ng-scope" *ngFor="let job of jobCatlogPriDetailes?.GetJobCatalouge">
+                                                            <td><button type="button" name="chkjob" (click)="Getjodcatdet(job?.JCatalouge_id,job?.JobTitle)"><i class="fa fa-hand-pointer"></i></button></td>
+                                                            <td class="sorting_1 ng-binding">{{job?.JobCode}}</td>
+                                                            <td class="ng-binding">{{job?.JobTitle}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
-
-
-
                                 </div>
-                           
+
+
+
+                            </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -485,5 +481,5 @@
                 </div>
             </div>
         </div>
-            </div>
-        </div>
+    </div>
+</div>
