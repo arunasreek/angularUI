@@ -117,23 +117,23 @@ export class JournalVoucherComponent implements OnInit {
     });
   
     this.journalService.Getprojectlist().subscribe((data: any) => {
-      this.projectList=data.Result;
+      this.projectList=data
     });
   
     this.journalService.GetEmployeeriD().subscribe((data: any) => {
-      this.employerId=data.Result;
+      this.employerId=data
     });
     
     this.journalService.Getbranchlist().subscribe((data: any) => {
-      this.branchList=data.Result;
+      this.branchList=data
     });
   
     this.journalService.getOrganizationID().subscribe((data: any) => {
-      this.organizationID=data.Result;
+      this.organizationID=data
     });
   
     this.journalService.GetAccountnums().subscribe((data: any) => {
-      this.Accno=data.Result;
+      this.Accno=data
     });
   }
 }

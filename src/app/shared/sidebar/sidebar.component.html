@@ -16,10 +16,31 @@
        
         <ul class="sidebar-menu nav dropdown-submenu">
 
-            <li>
+            <!-- <li>
               <a routerLink="/dashboard"><i class="fa fa-dashboard"></i>Dashboard
               </a>
-                 </li><li>
+                 </li> -->
+
+                 <li >
+                    <a>
+                      <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                      <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </span>
+                    </a>
+                <ul class="treeview-menu" style="position:relative">
+                      <li><a routerLink="/ceo-dashboard"><i class="fa fa-circle-o"></i>CEO Dashboard</a></li>
+                      <li ><a routerLink="/dashboard"><i class="fa fa-circle-o"></i> Sales Manager Dashboard</a></li>
+                      <li><a routerLink="/purchase-dashboard"><i class="fa fa-circle-o"></i>Purchase Dashboard</a></li>
+                      <li ><a routerLink="/financial-dashboard"><i class="fa fa-circle-o"></i> Finance Dashboard</a></li>
+                      <li ><a routerLink="/logistics-dashboard"><i class="fa fa-circle-o"></i> Logistics Dashboard</a></li>
+                      <li ><a routerLink="/general-dashboard"><i class="fa fa-circle-o"></i> General Dashboard</a></li>
+                      <li ><a routerLink="/project-dashboard"><i class="fa fa-circle-o"></i> Project Dashboard</a></li>
+                      <li ><a routerLink="/hr-management-dashboard"><i class="fa fa-circle-o"></i> HR Management Dashboard</a></li>
+                    </ul>
+                  </li>
+                 
+                 <li>
             <a routerLink="/enterprise"><i class="fa fa-industry"></i>Enterprise  </a>
 
                         </li>

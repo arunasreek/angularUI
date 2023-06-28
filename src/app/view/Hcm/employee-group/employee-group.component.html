@@ -1,0 +1,742 @@
+
+<script src="~/Content/Scripts/Procurment.js"></script>
+<section class="content">
+    <div class="row" ng-controller="PurchaseOrderController" id="PurchaseOrderController">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <!-- <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">PurchaseOrder List</a></li> -->
+                    <li class="active"><a href="#tab_a" id="lifirsttab" data-toggle="tab">Employee Group General Setup</a></li>
+                    <!-- <li><a href="#tab_2" id="secondtab" data-toggle="tab">Shipping Details</a></li>
+                    <li><a href="#tab_3" id="thirdtab" data-toggle="tab">Invoiceing Details</a></li>
+                    <li><a href="#tab_4" id="thirdtab" data-toggle="tab">Accounting Entry</a></li> -->
+                </ul>
+                <div class="tab-content">
+
+
+                    <!-- <div class="tab-pane active in" id="tab_a">
+                        <div class="row divheight">
+                            <div class="col-lg-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">PurchaseOrder ID</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Supplier Name</th>
+                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th> 
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Supplier Contact Person</th>
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Delivery</th>
+                                            concatenation Of Office Contact Person First , Middle  , LAst Names
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Status</th>
+
+
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Actions</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="Qte in GetPurchaseQuatationList">
+                                            <td></td>
+                                            <td></td>
+                                             <td></td>
+                                                <td></td>
+                                                <td></td> 
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <span class="glyphicon glyphicon-ok-circle" style="color:#d81b60;cursor:pointer;font-size:20px;padding:05px;" title="approve"></span>
+                                                <span class="glyphicon glyicon-remove-circle" style="color:#d81b60;cursor:pointer; font-size:20px;padding:05px;" title="reject"></span>
+                                            </td>
+                                            <td>
+                                                
+                                                <a href="/Jobs/jb/PurchaseOrderListView?id" data-lity>
+                                                    <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="GetEditPurchaseOrderalllist(Qte.ep_id)"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="PurchaseOrderDelete(Qte)"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                      <tfoot>
+                                    <tr>
+                                    <th rowspan="1" colspan="1">Rendering engine</th>
+                                    <th rowspan="1" colspan="1">Browser</th>
+                                    <th rowspan="1" colspan="1">Platform(s)</th>
+                                    <th rowspan="1" colspan="1">Engine version</th>
+                                    <th rowspan="1" colspan="1">CSS grade</th></tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="tab-pane active in" id="tab_a">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Employee Group General Setup
+                                    </a>
+                                </h4>
+                            </div>
+                            <!-- in -->
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                                  <h3 class="box-title">Quick Example</h3>
+                                                </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                                <form role="form">
+
+                                                    <div class="box-body">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Employer Group</span><span style="color:#d81b60;">*</span></label>
+                                                            <select class="form-control" ng-model="pur_order_emp_id" name="pur_order_emp_id" required ng-change="GetEmployeerbarchllistdet()">
+                                                                <option value="0">Select Employee Group</option>
+                                                                <option value="">BiWeekly Employees</option>
+                                                                <option value="">Monthly paid Employees</option>
+                                                                <option value="">Semi Monthly Employees</option>
+                                                                <option value="">Weekly Employees</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Manager/Supervisor Assignment Starting Number</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_id" placeholder="Purchase Order ID" ng-model="pur_order_id" name="pur_order_id" required>
+
+                                                        </div>
+                                                      
+                                                        	<!-- <div class="form-group col-md-3">
+                                                          <label for="exampleInputPassword1">Manager/Supervisor Assignment Starting Number</label>
+                                                          <input type="date" class="form-control"  id="datepicker" placeholder="Start Date / Renewal Date">
+                                                        </div> -->
+                                                        
+                                                        
+                                                    
+                                                        <div class="form-group col-md-6" style="width:1150px">
+                                                           
+                    <label><input type="checkbox" name="General_Leave_close" id="General_Leave_close"  value="Yes" checked   onclick="document.form1.submit();" >&nbsp;&nbsp;&nbsp;Include Supervisors from Employee Job Assignment</label> &nbsp; &nbsp;&nbsp;
+                   <label><input type="checkbox" name="Post_YTD" id="General_Leave_close"  value="Yes"    onclick="document.form1.submit();" >&nbsp;&nbsp;&nbsp; Include Managers from Organization Unit</label> 
+                    <br /> 
+                <label><input type="checkbox" name="Aniversary_Refresh" id="Aniversary_Refresh"  value="Yes"  onclick="document.form1.submit();"/>&nbsp;&nbsp;&nbsp;Include Supervisors from Job Classification</label>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <label><input type="checkbox" name="Terminated_employee" id="Terminated_employee"  value="Yes"  onclick="document.form1.submit();"/>&nbsp;&nbsp;&nbsp;Include Managers of Projects</label>    &nbsp;&nbsp;&nbsp;
+
+                  
+                                                        </div>                      
+                                                       
+                                                        <br />
+                                                        <br />
+                                                        <input type="hidden" id="hdnindex" />
+                                                        <input type="hidden" id="hdnoderid" />
+                                                        <!-- <div class="form-group col-md-10">
+                                                            <label for="exampleInputEmail">Select Item</label>
+                                                        </div> -->
+                                                        <br />
+                                                        
+
+                                                    </div>
+
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
+                                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div> -->
+                                                    <button type="submit" class="btn bg-maroon margin" >Save</button>
+                                                    <button type="submit" class="btn bg-maroon margin ng-hide" >Update</button>
+                                      
+                                                    <button type="button" class="btn bg-maroon margin" >Cancel</button>
+                                                    <button type="button" class="btn bg-maroon margin"  ng-click="SetEmployeePrimarydet()">Exit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="epid" ng-model="epid" name="epid" />
+                        </div>
+
+                        <div class="modal fade" id="pur_order_item_id" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                     <div class="col-sm-6">
+                                                            <label for="exampleinput1">Product ID</label>
+                                                            <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label for="exampleinput1">Description</label>
+                                                            <input type="text" id="desc" ng-model="desc" name="desc" />
+                                                        </div> 
+                                                     <div class="text-center">
+                                                        
+                                                    </div>
+                                                    <div class="text-right col-sm-12">
+                                                        <label for="exampleinput">Search</label>
+                                                        <input type="search" id="pur_search" ng-model="pur_search" name="pur_search" />
+                                                    </div> 
+
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Item ID</th>
+                                                                    <th>Item Description</th>
+                                                                    <th>UM</th>
+                                                                     <th>Available Quantity</th>
+                                                                    <th>Reorder Level Quantity</th> 
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="item in GetStockitemsList">
+                                                                    <td><input type="radio" name="Empcheckgrp" id="" value="" ng-model="Itemcheck" ng-click="GetItemdet(item)" /></td>
+                                                                    <td style="display:none;"><label id=""></label></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="purorder_quo_modal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                     <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier ID</label>
+                                                            <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier</label>
+                                                            <input type="text" id="desc" ng-model="desc" name="desc" />
+                                                        </div>                                                     
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Quotation ID</th>
+                                                                    <th>Supplier Name</th>
+                                                                     <th>UM</th>
+                                                                        <th>Available Quantity</th>
+                                                                        <th>Reorder Level Quantity</th> 
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="Qta in GetPurQuatationList">
+                                                                    <td><input type="radio" name="Quatation" ng-click="GetQuatationdetbyid(Qta,$index)" /></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                     <td></td>
+                                                                        <td></td>
+                                                                        <td></td> 
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="pur_order_sup" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                     <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier ID</label>
+                                                            <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label for="exampleinput1">Supplier</label>
+                                                            <input type="text" id="desc" ng-model="desc" name="desc" />
+                                                        </div> 
+                                                     <div class="text-center">
+                                                        
+                                                    </div>
+                                                    <div class="text-right col-sm-12">
+                                                        <label for="exampleinput">Search</label>
+                                                        <input type="search" id="pur_search" ng-model="pur_search" name="pur_search" />
+                                                    </div> 
+
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Supplier ID</th>
+                                                                    <th>Supplier Name</th>
+                                                                     <th>UM</th>
+                                                                        <th>Available Quantity</th>
+                                                                        <th>Reorder Level Quantity</th> 
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="suplist in GetSupplieritemsList">
+                                                                    <td><input type="radio" name="supitem" ng-click="GetindividuvalSupdetforQta(suplist)" /></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>  
+                                                            </tbody>                                                            
+                                                        </table>
+                                                        <input type="hidden" id="hdnsuppid" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="tab_2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Shipping Details
+                                    </a>
+                                </h4>
+                            </div>
+                            <!-- in -->
+                            <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                  <h3 class="box-title">Quick Example</h3>
+                                </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                                <form role="form">
+
+                                                    <div class="box-body">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Name Of Receiving Company</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control"   ng-model="pur_order_rec_compny" name="pur_order_rec_compny" placeholder="Name Of Receiving Company" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Contact Person</label>
+                                                            <input type="text" class="form-control" id="pur_order_cnt_per" placeholder="Contact Person" ng-model="pur_order_cnt_per" name="pur_order_cnt_per">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Mobile</label>
+                                                            <input type="text" class="form-control"  ng-model="pur_order_mobile" name="pur_order_mobile" id="pur_order_mobile" placeholder="Mobile">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputFile">Landline</label>
+                                                            <input type="text" class="form-control" id="pur_order_landline" ng-model="pur_order_landline" name="pur_order_landline" placeholder="Landline">
+                                                        </div>
+                                                        <br />
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Fax</label>
+                                                            <input type="text" class="form-control" id="pur_order_fax" ng-model="pur_order_fax" name="pur_order_fax" placeholder="Fax">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Receiving Company Tax ID</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_recng_com_tax_id" ng-model="pur_order_recng_com_tax_id" name="pur_order_recng_com_tax_id" placeholder="Receiving Company Tax ID" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Mode Of Shipment</span><span style="color:#d81b60;">*</span></label>
+                                                            <select type="text" class="form-control" id="pur_order_mode_of_shpmnt" ng-model="pur_order_mode_of_shpmnt" name="pur_order_mode_of_shpmnt" placeholder="" required>
+                                                                <option value="" disabled>please select</option>
+                                                                <option value="" >By Air</option>
+                                                                <option value="" >By Sea</option>
+                                                                <option value="">By Land</option>
+                                                            </select>
+                                                        </div>
+                                                        <!-- 	<div class="form-group col-md-3">
+                                          <label for="exampleInputPassword1">Start Date / Renewed Date</label>
+                                          <input type="date" class="form-control"  id="datepicker" placeholder="Start Date / Renewal Date">
+                                        </div>
+                                         -->
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Port Of Origon</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_prtorgn" ng-model="pur_order_prtorgn" name="pur_order_prtorgn" placeholder="Port Of Origon" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Port Of Destination</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_prtdest" ng-model="pur_order_prtdest" name="pur_order_prtdest" placeholder="Port Of Destination" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Shipment Terms</span><span style="color:#d81b60;">*</span></label>
+                                                            <select class="form-control" ng-model="pur_order_shpmnterms" name="pur_order_shpmnterms" required>
+                                                                <option value="" disabled>select</option>
+                                                                <option value="">FOB</option>
+                                                                <option value="">CAD</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Date Of Delivery</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_dt_delvry" ng-model="pur_order_dt_delvry" name="pur_order_dt_delvry" placeholder="dd/mm/yy" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Delivery Country</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_del_loc" ng-model="pur_order_del_cntry" name="pur_order_del_cntry" placeholder="Delivery Country" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Delivery State</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_del_loc" ng-model="pur_order_del_state" name="pur_order_del_state" placeholder="Delivery State" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">Delivery City</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_del_loc" ng-model="pur_order_del_city" name="pur_order_del_city" placeholder="Delivery City" required>
+                                                        </div>
+                                                        
+                                                       
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Delivery Address</span><span style="color:#d81b60;">*</span></label>
+                                                            <textarea class="form-control" id="pur_order_del_add" ng-model="pur_order_del_add" name="pur_order_del_add" placeholder="Delivery Address" required></textarea>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Delivery Terms</label>
+                                                            <textarea class="form-control" id="pur_order_delvry_terms" ng-model="pur_order_delvry_terms" name="pur_order_delvry_terms"></textarea>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Remarks</span><span style="color:#d81b60;">*</span></label>
+                                                            <textarea class="form-control" id="pur_order_remrk" ng-model="pur_order_remrk" name="pur_order_remrk" placeholder="Remarks" required></textarea>
+                                                        </div>
+                                                        
+
+                                                    </div>
+
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
+                                      <button type="submit" class="">Submit</button>
+                                    </div> -->
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="epid" ng-model="epid" name="epid" />
+
+                            
+                        </div>
+
+                      
+
+                    </div>
+                     <div class="tab-pane" id="tab_3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Invoicing Details
+                                    </a>
+                                </h4>
+                            </div>
+                            <!-- in -->
+                            <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                  <h3 class="box-title">Quick Example</h3>
+                                </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                                <form role="form">
+
+                                                    <div class="box-body">
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1"><span style="color:blue;">Name Of Invoicing Company</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" ng-model="pur_order_inv_compny" name="pur_order_inv_compny" placeholder="Name Of Invoicing Company" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1">Contact Person</label>
+                                                            <input type="text" class="form-control" id="pur_order_cnt_per" placeholder="Contact Person" ng-model="pur_order_cnt_per" name="pur_order_cnt_per">
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Mobile</label>
+                                                            <input type="text" class="form-control" ng-model="pur_order_mobile" name="pur_order_mobile" id="pur_order_mobile" placeholder="Mobile">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputFile">Landline</label>
+                                                            <input type="text" class="form-control" id="pur_order_landline" ng-model="pur_order_landline" name="pur_order_landline" placeholder="Landline">
+                                                        </div>
+                                                        <br />
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Fax</label>
+                                                            <input type="text" class="form-control" id="pur_order_fax" ng-model="pur_order_fax" name="pur_order_fax" placeholder="Fax">
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Email ID</label>
+                                                            <input type="text" class="form-control" id="pur_order_email" ng-model="pur_order_email" name="pur_order_email" placeholder="Email ID">
+                                                        </div>
+
+                                                       
+                                                        <!-- 	<div class="form-group col-md-3">
+                                          <label for="exampleInputPassword1">Start Date / Renewed Date</label>
+                                          <input type="date" class="form-control"  id="datepicker" placeholder="Start Date / Renewal Date">
+                                        </div>
+                                         -->
+                                                       
+
+                                                        
+                                                        
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Invoicing Company Tax ID</span><span style="color:#d81b60;">*</span></label>
+                                                            <input type="text" class="form-control" id="pur_order_inv_com_tax_id" ng-model="pur_order_inv_com_tax_id" name="pur_order_inv_com_tax_id" placeholder="Invoicing Company Tax ID" required>
+                                                        </div>
+                                                        
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1">Payment Terms</label>
+                                                            <textarea class="form-control" id="pur_order_paymnt_terms" ng-model="pur_order_paymnt_terms" name="pur_order_paymnt_terms"></textarea>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword">Remarks</label>
+                                                            <textarea class="form-control" id="pur_order_remarks" ng-model="pur_order_remarks" name="pur_order_remarks" placeholder="Remarks"></textarea>
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
+                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div> -->
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="epid" ng-model="epid" name="epid" />
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="tab-pane" id="tab_4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingFour">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                        <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                        Accounting Entry
+                                    </a>
+                                </h4>
+                            </div>
+                            <!-- in -->
+                            <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+                                <div class="panel-body">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="box box-primary " style="border-top:none;">
+                                                <!--   <div class="box-header with-border">
+                                  <h3 class="box-title">Quick Example</h3>
+                                </div> -->
+                                                <!-- /.box-header -->
+                                                <!-- form start -->
+
+                                                <form role="form">
+
+                                                    <div class="box-body">
+                                                       
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputFile" style="color:blue;">Currency</label><span style="color:red">*</span>
+                                                            <select class="form-control" id="pur_ord_currency" ng-model="pur_ord_currency" name="pur_ord_currency" required>
+                                                                <option value="" disabled>--Select Currency</option>
+                                                                <option value=""></option>
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputEmail1" style="color:blue;">Date</label><span style="color:red">*</span>
+                                                            <input type="text" class="form-control" ng-model="pur_ord_date" name="pur_ord_date" id="pur_ord_date" placeholder="dd/mm/yy" required>
+
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1" style="color:blue;">Voucher No</label><span style="color:red">*</span>
+                                                            <input type="text" class="form-control" ng-model="pur_ord_voucherno" name="pur_ord_voucherno" id="pur_ord_voucherno" placeholder="Voucher No" required>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1" style="color:blue;">Narration</label><span style="color:red">*</span>
+                                                            <textarea class="form-control" ng-model="pur_ord_narration" name="pur_ord_narration" id="pur_ord_narration" placeholder="Narration" required></textarea>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- /.box-body -->
+                                                    <!--  <div class="box-footer">
+                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div> -->
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div id="bankdeatilsbulk">
+                                        <table>
+
+                                            <thead>
+                                                <tr>
+                                                    <th>Account Number</th>
+                                                    <th>Account Name</th>
+                                                    <th>Debit Amount</th>
+                                                    <th>Credit Amount</th>
+                                                    <th>&nbsp;</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <td></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody id="txttbody">
+                                                 <tr>
+                        <td><input type="text" class="form-control" /></td>
+                        <td><input type="text" class="form-control" /></td>
+                        <td><input type="text" class="form-control" /></td>
+                        <td onclick="ADDNEXTTR()" id="lstrow"><input type="text" class="form-control" /></td>
+                        <td class="glyphicon glyphicon-remove"></td>
+                    </tr>*
+                                                <tr>
+                                                    <td onclick="addRow()"><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td onchange="check()"><input type="text" class="form-control" id="dbtamt" /></td>
+                                                    <td onchange="check()"><input type="text" class="form-control" id="crdtamt" /></td>
+                                                     <td onclick="deleteRow(this)"><i class="fa fa-trash"></i></td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div> 
+                                </div>
+                            </div>
+                            <input type="hidden" id="epid" ng-model="epid" name="epid" />
+
+                        </div>
+
+
+
+                    </div>
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    function addrow() {
+        var html = '<tr>' +
+                    '<td><input type="text" class="form-control"  placeholder="S.No"/></td>' +
+                    '<td onclick="addrow()"><input type="text" class="form-control"  data-target="#pur_order_prod_id" data-toggle="modal" placeholder="&#61442;"style="font-family:FontAwesome;"/></td>' +
+                    '<td><input type="text" class="form-control" readonly></td>' +
+                    '<td width="150"><input type="text" class="form-control"></select></td>' +
+                    '<td width="150"><select class="form-control"><option value="2">kgs</option></select></td>' +
+                     '<td><input type="text" class="form-control" placeholder="Price" /></td>' +
+                     '<td><select class="form-control"><option value="">Amount</option><option value="">Percentage</option></select></td>' +
+                     '<td><input type="text" class="form-control" placeholder="Discount"/></td>' +
+                     '<td><input type="text" class="form-control" placeholder="Total Amount"/></td>' +
+                     '<td><input type="text" class="form-control" placeholder="Tax Amount"/></td>' +
+                    '<td><td>' +
+                    '</tr>'
+        $(html).appendTo($("#txtbody"))
+    };
+    function deleterow() {
+        var par = $(this).parent().parent();
+        par.remove();
+    };
+    $("#txtbody").on("click", ".BtnMinus", deleterow);
+    $(document).ready(function () {
+        var html
+        $("#pur_order_dt_delvry").datepicker({
+            showWeek: "true",
+            dateFormat: "dd-mm-yy"
+        });
+        $("#pur_ord_date").datepicker({
+            showWeek: "true",
+            dateFormat: "dd-mm-yy"
+        });
+    });
+</script>

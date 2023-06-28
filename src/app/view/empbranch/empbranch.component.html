@@ -12,12 +12,12 @@
                         <div class="tab-content">
                             <div class="tab-pane active tab1" id="tab_1">
 
-                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Employer Id</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Branch Id</th>
-
+                                            
 
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Branch Name</th>
 
@@ -33,13 +33,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of branchList?.GetBranches | paginate:{ itemsPerPage: 10 , currentPage: p };">
+                                            <tr *ngFor="let item of branchList | paginate:{ itemsPerPage: 10 , currentPage: p };" >
                                             <td class="ng-binding">{{item.EmployerId}}</td>
                                             <td class="ng-binding">{{item.BranchId}}</td>
                                             <td class="ng-binding">{{item.BranchName}}</td>
                                             <td class="ng-binding">{{item.BranchCurrency}}</td>
                                             <td>
-
+                                                
                                                 <a href="/Enterprise/ES/EmpbranchList?id=3" data-lity="">
                                                     <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                 </a>
@@ -47,7 +47,7 @@
                                                     <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Editbranch(GEL)"></i>
                                                 </a>
                                                 <a (click)="deleteEmployee(item.b_id)">
-                                                    <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;"></i>
+                                                    <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -56,10 +56,10 @@
 
                                     </tbody>
 
-                                </table>
+                                </table> 
                                 <div style="float:right;margin-top:20px;color:#102f66;font-weight:800">
                                     <pagination-controls (pageChange)="p=$event"></pagination-controls>
-                                </div>
+                                   </div>  
                                 <!-- <ag-grid-angular
                           style="width:100%; height:500px;min-height:200px;padding-left:50px"
                           class="ag-theme-alpine"
@@ -73,7 +73,7 @@
                           >
                       </ag-grid-angular> -->
                             </div>
-
+                            
                             <div class="tab-pane tab2 ng-pristine ng-invalid ng-invalid-required" id="tab_2" ng-form="empbranchform2">
                                 <div class="col-md-12">
                                     <div class="box box-primary " style="border-top:none;">
@@ -83,29 +83,29 @@
                                         <!-- /.box-header -->
                                         <!-- form start -->
 
-                                        <form [formGroup]="employerBranchForm" (ngSubmit)="onSubmitPrimary()">
+                                        <form  [formGroup]="employerBranchForm" (ngSubmit)="onSubmitPrimary()">
 
                                             <div class="box-body">
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1"><span style="color:blue;">Employer Id</span><span style="color:red;">*</span></label>
 
-                                                    <select aria-controls="example1" id="Employer_Id" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" formControlName="Employer_Id" name="Employer_Id" required="">
+                                                    <select aria-controls="example1" id="Employer_Id"  class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" formControlName="Employer_Id" name="Employer_Id" required="">
                                                         <option value="" disabled="" selected="selected">--Select Employer Id--</option>
                                                         <option *ngFor="let item of employeeriDList" [value]="item.emp_id">{{item.EmployerID}}</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1"><span style="color:blue;">Branch ID</span><span style="color:red;">*</span></label>
-                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Branch_ID" placeholder="Branch_ID" formControlName="Branch_ID" name="Branch_ID" required="">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Branch_ID"  placeholder="Branch_ID" formControlName="Branch_ID" name="Branch_ID" required="">
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1"><span style="color:blue;">Branch Name</span><span style="color:red;">*</span></label>
-                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Branch_Name" formControlName="Branch_Name" name="Branch_Name" placeholder="Enterprise Name" required="">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Branch_Name"  formControlName="Branch_Name" name="Branch_Name" placeholder="Enterprise Name" required="">
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1">Branch Manager Name</label>
-                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="branc_manager_name" formControlName="branc_manager_name" name="branc_manager_name" placeholder="Permanent Registration">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="branc_manager_name"  formControlName="branc_manager_name" name="branc_manager_name" placeholder="Permanent Registration">
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputFile"><span style="color:blue;">Branch Currency</span><span style="color:red;">*</span></label>
@@ -125,7 +125,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputFile"><span style="color:blue;">Sales Outlet</span><span style="color:red;">*</span></label>
-                                                    <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Sales_Outlet" formControlName="Sales_Outlet" name="Sales_Outlet" required="">
+                                                    <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Sales_Outlet"  formControlName="Sales_Outlet" name="Sales_Outlet" required="">
                                                         <option value="" disabled="" selected="selected">--Select Sales Outlet--</option>
                                                         <option value="0">Yes</option>
                                                         <option value="1">No</option>
@@ -133,7 +133,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputFile"><span style="color:blue;">warehouse</span><span style="color:red;">*</span></label>
-                                                    <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="warehouse" formControlName="warehouse" name="warehouse" required="">
+                                                    <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="warehouse"  formControlName="warehouse" name="warehouse" required="">
                                                         <option value="" disabled="" selected="selected">--Select warehouse--</option>
                                                         <option value="0">Yes</option>
                                                         <option value="1">No</option>
@@ -141,7 +141,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputFile"><span style="color:blue;">Stock Point</span><span style="color:red;">*</span></label>
-                                                    <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="stock_point" formControlName="stock_point" name="stock_point" required="">
+                                                    <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="stock_point"  formControlName="stock_point" name="stock_point" required="">
                                                         <option value="" disabled="" selected="selected">--Select Stock Point--</option>
                                                         <option value="0">Yes</option>
                                                         <option value="1">No</option>
@@ -151,7 +151,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1"><span style="color:blue;">Country</span><span style="color:red;">*</span></label>
 
-                                                    <select aria-controls="example1" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" formControlName="Country" name="Country" id="Country" ng-change="GetStateList()" required="">
+                                                    <select aria-controls="example1" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" formControlName="Country" name="Country" id="Country"  ng-change="GetStateList()" required="">
                                                         <option value="" disabled="" selected="selected">--Select Country Id--</option>                                                      
                         
                                                         <option *ngFor="let item of countryList" [value]="item.country_id">{{item.country_name}}({{item.country_code}})</option>
@@ -160,7 +160,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1"><span style="color:blue;">State</span><span style="color:red;">*</span></label>
 
-                                                    <select aria-controls="example1" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" formControlName="State" name="State" id="State" ng-change="GetCityList()" required="">
+                                                    <select aria-controls="example1" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" formControlName="State" name="State" id="State"  ng-change="GetCityList()" required="">
                                                         <option value="" disabled="" selected="selected">--Select State--</option>
                                                         <!-- ngRepeat: S in Satelist -->
                                                         <option *ngFor="let item of stateList" [value]="item.state_id">{{item.state_name}}</option>
@@ -169,17 +169,17 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1"><span style="color:blue;">City</span><span style="color:red;">*</span></label>
-                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="empbranch_city" formControlName="empbranch_city" name="empbranch_city" placeholder="City">
-
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="empbranch_city"  formControlName="empbranch_city" name="empbranch_city" placeholder="City">
+                                                   
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1">Address</label>
-                                                    <textarea class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Address" formControlName="Address" name="Address" placeholder="Address"></textarea>
+                                                    <textarea class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Address"  formControlName="Address" name="Address" placeholder="Address"></textarea>
                                                 </div>
 
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1"><span style="color:blue;">Land Line</span><span style="color:red;">*</span></label>
-                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="B_Landline" formControlName="B_Landline" name="B_Landline" placeholder="Land Line" required="">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="B_Landline"  formControlName="B_Landline" name="B_Landline" placeholder="Land Line" required="">
 
                                                 </div>
                                                 <div class="form-group col-md-3">
@@ -194,18 +194,18 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1">Email Address</label>
-                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="B_Email" formControlName="B_Email" name="B_Email" placeholder="Email Address">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="B_Email"  formControlName="B_Email" name="B_Email" placeholder="Email Address">
 
                                                 </div>
 
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1">Website</label>
-                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="B_Website" formControlName="B_Website" name="B_Website" placeholder="Website">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="B_Website"  formControlName="B_Website" name="B_Website" placeholder="Website">
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1"><span style="color:blue;">TaxId</span><span style="color:red;">*</span></label>
-                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="B_TaxId" formControlName="B_TaxId" name="B_TaxId" placeholder="B_TaxId" required="">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="B_TaxId"  formControlName="B_TaxId" name="B_TaxId" placeholder="B_TaxId" required="">
 
                                                 </div>
 
@@ -215,32 +215,30 @@
 
                                             <!-- /.box-body -->
                                             <div class="box-footer">
-                                                <button type="submit" class="btn bg-maroon margin" *ngIf="!Isempbranchupdate">Submit</button>
-                                                <button type="submit" class="btn bg-maroon margin " ng-click="Updatebranch()">Update</button>
+                                                <button type="submit" class="btn bg-maroon margin" *ngIf="!Isempbranchupdate" >Submit</button>
+                                                <button type="submit" class="btn bg-maroon margin " ng-click="Updatebranch()" >Update</button>
 
-
-                                            </div>
-                                        </form>
-                                    </div>
+                                        
+                                    </div></form>
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-        $(document).ready(function() {
-            angular.element(document.getElementById('divempbranch')).scope().GetEmployeerbarchllist();
-            angular.element(document.getElementById('divempbranch')).scope().GetEmployeeriD();
-            angular.element(document.getElementById('divempbranch')).scope().GetCountryList();
+    </div></div>
+<script>
+    $(document).ready(function () {
+        angular.element(document.getElementById('divempbranch')).scope().GetEmployeerbarchllist();
+        angular.element(document.getElementById('divempbranch')).scope().GetEmployeeriD();
+        angular.element(document.getElementById('divempbranch')).scope().GetCountryList();
+        
 
-
-            //if (Queryroute == "block_type=D") {
-            //    $(".dormitory").click();
-            //}
-        });
-    </script>
-</div>
+    //if (Queryroute == "block_type=D") {
+    //    $(".dormitory").click();
+    //}
+    });
+</script>
+                    </div>

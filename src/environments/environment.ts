@@ -9,10 +9,10 @@ export const environment = {
 
   //Local
 
-   //apiEndpoint: 'https://localhost:44354/api',
+   apiEndpoint: 'http://localhost:3432',
 
   //Devlopment
-  apiEndpoint: 'http://newapi.sreemithra.com/api'
+//  apiEndpoint: 'http://web.sreemithra.com'
 
   // apiEndpoint: 'http://localhost:3432',
 

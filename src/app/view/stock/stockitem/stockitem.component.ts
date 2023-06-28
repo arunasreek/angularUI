@@ -51,7 +51,7 @@ export class StockitemComponent implements OnInit {
       ItemCode: this.ItemMasterForm.value.ItemCode,
       ItemName: this.ItemMasterForm.value.ItemName,
       itemgroup_id:this.ItemMasterForm.value.ItemCategory,
-      itemcat_id:this.ItemMasterForm.value.ItemGroup,
+      itemcat_id:this.ItemMasterForm.value.ItemGroupId,
       UnitOfMeasure: this.ItemMasterForm.value.UnitOfMeasure,
       Rate: this.ItemMasterForm.value.Rate,
       SIStatus: this.ItemMasterForm.value.SI_Status,
@@ -70,7 +70,6 @@ export class StockitemComponent implements OnInit {
             this.policiesService.GetStockItems().subscribe((data: any) => {
               this.stockitemList=data
             });
-            this.ItemMasterForm.reset();
       //       this.staticTabs.tabs[0].active = true;
       
       //  this.submitted=false;

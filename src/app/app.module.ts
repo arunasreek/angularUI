@@ -9,6 +9,18 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { GanttModule, ResizeService, SortService, FilterService, SelectionService, ReorderService,
   EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
   import { GoogleChartModule } from './google-chart/google-chart.module';
+  import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+  import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+  import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+  import interactionPlugin from '@fullcalendar/interaction';
+
+  import { ChartsModule } from 'ng2-charts';
+
+  FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+    dayGridPlugin,
+    interactionPlugin
+  ]);
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -145,7 +157,17 @@ import { CampaignComponent } from './view/marketing/campaign/campaign.component'
 import { QuickCampaignComponent } from './view/marketing/quick-campaign/quick-campaign.component';
 import { BankReconcilationComponent } from './view/finance/bank-reconcilation/bank-reconcilation.component';
 import { GanttChartComponent } from './view/project-management/gantt-chart/gantt-chart.component';
-
+import { LeadsComponent } from './view/crm/leads/leads.component';
+import { CompitetorsComponent } from './view/crm/compitetors/compitetors.component';
+import { CeoDashboardComponent } from './view/dashboards/ceo-dashboard/ceo-dashboard.component';
+import { LogisticsDashboardComponent } from './view/dashboards/logistics-dashboard/logistics-dashboard.component';
+import { HrManagementDashboardComponent } from './view/dashboards/hr-management-dashboard/hr-management-dashboard.component';
+import { FinancialDashboardComponent } from './view/dashboards/financial-dashboard/financial-dashboard.component';
+import { ProjectDashboardComponent } from './view/dashboards/project-dashboard/project-dashboard.component';
+import { GeneralDashboardComponent } from './view/dashboards/general-dashboard/general-dashboard.component';
+import { PurchaseDashboardComponent } from './view/dashboards/purchase-dashboard/purchase-dashboard.component';
+import { EmployeeGroupComponent } from './view/Hcm/employee-group/employee-group.component';
+import { SucessionManagementComponent } from './view/Hcm/sucession-management/sucession-management.component';
 
 
 @NgModule({
@@ -279,15 +301,39 @@ import { GanttChartComponent } from './view/project-management/gantt-chart/gantt
     BankReconcilationComponent,
     
     GanttChartComponent,
+    
+    LeadsComponent,
+    
+    CompitetorsComponent,
+    
+    CeoDashboardComponent,
+    
+    LogisticsDashboardComponent,
+    
+    HrManagementDashboardComponent,
+    PurchaseDashboardComponent,
+    
+    FinancialDashboardComponent,
+    
+    ProjectDashboardComponent,
+    
+    GeneralDashboardComponent,
+    
+    EmployeeGroupComponent,
+    
+    SucessionManagementComponent,
 
   ],
   imports: [
     HttpClientModule,
+    ChartsModule,
+    FullCalendarModule,
     BrowserModule,
     AppRoutingModule,
     NgxPaginationModule,
     ServicesModule,
     HelpersModule,
+   CalendarModule,
     AppConfigModule,
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(),
