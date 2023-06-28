@@ -1,0 +1,16 @@
+<div class="chartjs-container" style="margin-left:15px;background-color: white;width:640px">
+    <h4 style="margin-top:5px;font-weight:800;float:center">Sales Overview</h4>
+    <canvas baseChart 
+    height="400"
+    width="400"
+    [datasets]="lineChartData" 
+    [labels]="lineChartLabels" 
+    [options]="lineChartOptions"
+    [colors]="lineChartColors" 
+    [legend]="lineChartLegend" 
+    [chartType]="lineChartType" 
+    [plugins]="lineChartPlugins"
+    (chartHover)="chartHovered($event)" 
+    (chartClick)="chartClicked($event)">>
+</canvas>
+</div>

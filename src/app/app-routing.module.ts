@@ -120,6 +120,17 @@ import { CampaignComponent } from './view/marketing/campaign/campaign.component'
 import { QuickCampaignComponent } from './view/marketing/quick-campaign/quick-campaign.component';
 import { BankReconcilationComponent } from './view/finance/bank-reconcilation/bank-reconcilation.component';
 import { GanttChartComponent } from './view/project-management/gantt-chart/gantt-chart.component';
+import { LeadsComponent } from './view/crm/leads/leads.component';
+import { CompitetorsComponent } from './view/crm/compitetors/compitetors.component';
+import { CeoDashboardComponent } from './view/dashboards/ceo-dashboard/ceo-dashboard.component';
+import { LogisticsDashboardComponent } from './view/dashboards/logistics-dashboard/logistics-dashboard.component';
+import { HrManagementDashboardComponent } from './view/dashboards/hr-management-dashboard/hr-management-dashboard.component';
+import { FinancialDashboardComponent } from './view/dashboards/financial-dashboard/financial-dashboard.component';
+import { PurchaseDashboardComponent } from './view/dashboards/purchase-dashboard/purchase-dashboard.component';
+import { EmployeeGroupComponent } from './view/Hcm/employee-group/employee-group.component';
+import { ProjectDashboardComponent } from './view/dashboards/project-dashboard/project-dashboard.component';
+import { GeneralDashboardComponent } from './view/dashboards/general-dashboard/general-dashboard.component';
+import { SucessionManagementComponent } from './view/Hcm/sucession-management/sucession-management.component';
 
 
 
@@ -238,6 +249,17 @@ const routes: Routes = [
   {path:'quick-campaign',component:QuickCampaignComponent},
   {path:'bank-reconcilation',component:BankReconcilationComponent},
   {path:'gantt-chart',component:GanttChartComponent},
+  {path:'leads',component:LeadsComponent},
+  {path:'compitetors',component:CompitetorsComponent},
+  {path:'ceo-dashboard',component:CeoDashboardComponent},
+  {path:'hr-management-dashboard',component:HrManagementDashboardComponent},
+  {path:'logistics-dashboard',component:LogisticsDashboardComponent},
+  {path:'purchase-dashboard',component:PurchaseDashboardComponent},
+  {path:'financial-dashboard',component:FinancialDashboardComponent},
+  {path:'project-dashboard',component:ProjectDashboardComponent},
+  {path:'general-dashboard',component:GeneralDashboardComponent},
+  {path:'employee-group',component:EmployeeGroupComponent},
+  {path:'sucession-management',component:SucessionManagementComponent},
 ];
 
 @NgModule({

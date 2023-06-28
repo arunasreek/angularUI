@@ -193,35 +193,35 @@ onGridReady(params) {
 
   organizationAPICall(){
     this.organizationService.getbranchlist(0).subscribe((data: any) => {
-      this.branchList=data.Result;
+      this.branchList=data
     });
 
     this.organizationService.getCountry().subscribe((data: any) => {
-      this.countryList=data.Result;
+      this.countryList=data
     });
 
     this.organizationService.getEmployeeriD().subscribe((data: any) => {
-      this.employeeriDList=data.Result;
+      this.employeeriDList=data
     });
 
     this.organizationService.getenterprisealllist().subscribe((data: any) => {
-      this.enterprisealllist=data.Result;
+      this.enterprisealllist=data
     });
 
     this.organizationService.getEnterpriseids().subscribe((data: any) => {
-      this.erpriseids=data.Result;
+      this.erpriseids=data
     });
 
     this.organizationService.getJobCatlogPriDetailes().subscribe((data: any) => {
-      this.jobCatlogPriDetailes=data.Result;
+      this.jobCatlogPriDetailes=data
     });
 
     this.organizationService.getOrganizationID().subscribe((data: any) => {
-      this.organizationIDList=data.Result;
+      this.organizationIDList=data
     });
 
     this.organizationService.getOrganizationList(0).subscribe((data: any) => {
-      this.organizationList=data.Result.GetOrganizationById;
+      this.organizationList=data
     });
   }
 

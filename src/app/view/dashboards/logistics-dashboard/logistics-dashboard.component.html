@@ -1,0 +1,182 @@
+
+<!-- <app-line-chart></app-line-chart> -->
+
+
+
+<div class="row" style="margin-left:5px;margin-top: 10px;">
+    <h2 style="margin-left:5px">Logistics Dashboard</h2>
+    <div class="col-lg-3 col-6">
+     
+      <div class="small-box bg-info" style="background-color:aqua;padding:10px;margin-left:5px">
+        <div class="inner">
+          <h3>2891</h3>
+
+          <p>Total Revenue</p>
+        </div>
+        <div class="icon" >
+          <i class="fa fa-compass" style="margin-top: 10px;"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+          More info <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+   
+    <div class="col-lg-3 col-6">
+    
+      <div class="small-box bg-success" style="background-color: green;padding:10px;margin-left:5px">
+        <div class="inner">
+          <h3>2891<sup style="font-size: 20px"></sup></h3>
+
+          <p>Total Profit</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-bar-chart"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+          More info <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+      
+      <div class="small-box bg-warning" style="background-color: yellow;padding:10px;margin-left:5px">
+        <div class="inner">
+          <h3>12891</h3>
+
+          <p>Total Cost</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-money"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+          More info <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    
+    <div class="col-lg-3 col-6">
+  
+      <div class="small-box bg-danger" style="background-color: red;padding:10px;margin-left:5px">
+        <div class="inner">
+          <h3>891</h3>
+
+          <p>Total Shipments</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-truck"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+          More info <i class="fa fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    
+
+  </div> 
+   <div class="row">
+   
+    <div class="col-lg-7 ">
+      <app-line-chart1></app-line-chart1>
+    </div>
+    <div class="col-lg-4" style="background-color:white;">
+      <div class="card overflow-hidden">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Warehouse Operating Costs</h3>
+          </div>
+          <div class="card-options">
+            <a href="" class="mr-4 text-default" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+              <span class="fe fe-more-horizontal fs-20"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              <li><a href="#"><i class="fe fe-eye mr-2"></i>View</a></li>
+              <li><a href="#"><i class="fe fe-plus-circle mr-2"></i>Add</a></li>
+              <li><a href="#"><i class="fe fe-trash-2 mr-2"></i>Remove</a></li>
+              <li><a href="#"><i class="fe fe-download-cloud mr-2"></i>Download</a></li>
+              <li><a href="#"><i class="fe fe-settings mr-2"></i>More</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="list-group projects-list">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1 font-weight-sembold text-dark">Order Picking</h6>
+                <h6 class="text-dark mb-0 font-weight-sembold text-dark">3,876</h6>
+              </div>
+              <div class="d-flex w-100 justify-content-between">
+                <span class="text-muted"><i class="fe fe-arrow-down text-success "></i> 03% last month</span>
+                <span class="text-muted">5 days ago</span>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-bottom-0  border-left-0 border-right-0 border-top">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1 font-weight-sembold text-dark">Storage</h6>
+                <h6 class="text-dark mb-0 font-weight-sembold text-dark">2,178</h6>
+              </div>
+              <div class="d-flex w-100 justify-content-between">
+                <span class="text-muted"><i class="fe fe-arrow-down text-danger "></i> 16% last month</span>
+                <span class="text-muted">2 days ago</span>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-bottom-0  border-left-0 border-right-0 border-top">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1 font-weight-sembold text-dark">Shipping</h6>
+                <h6 class="text-dark mb-0 font-weight-sembold text-dark">1,367</h6>
+              </div>
+              <div class="d-flex w-100 justify-content-between">
+                <span class="text-muted"><i class="fe fe-arrow-up text-success"></i> 06% last month</span>
+                <span class="text-muted">1 days ago</span>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-bottom-0  border-left-0 border-right-0 border-top">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1 font-weight-sembold text-dark">Receiving</h6>
+                <h6 class="text-dark mb-0 font-weight-sembold text-dark">678</h6>
+              </div>
+              <div class="d-flex w-100 justify-content-between">
+                <span class="text-muted"><i class="fe fe-arrow-down text-danger "></i> 25% last month</span>
+                <span class="text-muted">10 days ago</span>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-bottom-0  border-left-0 border-right-0 border-top">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1 font-weight-sembold text-dark">Other</h6>
+                <h6 class="text-dark mb-0 font-weight-sembold text-dark">5,678</h6>
+              </div>
+              <div class="d-flex w-100 justify-content-between">
+                <span class="text-muted"><i class="fe fe-arrow-up text-success "></i> 16% last month</span>
+                <span class="text-muted">5 days ago</span>
+              </div>
+            </a>
+          </div>
+        </div>
+   
+  </div>
+  </div>
+ 
+  
+  <div class="col-lg-7 " style="width:75%;margin-top:10px">
+    <full-calendar [options]="calendarOptions" style="background-color: white;"></full-calendar>
+</div>
+   <!-- <div class="row">
+   
+    <section class="col-lg-7 connectedSortable">
+     
+      <div class="nav-tabs-custom">
+       
+        <ul class="nav nav-tabs pull-right">
+          <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
+          <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
+          <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+        </ul>
+        <div class="tab-content no-padding">
+         
+          <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+          <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+        </div>
+      </div> -->
+
+     

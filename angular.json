@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/assets/css/AdminLTE.css",
               "src/assets/css/bootstrap.css",
@@ -96,16 +97,15 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css",
               "node_modules/ag-grid-community/dist/styles/ag-grid.css",
               "node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css"
-              
             ],
             "scripts": [
               "src/assets/js/bootstrap.js",
               "src/assets/js/jquery-3.3.1.js",
               "node_modules/jquery/dist/jquery.js"
-
             ]
           }
         },
