@@ -20,7 +20,8 @@ export class CommonService {
     }
 
     getEnterprisealllist() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/Getenterprisealllist`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/GetEnterprise`).pipe(map((data: any) => {
+            console.log(data);
             return data;
         }));
     }
@@ -39,6 +40,13 @@ export class CommonService {
 
     getOrganizationList(o_id:number) {
         return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetOrganizationList?o_id=${o_id}`).pipe(map((data: any) => {
+            return data;
+        }));
+    }
+
+    getEnterpriseById(epId:number) {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/GetDetailsById?ep_id=${epId}`).pipe(map((data: any) => {
+            console.log(data);
             return data;
         }));
     }

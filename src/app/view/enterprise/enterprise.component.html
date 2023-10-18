@@ -38,17 +38,19 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let item of employeedetList | paginate:{ itemsPerPage: 10 , currentPage: p };" >
-                                            <td class="ng-binding">{{item.EnterpriseID}}</td>
-                                            <td class="ng-binding">{{item.EnterpriseName}}</td>
-                                            <td class="ng-binding"> {{item.ParentEnterprise}}</td>
-                                            <td class="ng-binding">{{item.DateOfInception}}</td>
-                                            <td class="ng-binding">{{item.DateOfExpiry}}</td>
-                                            <td class="ng-binding">{{item.PrimaryFunctionalCurrency}}</td>
-                                            <td class="ng-binding">{{item.FinancialYearStartDate}}</td>
+                                            <td class="ng-binding">{{item.enterpriseId}}</td>
+                                            <td class="ng-binding">{{item.enterpriseName}}</td>
+                                            <td class="ng-binding"> {{item.parentEnterprise}}</td>
+                                            <td class="ng-binding">{{item.dateOfInception}}</td>
+                                            <td class="ng-binding">{{item.dateOfExpiry}}</td>
+                                            <td class="ng-binding">{{item.primaryFunctionalCurrency}}</td>
+                                            <td class="ng-binding">{{item.financialYearStartDate}}</td>
                                             <td>
                                                
-                                                <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity="">
+                                                <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                                <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetEnterprise(item.epId)"> 
                                                     <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                    <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
                                                 </a>
                                                 <a href="#">
                                                     <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="GetEditenterprisealllist(GEL.ep_id)"></i>
@@ -120,7 +122,7 @@
                                                     <div class="box-body">
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1"><span style="color:blue;">Enterprise ID</span><span style="color:red;">*</span></label>
-                                                            <input type="text" class="form-control " id="exampleInputPassword1" placeholder="Enterprise_ID" formControlName="Enterprise_ID" name="Enterprise_ID" required="">
+                                                            <input type="text" class="form-control " id="exampleInputPassword1"  placeholder="Enterprise_ID" formControlName="Enterprise_ID" name="Enterprise_ID" required="">
 
                                                         </div>
                                                         <div class="form-group col-md-3">
@@ -131,8 +133,8 @@
                                                             <label for="exampleInputFile"><span style="color:blue;">Parent Enterprise</span><span style="color:red;">*</span></label>
                                                             <select class="form-control " id="ParentEnt" formControlName="ParentEnt" name="ParentEnt" required="">
                                                                 <option value="" disabled="" selected="selected">--Select Parent Enterprise</option>
-                                                                <option value="Yes">Yes</option>
-                                                                <option value="No">No</option>
+                                                                <option value="true">Yes</option>
+                                                                <option value="false">No</option>
                                                             </select>
                                                         </div>
 
@@ -145,6 +147,7 @@
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Date Of Inception</span><span style="color:red;">*</span></label>
                                                             <input type="text"
                                                             class="form-control"
+                                                            formControlName="Date_inception"
                                                              #dp="bsDatepicker"
                                                             bsDatepicker [(bsValue)]="Date_inception">  
                                                         </div>
@@ -156,7 +159,8 @@
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Date Of Expiry</span><span style="color:red;">*</span></label>
                                                             <input type="text"
-                                                            class="form-control"
+                                                             class="form-control"
+                                                             formControlName="date_Ecpiry"
                                                              #dp="bsDatepicker"
                                                             bsDatepicker [(bsValue)]="date_Ecpiry">  
                                                         </div>
@@ -185,7 +189,7 @@
 
                       
                         <button type="submit" class="btn bg-maroon margin" *ngIf="!Isupdate">Save</button>
-                        <button type="submit" class="btn bg-maroon margin ng-hide" *ngIf="Isupdate">Update</button>
+                        <button type="submit" class="btn bg-maroon margin ng-hide" *ngIf="Isupdate" (click)="UpdateEnterpriseDetails()">Update</button>
 
                         <button type="button" class="btn bg-maroon margin" (click)="clearenterprisedata()">Cancel</button>
                         <button type="button" class="btn bg-maroon margin ng-hide" *ngIf="Isrenew">Renew</button>
@@ -204,25 +208,24 @@
                                     <!-- /.box-header -->
                                     <!-- form start -->
 
-                                    <form role="form" class="ng-pristine ng-valid">
+                                    <form  [formGroup]="EnterpriselogoNbanner"  >
 
                                         <div class="box-body">
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1">Enterprise Id</label>
-
-                                                <input type="text" class="form-control" id="txtentrapriceid" placeholder="Enterprise Id">
+                                                <input type="text" class="form-control" id="txtentrapriceid" formControlName="txtentrapriceid" placeholder="Enterprise Id">
+                                                <!-- <input type="text" class="form-control " id="exampleInputPassword1"  placeholder="Enterprise_ID" formControlName="Enterprise_ID" name="Enterprise_ID" required=""> -->
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputFile">Upload Enterprise Banner</label>
-                                                <input type="file" id="fileuploadBanner" onchange="EntrpBannerUpload(event)">
-
+                                                <input type="file" id="fileuploadBanner" formControlName="fileuploadBanner"  (change)="onFileSelected($event, 'banner')">
                                                 <p class="help-block"></p>
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputFile">Upload Enterprise Logo</label>
-                                                <input type="file" id="fileuploadLogo" onchange="EntrpLogoUpload(event)">
+                                                <input type="file" id="fileuploadLogo" formControlName="fileuploadLogo" (change)="onFileSelected($event,'logo')">
 
                                                 <p class="help-block"></p>
                                             </div>
@@ -232,7 +235,8 @@
 
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <button type="button" class="btn bg-maroon margin">Upload</button>
+                                            <button type="submit" class="btn bg-maroon margin" (click)="onSubmitEnterpriseDetailslogonbanner()">Upload</button>
+                                            <!-- <button type="submit" class="btn bg-maroon margin " (click)="UpdateEnterpriseDetails()">Update</button> -->
                                         </div>
                                     </form>
                                 </div>
@@ -253,23 +257,26 @@
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1">Database Location</label>
-                                                <input type="file" class="form-control" wemultiple="" mozdirectory="" webkitdirectory="" directory="">
-
+                                                <!-- <input type="text" class="form-control" wemultiple="" mozdirectory="" webkitdirectory="" directory=""> -->
+                                                <input type="text" class="form-control " id="Dloca" formControlName="Dloca" name="Dloca" placeholder="DatabaseLocation" required="">
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1">Application Location</label>
-                                                <input type="file" class="form-control" wemultiple="" mozdirectory="" webkitdirectory="" directory="">
+                                                <!-- <input type="text" class="form-control" wemultiple="" mozdirectory="" webkitdirectory="" directory=""> -->
+                                                <input type="text" class="form-control " id="Apploca" formControlName="Apploca" name="Apploca" placeholder="ApplicationLocation" required="">
 
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1">Backup Location</label>
-                                                <input type="file" class="form-control" wemultiple="" mozdirectory="" webkitdirectory="" directory="">
+                                                <!-- <input type="text" class="form-control" wemultiple="" mozdirectory="" webkitdirectory="" directory=""> -->
+                                                <input type="text" class="form-control " id="Bckuploca" formControlName="Bckuploca" name="Bckuploca" placeholder="BackupLocation" required="">
 
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1">Mail Server ID Location</label>
-                                                <input type="file" class="form-control" wemultiple="" mozdirectory="" webkitdirectory="" directory="">
+                                                <!-- <input type="text" class="form-control" wemultiple="" mozdirectory="" webkitdirectory="" directory=""> -->
+                                                <input type="text" class="form-control " id="mailserveridloca" formControlName="mailserveridloca" name="mailserveridloca" placeholder="MailServerIdLocation" required="">
 
                                             </div>
 
@@ -369,7 +376,7 @@
 
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <button type="button" class="btn bg-maroon margin" ng-disabled="enterpriseform4.$invalid" ng-click="financesettings" disabled="disabled">Submit</button>
+                                            <button type="button" class="btn bg-maroon margin" ng-disabled="enterpriseform4.$invalid" ng-click="financesettings">Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -387,6 +394,17 @@
                                 </div> -->
                                     <!-- /.box-header -->
                                     <!-- form start -->
+                                    <!-- <div>
+                                        <select [(ngModel)]="Enterpiseid">
+                                            <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+                                          </select>
+                                    </div> -->
+                                    <!-- <div>
+                                        <select [(ngModel)]="selectedOption">
+                                            <option [value]="null">Select an option</option>
+                                            <option *ngFor="let option of options" [value]="option.id">{{ option.name }}</option>
+                                          </select>
+                                    </div> -->
                                     <div>
                                         <label>Select Enterprise Id</label>
                                         <select aria-controls="example1" class="form-control input-sm ng-pristine ng-valid ng-empty ng-touched" id="Enterpiseid" ng-model="Enterpiseid" name="Enterpiseid">
@@ -690,7 +708,7 @@
 
                                         </div></form>
                                         <div class="form-group col-md-3">
-                                            <button type="button" class="btn bg-maroon margin" ng-disabled="enterpriseform5.$invalid" ng-click="UpdateEnterpricedetails('O')" disabled="disabled">Update</button>
+                                            <button type="button" class="btn bg-maroon margin" ng-disabled="enterpriseform5.$invalid" ng-click="UpdateEnterpricedetails('O')">Update</button>
                                             <input type="hidden" id="hiddenAudesignation" autocomplete="off">
                                             <input type="hidden" id="hiddenOfdesignation" autocomplete="off">
                                         </div>

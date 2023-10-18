@@ -8,7 +8,6 @@
                     <li><a href="#tab_1" id="tb_primary" data-toggle="tab">Primary Details</a></li>
                     <li><a href="#tab_2" data-toggle="tab">Logo &amp; Banner</a></li>
                     <li><a href="#tab_4" data-toggle="tab">Financial Settings</a></li>
-
                     <li><a href="#tab_5" data-toggle="tab">Other Details</a></li>
 
 
@@ -53,10 +52,11 @@
                                                     <td class="ng-binding">{{item?.AR_FistName}}</td>
                                                     <td>
                                                         
-                                                        <a href="/Enterprise/ES/Employeeview?id=1" data-lity="">
+                                                        <!-- <a href="/Enterprise/ES/Employeeview?id=1" data-lity=""> -->
+                                                        <a ng-click="GetView(1)">
                                                             <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                         </a>
-                                                        <a >
+                                                        <a ng-click="GetEdit()" >
                                                             <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ></i>
                                                         </a>
                                                         <a >

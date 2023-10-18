@@ -1,9 +1,10 @@
 export interface IEnterPriseDetailsPost{
-    ep_id: number,
-    EnterpriseID: number,
+    ep_id: string,
+    EnterpriseID: string,
     EnterpriseName: string,
-    ParentEnterprise: number,
+    ParentEnterprise: boolean,
     PermanentRegistration: string,
     DateOfInception: Date,
-    DateOfExpiry: Date
+    DateOfExpiry: Date,
+    EpId:number
 }
