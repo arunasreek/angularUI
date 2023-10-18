@@ -151,7 +151,6 @@ onSubmitEnterpriseDetailslogonbanner(){
    
  },
  (error) => {
-   // Handle any errors that occur during the request
    console.log('POST request failed', error);
  }
  );
