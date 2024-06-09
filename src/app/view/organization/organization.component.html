@@ -34,16 +34,16 @@
                                     </thead>
                                     <tbody>
                                       <tr *ngFor="let item of organizationList | paginate:{ itemsPerPage: 10 , currentPage: p };">
-                                            <td class="ng-binding">{{item.Org_ID}}</td>
-                                            <td class="ng-binding">{{item.OrganizationName}}</td>
-                                            <td class="ng-binding">{{item.MD_FirstName}}</td>
-                                            <td class="ng-binding">{{item.MD_Designation}}</td>
+                                            <td class="ng-binding">{{item.orgId}}</td>
+                                            <td class="ng-binding">{{item.organizationName}}</td>
+                                            <td class="ng-binding">{{item.mdFirstName}}</td>
+                                            <td class="ng-binding">{{item.mdDesignation}}</td>
                                             <td>
                                                 
                                                 <a href="/Enterprise/ES/Organizationlist?id=1" data-lity="">
                                                     <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                 </a>
-                                                <a (click)="orgEdit(item.o_id)">
+                                                <a (click)="orgEdit(item.oId)">
                                                     <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                 </a>
                                                 <a (click)="deleteOrg(item.o_id)">
@@ -111,28 +111,28 @@
                                                                             <label for="exampleInputPassword1"><span style="color:blue;">Employeer ID</span><span style="color:red;">*</span></label>
                                                                             <select aria-controls="example1" id="O_Eployeer_Id" class="form-control" formControlName="O_Eployeer_Id" name="O_Eployeer_Id" required="">
                                                                                 <option value="" disabled="" selected="selected">--Select Eployeer Id--</option>
-                                                                                <option *ngFor="let item of employeeriDList" [value]="item.emp_id">{{item.EmployerID}}</option>
+                                                                                <option *ngFor="let item of enterprisealllist" [value]="item.epId">{{item.employerId}}</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputPassword1"><span style="color:blue;">Branch Id</span><span style="color:red;">*</span></label>
                                                                             <select aria-controls="example1" id="O_Branch_Id" class="form-control " formControlName="O_Branch_Id" name="O_Branch_Id" required="">
                                                                                 <option value="" disabled="" selected="selected">--Select Branch Id--</option>
-                                                                                <option *ngFor="let item of branchList" [value]="item.b_id">{{item.BranchId +"("+item.BranchName+")"}}</option>
+                                                                                <option *ngFor="let item of branchList" [value]="item.bId">{{item.branchId +"("+item.branchName+")"}}</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputPassword1"><span style="color:blue;">Reporting Department ID</span><span style="color:red;">*</span></label>
                                                                             <select aria-controls="example1" id="O_Reporting_Department_Id" class="form-control " formControlName="O_Reporting_Department_Id" name="O_Reporting_Department_Id" required="">
                                                                                 <option value="" disabled="" selected="selected">--Select Reporting Department ID--</option>
-                                                                                <option *ngFor="let item of organizationList" [value]="item.o_id">{{item.OrganizationName +"("+item.Org_ID+")"}}</option>
+                                                                                <option *ngFor="let item of organizationList" [value]="item.oId">{{item.organizationName +"("+item.orgId+")"}}</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-md-3">
                                                                             <label for="exampleInputFile"><span style="color:blue;">Cost Center</span><span style="color:red;">*</span></label>
                                                                             <select class="form-control " formControlName="O_Costcenter" name="O_Costcenter" id="O_Costcenter" required=""><option value="? undefined:undefined ?" selected="selected"></option>
-                                                                                <option value="0">Yes</option>
-                                                                                <option value="1">No</option>
+                                                                                <option value="1">Yes</option>
+                                                                                <option value="0">No</option>
 
                                                                             </select>
                                                                         </div>
@@ -295,11 +295,18 @@
                                                                     <option *ngFor="let item of employeeriDList" [value]="item.emp_id">{{item.EmployerID}}</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <!-- <div class="form-group col-md-3">
                                                                 <label for="exampleInputPassword1"><span style="color:blue;">Branch Id</span><span style="color:red;">*</span></label>
                                                                 <select aria-controls="example1" id="O_Branch_Id" class="form-control " formControlName="O_Branch_Id" name="O_Branch_Id" required="">
                                                                     <option value="" disabled="" selected="selected">--Select Branch Id--</option>
-                                                                    <option *ngFor="let item of branchList" [value]="item.b_id">{{item.BranchId +"("+item.BranchName+")"}}</option>
+                                                                    <option *ngFor="let item of branchList" [value]="item.bId">{{item.branchId +"("+item.branchName+")"}}</option>
+                                                                </select>
+                                                            </div> -->
+                                                            <div class="form-group col-md-3">
+                                                                <label for="exampleInputPassword1"><span style="color:blue;">Branch Id</span><span style="color:red;">*</span></label>
+                                                                <select aria-controls="example1" id="O_Branch_Id" class="form-control" formControlName="O_Branch_Id" name="O_Branch_Id" required="">
+                                                                    <option value="" disabled="" selected="selected">--Select Branch Id--</option>
+                                                                    <option *ngFor="let data of branchList" [value]="data.branchId">{{data.branchId +"("+data.branchName+")"}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group col-md-3">

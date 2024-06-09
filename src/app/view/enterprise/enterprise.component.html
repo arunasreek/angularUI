@@ -208,7 +208,7 @@
                                     <!-- /.box-header -->
                                     <!-- form start -->
 
-                                    <form  [formGroup]="EnterpriselogoNbanner"  >
+                                    <form  [formGroup]="EnterpriselogoNbanner" enctype="multipart/form-data" >
 
                                         <div class="box-body">
                                             <div class="form-group col-md-3">
@@ -219,14 +219,13 @@
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputFile">Upload Enterprise Banner</label>
-                                                <input type="file" id="fileuploadBanner" formControlName="fileuploadBanner"  (change)="onFileSelected($event, 'banner')">
+                                                <input type="file" id="fileuploadBanner" formControlName="fileuploadBanner"  (change)="onFileSelected($event, 'banner')" >
                                                 <p class="help-block"></p>
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputFile">Upload Enterprise Logo</label>
-                                                <input type="file" id="fileuploadLogo" formControlName="fileuploadLogo" (change)="onFileSelected($event,'logo')">
-
+                                                <input type="file" id="fileuploadLogo" formControlName="fileuploadLogo" (change)="onFileSelected($event,'logo')" >
                                                 <p class="help-block"></p>
                                             </div>
 
@@ -251,14 +250,14 @@
                                 <div class="box box-primary " style="border-top:none;">
 
 
-                                    <form role="form" class="ng-pristine ng-valid">
+                                    <form [formGroup]="DataConnSettings" (ngSubmit)="onSubmitEnterpriseDataConnSettings()">
 
                                         <div class="box-body">
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1">Database Location</label>
                                                 <!-- <input type="text" class="form-control" wemultiple="" mozdirectory="" webkitdirectory="" directory=""> -->
-                                                <input type="text" class="form-control " id="Dloca" formControlName="Dloca" name="Dloca" placeholder="DatabaseLocation" required="">
+                                                <input type="text" class="form-control " id="Dloca1" formControlName="Dloca" name="Dloca" placeholder="DatabaseLocation">
                                             </div>
 
                                             <div class="form-group col-md-3">
@@ -303,13 +302,12 @@
                                     <!-- /.box-header -->
                                     <!-- form start -->
 
-                                    <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
-
+                                    <form [formGroup]="financesettings" (ngSubmit)="onSubmitEnterpriseFinancialSetting()">
                                         <div class="box-body">
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Functional Currency</span><span style="color:red;">*</span></label>
                                                 <!-- Should Use Currency Picker -->
-                                                <select class="form-control" required="">
+                                                <select class="form-control" id="FCur" formControlName="FCur" name="Fcur" required="">
                                                     <option value="Select">Select</option>
                                                     <option value="USD">USD</option>
                                                     <option value="INR">INR</option>
@@ -319,14 +317,16 @@
                                                 </select>
                                             </div>
 
+                                            
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Financial Year Start Date</span><span style="color:red;">*</span></label>
                                                 <!-- <input type="text" class="form-control " id="txtfiyrstr" ng-model="fysd" name="fysd" placeholder="" required=""> -->
                                                 <input type="text"
                                                 class="form-control"
+                                                formController="FYSDate"
                                                  #dp="bsDatepicker"
-                                                bsDatepicker>    
+                                                bsDatepicker [(bsValue)]="FYSDate">    
                                             </div>
 
                                             <div class="form-group col-md-3">
@@ -334,14 +334,15 @@
                                                 <!-- <input type="text" class="form-control " id="txtfiyrend" ng-model="fyed" name="fyed" placeholder="" required=""> -->
                                                 <input type="text"
                                                             class="form-control"
+                                                            formController="FYEDate"
                                                              #dp="bsDatepicker"
-                                                            bsDatepicker>
+                                                            bsDatepicker [(bsValue)]="FYEDate">
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Pay Period Type</span><span style="color:red;">*</span></label>
 
-                                                <select class="form-control" required="">
+                                                <select class="form-control" id="PeriodType" formControlName="PeriodType" name="PeriodType" required="">
                                                     <option value="Select Option">Select Option</option>
                                                     <option value="Quarterly">Quarterly</option>
                                                     <option value="Monthly">Monthly</option>
@@ -355,20 +356,20 @@
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer Tax No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control " id="exampleInputPassword1" ng-model="emptn" name="emptn" placeholder="" required="">
+                                                <input type="text" class="form-control " id="emptn" formControlName="emptn" name="emptn" placeholder="Employer Tax No" required="">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer PAN Card No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control " id="exampleInputPassword1" ng-model="emppcn" name="emppcn" placeholder="" required="">
+                                                <input type="text" class="form-control " id="emppcn" formControlName="emppcn" name="emppcn" placeholder="" required="">
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer DIN No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control " id="exampleInputPassword1" ng-model="empdn" name="empdn" placeholder="" required="">
+                                                <input type="text" class="form-control " id="empdn" formControlName="empdn" name="empdn" placeholder="" required="">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer BIN No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control " id="exampleInputPassword1" ng-model="empbn" name="empbn" placeholder="" required="">
+                                                <input type="text" class="form-control " id="empbn" formControlName="empbn" name="empbn" placeholder="" required="">
                                             </div>
 
                                             <br>
@@ -376,7 +377,7 @@
 
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <button type="button" class="btn bg-maroon margin" ng-disabled="enterpriseform4.$invalid" ng-click="financesettings">Submit</button>
+                                            <button type="submit" class="btn bg-maroon margin" >Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -405,15 +406,16 @@
                                             <option *ngFor="let option of options" [value]="option.id">{{ option.name }}</option>
                                           </select>
                                     </div> -->
-                                    <div>
-                                        <label>Select Enterprise Id</label>
-                                        <select aria-controls="example1" class="form-control input-sm ng-pristine ng-valid ng-empty ng-touched" id="Enterpiseid" ng-model="Enterpiseid" name="Enterpiseid">
-                                            <option value="" selected="selected">--Select Enterprise Id--</option>
-                                            <!-- ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="1" class="ng-binding ng-scope">1001</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="2" class="ng-binding ng-scope">1002</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="3" class="ng-binding ng-scope">1003</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="4" class="ng-binding ng-scope">1004</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="5" class="ng-binding ng-scope">1005</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="6" class="ng-binding ng-scope">EP201</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="7" class="ng-binding ng-scope">5006</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="8" class="ng-binding ng-scope">231</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="10008" class="ng-binding ng-scope">1234</option><!-- end ngRepeat: EPI in Enterpriseids -->
-                                        </select>
-                                    </div>
-                                    <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
+                                  
+                                    <form [formGroup]="OtherDetails" (ngSubmit)="OnsubmitOtherDetails()">
 
+                                        <div>
+                                            <label>Select Enterprise Id</label>
+                                            <select aria-controls="example1" class="form-control input-sm ng-pristine ng-valid ng-empty ng-touched" id="Enterpiseid" ng-model="Enterpiseid" name="Enterpiseid">
+                                                <option value="" selected="selected">--Select Enterprise Id--</option>
+                                                <!-- ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="1" class="ng-binding ng-scope">1001</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="2" class="ng-binding ng-scope">1002</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="3" class="ng-binding ng-scope">1003</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="4" class="ng-binding ng-scope">1004</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="5" class="ng-binding ng-scope">1005</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="6" class="ng-binding ng-scope">EP201</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="7" class="ng-binding ng-scope">5006</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="8" class="ng-binding ng-scope">231</option><!-- end ngRepeat: EPI in Enterpriseids --><option ng-repeat="EPI in Enterpriseids" value="10008" class="ng-binding ng-scope">1234</option><!-- end ngRepeat: EPI in Enterpriseids -->
+                                            </select>
+                                        </div>
                                         <div class="box-body">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading" role="tab" id="headingTwo">
@@ -440,71 +442,80 @@
                                                                         <div class="box-body">
 
                                                                             <!-- Should Use Country ,State , City Exchanger Plugin-->
+                                                                            
+
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Country</label>
 
-                                                                                <select aria-controls="example1" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="Country" name="Country" id="Country" ng-change="GetStateList()">
-                                                                                    <option value="" disabled="" selected="selected">--Select Country Id--</option>
-                                                                                    <option *ngFor="let item of countryList" [value]="item.country_id">{{item.country_name}}({{item.country_code}})</option>
+                                                                                <select class="form-control" id="Country" formControlName="Country" name="Country" required="">
+                                                                                    <option value="Select">Select</option>
+                                                                                    <option value="India">India</option>
+                                                                                    <option value="Usa">Usa</option>
+                                                                                    <option value="Uk">Uk</option>
+                                                                                    <option value="Australia">Australia</option>
+                                                                                    <option value="Japan">Japan</option>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">State</label>
 
-                                                                                <select aria-controls="example1" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="State" name="State" id="State" ng-change="GetCityList()">
-                                                                                    <option value="" disabled="" selected="selected">--Select State--</option>
-                                                                                    <!-- ngRepeat: S in Satelist -->
-                                                                                    <option *ngFor="let item of stateList" [value]="item.state_id">{{item.state_name}}</option>
+                                                                                <select class="form-control" id="State" formControlName="State" name="State" required="">
+                                                                                    <option value="Select">Select</option>
+                                                                                    <option value="Ap">Ap</option>
+                                                                                    <option value="Telangana">Telangana</option>
+                                                                                    <option value="Pune">Pune</option>
+                                                                                    <option value="Mumbai">Mumbai</option>
+                                                                                    <option value="Delhi">Delhi</option>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">City</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="city" ng-model="city" name="city" placeholder="City">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="city" formControlName="city" name="city" placeholder="City">
                                                                                 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Address 1</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Add1" ng-model="Add1" name="Add1" placeholder="Address1">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Add1" formControlName="Add1" name="Add1" placeholder="Address1">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Address 2</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Add2" ng-model="Add2" name="Add2" placeholder="Address 2">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Add2" formControlName="Add2" name="Add2" placeholder="Address 2">
 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Post Box</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="p_box" ng-model="p_box" name="p_box" placeholder="Post Box">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="p_box" formControlName="p_box" name="p_box" placeholder="Post Box">
 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Zip Code</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Zipcode" ng-model="Zipcode" name="Zipcode" placeholder="Zip Code">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Zipcode" formControlName="Zipcode" name="Zipcode" placeholder="Zip Code">
 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Land Line</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control " id="Landline" ng-model="Landline" name="Landline" placeholder="Land Line" required="">
+                                                                                <input type="text" class="form-control " id="Landline" formControlName="Landline" name="Landline" placeholder="Land Line" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control " id="Fax" ng-model="Fax" name="Fax" placeholder="Fax" required="">
+                                                                                <input type="text" class="form-control " id="Fax" formControlName="Fax" name="Fax" placeholder="Fax" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Email Address</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Email" ng-model="Email" name="Email" placeholder="Email Address">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Email" formControlName="Email" name="Email" placeholder="Email Address">
 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Website</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Website" ng-model="Website" name="Website" placeholder="Website">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Website" formControlName="Website" name="Website" placeholder="Website">
 
                                                                             </div>
 
@@ -540,70 +551,70 @@
                                                                     <!-- /.box-header -->
                                                                     <!-- form start -->
 
-                                                                    <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
+                                                                    <!--<form role="form" class="ng-pristine ng-invalid ng-invalid-required"> -->
 
                                                                         <div class="box-body">
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Employee ID</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Emp_id" ng-model="Emp_id" name="Emp_id" placeholder="Employee ID">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="ArEmployeeId" formControlName="ArEmployeeId" name="ArEmployeeId" placeholder="Employee ID">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">First Name</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="f_name" ng-model="f_name" name="f_name" placeholder="First Name">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="f_name" formControlName="f_name" name="f_name" placeholder="First Name">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Middle Name</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="m_name" ng-model="m_name" name="m_name" placeholder="Middle Name">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="m_name" formControlName="m_name" name="m_name" placeholder="Middle Name">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Last Name</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="l_name" ng-model="l_name" name="l_name" placeholder="Last Name">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="l_name" formControlName="l_name" name="l_name" placeholder="Last Name">
 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Email Address</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Email_a" ng-model="Email_a" name="Email_a" placeholder="Email Address">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Email_a" formControlName="Email_a" name="Email_a" placeholder="Email Address">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Designation</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" data-toggle="modal" ng-model="A_Desig" name="A_Desig" data-target="#AuDesignation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" data-toggle="modal" formControlName="A_Desig" name="A_Desig" data-target="#AuDesignation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control " id="datepicker" ng-model="A_Phone" name="A_Phone" placeholder="Phone" required="">
+                                                                                <input type="text" class="form-control " id="datepicker" formControlName="A_Phone" name="A_Phone" placeholder="Phone" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control " id="datepicker" ng-model="A_Fax" name="A_Fax" placeholder="Fax" required="">
+                                                                                <input type="text" class="form-control " id="datepicker" formControlName="A_Fax" name="A_Fax" placeholder="Fax" required="">
 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control " id="datepicker" ng-model="A_m_No" name="A_m_No" placeholder="Mobile No" required="">
+                                                                                <input type="text" class="form-control " id="datepicker" formControlName="A_m_No" name="A_m_No" placeholder="Mobile No" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label> Preferred Contact Mode</label>
                                                                                 <br>
 
-                                                                                <input type="checkbox" ng-model="A_m_Email" name="A_m_Email" value="Email" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
-                                                                                &nbsp;&nbsp;&nbsp;  <input type="checkbox" ng-model="A_m_Tel" name="A_m_Email" value="Telephone" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
-                                                                                &nbsp;&nbsp;&nbsp;  <input type="checkbox" ng-model="A_m_mobile" name="A_m_Email" value="Mobile" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
+                                                                                <input type="checkbox" formControlName="A_m_Email" name="A_m_Email" value="Email" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
+                                                                                &nbsp;&nbsp;&nbsp;  <input type="checkbox" formControlName="A_m_Tel" name="A_m_Email" value="Telephone" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
+                                                                                &nbsp;&nbsp;&nbsp;  <input type="checkbox" formControlName="A_m_mobile" name="A_m_Email" value="Mobile" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
 
                                                                             </div>
 
 
 
                                                                         </div>
-                                                                    </form>
+                                                                    <!--</form> -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -632,63 +643,63 @@
                                                                     <!-- /.box-header -->
                                                                     <!-- form start -->
 
-                                                                    <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
+                                                                   <!--- <form role="form" class="ng-pristine ng-invalid ng-invalid-required"> -->
 
                                                                         <div class="box-body">
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Employee ID</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_emp_id" ng-model="o_emp_id" name="o_emp_id" placeholder="Employee ID">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_emp_id" formControlName="o_emp_id" name="o_emp_id" placeholder="Employee ID">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">First Name</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_f_name" ng-model="o_f_name" name="o_f_name" placeholder="First Name">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_f_name" formControlName="o_f_name" name="o_f_name" placeholder="First Name">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Middle Name</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_m_name" ng-model="o_m_name" name="o_m_name" placeholder="Middle Name">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_m_name" formControlName="o_m_name" name="o_m_name" placeholder="Middle Name">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Last Name</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_L_name" ng-model="o_L_name" name="o_L_name" placeholder="Last Name">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_L_name" formControlName="o_L_name" name="o_L_name" placeholder="Last Name">
 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Email Address</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_Email" ng-model="o_Email" name="o_Email" placeholder="Email Address">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_Email" formControlName="o_Email" name="o_Email" placeholder="Email Address">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1">Designation</label>
-                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" data-toggle="modal" ng-model="o_Desig" name="o_Desig" data-target="#OfDesignation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+                                                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" data-toggle="modal" formControlName="o_Desig" name="o_Desig" data-target="#OfDesignation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control " id="o_Phone" ng-model="o_Phone" name="o_Phone" placeholder="Phone" required="">
+                                                                                <input type="text" class="form-control " id="o_Phone" formControlName="o_Phone" name="o_Phone" placeholder="Phone" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control " id="o_Fax" ng-model="o_Fax" name="o_Fax" placeholder="Fax" required="">
+                                                                                <input type="text" class="form-control " id="o_Fax" formControlName="o_Fax" name="o_Fax" placeholder="Fax" required="">
 
                                                                             </div>
 
                                                                             <div class="form-group col-md-3">
                                                                                 <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
-                                                                                <input type="text" class="form-control " id="o_mobile" ng-model="o_mobile" name="o_mobile" placeholder="Mobile No" required="">
+                                                                                <input type="text" class="form-control " id="o_mobile" formControlName="o_mobile" name="o_mobile" placeholder="Mobile No" required="">
 
                                                                             </div>
                                                                             <div class="form-group col-md-3">
                                                                                 <label> Preferred Contact Mode</label>
                                                                                 <br>
 
-                                                                                <input type="checkbox" value="Email" name="o_Email_P"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
-                                                                                &nbsp;&nbsp;&nbsp;  <input type="checkbox" name="o_Email_P" value="Telephone"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
-                                                                                &nbsp;&nbsp;&nbsp;  <input type="checkbox" name="o_Email_P" value="Mobile"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
+                                                                                <input type="checkbox" value="Email"formControlName="o_Email_P" name="o_Email_P"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
+                                                                                &nbsp;&nbsp;&nbsp;  <input type="checkbox" name="o_T_P"formControlName="o_T_P" value="Telephone"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
+                                                                                &nbsp;&nbsp;&nbsp;  <input type="checkbox" name="o_M_P" formControlName="o_M_P"value="Mobile"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
 
                                                                             </div>
 
@@ -698,7 +709,7 @@
 
                                                                         </div>
 
-                                                                    </form>
+                                                                  <!-- </form> --> 
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -706,12 +717,13 @@
                                                 </div>
                                             </div>
 
-                                        </div></form>
-                                        <div class="form-group col-md-3">
-                                            <button type="button" class="btn bg-maroon margin" ng-disabled="enterpriseform5.$invalid" ng-click="UpdateEnterpricedetails('O')">Update</button>
-                                            <input type="hidden" id="hiddenAudesignation" autocomplete="off">
-                                            <input type="hidden" id="hiddenOfdesignation" autocomplete="off">
                                         </div>
+                                        <div class="form-group col-md-3">
+                                            
+                                            <button type="submit" class="btn bg-maroon margin" >Submit</button>
+                                        </div>
+                                    </form>
+                                        
                                     
                                 </div>
                             </div>

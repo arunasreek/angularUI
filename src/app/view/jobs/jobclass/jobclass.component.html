@@ -29,11 +29,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="class in JobClassList">
-                                                <td class="sorting_1"></td>
-                                                <td></td>
-
+                                            <tr *ngFor="let item of jobClassList | paginate:{ itemsPerPage: 10 , currentPage: p };" >
+                                                <td class="ng-binding">{{item.jobClassId1}}</td>
+                                                <td class="ng-binding">{{item.jobClassDescription}}</td>
                                                 <td>
+                                           
+                                                    <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetJobCategoryById(item.jobClassId1)"> 
+                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                        <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
+                                                    </a>
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetJobCategoryById(item.jobClassId1)">
+                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
+                                                    </a>
+                                      
+                                                </td>
+                                                <!-- <td>
                                                     <a href="/Job/jb/JobclassView?id=" data-lity>
                                                         <i class="fa fa-eye fa-1x" style="font-size: 14px;
                                                             padding: 05px;    color: #d81b60;
@@ -49,7 +63,7 @@
                                                             padding: 05px;    color: #d81b60;
                                                         "></i>
                                                     </a>
-                                                </td>
+                                                </td> -->
                                             </tr>                                            
                                         </tbody>                                        
                                     </table>
@@ -63,8 +77,6 @@
                 <div class="tab-pane" id="tab_1" ng-form="jobclassform1">
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="box box-primary " style="border-top:none;">
@@ -74,33 +86,33 @@
                                         <!-- /.box-header -->
                                         <!-- form start -->
 
-                                        <form role="form">
+                                        <form role="form" [formGroup]="jobClassForm" (ngSubmit)="onSubmitJobclassDetails()">
 
                                             <div class="box-body">
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1"><span style="color:blue;">Job Class ID</span><span style="color:red;">*</span></label>
-                                                    <input type="text" class="form-control" ng-model="JbclassId" name="JbclassId" id="JbclassId" placeholder="Job Class Id" required>
+                                                    <input type="text" class="form-control" formControlName="JbclassId" name="JbclassId" id="JbclassId" placeholder="Job Class Id" required>
 
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1"><span style="color:blue;">Job Class Description</span><span style="color:red;">*</span></label>
-                                                    <input type="text" class="form-control" ng-model="Jbclassdesc" name="Jbclassdesc"  id="Jbclassdesc" placeholder="Job Class Description" required>
+                                                    <input type="text" class="form-control" formControlName="Jbclassdesc" name="Jbclassdesc"  id="Jbclassdesc" placeholder="Job Class Description" required>
                                                 </div>
                                             </div>
 
                                             <!-- /.box-body -->
                                             <!--  <div class="box-footer">
                                   <button type="submit" class="btn btn-primary">Submit</button>
-                                </div> -->
+                                </div> --><button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="jobclassform1.$invalid">Save</button>
+                                        <button type="button" ng-show="Isedit==1"  class="btn bg-maroon margin" ng-disabled="jobclassform1.$invalid" ng-click="SetJobClass()">Update</button>
+                                        <button type="button" class="btn bg-maroon margin" ng-click="canceljbcls()">Cancel</button>
+                                        <button type="button" class="btn bg-maroon margin" ng-click="exitjbcls()">Exit</button>
 
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="jobclassform1.$invalid" ng-click="SetJobClass()">Save</button>
-                            <button type="button" ng-show="Isedit==1"  class="btn bg-maroon margin" ng-disabled="jobclassform1.$invalid" ng-click="SetJobClass()">Update</button>
-                            <button type="button" class="btn bg-maroon margin" ng-click="canceljbcls()">Cancel</button>
-                            <button type="button" class="btn bg-maroon margin" ng-click="exitjbcls()">Exit</button>
+                            
                         </div>
                     </div>
                 </div>

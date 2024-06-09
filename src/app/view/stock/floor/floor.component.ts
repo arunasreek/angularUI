@@ -18,7 +18,15 @@ declare var $:any;
 export class FloorComponent implements OnInit {
   floorList: any;
   FloorForm: FormGroup;
-
+  Isupdate:boolean;
+  Isrenew:boolean;
+  IsActive:boolean;
+  IsInactive:boolean;
+  Isedit:number;
+  IsJBupdate:boolean;
+  http: any;
+  p: number=1;
+  floorId:number;
   constructor(public warehouseService:WarehouseService,
     private formBuilder: FormBuilder,public toastr:ToastrService) { }
 
@@ -89,6 +97,24 @@ export class FloorComponent implements OnInit {
  FloorAPICall(){
   this.warehouseService.GetFloorList().subscribe((data: any) => {
     this.floorList=data
+    console.log(data);
+  });
+}
+
+GetFloorById(ID:number){
+  this.floorList.forEach((value,index)=>{
+    if(value.floorId == ID){
+      this.floorId = value.floorId;
+      this.FloorForm.setValue({
+        FloorId:value.floorId,
+        Floordesc: value.floorDescription,
+      })
+      this.IsJBupdate=true;
+      this.Isedit=1;
+    } 
+    $(document).ready(function() {
+      $("#tab_1").click();
+    });
   });
 }
 

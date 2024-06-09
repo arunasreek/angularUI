@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConfig, APP_CONFIG } from '../config/app.config.module';
 import { map } from 'rxjs/operators';
-import { IFloorPost,IRowPost,IRackPost } from 'src/app/models/warehouse.model';
+import { IFloorPost,IRowPost,IRackPost,IWareHouse } from 'src/app/models/warehouse.model';
 
 @Injectable()
 export class WarehouseService {
@@ -11,11 +11,20 @@ export class WarehouseService {
     }
 
     GetFloorList() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Stk/mgmt/GetFloorList`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/WareHouse/GetFloorList`).pipe(map((data: any) => {
             return data;
         }));
     }
-
+    GetWareHouseList() {
+        return this.http.get<any>(`${this.config.apiEndpoint}/WareHouse/GetWarehouseList`).pipe(map((data: any) => {
+            return data;
+        }));
+    }
+    SetWareHouse(postData:IWareHouse) {
+        return this.http.post<any>(`${this.config.apiEndpoint}/WareHouse/ware`, postData).pipe(map((res: any) => {
+            return res;
+        }));
+    }
    
     SetFloordet(postData:IFloorPost){
         return this.http.post<any>(`${this.config.apiEndpoint}/Stk/mgmt/SetFloordet`, postData).pipe(map((res: any) => {
@@ -24,7 +33,7 @@ export class WarehouseService {
     }
 
     GetRowList() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Stk/mgmt/GetRowList`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/WareHouse/GetRowList`).pipe(map((data: any) => {
             return data;
         }));
     }
@@ -37,7 +46,7 @@ export class WarehouseService {
     }
 
     GetRackList() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Stk/mgmt/GetRackList`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/WareHouse/GetRackList`).pipe(map((data: any) => {
             return data;
         }));
     }

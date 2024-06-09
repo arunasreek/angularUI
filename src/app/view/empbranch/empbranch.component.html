@@ -34,16 +34,16 @@
                                     </thead>
                                     <tbody>
                                             <tr *ngFor="let item of branchList | paginate:{ itemsPerPage: 10 , currentPage: p };" >
-                                            <td class="ng-binding">{{item.EmployerId}}</td>
-                                            <td class="ng-binding">{{item.BranchId}}</td>
-                                            <td class="ng-binding">{{item.BranchName}}</td>
-                                            <td class="ng-binding">{{item.BranchCurrency}}</td>
+                                            <td class="ng-binding">{{item.empId}}</td>
+                                            <td class="ng-binding">{{item.branchId}}</td>
+                                            <td class="ng-binding">{{item.branchName}}</td>
+                                            <td class="ng-binding">{{item.branchCurrency}}</td>
                                             <td>
                                                 
                                                 <a href="/Enterprise/ES/EmpbranchList?id=3" data-lity="">
                                                     <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                 </a>
-                                                <a (click)="empbranchEdit(item.b_id)">
+                                                <a (click)="empbranchEdit(item.bId)">
                                                     <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="Editbranch(GEL)"></i>
                                                 </a>
                                                 <a (click)="deleteEmployee(item.b_id)">
@@ -91,7 +91,7 @@
 
                                                     <select aria-controls="example1" id="Employer_Id"  class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" formControlName="Employer_Id" name="Employer_Id" required="">
                                                         <option value="" disabled="" selected="selected">--Select Employer Id--</option>
-                                                        <option *ngFor="let item of employeeriDList" [value]="item.emp_id">{{item.EmployerID}}</option>
+                                                        <option *ngFor="let item of EmpList" [value]="item.empId">{{item.employerId}}</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-3">
@@ -101,11 +101,11 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1"><span style="color:blue;">Branch Name</span><span style="color:red;">*</span></label>
-                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Branch_Name"  formControlName="Branch_Name" name="Branch_Name" placeholder="Enterprise Name" required="">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="Branch_Name"  formControlName="Branch_Name" name="Branch_Name" placeholder="Branch Name" required="">
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1">Branch Manager Name</label>
-                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="branc_manager_name"  formControlName="branc_manager_name" name="branc_manager_name" placeholder="Permanent Registration">
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="branc_manager_name"  formControlName="branc_manager_name" name="branc_manager_name" placeholder="Manager Name">
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputFile"><span style="color:blue;">Branch Currency</span><span style="color:red;">*</span></label>
@@ -154,7 +154,7 @@
                                                     <select aria-controls="example1" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" formControlName="Country" name="Country" id="Country"  ng-change="GetStateList()" required="">
                                                         <option value="" disabled="" selected="selected">--Select Country Id--</option>                                                      
                         
-                                                        <option *ngFor="let item of countryList" [value]="item.country_id">{{item.country_name}}({{item.country_code}})</option>
+                                                        <option *ngFor="let item of countryList" [value]="item.countryId">{{item.countryName}}({{item.countryCode}})</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-3">
@@ -163,7 +163,7 @@
                                                     <select aria-controls="example1" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" formControlName="State" name="State" id="State"  ng-change="GetCityList()" required="">
                                                         <option value="" disabled="" selected="selected">--Select State--</option>
                                                         <!-- ngRepeat: S in Satelist -->
-                                                        <option *ngFor="let item of stateList" [value]="item.state_id">{{item.state_name}}</option>
+                                                        <option *ngFor="let item of stateList" [value]="item.stateId">{{item.stateName}}</option>
 
                                                     </select>
                                                 </div>
@@ -174,7 +174,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1">Address</label>
-                                                    <textarea class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Address"  formControlName="Address" name="Address" placeholder="Address"></textarea>
+                                                    <textarea class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Address"  formControlName="Address" name="Address" placeholder="Address" rows="5" cols="50"></textarea>
                                                 </div>
 
                                                 <div class="form-group col-md-3">
@@ -216,7 +216,7 @@
                                             <!-- /.box-body -->
                                             <div class="box-footer">
                                                 <button type="submit" class="btn bg-maroon margin" *ngIf="!Isempbranchupdate" >Submit</button>
-                                                <button type="submit" class="btn bg-maroon margin " ng-click="Updatebranch()" >Update</button>
+                                                <button type="submit" class="btn bg-maroon margin" *ngIf="Isempbranchupdate"  >Update</button>
 
                                         
                                     </div></form>

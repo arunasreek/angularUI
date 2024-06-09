@@ -16,6 +16,9 @@ export class SupplierComponent implements OnInit {
   private gridColumnApi;
   public rowData:[];
 
+  p: number=1;
+  Isedit:number;
+  IsJBupdate:boolean;
   // SupplierList:any;
   supplierForm: FormGroup;
   submitted: boolean;
@@ -27,7 +30,7 @@ export class SupplierComponent implements OnInit {
   stateList: any;
   supplierList: any;
   SupplierList: any;
-
+  suppId:number;
   constructor(public commonService:CommonService,
     private formBuilder: FormBuilder,public toastr:ToastrService,
     public SupplierService:CustomerService) { }
@@ -170,6 +173,48 @@ export class SupplierComponent implements OnInit {
     
 // ];
 
+
+GetSupplier(id:number){
+  this.SupplierList.forEach((value,index)=>{
+    if(value.suppId == id){
+     
+      this.suppId = value.suppId;
+      this.supplierForm.setValue({
+        supp_id: 0,
+        Supplier_Id: value.supplierId,
+        Supplier_Name: value.supplierName,
+        Supplier_S_C: value.bothSupplierCustomer,
+        Supplier_c_Legeracc:value.ledgeraccountStatus,
+        Country: value.country,
+        State: value.stateId,
+        supplier_city: value.city,
+        Supplier_Add1: value.address1,
+        Supplier_Add2: value.address2,
+        Supplier_Post_Box: value.postBox,
+        Supplier_Zip_code: value.zipCode,
+        Supplier_Land_code: value.landLine,
+        Supplier_Fax: value.fax,
+        Supplier_Email: value.emailAddress,
+        Supplier_Website: value.website,
+        Supplier_Fname: value.ocpFirstName,
+        Supplier_Mname:value.ocpMiddleName,
+        Supplier_Lname:value.ocpLastName,
+        Supplier_Office_email:value.ocpEmail,
+        Supplier_Office_Designation:value.ocpDesignation,
+        Supplier_Office_Phone:value.ocpPhone,
+        Supplier_Office_Fax:value.ocpFax,
+        Supplier_Office_MobileNo:value.ocpMobileNo,
+      })
+      this.IsJBupdate=true;
+      this.Isedit=1;
+    } 
+    $(document).ready(function() {
+      $('#tab_2').click();
+    });
+  });
+}
+
+
 onGridReady(params) {
   this.gridApi = params.api;
   this.gridColumnApi = params.columnApi;
@@ -185,6 +230,7 @@ onGridReady(params) {
     this.SupplierService. getSupplierList(0).subscribe((data: any) => {
      
       this.SupplierList=data
+      console.log(data);
     });
     this.commonService. getEnterpriseids().subscribe((data: any) => {
        this.erpriseids=data

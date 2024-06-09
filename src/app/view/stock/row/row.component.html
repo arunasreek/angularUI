@@ -14,9 +14,7 @@
             </ul>
             <div class="tab-content">
                 <div class="box tab-pane active" id="lifirsttab">
-                    <div class="box-header">
-                        <h3 class="box-title">Data Table</h3>
-                    </div>
+                    
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
@@ -31,27 +29,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of rowList?.GetRowsDetails">
-                                                <td class="sorting_1">{{item?.RowID}}</td>
-                                                <td>{{item?.RowDescription}}</td>
+                                            <tr *ngFor="let item of rowList | paginate:{ itemsPerPage: 10 , currentPage: p };" >
+                                                <td class="ng-binding">{{item.rowId1}}</td>
+                                                <td class="ng-binding">{{item.rowDescription}}</td>
+                                                <!-- <td class="ng-binding">{{item.status}}</td> -->
                                                 <td>
-                                                    <a href="/Stk/mgmt/InventRowView?id" data-lity>
-                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                           
+                                                    <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetRowById(item.rowId)"> 
+                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                        <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
                                                     </a>
-                                                    <a href="#" ng-click="GetRowbyid(row.row_id)">
-                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetRowById(item.rowId)">
+                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                     </a>
-                                                    <a href="#" ng-click="DltRowbyid(row.row_id)">
-                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                                    <a href="#">
+                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
                                                     </a>
+                                      
                                                 </td>
-                                            </tr>
+                                            </tr>  
                                         </tbody>
                                     </table>
                                 </div>
@@ -90,8 +87,8 @@
                                             </div>
 
                                             <!-- /.box-body -->
-                                            <button type="submit" class="btn bg-maroon margin" >Save</button>
-                                            <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin" ng-disabled="rowform1.$invalid" ng-click="SetRowkdet()">Update</button>
+                                            <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" *ngIf="!IsJBupdate" >Save</button>
+                                            <button type="submit" ng-show="Isedit==1" class="btn bg-maroon margin" *ngIf="IsJBupdate" >Update</button>
                                             <button type="button" class="btn bg-maroon margin">Cancel</button>
                                             <button type="button" class="btn bg-maroon margin">Exit</button>
 

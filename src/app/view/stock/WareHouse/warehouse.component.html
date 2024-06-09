@@ -1,0 +1,128 @@
+
+<div class="row" ng-controller="InvFloorController" id="divFloor">
+    <div class="col-md-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active" id="lifirsttab1"><a href="#lifirsttab" id="afirsttab" data-toggle="tab"> WareHouse List</a></li>
+                <li><a href="#tab_1" id="asecondtab" data-toggle="tab"> Add WareHouse</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="box tab-pane active" id="lifirsttab">
+                    <div class="box-header">
+                        <h3 class="box-title">Data Table</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">WareHouse ID</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">WareHouse Description</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Status</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of wareHouseList | paginate:{ itemsPerPage: 10 , currentPage: p };" >
+                                                <td class="ng-binding">{{item.warehouseId1}}</td>
+                                                <td class="ng-binding">{{item.warehouseDescription}}</td>
+
+                                                <td class="ng-binding">{{item.status}}</td>
+                                                <!-- <td class="ng-binding">{{item.status}}</td> -->
+                                                <td>
+                                           
+                                                    <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetUOMById(item.warehouseId)"> 
+                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                        <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
+                                                    </a>
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetUOMById(item.warehouseId)">
+                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
+                                                    </a>
+                                      
+                                                </td>
+                                            </tr>      
+                                        </tbody>
+
+                                    </table> 
+                             <!-- <ag-grid-angular
+                                    style="width:75%; height:500px;min-height:200px;padding-left:100px"
+                                    class="ag-theme-alpine"
+                                    [rowData]="rowData"
+                                    [columnDefs]="columnDefs"
+                                    [pagination]="true" 
+                                    [paginationAutoPageSize]="true"
+                                    enableSorting
+                                    enableFilter
+                                    >
+                                </ag-grid-angular> -->
+
+                                   
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /.tab-content -->
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_1" ng-form="floorform1">
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box box-primary " style="border-top:none;">
+                                        <!--   <div class="box-header with-border">
+                                          <h3 class="box-title">Quick Example</h3>
+                                        </div> -->
+                                        <!-- /.box-header -->
+                                        <!-- form start -->
+
+                                        <form  [formGroup]="warehouseForm" (ngSubmit)="onSubmitUOM()">
+
+                                            <div class="box-body">
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputEmail1" style="color:blue;">Floor ID <span style="color:red">*</span></label>
+                                                    <input type="text" class="form-control" formControlName="WareHouseID" name="WareHouseID" id="WareHouseID" placeholder="WareHouse Id" required>
+
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="exampleInputPassword1" style="color:blue;">Floor Description<span style="color:red">*</span></label>
+                                                    <input type="text" class="form-control" formControlName="WareHouseDesc" name="WareHouseDesc" id="WareHouseDesc" placeholder="WareHouse Description" required>
+                                                </div>
+                                                <div class="form-group col-md-3" style="margin-top: 30px;">
+                                                   
+                                                    <input type="checkbox"  formControlName="Status" name="Status"  id="Status">
+                                                    <label for="exampleInputPassword1"><span style="color:blue;">Status</span></label>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.box-body -->
+                                            <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" *ngIf="!IsJBupdate" >Save</button>
+                                            <button type="submit" ng-show="Isedit==1" class="btn bg-maroon margin" *ngIf="IsJBupdate" >Update</button>
+                                            <button type="button" class="btn bg-maroon margin">Cancel</button>
+                                            <button type="button" class="btn bg-maroon margin">Exit</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -29,7 +29,7 @@ public rowData:[any];
   jobCatlogPriDetailes:any;
   organizationIDList:any;
   organizationList:any;
-  Isorganizationupdate:boolean;
+  Isorganizationupdate:boolean= false;
   Designation:string;
   o_id:number;
  p:number=1;
@@ -69,30 +69,35 @@ public rowData:[any];
 
   onSubmitOrgDepartment(){
     let orgPostData:IOrganiationPost={
-      o_id: this.Isorganizationupdate?this.o_id:0,
-      Org_ID: this.orgDepartmentForm.value.O_Department_Id,
+      OId: this.Isorganizationupdate?this.o_id:0,
+      OrgId: this.orgDepartmentForm.value.O_Department_Id,
       OrganizationName: this.orgDepartmentForm.value.O_Department_Name,
-      emp_id: this.orgDepartmentForm.value.O_Eployeer_Id,
-      b_id: this.orgDepartmentForm.value.O_Branch_Id,
-      ReportingDepartmentID: this.orgDepartmentForm.value.O_Reporting_Department_Id,
-      CostCenter: this.orgDepartmentForm.value.O_Costcenter,
-      MD_FirstName: this.orgDepartmentForm.value.O_First_Name,
-      MD_MiddleName: this.orgDepartmentForm.value.O_Middle_Name,
-      MD_LastName: this.orgDepartmentForm.value.O_Last_Name,
-      MD_Designation: this.Designation,//this.orgDepartmentForm.value.,
-      MD_Email: this.orgDepartmentForm.value.O_Email_Address,
-      MD_Phone: this.orgDepartmentForm.value.O_Phone,
-      MD_Fax: this.orgDepartmentForm.value.O_Fax,
-      MD_MobileNo: this.orgDepartmentForm.value.O_Mobile_No,
-      MD_PreferredContactPerson: '' //this.orgDepartmentForm.value.,
+      EmpId: this.orgDepartmentForm.value.O_Eployeer_Id,
+      BId: this.orgDepartmentForm.value.O_Branch_Id,
+      ReportingDepartmentId: this.orgDepartmentForm.value.O_Reporting_Department_Id,
+      CostCenter: Boolean(this.orgDepartmentForm.value.O_Costcenter),
+      MdFirstName: this.orgDepartmentForm.value.O_First_Name,
+      MdMiddleName: this.orgDepartmentForm.value.O_Middle_Name,
+      MdLastName: this.orgDepartmentForm.value.O_Last_Name,
+      MdDesignation: this.Designation,//this.orgDepartmentForm.value.,
+      MdEmail: this.orgDepartmentForm.value.O_Email_Address,
+      MdPhone: this.orgDepartmentForm.value.O_Phone,
+      MdFax: this.orgDepartmentForm.value.O_Fax,
+      MdMobileNo: this.orgDepartmentForm.value.O_Mobile_No,
+      MdPreferredContactPerson: '' //this.orgDepartmentForm.value.,
     }
-
+    this.Isorganizationupdate = false;
     this.organizationService.setOrganization(orgPostData).subscribe((data:any)=>{
-        if(data.ResponseMsg){
+        if(data){
             this.toastr.success("Organization Successfully Created.","Success");
-            this.organizationService.getOrganizationList(0).subscribe((data: any) => {
+            this.organizationService.getOrganizationUnitList().subscribe((data: any) => {
               this.organizationList=data
+              
             });
+            $(document).ready(function() {
+              $("#tabfirst").click();
+            });
+
       //       this.staticTabs.tabs[0].active = true;
       
       //  this.submitted=false;
@@ -101,26 +106,50 @@ public rowData:[any];
   }
 
   orgEdit(o_id:number){
-    this.organizationService.getOrganizationList(o_id).subscribe((data: any) => {
-       this.o_id= data[0].o_id,
+
+    this.organizationList.forEach((data,index)=>{
+      if(data.oId == o_id){
+        this.o_id= data.oId,
        this.orgDepartmentForm.setValue({
-          O_Department_Id:data[0].Org_ID,
-          O_Department_Name:data[0].OrganizationName,
-          O_Eployeer_Id:data[0].emp_id,
-          O_Designation:data[0].MD_Designation,
-          O_Branch_Id:data[0].BranchId,
-          O_Reporting_Department_Id:data[0].ReportingDepartmentID,
-          O_Costcenter:data[0].CostCenter,
-          O_First_Name:data[0].MD_FirstName,
-          O_Middle_Name:data[0].MD_MiddleName,
-          O_Last_Name:data[0].MD_LastName,
-          O_Email_Address:data[0].MD_Email,
-          O_Phone:data[0].MD_Phone,
-          O_Fax:data[0].MD_Fax,
-          O_Mobile_No:data[0].MD_MobileNo,
-          // MD_PreferredContactPerson: ''
-       });
+          O_Department_Id:data.orgId,
+          O_Department_Name:data.organizationName,
+          O_Eployeer_Id:data.empId,
+          O_Designation:data.mdDesignation,
+          O_Branch_Id:data.bId,
+          O_Reporting_Department_Id:data.reportingDepartmentId,
+          O_Costcenter:Number(data.costCenter),
+          O_First_Name:data.mdFirstName,
+          O_Middle_Name:data.mdMiddleName,
+          O_Last_Name:data.mdLastName,
+          O_Email_Address:data.mdEmail,
+          O_Phone:data.mdPhone,
+          O_Fax:data.mdFax,
+          O_Mobile_No:data.mdMobileNo,
+      })
+    }
+    this.Isorganizationupdate = true;
     });
+
+    // this.organizationService.getOrganizationList(o_id).subscribe((data: any) => {
+    //    this.o_id= data[0].o_id,
+    //    this.orgDepartmentForm.setValue({
+    //       O_Department_Id:data[0].Org_ID,
+    //       O_Department_Name:data[0].OrganizationName,
+    //       O_Eployeer_Id:data[0].emp_id,
+    //       O_Designation:data[0].MD_Designation,
+    //       O_Branch_Id:data[0].BranchId,
+    //       O_Reporting_Department_Id:data[0].ReportingDepartmentID,
+    //       O_Costcenter:data[0].CostCenter,
+    //       O_First_Name:data[0].MD_FirstName,
+    //       O_Middle_Name:data[0].MD_MiddleName,
+    //       O_Last_Name:data[0].MD_LastName,
+    //       O_Email_Address:data[0].MD_Email,
+    //       O_Phone:data[0].MD_Phone,
+    //       O_Fax:data[0].MD_Fax,
+    //       O_Mobile_No:data[0].MD_MobileNo,
+    //       // MD_PreferredContactPerson: ''
+    //    });
+    // });
 
     $(document).ready(function() {
       $("#tabsecond").click();
@@ -192,8 +221,16 @@ onGridReady(params) {
 }
 
   organizationAPICall(){
-    this.organizationService.getbranchlist(0).subscribe((data: any) => {
+
+    this.organizationService.getOrganizationUnitList().subscribe((data: any) => {
+      this.organizationList=data
+      console.log(this.organizationList);
+    });
+
+
+    this.organizationService.getEmpBranchList().subscribe((data: any) => {
       this.branchList=data
+      console.log(data)
     });
 
     this.organizationService.getCountry().subscribe((data: any) => {
@@ -204,7 +241,7 @@ onGridReady(params) {
       this.employeeriDList=data
     });
 
-    this.organizationService.getenterprisealllist().subscribe((data: any) => {
+    this.organizationService.getEmployersList().subscribe((data: any) => {
       this.enterprisealllist=data
     });
 

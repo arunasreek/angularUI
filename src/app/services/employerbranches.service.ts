@@ -14,6 +14,13 @@ export class EmployerBranchesService {
             return data;
         }));
     }
+
+    getEmpBranchList(){
+        return this.http.get<any>(`${this.config.apiEndpoint}/EmployeeBranch/GetAllEmpBranch`).pipe(map((data: any) => {
+            return data;
+        }));
+    }
+
     getbranchlist(b_id:number) {
         return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/Getbranchlist?b_id=${b_id}`).pipe(map((data: any) => {
             return data;
@@ -26,9 +33,8 @@ export class EmployerBranchesService {
         }));
     }
     SetEmpbarch(postData:IEmployeeBranchPost){
-        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise/ES/SetEmpbarch`, postData).pipe(map((res: any) => {
-            return res;
-        }));
+        
+        return this.http.post<any>(`${this.config.apiEndpoint}/EmployeeBranch`,postData);
     }
     DeleteEmpbranch(BranchId: number){
         return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/DeleteEmpbranch?b_id=${BranchId}`).pipe(map((res: any) => {

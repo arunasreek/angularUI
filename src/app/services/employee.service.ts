@@ -11,25 +11,26 @@ export class EmployeeService {
     }
 
     getEmployersList() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetEmployersList`).pipe(map((data: any) => {
+        
+        return this.http.get<any>(`${this.config.apiEndpoint}/Employee/GetAllEmpList`).pipe(map((data: any) => {
             return data;
         }));
     }
 
     getEmployeedetList(){
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetEmployeedetList`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Employees/GetAllEmployees`).pipe(map((data: any) => {
             return data;
         }));
     }
 
-    getOrganizationList(o_id:number){
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetOrganizationList?o_id=${o_id}`).pipe(map((data: any) => {
+    getOrganizationList(){
+        return this.http.get<any>(`${this.config.apiEndpoint}/OrganizationUnit/GetAllOrganization`).pipe(map((data: any) => {
             return data;
         }));
     }
 
     getbranchlist(b_id:number){
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/Getbranchlist?b_id==${b_id}`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/EmployeeBranch/GetAllEmpBranch`).pipe(map((data: any) => {
             return data;
         }));
     }
@@ -41,9 +42,7 @@ export class EmployeeService {
     }
 
     setEmployeepdet(postData:IEmployeePost){
-        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise/ES/SetEmployeepdet`, postData).pipe(map((res: any) => {
-            return res;
-        }));
+        return this.http.post<any>(`${this.config.apiEndpoint}/Employees`,postData);
     }
 
     
@@ -60,9 +59,8 @@ export class EmployeeService {
     }
 
     UpadteEmpWrkprmtdet(postData:IEmployeeWorkPermit){
-        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise/ES/UpadteEmpWrkprmtdet`, postData).pipe(map((res: any) => {
-            return res;
-        }));
+        return this.http.post<any>(`${this.config.apiEndpoint}/Employees`,postData);
+
     }
     
 }

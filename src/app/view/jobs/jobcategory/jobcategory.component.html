@@ -11,61 +11,69 @@
                 <li><a href="#tab_1" id="asecondtab" data-toggle="tab">Add JobCategory</a></li>
             </ul>
             <div class="tab-content">
-                <div class="box tab-pane active" id="lifirsttab">
-                    <div class="box-header">
-                        <h3 class="box-title">Data Table</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Job Category ID</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Job Category Description</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="Jbcat in JobCategoryList">
-                                                <td class="sorting_1"></td>
-                                                <td></td>
+                <div class="tab-pane active" id="lifirsttab">
+                    <div class="row divheight">
+                        <div class="col-lg-12">
+                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Job Category ID</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Job Category Description</th>
+                                        
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 98px;">Actions</th>
 
-                                                <td>
-                                                    <a href="/Job/jb/JobcategoryView?id=" data-lity>
-                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
-                                                    </a>
-                                                    <a href="#" ng-click="GetJbcatbyid(Jbcat.Jobcat_id)">
-                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
-                                                    </a>
-                                                    <a href="#" ng-click="DltJbcatbyid(Jbcat.Jobcat_id)">
-                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
-                                                    </a>
-                                                </td>
-                                            </tr>                                            
-                                        </tbody>
-                                        <!--   <tfoot>
-                                        <tr>
-                                        <th rowspan="1" colspan="1">Rendering engine</th>
-                                        <th rowspan="1" colspan="1">Browser</th>
-                                        <th rowspan="1" colspan="1">Platform(s)</th>
-                                        <th rowspan="1" colspan="1">Engine version</th>
-                                        <th rowspan="1" colspan="1">CSS grade</th></tr>
-                                        </tfoot> -->
-                                    </table>
-                                </div>
-                            </div>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of jobCatList | paginate:{ itemsPerPage: 10 , currentPage: p };" >
+                                    <!-- <tr *ngFor="let item of jobCatList | paginate:{ itemsPerPage: 10 , currentPage: p };" > -->
+                                        <td class="ng-binding">{{item.jobCategoryId}}</td>
+                                        <td class="ng-binding">{{item.jobCategoryDescription}}</td>
+                                        <td>
+                                           
+                                            <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                            <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetJobCategoryById(item.jobCategoryId)"> 
+                                                <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
+                                            </a>
+                                            <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetJobCategoryById(item.jobCategoryId)">
+                                                <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
+                                            </a>
+                              
+                                        </td>
+                                   
+                                    </tr>
+
+
+                                </tbody>
+                                  <!-- <tfoot>
+                            <tr>
+                            <th rowspan="1" colspan="1">Rendering engine</th>
+                            <th rowspan="1" colspan="1">Browser</th>
+                            <th rowspan="1" colspan="1">Platform(s)</th>
+                            <th rowspan="1" colspan="1">Engine version</th>
+                            <th rowspan="1" colspan="1">CSS grade</th></tr>
+                            </tfoot> -->
+                            </table>
+                            <div style="float:right;margin-top:20px;color:#102f66;font-weight:800">
+                                <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                               </div> 
+                            <!-- <ag-grid-angular
+                            style="width:auto; height:500px;min-height:200px;padding-left:50px;margin-left: -60px;"
+                            class="ag-theme-alpine"
+                            [columnDefs]="columnDefs"
+                            (gridReady)="onGridReady($event)"
+                            [rowData]="rowData "
+                            [pagination]="true" 
+                            [paginationAutoPageSize]="true"
+                            enableSorting
+                            enableFilter
+                            >
+                        </ag-grid-angular>     -->
                         </div>
-
-                        <!-- /.tab-content -->
                     </div>
                 </div>
                 <div class="tab-pane" id="tab_1" ng-form="jobcategoryform1">
@@ -82,42 +90,32 @@
                                         <!-- /.box-header -->
                                         <!-- form start -->
 
-                                        <form role="form">
+                                        <form role="form" [formGroup]="jobCategoryForm" (ngSubmit)="onSubmitJobcategoryDetails()">
 
                                             <div class="box-body">
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputEmail1"><span style="color:blue;">Job Category ID</span><span style="color:red;">*</span></label>
-                                                    <input type="text" class="form-control" ng-model="Jbcatid" name="Jbcatid" id="txtjcatgid" placeholder="Job Category Id" required>
+                                                    <input type="text" class="form-control" formControlName="Jbcatid" name="Jbcatid" id="txtjcatgid" placeholder="Job Category Id" required>
 
                                                 </div>
-
-
-
 
                                                 <div class="form-group col-md-3">
                                                     <label for="exampleInputPassword1"><span style="color:blue;">Job Category Description</span><span style="color:red;">*</span></label>
-                                                    <input type="text" class="form-control" id="txtjcatgdesc" ng-model="Jbcatdesc" name="Jbcatdesc" placeholder="Job Category Description" required>
+                                                    <input type="text" class="form-control" id="txtjcatgdesc" formControlName="Jbcatdesc" name="Jbcatdesc" placeholder="Job Category Description" required>
                                                 </div>
-
-
-
-
 
                                             </div>
 
-                                            <!-- /.box-body -->
-                                            <!--  <div class="box-footer">
-                                              <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div> -->
+                                            <button type="submit" class="btn bg-maroon margin" *ngIf="!IsJBupdate" >Submit</button>
+                                            <button type="submit" class="btn bg-maroon margin" *ngIf="IsJBupdate"  >Update</button>
+                                            <button type="button" class="btn bg-maroon margin" ng-click="canceljbcat()">Cancel</button>
+                                            <button type="button" class="btn bg-maroon margin" ng-click="exitjbcat()">Exit</button>
 
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn bg-maroon margin" ng-show="Isedit==0" ng-disabled="jobcategoryform1.$invalid" ng-click="SetJobCategory()">Save</button>
-                            <button type="button" class="btn bg-maroon margin" ng-show="Isedit==1" ng-disabled="jobcategoryform1.$invalid" ng-click="SetJobCategory()">Update</button>
-                            <button type="button" class="btn bg-maroon margin" ng-click="canceljbcat()">Cancel</button>
-                            <button type="button" class="btn bg-maroon margin" ng-click="exitjbcat()">Exit</button>
+                          
                         </div>
                     </div>
                 </div>

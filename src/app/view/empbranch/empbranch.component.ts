@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { EmployerBranchesService } from 'src/app/services';
+import { EmployerBranchesService,EmployerService } from 'src/app/services';
 import { IEmployeeBranchPost, IEmployeeBranchDelete, IEmployeeEdit, IEmployeeWorkPermit } from 'src/app/models/empbranch.model';
 declare var $:any;
 
@@ -19,17 +19,20 @@ public rowData:[any];
 
 Isupdate:boolean;
   branchList:any;
+  EmpList:any;
   countryList:any;
   employeeriDList:any;
   enterprisealllist:any;
   erpriseids:any;
   stateList:any;
+  CitiesList:any;
   jobCatlogPriDetailes:any;
   organizationIDList:any;
   organizationList:any;
   Isorganizationupdate:boolean;
-  Isempbranchupdate:boolean;
+  Isempbranchupdate:boolean = false;
   Designation:string;
+  BId:Number=0;
   o_id:number;
   p: number=1;
   submitted=false;
@@ -39,7 +42,8 @@ Isupdate:boolean;
 
   constructor(public commonService:CommonService,
     private formBuilder: FormBuilder,public toastr:ToastrService,
-    public employerBranchService:EmployerBranchesService) { }
+    public employerBranchService:EmployerBranchesService,
+    public employerService:EmployerService) { }
 
   ngOnInit(): void {
     this.empBranchServiceAPICall();
@@ -48,8 +52,6 @@ Isupdate:boolean;
   
   employerBranchFormSetup(){
     this.employerBranchForm = this.formBuilder.group({
-      b_id:[''],
-      employee_id: [''],
       Employer_Id: [''],
       Branch_ID: ['',[Validators.required,Validators.maxLength(6)]],
       Branch_Name: [''],
@@ -111,32 +113,62 @@ onGridReady(params) {
 
 }
 
-empbranchEdit(b_id:number){
-  this.employerBranchService.getbranchlist(b_id).subscribe((data: any) => {
+empbranchEdit(bId:number){
+  this.branchList.forEach((data, index) => {
+      if(data.bId == bId){
+        this.BId = data.bId;
+        this.employerBranchForm.setValue({
+          Employer_Id:data.empId,
+          Branch_ID:data.branchId,
+          Branch_Name:data.branchName,
+          branc_manager_name:data.managerName,
+          Branch_Currency:data.branchCurrency,
+          Cost_Center:Number(data.costCenter),
+          Sales_Outlet:Number(data.salesOutlet),
+          warehouse:Number(data.warehouse),
+          stock_point:Number(data.stockPoint),
+          Country:data.countryId,
+          State:data.stateId,
+          empbranch_city:data.branchCity,
+          Address:data.address,
+          B_Landline:data.landlineNo,
+          B_Fax: data.fax,
+          B_Mobile_Number: data.mobileNo,
+          B_Email: data.email,
+          B_Website: data.website,
+          B_TaxId: data.branchTaxid,
+          // MD_PreferredContactPerson: ''
+       });
+       this.Isempbranchupdate=true;
+      }
+
+      });
+
+  // this.employerBranchService.getbranchlist(b_id).subscribe((data: any) => {
   
-     this.employerBranchForm.setValue({
-        Employer_Id:data[0].EmployerId,
-        Branch_ID:data[0].b_id,
-        Branch_Name:data[0].BranchName,
-        branc_manager_name:data[0].manager_name,
-        Branch_Currency:data[0].BranchCurrency,
-        Cost_Center:data[0].Cost_Center,
-        Sales_Outlet:data[0].Sales_Outlet,
-        warehouse:data[0].warehouse,
-        stock_point:data[0].stock_point,
-        Country:data[0].Country,
-        State:data[0].State,
-        empbranch_city:data[0].empbranch_city,
-        Address:data[0].Address,
-        B_Landline:data[0].B_Landline,
-        B_Fax: data[0].B_Fax,
-        B_Mobile_Number: data[0].B_Mobile_Number,
-        B_Email: data[0].B_Email,
-        B_Website: data[0].B_Website,
-        B_TaxId: data[0].B_TaxId,
-        // MD_PreferredContactPerson: ''
-     });
-  });
+  //    this.employerBranchForm.setValue({
+  //       Employer_Id:data[0].EmployerId,
+  //       Branch_ID:data[0].b_id,
+  //       Branch_Name:data[0].BranchName,
+  //       branc_manager_name:data[0].manager_name,
+  //       Branch_Currency:data[0].BranchCurrency,
+  //       Cost_Center:data[0].Cost_Center,
+  //       Sales_Outlet:data[0].Sales_Outlet,
+  //       warehouse:data[0].warehouse,
+  //       stock_point:data[0].stock_point,
+  //       Country:data[0].Country,
+  //       State:data[0].State,
+  //       empbranch_city:data[0].empbranch_city,
+  //       Address:data[0].Address,
+  //       B_Landline:data[0].B_Landline,
+  //       B_Fax: data[0].B_Fax,
+  //       B_Mobile_Number: data[0].B_Mobile_Number,
+  //       B_Email: data[0].B_Email,
+  //       B_Website: data[0].B_Website,
+  //       B_TaxId: data[0].B_TaxId,
+  //       // MD_PreferredContactPerson: ''
+  //    });
+  // });
 
   $(document).ready(function() {
     $("#tabsecond").click();
@@ -168,32 +200,33 @@ deleteEmployee(BranchId:number){
 
 onSubmitPrimary() {
 
-
   let employeebranchData: IEmployeeBranchPost = {
-    b_id:this.Isempbranchupdate?this.b_id:0,
-      EmployerId: this.employerBranchForm.value.Employer_Id,
-      BranchId: this.employerBranchForm.value.Branch_Id,
+      BId:this.BId,
+      EmpId: Number(this.employerBranchForm.value.Employer_Id),
+      BranchId: (this.employerBranchForm.value.Branch_ID),
       BranchName: this.employerBranchForm.value.Branch_Name,
-      manager_name: this.employerBranchForm.value.branc_manager_name,
+      ManagerName: this.employerBranchForm.value.branc_manager_name,
       BranchCurrency: this.employerBranchForm.value.Branch_Currency,
-      cost_center: this.employerBranchForm.value.Cost_Center,
-      sales_outlet: this.employerBranchForm.value.Sales_Outlet,
-      warehouse: this.employerBranchForm.value.warehouse,
-      stock_point: this.employerBranchForm.value.stock_point,
-      country_id: this.employerBranchForm.value.Country,
-      state_id: this.employerBranchForm.value.State,
-      city_id: this.employerBranchForm.value.empbranch_city,
+      CostCenter: Boolean(this.employerBranchForm.value.Cost_Center),
+      SalesOutlet: Boolean(this.employerBranchForm.value.Sales_Outlet),
+      Warehouse: Boolean(this.employerBranchForm.value.warehouse),
+      StockPoint: Boolean(this.employerBranchForm.value.stock_point),
+      CountryId: Number(this.employerBranchForm.value.Country),
+      StateId: Number(this.employerBranchForm.value.State),
+      // CityId: Number(this.employerBranchForm.value.empbranch_city),
+      CityId:1,
       Address: this.employerBranchForm.value.Address,
-      Landline: this.employerBranchForm.value.B_Landline,
+      LandlineNo: this.employerBranchForm.value.B_Landline,
       Fax: this.employerBranchForm.value.B_Fax,
-      mobile_no: this.employerBranchForm.value.B_Mobile_Number,
-      EmailAddress: this.employerBranchForm.value.B_Email,
+      MobileNo: this.employerBranchForm.value.B_Mobile_Number,
+      Email: this.employerBranchForm.value.B_Email,
       Website: this.employerBranchForm.value.B_Website,
-      branch_taxid: this.employerBranchForm.value.B_TaxId,
+      BranchTaxid: this.employerBranchForm.value.B_TaxId,
   }
 
+  console.log(employeebranchData);
   this.employerBranchService.SetEmpbarch(employeebranchData).subscribe((data: any) => {
-    if(data.ResponseMsg){
+    if(data){
       this.toastr.success("Employer Branch Successfully Created.","Success");
     this.employerBranchService.getbranchlist(0).subscribe((data: any) => {
           this.branchList=data
@@ -211,6 +244,17 @@ onSubmitPrimary() {
 }
 
   empBranchServiceAPICall(){
+
+    this.employerBranchService.getEmpBranchList().subscribe((data: any) => {
+      this.branchList=data
+      console.log(this.branchList);
+    });
+
+    this.employerService.getEmployersList().subscribe((data: any) => {
+      this.EmpList=data
+      console.log(this.EmpList);
+    });
+
     this.commonService. getEnterprisealllist().subscribe((data: any) => {
       this.enterprisealllist=data
      
@@ -227,10 +271,7 @@ onSubmitPrimary() {
       this.jobCatlogPriDetailes=data
       
     });
-    this.employerBranchService.getbranchlist(0).subscribe((data: any) => {
-       this.branchList=data
-     
-     });
+    
    
     this.employerBranchService.getEmployeeriD().subscribe((data: any) => {
       this.employeeriDList=data
@@ -238,7 +279,15 @@ onSubmitPrimary() {
     });
     this.commonService.getCountry().subscribe((data: any) => {
       this.countryList=data
-      
+      console.log(this.countryList);
+    });
+    this.commonService.getCities().subscribe((data: any) => {
+      this.CitiesList=data
+      console.log(this.CitiesList);
+    });
+    this.commonService.getStates().subscribe((data: any) => {
+      this.stateList=data
+      console.log(this.stateList);
     });
     this.commonService.getOrganizationList(0).subscribe((data: any) => {
       this.organizationList=data

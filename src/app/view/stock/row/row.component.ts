@@ -14,7 +14,15 @@ declare var $:any;
 export class RowComponent implements OnInit {
   rowList: any;
   RowForm: FormGroup;
-
+  Isupdate:boolean;
+  Isrenew:boolean;
+  IsActive:boolean;
+  IsInactive:boolean;
+  Isedit:number;
+  IsJBupdate:boolean;
+  http: any;
+  p: number=1;
+  rowId:number;
   constructor(public warehouseService:WarehouseService,
     private formBuilder: FormBuilder,public toastr:ToastrService) { }
 
@@ -84,8 +92,24 @@ export class RowComponent implements OnInit {
 // ];
  RowAPICall(){
   this.warehouseService.GetRowList().subscribe((data: any) => {
-    this.rowList=data
+    this.rowList=data;
+    console.log(data);
   });
 }
-
+GetRowById(ID:number){
+  this.rowList.forEach((value,index)=>{
+    if(value.rowId == ID){
+      this.rowId = value.rowId;
+      this.RowForm.setValue({
+        RowId:value.rowId1,
+        Rowdesc: value.rowDescription,
+      })
+      this.IsJBupdate=true;
+      this.Isedit=1;
+    } 
+    $(document).ready(function() {
+      $("#tab_1").click();
+    });
+  });
+}
 }

@@ -41,22 +41,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                              <tr *ngFor="let item of employersList?.GetEmployeeListForAll | paginate:{
-                                              itemsPerPage: 2,
+                                              <tr *ngFor="let item of employersList | paginate:{
+                                              itemsPerPage: 10,
                                               currentPage: p};" class="ng-scope">
-                                                    <td class="ng-binding">{{item?.EmployerID}}</td>
-                                                    <td class="ng-binding">{{item?.EmployerName}}</td>
-                                                    <td class="ng-binding">{{item?.ParentCompany}}</td>
-                                                    <td class="ng-binding">{{item?.DateOfInception}}</td>
-                                                    <td class="ng-binding">{{item?.DateOfInception}}</td>
-                                                    <td class="ng-binding">{{item?.AR_FistName}}</td>
+                                                    <td class="ng-binding">{{item.employerId}}</td>
+                                                    <td class="ng-binding">{{item.employerName}}</td>
+                                                    <td class="ng-binding">{{item.parentCompany}}</td>
+                                                    <td class="ng-binding">{{item.dateOfInception}}</td>
+                                                    <td class="ng-binding">{{item.dateOfExpiry}}</td>
+                                                    <td class="ng-binding">{{item.arFirstName}}</td>
                                                     <td>
                                                         
                                                         <!-- <a href="/Enterprise/ES/Employeeview?id=1" data-lity=""> -->
                                                         <a ng-click="GetView(1)">
                                                             <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                         </a>
-                                                        <a ng-click="GetEdit()" >
+                                                        <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetEmpdata(item.empId)" >
                                                             <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ></i>
                                                         </a>
                                                         <a >
@@ -146,7 +146,7 @@
                                                             <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlentraid" formControlName="ddlentraid" id="ddlentraid" placeholder="Entraprise ID" required="">
                                                                
                                                                 <option value="" disabled="" selected="selected">--Select Enterprise Id--</option>
-                                                        <option *ngFor="let item of erpriseids" [value]="item.EnterpriseID">{{item.EnterpriseName}}</option>
+                                                        <option *ngFor="let item of enterpriseList" [value]="item.enterpriseId">{{item.enterpriseId}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
@@ -160,10 +160,15 @@
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputFile"><span style="color:blue;">Parent Company</span><span style="color:red;">*</span></label>
-                                                            <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlprtcpy" formControlName="ddlprtcpy" id="ddlprtcpy" required="">
+                                                          <!---  <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlprtcpy" formControlName="ddlprtcpy" id="ddlprtcpy" required="">
                                                                 <option value="" disabled="" selected="selected">Select</option>
                                                                 <option *ngFor="let item of employeeriDList" [value]="item.emp_id">{{item.EmployerName}}</option>
 
+                                                            </select> -->
+                                                            <select class="form-control " id="ddlprtcpy" formControlName="ddlprtcpy" name="ddlprtcpy" required="">
+                                                                <option value="" disabled="" selected="selected">--Select Parent Company</option>
+                                                                <option value="true">Yes</option>
+                                                                <option value="false">No</option>
                                                             </select>
                                                         </div>
 
@@ -176,6 +181,7 @@
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Date Of Inception</span><span style="color:red;">*</span></label>
                                                             <input type="text"
                                                             class="form-control"
+                                                            formControlName="Date_inception"
                                                              #dp="bsDatepicker"
                                                             bsDatepicker [(bsValue)]="Date_inception" >
                                                         </div>
@@ -188,6 +194,7 @@
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Date Of Expiry</span><span style="color:red;">*</span></label>
                                                             <input type="text"
                                                             class="form-control"
+                                                            formControlName="date_Ecpiry"
                                                              #dp="bsDatepicker"
                                                             bsDatepicker [(bsValue)]="date_Ecpiry" >
                                                         </div>
@@ -201,7 +208,13 @@
                                                     <!--  <div class="box-footer">
                                                   <button type="submit" class="btn btn-primary">Submit</button>
                                                 </div> -->
-
+                                                <button type="submit" class="btn bg-maroon margin"  >Save</button>
+                                                <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isedit==1" ng-disabled="employerform1.$invalid" ng-click="updateEnployer('P')" >Update</button>
+                                                <button type="button" class="btn bg-maroon margin">Cancel</button>
+                                                <button type="button" class="btn bg-maroon margin" ng-click="RouteTofirst()">Exit</button>
+                                                <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin ng-hide">Renew</button>
+                                                <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin ng-hide">Active</button>
+                                                <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin ng-hide">Inactive</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -210,13 +223,7 @@
                             </div>
                         </div>
 
-                        <button type="button" class="btn bg-maroon margin" ng-show="Isedit==0" ng-disabled="employerform1.$invalid"  >Save</button>
-                        <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isedit==1" ng-disabled="employerform1.$invalid" ng-click="updateEnployer('P')" >Update</button>
-                        <button type="button" class="btn bg-maroon margin">Cancel</button>
-                        <button type="button" class="btn bg-maroon margin" ng-click="RouteTofirst()">Exit</button>
-                        <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin ng-hide">Renew</button>
-                        <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin ng-hide">Active</button>
-                        <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin ng-hide">Inactive</button>
+                        
                     </div>
                     <div class="tab-pane" id="tab_2">
                         <div class="row">
@@ -228,26 +235,24 @@
                                     <!-- /.box-header -->
                                     <!-- form start -->
 
-                                    <form role="form" class="ng-pristine ng-valid">
+                                    <form [formGroup]="employerUploadBanner" (ngSubmit)="onuploadBanner()">
 
                                         <div class="box-body">
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1">Employer Id</label>
-                                                <input type="text" name="txtemrid" ng-model="txtemrid" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="txtemrid" placeholder="Employer ID">
-
+                                                <input type="text" class="form-control" id="txtempid" formControlName="txtempid" placeholder="Employee Id">
+                                                <!-- <input type="text" name="txtemrid" ng-model="txtemrid" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="txtemrid" placeholder="Employer ID"> -->
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputFile">Upload Employer Banner</label>
-                                                <input type="file" id="fileemrbanner" name="fileemrbanner" ng-model="fileemrbanner" class="ng-pristine ng-untouched ng-valid ng-empty">
-
+                                                <input type="file" id="fileuploadBanner" formControlName="fileuploadBanner"  (change)="onFileSelected($event, 'banner')" >
                                                 <p class="help-block"></p>
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputFile">Upload Employer Logo</label>
-                                                <input type="file" id="fileemrLogo" name="fileemrLogo" ng-model="fileemrLogo" class="ng-pristine ng-untouched ng-valid ng-empty">
-
+                                                <input type="file" id="fileuploadLogo" formControlName="fileuploadLogo" (change)="onFileSelected($event,'logo')" >
                                                 <p class="help-block"></p>
                                             </div>
 
@@ -256,7 +261,7 @@
 
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <button type="button" ng-show="Isedit==0" class="btn bg-maroon margin">Upload</button>
+                                            <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin">Upload</button>
                                             <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isedit==1" ng-click="updateEnployer('E')">Update</button>
                                             <button type="button" class="btn bg-maroon margin" ng-click="RouteTofirst()">Exit</button>
                                         </div>
@@ -266,7 +271,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane ng-pristine ng-invalid ng-invalid-required" id="tab_4" ng-form="employerform4">
+                    <div class="tab-pane ng-pristine ng-invalid ng-invalid-required" id="tab_4" >
 
                         <div class="row">
                             <div class="col-md-12">
@@ -277,13 +282,14 @@
                                     <!-- /.box-header -->
                                     <!-- form start -->
 
-                                    <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
+                                    <form [formGroup]="employerFinancialSettings" (ngSubmit)="setEmpFinancialSettings()">
 
                                         <div class="box-body">
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Primary Functional Currency</span><span style="color:red;">*</span></label>
                                                 <!-- Should Use Currency Picker -->
-                                                <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlpfcurcy" ng-model="ddlpfcurcy" id="ddlpfcurcy" required="">
+                                                <!-- <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlpfcurcy" ng-model="ddlpfcurcy" id="ddlpfcurcy" required=""> -->
+                                                <select class="form-control " id="ddlpfcurcy" formControlName="ddlpfcurcy" name="ddlpfcurcy" required="">
                                                     <option value="" disabled="" selected="selected">Select</option>
                                                     <option value="USD">USD</option>
                                                     <option value="INR">INR</option>
@@ -293,21 +299,42 @@
                                                 </select>
                                             </div>
 
-
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Financial Year Start Date</span><span style="color:red;">*</span></label>
+                                                <!-- <input type="text" class="form-control " id="txtfiyrstr" ng-model="fysd" name="fysd" placeholder="" required=""> -->
+                                                <input type="text"
+                                                class="form-control"
+                                                formController="FYSDate"
+                                                 #dp="bsDatepicker"
+                                                bsDatepicker [(bsValue)]="FYSDate">    
+                                            </div>
+
+                                            <div class="form-group col-md-3">
+                                                <label for="exampleInputEmail1"><span style="color:blue;">Financial Year End Date</span><span style="color:red;">*</span></label>
+                                                <!-- <input type="text" class="form-control " id="txtfiyrend" ng-model="fyed" name="fyed" placeholder="" required=""> -->
+                                                <input type="text"
+                                                            class="form-control"
+                                                            formController="FYEDate"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="FYEDate">
+                                            </div>
+
+                                            <!-- <div class="form-group col-md-3">
+                                                <label for="exampleInputEmail1"><span style="color:blue;">Financial Year Start Date</span><span style="color:red;">*</span></label>
+                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrname" formControlName="txtemrname" id="txtemrname" placeholder="Employer Name" required="">
+
                                                 <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" name="txtfinyrst" ng-model="txtfinyrst" id="txtfinyrst" placeholder="" required="">
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Financial Year End Date</span><span style="color:red;">*</span></label>
                                                 <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" name="txtfinyrend" ng-model="txtfinyrend" id="txtfinyrend" placeholder="" required="">
-                                            </div>
+                                            </div> -->
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Pay Period Type</span><span style="color:red;">*</span></label>
 
-                                                <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlpyprd" ng-model="ddlpyprd" id="ddlpyprd" required="">
+                                                <select class="form-control " name="ddlpyprd" formControlName="ddlpyprd" id="ddlpyprd" required="">
                                                     <option value="" disabled="" selected="selected">Select Option</option>
                                                     <option value="Quarterly">Quarterly</option>
                                                     <option value="Monthly">Monthly</option>
@@ -318,32 +345,35 @@
                                             </div>
 
                                  
-
+                                            
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer Tax No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrtaxno" ng-model="txtemrtaxno" id="txtemrtaxno" placeholder="" required="">
+                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrtaxno" formControlName="txtemrtaxno" id="txtemrtaxno" placeholder="Tax No" required="">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer PAN Card No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrpanno" ng-model="txtemrpanno" id="txtemrpanno" placeholder="" required="">
+                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrpanno" formControlName="txtemrpanno" id="txtemrpanno" placeholder="PAN No" required="">
+                                                <!-- <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrpanno" ng-model="txtemrpanno" id="txtemrpanno" placeholder="" required=""> -->
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer DIN No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrdinno" ng-model="txtemrdinno" id="txtemrdinno" placeholder="" required="">
+                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrdinno" formControlName="txtemrdinno" id="txtemrdinno" placeholder="DIN No" required="">
+                                                <!-- <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrdinno" ng-model="txtemrdinno" id="txtemrdinno" placeholder="" required=""> -->
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Employer BIN No</span><span style="color:red;">*</span></label>
-                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrbnno" ng-model="txtemrbnno" id="txtemrbnno" placeholder="" required="">
+                                                <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrbnno" formControlName="txtemrbnno" id="txtemrbnno" placeholder="BIN No" required="">
+                                                <!-- <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtemrbnno" ng-model="txtemrbnno" id="txtemrbnno" placeholder="" required=""> -->
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="exampleInputEmail1"><span style="color:blue;">Inventory Valuation Method</span><span style="color:red;">*</span></label>
 
-                                                <select class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="ddlpyprd" ng-model="ddlpyprd" id="ddlpyprd" required="">
+                                                <select class="form-control" name="IVM" formControlName="IVM" id="IVM" required="">
                                                     <option value="" disabled="" selected="selected">Select Option</option>
-                                                    <option value="Quarterly">First-In, First-Out (FIFO)</option>
-                                                    <option value="Monthly">Last-In, First-Out (LIFO)</option>
-                                                    <option value="Bi-Weekly">Weighted Average Cost</option>
+                                                    <option value="FIFO">First-In, First-Out (FIFO)</option>
+                                                    <option value="LIFO">Last-In, First-Out (LIFO)</option>
+                                                    <option value="WAVGcost">Weighted Average Cost</option>
                                                   
                                                 </select>
                                             </div>
@@ -354,8 +384,9 @@
 
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <button type="button" class="btn bg-maroon margin" ng-show="Isedit==0" ng-disabled="employerform4.$invalid" ng-click="SetEmployerFinancialdet()" disabled="disabled">Submit</button>
-                                            <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isedit==1" ng-disabled="employerform4.$invalid" ng-click="updateEnployer('F')" disabled="disabled">Update</button>
+                                            <!-- <button type="button" class="btn bg-maroon margin" ng-show="Isedit==0"  ng-click="SetEmployerFinancialdet()" disabled="">Submit</button> -->
+                                            <button type="submit" class="btn bg-maroon margin">Update</button>
+                                            <!-- <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin">Upload</button> -->
                                             <button type="button" class="btn bg-maroon margin" ng-click="RouteTofirst()">Exit</button>
                                         </div>
                                     </form>
@@ -365,295 +396,315 @@
                     </div>
                     <div class="tab-pane ng-pristine ng-invalid ng-invalid-required" id="tab_5" ng-form="employerform5">
                         <div class="row">
-                            <div class="form-group col-md-12">
-                                <label for="exampleInputEmail1">Employer ID</label>
-                                
-                                <input type="text" name="EntrapriseId" disabled="" ng-model="EntrapriseId" class="form-control ng-pristine ng-untouched ng-valid ng-empty">
-                            </div>
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingTwo">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
-                                                Address
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="box box-primary " style="border-top:none;">
-                                                        <!--   <div class="box-header with-border">
-                                                      <h3 class="box-title">Quick Example</h3>
-                                                    </div> -->
-                                                        <!-- /.box-header -->
-                                                        <!-- form start -->
+                        
+                            <form [formGroup]="OtherDetails" (ngSubmit)="OnsubmitOtherDetails()">
+                                <div>
+                                    <label>Select Employeer Id</label>
+                                    <select aria-controls="example1" class="form-control input-sm ng-pristine ng-valid ng-empty ng-touched" id="employerId" formControlName="employerId" name="employerId">
+                                        <option value="" selected="selected">--Select Enterprise Id--</option>
+                                        <option *ngFor="let item of employersList" [value]="item.employerId">{{item.employerId}}</option>
+                                    </select>
+                                </div>
+                              
+                                <div class="box-body">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingTwo">
+                                            <h4 class="panel-title">
+                                                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                                    Address
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse in" role="tabpanel" aria-labelledby="headingTwo" style="height: auto;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="box box-primary " style="border-top:none;">
+                                                            <!--   <div class="box-header with-border">
+                                                          <h3 class="box-title">Quick Example</h3>
+                                                        </div> -->
+                                                            <!-- /.box-header -->
+                                                            <!-- form start -->
 
-                                                        <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
+                                                            
 
-                                                            <div class="box-body">
-                                                                <!-- Should Use Country ,State , City Exchanger Plugin-->
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Country</label>
+                                                                <div class="box-body">
+
+                                                                    <!-- Should Use Country ,State , City Exchanger Plugin-->
                                                                     
-                                                                    <select id="ddlcountry" class="form-control ng-pristine ng-untouched ng-valid ng-empty" data-country="US" name="ddlcountry" ng-model="ddlcountry" placeholder="Country" ng-change="GetStateList()">
-                                                                        <option value="" disabled="" selected="selected">Select</option>
-                                                                        <!-- ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="1" class="ng-binding ng-scope">India</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="2" class="ng-binding ng-scope">United States of America</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="3" class="ng-binding ng-scope">Denmark</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="4" class="ng-binding ng-scope">Afghanistan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="5" class="ng-binding ng-scope">Albania</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="6" class="ng-binding ng-scope"> Algeria</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="7" class="ng-binding ng-scope"> Aland Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="8" class="ng-binding ng-scope"> American Samoa</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="9" class="ng-binding ng-scope">Anguilla</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="10" class="ng-binding ng-scope">Andorra</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="11" class="ng-binding ng-scope">Angola</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="12" class="ng-binding ng-scope">Antilles - Netherlands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="13" class="ng-binding ng-scope">Antigua and Barbuda</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="14" class="ng-binding ng-scope">Antarctica</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="15" class="ng-binding ng-scope">Argentina</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="16" class="ng-binding ng-scope">Armenia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="17" class="ng-binding ng-scope">Australia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="18" class="ng-binding ng-scope">Austria</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="19" class="ng-binding ng-scope">Aruba</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="20" class="ng-binding ng-scope">Azerbaijan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="21" class="ng-binding ng-scope">Bosnia and Herzegovina</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="22" class="ng-binding ng-scope">Barbados</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="23" class="ng-binding ng-scope">Bangladesh</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="24" class="ng-binding ng-scope">Belgium</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="25" class="ng-binding ng-scope">Burkina Faso</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="26" class="ng-binding ng-scope">Bulgaria</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="27" class="ng-binding ng-scope">Bermuda</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="28" class="ng-binding ng-scope">Brunei Darussalam</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="29" class="ng-binding ng-scope">Bolivia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="30" class="ng-binding ng-scope">Brazil</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="31" class="ng-binding ng-scope">Bahamas</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="32" class="ng-binding ng-scope">Bhutan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="33" class="ng-binding ng-scope">Bouvet Island</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="34" class="ng-binding ng-scope">Botswana</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="35" class="ng-binding ng-scope">Belarus</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="36" class="ng-binding ng-scope">Belize</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="37" class="ng-binding ng-scope">Cambodia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="38" class="ng-binding ng-scope">Cameroon</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="39" class="ng-binding ng-scope">Canada</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="40" class="ng-binding ng-scope">Cape Verde</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="41" class="ng-binding ng-scope">Central African Republic</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="42" class="ng-binding ng-scope">Chad</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="43" class="ng-binding ng-scope">Chile</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="44" class="ng-binding ng-scope">China</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="45" class="ng-binding ng-scope">Christmas Island</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="46" class="ng-binding ng-scope">Cocos (Keeling) Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="47" class="ng-binding ng-scope">Colombia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="48" class="ng-binding ng-scope">Costa Rica</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="49" class="ng-binding ng-scope">Croatia (Hrvatska)</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="50" class="ng-binding ng-scope">Cuba</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="51" class="ng-binding ng-scope">Cyprus</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="52" class="ng-binding ng-scope">Czech Republic</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="53" class="ng-binding ng-scope">Democratic Republic of the Congo</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="54" class="ng-binding ng-scope">Djibouti</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="55" class="ng-binding ng-scope">Dominica</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="56" class="ng-binding ng-scope">Dominican Republic</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="57" class="ng-binding ng-scope">Ecuador</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="58" class="ng-binding ng-scope">Egypt</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="59" class="ng-binding ng-scope">El Salvador</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="60" class="ng-binding ng-scope">East Timor</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="61" class="ng-binding ng-scope">Estonia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="62" class="ng-binding ng-scope">Equatorial Guinea</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="63" class="ng-binding ng-scope">Eritrea</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="64" class="ng-binding ng-scope">Ethiopia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="65" class="ng-binding ng-scope">Finland</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="66" class="ng-binding ng-scope">Fiji</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="67" class="ng-binding ng-scope">Falkland Islands (Malvinas)</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="68" class="ng-binding ng-scope">Federated States of Micronesia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="69" class="ng-binding ng-scope">Faroe Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="70" class="ng-binding ng-scope">France</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="71" class="ng-binding ng-scope">France, Metropolitan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="72" class="ng-binding ng-scope">French Guiana</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="73" class="ng-binding ng-scope">French Polynesia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="74" class="ng-binding ng-scope">Gabon</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="75" class="ng-binding ng-scope">Gambia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="76" class="ng-binding ng-scope">Germany</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="77" class="ng-binding ng-scope">Ghana</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="78" class="ng-binding ng-scope">Gibraltar</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="79" class="ng-binding ng-scope">Great Britain (UK)</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="80" class="ng-binding ng-scope">Grenada</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="81" class="ng-binding ng-scope">Georgia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="82" class="ng-binding ng-scope">Greece</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="83" class="ng-binding ng-scope">Greenland</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="84" class="ng-binding ng-scope">Guinea</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="85" class="ng-binding ng-scope">Guadeloupe</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="86" class="ng-binding ng-scope">S. Georgia and S. Sandwich Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="87" class="ng-binding ng-scope">Guatemala</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="88" class="ng-binding ng-scope">Guam</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="89" class="ng-binding ng-scope">Guinea-Bissau</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="90" class="ng-binding ng-scope">Guyana</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="91" class="ng-binding ng-scope">Hong Kong</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="92" class="ng-binding ng-scope">Heard Island and McDonald Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="93" class="ng-binding ng-scope">Honduras</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="94" class="ng-binding ng-scope">Haiti</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="95" class="ng-binding ng-scope">Hungary</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="96" class="ng-binding ng-scope">Indonesia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="97" class="ng-binding ng-scope">Ireland</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="98" class="ng-binding ng-scope">Israel</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="99" class="ng-binding ng-scope">British Indian Ocean Territory</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="100" class="ng-binding ng-scope">Iraq</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="101" class="ng-binding ng-scope">Iran</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="102" class="ng-binding ng-scope">Italy</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="103" class="ng-binding ng-scope">Jamaica</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="104" class="ng-binding ng-scope">Jordan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="105" class="ng-binding ng-scope">Japan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="106" class="ng-binding ng-scope">Kenya</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="107" class="ng-binding ng-scope">Kyrgyzstan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="108" class="ng-binding ng-scope">Kiribati</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="109" class="ng-binding ng-scope">Comoros</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="110" class="ng-binding ng-scope">Saint Kitts and Nevis</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="111" class="ng-binding ng-scope">Korea (North)</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="112" class="ng-binding ng-scope">Korea (South)</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="113" class="ng-binding ng-scope">Kuwait</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="114" class="ng-binding ng-scope">Cayman Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="115" class="ng-binding ng-scope">Kazakhstan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="116" class="ng-binding ng-scope">Laos</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="117" class="ng-binding ng-scope">Lebanon</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="118" class="ng-binding ng-scope">Saint Lucia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="119" class="ng-binding ng-scope">Liechtenstein</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="120" class="ng-binding ng-scope">Sri Lanka</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="121" class="ng-binding ng-scope">Liberia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="122" class="ng-binding ng-scope">Lesotho</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="123" class="ng-binding ng-scope">Lithuania</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="124" class="ng-binding ng-scope">Luxembourg</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="125" class="ng-binding ng-scope">Latvia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="126" class="ng-binding ng-scope">Libya</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="127" class="ng-binding ng-scope">Macedonia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="128" class="ng-binding ng-scope">Macao</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="129" class="ng-binding ng-scope">Madagascar</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="130" class="ng-binding ng-scope">Malaysia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="131" class="ng-binding ng-scope">Mali</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="132" class="ng-binding ng-scope">Malawi</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="133" class="ng-binding ng-scope">Mauritania</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="134" class="ng-binding ng-scope">Marshall Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="135" class="ng-binding ng-scope">Martinique</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="136" class="ng-binding ng-scope">Mauritius</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="137" class="ng-binding ng-scope">Mayotte</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="138" class="ng-binding ng-scope">Malta</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="139" class="ng-binding ng-scope">Mexico</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="140" class="ng-binding ng-scope">Morocco</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="141" class="ng-binding ng-scope">Monaco</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="142" class="ng-binding ng-scope">Moldova</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="143" class="ng-binding ng-scope">Mongolia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="144" class="ng-binding ng-scope">Myanmar</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="145" class="ng-binding ng-scope">Northern Mariana Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="146" class="ng-binding ng-scope">Montserrat</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="147" class="ng-binding ng-scope">Maldives</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="148" class="ng-binding ng-scope">Mozambique</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="149" class="ng-binding ng-scope">Namibia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="150" class="ng-binding ng-scope">New Caledonia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="151" class="ng-binding ng-scope">Niger</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="152" class="ng-binding ng-scope">Norfolk Island</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="153" class="ng-binding ng-scope">Nigeria</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="154" class="ng-binding ng-scope">Nicaragua</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="155" class="ng-binding ng-scope">Netherlands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="156" class="ng-binding ng-scope">Norway</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="157" class="ng-binding ng-scope">Nepal</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="158" class="ng-binding ng-scope">Nauru</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="159" class="ng-binding ng-scope">Niue</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="160" class="ng-binding ng-scope">New Zealand (Aotearoa)</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="161" class="ng-binding ng-scope">Oman</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="162" class="ng-binding ng-scope">Panama</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="163" class="ng-binding ng-scope">Peru</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="164" class="ng-binding ng-scope">Papua New Guinea</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="165" class="ng-binding ng-scope">Philippines</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="166" class="ng-binding ng-scope">Pakistan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="167" class="ng-binding ng-scope">Poland</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="168" class="ng-binding ng-scope">Pitcairn</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="169" class="ng-binding ng-scope">Puerto Rico</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="170" class="ng-binding ng-scope">Palestinian Territory</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="171" class="ng-binding ng-scope">Portugal</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="172" class="ng-binding ng-scope">Palau</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="173" class="ng-binding ng-scope">Paraguay</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="174" class="ng-binding ng-scope">Qatar</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="175" class="ng-binding ng-scope">Reunion</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="176" class="ng-binding ng-scope">Romania</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="177" class="ng-binding ng-scope">Russian Federation</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="178" class="ng-binding ng-scope">Rwanda</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="179" class="ng-binding ng-scope">Saudi Arabia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="180" class="ng-binding ng-scope">Samoa</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="181" class="ng-binding ng-scope">Saint Helena</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="182" class="ng-binding ng-scope">Saint Vincent and the Grenadines</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="183" class="ng-binding ng-scope">San Marino</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="184" class="ng-binding ng-scope">Sao Tome and Principe</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="185" class="ng-binding ng-scope">Saint Pierre and Miquelon</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="186" class="ng-binding ng-scope">Serbia and Montenegro</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="187" class="ng-binding ng-scope">Senegal</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="188" class="ng-binding ng-scope">Sierra Leone</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="189" class="ng-binding ng-scope">Singapore</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="190" class="ng-binding ng-scope">Slovakia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="191" class="ng-binding ng-scope">Slovenia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="192" class="ng-binding ng-scope">Solomon Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="193" class="ng-binding ng-scope">Somalia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="194" class="ng-binding ng-scope">South Africa</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="195" class="ng-binding ng-scope">Spain</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="196" class="ng-binding ng-scope">Sudan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="197" class="ng-binding ng-scope">Suriname</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="198" class="ng-binding ng-scope">Svalbard and Jan Mayen</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="199" class="ng-binding ng-scope">Sweden</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="200" class="ng-binding ng-scope">Switzerland</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="201" class="ng-binding ng-scope">Syria</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="202" class="ng-binding ng-scope">USSR (former)</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="203" class="ng-binding ng-scope">Swaziland</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="204" class="ng-binding ng-scope">Taiwan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="205" class="ng-binding ng-scope">Tanzania</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="206" class="ng-binding ng-scope">Tajikistan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="207" class="ng-binding ng-scope">Thailand</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="208" class="ng-binding ng-scope">Timor-Leste</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="209" class="ng-binding ng-scope">Togo</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="210" class="ng-binding ng-scope">Tokelau</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="211" class="ng-binding ng-scope">Tonga</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="212" class="ng-binding ng-scope">Trinidad and Tobago</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="213" class="ng-binding ng-scope">Tunisia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="214" class="ng-binding ng-scope">Turkey</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="215" class="ng-binding ng-scope">Turkmenistan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="216" class="ng-binding ng-scope">Turks and Caicos Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="217" class="ng-binding ng-scope">Tuvalu</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="218" class="ng-binding ng-scope">Ukraine</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="219" class="ng-binding ng-scope">Uganda</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="220" class="ng-binding ng-scope">United Arab Emirates</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="221" class="ng-binding ng-scope">United Kingdom</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="222" class="ng-binding ng-scope">United States</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="223" class="ng-binding ng-scope">United States Minor Outlying Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="224" class="ng-binding ng-scope">Uruguay</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="225" class="ng-binding ng-scope">Uzbekistan</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="226" class="ng-binding ng-scope">Vanuatu</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="227" class="ng-binding ng-scope">Vatican City State</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="228" class="ng-binding ng-scope">Venezuela</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="229" class="ng-binding ng-scope">Virgin Islands (British)</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="230" class="ng-binding ng-scope">Virgin Islands</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="231" class="ng-binding ng-scope">Viet Nam</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="232" class="ng-binding ng-scope">Wallis and Futuna</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="233" class="ng-binding ng-scope">Western Sahara</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="234" class="ng-binding ng-scope">Yemen</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="235" class="ng-binding ng-scope">Yugoslavia (former)</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="236" class="ng-binding ng-scope">Zambia</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="237" class="ng-binding ng-scope">Zaire (former)</option><!-- end ngRepeat: country in CountryList --><option ng-repeat="country in CountryList" value="238" class="ng-binding ng-scope">Zimbabwe</option><!-- end ngRepeat: country in CountryList -->
-                                                                    </select>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Country</label>
+
+                                                                        <select class="form-control" id="Country" formControlName="Country" name="Country" required="">
+                                                                            <option value="Select">Select</option>
+                                                                            <option value="India">India</option>
+                                                                            <option value="Usa">Usa</option>
+                                                                            <option value="Uk">Uk</option>
+                                                                            <option value="Australia">Australia</option>
+                                                                            <option value="Japan">Japan</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">State</label>
+
+                                                                        <select class="form-control" id="State" formControlName="State" name="State" required="">
+                                                                            <option value="Select">Select</option>
+                                                                            <option value="Ap">Ap</option>
+                                                                            <option value="Telangana">Telangana</option>
+                                                                            <option value="Pune">Pune</option>
+                                                                            <option value="Mumbai">Mumbai</option>
+                                                                            <option value="Delhi">Delhi</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">City</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="city" formControlName="city" name="city" placeholder="City">
+                                                                        
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Address 1</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Add1" formControlName="Add1" name="Add1" placeholder="Address1">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Address 2</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Add2" formControlName="Add2" name="Add2" placeholder="Address 2">
+
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Post Box</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="p_box" formControlName="p_box" name="p_box" placeholder="Post Box">
+
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Zip Code</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Zipcode" formControlName="Zipcode" name="Zipcode" placeholder="Zip Code">
+
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Land Line</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="Landline" formControlName="Landline" name="Landline" placeholder="Land Line" required="">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="Fax" formControlName="Fax" name="Fax" placeholder="Fax" required="">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Email Address</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Email" formControlName="Email" name="Email" placeholder="Email Address">
+
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Website</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Website" formControlName="Website" name="Website" placeholder="Website">
+
+                                                                    </div>
+
+
 
                                                                 </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">State</label>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingThree">
+                                            <h4 class="panel-title">
+                                                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                                    Authorized Representative
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree" class="panel-collapse in" role="tabpanel" aria-labelledby="headingThree" style="height: auto;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="box box-primary " style="border-top:none;">
+                                                            <!--   <div class="box-header with-border">
+                                                          <h3 class="box-title">Quick Example</h3>
+                                                        </div> -->
+                                                            <!-- /.box-header -->
+                                                            <!-- form start -->
+
+                                                            <!--<form role="form" class="ng-pristine ng-invalid ng-invalid-required"> -->
+
+                                                                <div class="box-body">
+                                                         
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">First Name</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="f_name" formControlName="f_name" name="f_name" placeholder="First Name">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Middle Name</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="m_name" formControlName="m_name" name="m_name" placeholder="Middle Name">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Last Name</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="l_name" formControlName="l_name" name="l_name" placeholder="Last Name">
+
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Email Address</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="Email_a" formControlName="Email_a" name="Email_a" placeholder="Email Address">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Designation</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" data-toggle="modal" formControlName="A_Desig" name="A_Desig" data-target="#AuDesignation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="datepicker" formControlName="A_Phone" name="A_Phone" placeholder="Phone" required="">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="datepicker" formControlName="A_Fax" name="A_Fax" placeholder="Fax" required="">
+
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="datepicker" formControlName="A_m_No" name="A_m_No" placeholder="Mobile No" required="">
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label> Preferred Contact Mode</label>
+                                                                        <br>
+
+                                                                        <input type="checkbox" formControlName="A_m_Email" name="A_m_Email" value="Email" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
+                                                                        &nbsp;&nbsp;&nbsp;  <input type="checkbox" formControlName="A_m_Tel" name="A_m_Email" value="Telephone" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
+                                                                        &nbsp;&nbsp;&nbsp;  <input type="checkbox" formControlName="A_m_mobile" name="A_m_Email" value="Mobile" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
+
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                            <!--</form> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingThree">
+                                            <h4 class="panel-title">
+                                                <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                                    <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
+                                                    Office Contact Person
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFour" class="panel-collapse in" role="tabpanel" aria-labelledby="headingThree" style="height: auto;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="box box-primary " style="border-top:none;">
+                                                            <!--   <div class="box-header with-border">
+                                                          <h3 class="box-title">Quick Example</h3>
+                                                        </div> -->
+                                                            <!-- /.box-header -->
+                                                            <!-- form start -->
+
+                                                           <!--- <form role="form" class="ng-pristine ng-invalid ng-invalid-required"> -->
+
+                                                                <div class="box-body">
                                                                     
-                                                                    <select id="ddlstate" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="ddlstate" ng-model="ddlstate" placeholder="State" ng-change="GetCityList()">
-                                                                        <option value="" disabled="" selected="selected">Select</option>
-                                                                        <!-- ngRepeat: state in StateList -->
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">City</label>
-                                                                   <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="employer_city" ng-model="employer_city" name="employer_city" placeholder="City">
-                                                                </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">First Name</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_f_name" formControlName="o_f_name" name="o_f_name" placeholder="First Name">
 
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Address 1</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtadd1" ng-model="txtadd1" id="txtadd1" placeholder="Address1">
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Middle Name</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_m_name" formControlName="o_m_name" name="o_m_name" placeholder="Middle Name">
 
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Address 2</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtadd2" ng-model="txtadd2" id="txtadd2" placeholder="Address 2">
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Last Name</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_L_name" formControlName="o_L_name" name="o_L_name" placeholder="Last Name">
 
-                                                                </div>
+                                                                    </div>
 
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Post Box</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtpostboxno" ng-model="txtpostboxno" id="txtpostboxno" placeholder="Post Box">
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Email Address</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="o_Email" formControlName="o_Email" name="o_Email" placeholder="Email Address">
 
-                                                                </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1">Designation</label>
+                                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" data-toggle="modal" formControlName="o_Desig" name="o_Desig" data-target="#OfDesignation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
 
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Zip Code</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtzipcode" ng-model="txtzipcode" id="txtzipcode" placeholder="Zip Code">
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="o_Phone" formControlName="o_Phone" name="o_Phone" placeholder="Phone" required="">
 
-                                                                </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="o_Fax" formControlName="o_Fax" name="o_Fax" placeholder="Fax" required="">
 
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Land Line</span><span style="color:red;">*</span></label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtlandno" ng-model="txtlandno" id="txtlandno" placeholder="Land Line" required="">
+                                                                    </div>
 
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtfaxno" ng-model="txtfaxno" id="txtfaxno" placeholder="Fax" required="">
+                                                                    <div class="form-group col-md-3">
+                                                                        <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
+                                                                        <input type="text" class="form-control " id="o_mobile" formControlName="o_mobile" name="o_mobile" placeholder="Mobile No" required="">
 
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Email Address</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtmailads" ng-model="txtmailads" id="txtmailads" placeholder="Email Address">
+                                                                    </div>
+                                                                    <div class="form-group col-md-3">
+                                                                        <label> Preferred Contact Mode</label>
+                                                                        <br>
 
-                                                                </div>
+                                                                        <input type="checkbox" value="Email"formControlName="o_Email_P" name="o_Email_P"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
+                                                                        &nbsp;&nbsp;&nbsp;  <input type="checkbox" name="o_T_P"formControlName="o_T_P" value="Telephone"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
+                                                                        &nbsp;&nbsp;&nbsp;  <input type="checkbox" name="o_M_P" formControlName="o_M_P"value="Mobile"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
 
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Website</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtwebsite" ng-model="txtwebsite" id="txtwebsite" placeholder="Website">
+                                                                    </div>
 
-                                                                </div>
 
-                                                                <input type="hidden" ng-model="empr_id" name="empr_id" id="empr_id" autocomplete="off" class="ng-pristine ng-untouched ng-valid ng-empty">
 
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                </div>
-
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingThree">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                <i class="more-less glyphicon glyphicon-plus" style="color:#d81b60;"></i>
-                                                Authorized Representative
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="box box-primary " style="border-top:none;">
-                                                        <!--   <div class="box-header with-border">
-                                                      <h3 class="box-title">Quick Example</h3>
-                                                    </div> -->
-                                                        <!-- /.box-header -->
-                                                        <!-- form start -->
-
-                                                        <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
-
-                                                            <div class="box-body">
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">First Name</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtarfname" ng-model="txtarfname" id="txtarfname" placeholder="First Name">
-
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Middle Name</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtarmidname" ng-model="txtarmidname" id="txtarmidname" placeholder="Middle Name">
-
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Last Name</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtarlname" ng-model="txtarlname" id="txtarlname" placeholder="Last Name">
 
                                                                 </div>
 
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Email Address</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtarEmailadd" ng-model="txtarEmailadd" id="txtarEmailadd" placeholder="Email Address">
-
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Designation</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtardesig" ng-model="txtardesig" data-toggle="modal" data-target="#AuDesignation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
-
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtarphno" ng-model="txtarphno" id="txtarphno" placeholder="Phone" required="">
-
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtarfaxno" ng-model="txtarfaxno" id="txtarfaxno" placeholder="Fax" required="">
-
-                                                                </div>
-
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtarmobno" ng-model="txtarmobno" id="txtarmobno" placeholder="Mobile No" required="">
-
-                                                                </div>
-
-
-
-                                                                <div class="form-group col-md-3">
-                                                                    <label> Preferred Contact Mode</label>
-                                                                    <br>
-
-                                                                    <input type="checkbox" name="chkprconmode" ng-model="chkarEmailadd" id="chkarEmailadd" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
-                                                                    &nbsp;&nbsp;&nbsp;  <input type="checkbox" name="chkprconmode" ng-model="chkarteleno" id="chkarteleno" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
-                                                                    &nbsp;&nbsp;&nbsp;  <input type="checkbox" name="chkprconmode" ng-model="chkarmobeno" id="chkarmobeno" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
-
-                                                                </div>
-
-
-                                                            </div>
-                                                        </form>
+                                                          <!-- </form> --> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-
-
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingThree">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                                                <i class="more-less glyphicon glyphicon-plus"></i>
-                                                Office Contact Person
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="box box-primary " style="border-top:none;">
-                                                        <!--   <div class="box-header with-border">
-                                                      <h3 class="box-title">Quick Example</h3>
-                                                    </div> -->
-                                                        <!-- /.box-header -->
-                                                        <!-- form start -->
-
-                                                        <form role="form" class="ng-pristine ng-invalid ng-invalid-required">
-
-                                                            <div class="box-body">
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">First Name</label>
-                                                                    <input type="text" name="txtocpfname" ng-model="txtocpfname" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="txtocpfname" placeholder="First Name">
-
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Middle Name</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtocpmidname" ng-model="txtocpmidname" id="txtocpmidname" placeholder="Middle Name">
-
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Last Name</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtocplname" ng-model="txtocplname" id="txtocplname" placeholder="Last Name">
-
-                                                                </div>
-
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Email Address</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtocpemailadd" ng-model="txtocpemailadd" id="txtocpemailadd" placeholder="Email Address">
-
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1">Designation</label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="txtocpedesig" ng-model="txtocpedesig" id="txtocpedesig" data-toggle="modal" data-target="#OfDesignation" placeholder="" style="font-family: FontAwesome;color: #d81b60;">
-
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Phone</span><span style="color:red;">*</span></label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtocpphno" ng-model="txtocpphno" id="txtocpphno" placeholder="Phone" required="">
-
-                                                                </div>
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Fax</span><span style="color:red;">*</span></label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtocpfaxno" ng-model="txtocpfaxno" id="txtocpfaxno" placeholder="Fax" required="">
-
-                                                                </div>
-
-                                                                <div class="form-group col-md-3">
-                                                                    <label for="exampleInputEmail1"><span style="color:blue;">Mobile No</span><span style="color:red;">*</span></label>
-                                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="txtocpmobileno" ng-model="txtocpmobileno" id="txtocpmobileno" placeholder="Mobile No" required="">
-
-                                                                </div>
-
-
-                                                                <div class="form-group col-md-3">
-                                                                    <label> Preferred Contact Mode</label>
-                                                                    <br>
-
-                                                                    <input type="checkbox" name="chkocppfconmode" ng-model="chkocpEmailadd" id="chkocpEmailadd" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" title="Email Address" style="font-size:18px;"></i>
-                                                                    &nbsp;&nbsp;&nbsp;  <input type="checkbox" name="chkocppfconmode" ng-model="chkocpteleno" id="chkocpteleno" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-phone" title="Telephone No" style="font-size:23px;"></i>
-                                                                    &nbsp;&nbsp;&nbsp;  <input type="checkbox" name="chkocppfconmode" ng-model="chkocpmobileno" id="chkocpmobileno" class="ng-pristine ng-untouched ng-valid ng-empty"> &nbsp;&nbsp;&nbsp;<i class="fa fa-mobile" title="Mobile No" style="font-size:23px;"></i>
-
-                                                                </div>
-                                                                <input type="hidden" id="hiddenAudesignation" autocomplete="off">
-                                                                <input type="hidden" id="hiddenOfdesignation" autocomplete="off">
-
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-group col-md-3">
+                                    
+                                    <button type="submit" class="btn bg-maroon margin" >Submit</button>
                                 </div>
-                                <button type="button" id="btnsubmit" name="btnsubmit" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="employerform5.$invalid" ng-click="SetEmployerOterDetailes()" disabled="disabled">Submit</button>
-                                <button type="button" class="btn bg-maroon margin ng-hide" ng-show="Isedit==1" ng-disabled="employerform5.$invalid" ng-click="updateEnployer('O')" disabled="disabled">Update</button>
-                                <button type="button" class="btn bg-maroon margin" ng-click="RouteTofirst()">Exit</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

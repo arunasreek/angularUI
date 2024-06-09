@@ -54,10 +54,6 @@ export class EmployeeComponent implements OnInit {
     this.employeeAPIcall();
     this.emplyeeFormSetup();
     this.employeeWorkFormSetup();
-  //   this.employeeService.getEmployeedetList().subscribe(data => {
-         
-  //     console.log(data);
-  // });
   }
 
   emplyeeFormSetup() {
@@ -74,7 +70,7 @@ export class EmployeeComponent implements OnInit {
       Ed_m_name: [''],
       Ed_l_name: [''],
       Ed_Email: [''],
-      ED_Designation: [''],
+      // ED_Designation: [''],
       Ed_mobile: [''],
       Ed_Phone: [''],
       Ed_ext: [''],
@@ -103,15 +99,16 @@ export class EmployeeComponent implements OnInit {
 
   employeeWorkFormSetup (){
     this.employeeWorkForm = this.formBuilder.group({
+      EmployeesId:[''],
       pp_num:[''],
-        PI_Auth:[''],
-       PI_cntry:[''],
-        V_num:[''],
-       VI_Auth:[''],
+      PI_Auth:[''],
+      PI_cntry:[''],
+      V_num:[''],
+      VI_Auth:[''],
       VI_cntry:[''],
       Wrk_per_no:[''],
-       WI_Auth:[''],
-       WI_cntry:[''],
+      WI_Auth:[''],
+      WI_cntry:[''],
         
     });
   }
@@ -139,7 +136,6 @@ export class EmployeeComponent implements OnInit {
   onSubmitPrimary() {
 
     this.submitted = true;
-    console.log(this.employeePrimaryForm.value)
     // stop here if form is invalid
     if (this.employeePrimaryForm.invalid) {
         return;
@@ -147,17 +143,17 @@ export class EmployeeComponent implements OnInit {
    
 
     let employeeData: IEmployeePost = {
-      employee_id: this.employeePrimaryForm.value.employee_id?this.employeePrimaryForm.value.employee_id:0,
-      EmployeeID: this.employeePrimaryForm.value.Ed_Employee_ID,
-      emp_id: this.employeePrimaryForm.value.Ed_Employer_ID,
-      b_id: this.employeePrimaryForm.value.Ed_Emplr_branch,
-      o_id: 3,
-      project_id: this.employeePrimaryForm.value.Ed_prj,
-      ED_FirstName: this.employeePrimaryForm.value.Ed_f_name,
-      ED_MiddleName: this.employeePrimaryForm.value.Ed_m_name,
-      ED_LastName: this.employeePrimaryForm.value.Ed_l_name,
-      ED_Email: this.employeePrimaryForm.value.Ed_Email,
-      ED_Designation: this.Designation,
+      EmployeeId: this.employeePrimaryForm.value.employee_id?this.employeePrimaryForm.value.employee_id:0,
+      EmployeeId1: this.employeePrimaryForm.value.Ed_Employee_ID,
+      EmpId: this.employeePrimaryForm.value.Ed_Employer_ID,
+      BId: this.employeePrimaryForm.value.Ed_Emplr_branch,
+      OId: 3,
+      ProjectId: this.employeePrimaryForm.value.Ed_prj,
+      EdFirstName: this.employeePrimaryForm.value.Ed_f_name,
+      EdMiddleName: this.employeePrimaryForm.value.Ed_m_name,
+      EdLastName: this.employeePrimaryForm.value.Ed_l_name,
+      EdEmail: this.employeePrimaryForm.value.Ed_Email,
+      EdDesignation: this.Designation,
       MobileNo: this.employeePrimaryForm.value.Ed_mobile,
       PhoneNo: this.employeePrimaryForm.value.Ed_Phone,
       Ext: this.employeePrimaryForm.value.Ed_ext,
@@ -168,24 +164,24 @@ export class EmployeeComponent implements OnInit {
       DateOfBirth: this.Ed_dob,
       RetirementDate: this.Ed_Rtr_Date,
       NoOfDependents: this.employeePrimaryForm.value.Ed_Dependents,
-      ED_PreferredContactMode: null,
-      ECP_FirstName: this.employeePrimaryForm.value.ECP_f_name,
-      ECP_MiddleName: this.employeePrimaryForm.value.ECP_m_name,
-      ECP_LastName: this.employeePrimaryForm.value.ECP_L_name,
-      ECP_Email: this.employeePrimaryForm.value.ECP_Email,
-      ECP_Relation: this.employeePrimaryForm.value.ECP_relation,
-      ECP_Phone: this.employeePrimaryForm.value.ECP_Phone,
-      ECP_Fax: this.employeePrimaryForm.value.ECP_Fax,
-      ECP_MobileNo: this.employeePrimaryForm.value.ECP_mobile,
-      ECP_CountryOfResidency: this.employeePrimaryForm.value.ECP_cnt_resd,
-      ECP_PreferredContactMode: null,
+      EdPreferredContactMode: null,
+      EcpFirstName: this.employeePrimaryForm.value.ECP_f_name,
+      EcpMiddleName: this.employeePrimaryForm.value.ECP_m_name,
+      EcpLastName: this.employeePrimaryForm.value.ECP_L_name,
+      EcpEmail: this.employeePrimaryForm.value.ECP_Email,
+      EcpRelation: this.employeePrimaryForm.value.ECP_relation,
+      EcpPhone: this.employeePrimaryForm.value.ECP_Phone,
+      EcpFax: this.employeePrimaryForm.value.ECP_Fax,
+      EcpMobileNo: this.employeePrimaryForm.value.ECP_mobile,
+      EcpCountryOfResidency: this.employeePrimaryForm.value.ECP_cnt_resd,
+      EcpPreferredContactMode: null,
       ContractStartDate: this.Ed_cnrt_stdate,
       ContractEndDate: this.Ed_cnrt_enddate,
       WorkStartDate: null
     }
-
+    console.log(employeeData);
     this.employeeService.setEmployeepdet(employeeData).subscribe((data: any) => {
-      if(data.ResponseMsg){
+      if(data){
         this.toastr.success("Employer Branch Successfully Created.","Success");
 
       this.employeeService.getEmployeedetList().subscribe((data: any) => {
@@ -222,111 +218,118 @@ export class EmployeeComponent implements OnInit {
     let empEdit: IEmployeeEdit = {
         employee_id: empId
     }
-
     this.Isupdate=true;
-
-    this.employeeService.editEmployeepdet(empEdit).subscribe((data: any) => {
-      if(data.ResponseStatus){
+    this.employeedetList.forEach((item, index) => {
+      if(item.employeeId==empId){
      
-        this.Ed_dob = new Date(data.GetEmployeeDetailsList[0].DateOfBirth);
-        this.Ed_Rtr_Date=new Date(data.GetEmployeeDetailsList[0].RetirementDate);
-        this.Ed_Drv_lic_isudt=new Date(data.GetEmployeeDetailsList[0].DrivingLicenseIssueDate);
-        this.Ed_Drv_lic_exp=new Date(data.GetEmployeeDetailsList[0].DrivingLicenseExpiryDate);
-        this.Ed_cnrt_stdate=new Date(data.GetEmployeeDetailsList[0].ContractStartDate);
-        this.Ed_cnrt_enddate=new Date(data.GetEmployeeDetailsList[0].ContractEndDate);
-        //Setting Values
+        this.Ed_dob = new Date(item.dateOfBirth);
+        this.Ed_Rtr_Date=new Date(item.retirementDate);
+        this.Ed_Drv_lic_isudt=new Date(item.drivingLicenseIssueDate);
+        this.Ed_Drv_lic_exp=new Date(item.drivingLicenseExpiryDate);
+        this.Ed_cnrt_stdate=new Date(item.contractStartDate);
+        this.Ed_cnrt_enddate=new Date(item.contractEndDate);
           this.employeePrimaryForm.setValue({
-      employee_id:data.GetEmployeeDetailsList[0].employee_id,
-      Ed_Employee_ID:data.GetEmployeeDetailsList[0].EmployeeID,
-      Ed_Employer_ID:data.GetEmployeeDetailsList[0].emp_id,
-      Ed_Emplr_branch:data.GetEmployeeDetailsList[0].b_id,
-       Ed_Emplr_org:null,
-       Ed_A_Desig:null,
-      // "o_id":  $("#hiddenorganisation").val(),
-      Ed_prj:data.GetEmployeeDetailsList[0].project_id,
-      Ed_f_name:data.GetEmployeeDetailsList[0].ED_FirstName,
-      Ed_m_name:data.GetEmployeeDetailsList[0].ED_MiddleName,
-      Ed_l_name:data.GetEmployeeDetailsList[0].ED_LastName,
-      Ed_Email:data.GetEmployeeDetailsList[0].ED_Email,
-      // "ED_Designation":  $("#hiddendesignation").val(),
-      Ed_mobile:data.GetEmployeeDetailsList[0].MobileNo,
-      Ed_Phone:data.GetEmployeeDetailsList[0].PhoneNo,
-      Ed_ext:data.GetEmployeeDetailsList[0].Ext,
-      Ed_bldgrp:data.GetEmployeeDetailsList[0].BloodGroup,
-      Ed_Drv_lic_No:data.GetEmployeeDetailsList[0].DrivingLicenseNumber,
-      Ed_Drv_lic_isudt:data.GetEmployeeDetailsList[0].DrivingLicenseIssueDate,
-      Ed_Drv_lic_exp:data.GetEmployeeDetailsList[0].DrivingLicenseExpiryDate,
-      Ed_dob:data.GetEmployeeDetailsList[0].DateOfBirth,
-      Ed_Rtr_Date:data.GetEmployeeDetailsList[0].RetirementDate,
-      Ed_Dependents:data.GetEmployeeDetailsList[0].NoOfDependents,
-       Edvalues:null,
-      ECP_f_name:data.GetEmployeeDetailsList[0].ECP_FirstName,
-      ECP_m_name:data.GetEmployeeDetailsList[0].ECP_MiddleName,
-      ECP_L_name:data.GetEmployeeDetailsList[0].ECP_LastName,
-      ECP_Email:data.GetEmployeeDetailsList[0].ECP_Email,
-      ECP_relation:data.GetEmployeeDetailsList[0].ECP_Relation,
-      ECP_Phone:data.GetEmployeeDetailsList[0].ECP_Phone,
-      ECP_Fax:data.GetEmployeeDetailsList[0].ECP_Fax,
-      ECP_cnt_resd:data.GetEmployeeDetailsList[0].ECP_CountryOfResidency,
-      ECPvalues:data.GetEmployeeDetailsList[0].ECP_PreferredContactMode,
-      Ed_cnrt_stdate:data.GetEmployeeDetailsList[0].ContractStartDate,
-      Ed_cnrt_enddate:data.GetEmployeeDetailsList[0].ContractEndDate,
-      ECP_mobile:data.GetEmployeeDetailsList[0].ECP_MobileNo
+          employee_id:item.employeeId,
+          Ed_Employee_ID:item.employeeId1,
+          Ed_Employer_ID:item.empId,
+          Ed_Emplr_branch:item.bId,
+          Ed_Emplr_org:null,
+          Ed_A_Desig:null,
+          Ed_prj:item.projectId,
+          Ed_f_name:item.edFirstName,
+          Ed_m_name:item.edMiddleName,
+          Ed_l_name:item.edLastName,
+          Ed_Email:item.edEmail,
+          Ed_mobile:item.mobileNo,
+          Ed_Phone:item.phoneNo,
+          Ed_ext:item.ext,
+          Ed_bldgrp:item.bloodGroup,
+          Ed_Drv_lic_No:item.drivingLicenseNumber,
+          Ed_Drv_lic_isudt:item.drivingLicenseIssueDate,
+          Ed_Drv_lic_exp:item.drivingLicenseExpiryDate,
+          Ed_dob:item.dateOfBirth,
+          Ed_Rtr_Date:item.retirementDate,
+          Ed_Dependents:item.noOfDependents,
+          Edvalues:null,
+          ECP_f_name:item.ecpFirstName,
+          ECP_m_name:item.ecpMiddleName,
+          ECP_L_name:item.ecpLastName,
+          ECP_Email:item.ecpEmail,
+          ECP_relation:item.ecpRelation,
+          ECP_Phone:item.ecpPhone,
+          ECP_Fax:item.ecpFax,
+          ECP_cnt_resd:item.ecpCountryOfResidency,
+          ECPvalues:item.ecpPreferredContactMode,
+          Ed_cnrt_stdate:new Date(item.contractStartDate),
+          Ed_cnrt_enddate:new Date(item.contractEndDate),
+          ECP_mobile:item.ecpMobileNo
           });
 
-          this.I_Date= new Date(data.GetEmployeeDetailsList[0].IssueDate);
-          this.expdate= new Date(data.GetEmployeeDetailsList[0].ExpiryDate);
-          this.VI_Date= new Date(data.GetEmployeeDetailsList[0].Visa_IssueDate);
-          this.VI_expdate= new Date( data.GetEmployeeDetailsList[0].Visa_ExpiryDate);
-          this.WI_Date = new Date(data.GetEmployeeDetailsList[0].Work_IssueDate);
-          this.W_expdate = new Date(data.GetEmployeeDetailsList[0].Work_ExpiryDate);
-          this.Ed_wrkstdate =new Date( data.GetEmployeeDetailsList[0].WorkStartDate);
+          this.I_Date= new Date(item.issueDate);
+          this.expdate= new Date(item.expiryDate);
+          this.VI_Date= new Date(item.visaIssueDate);
+          this.VI_expdate= new Date( item.visaExpiryDate);
+          this.WI_Date = new Date(item.workIssueDate);
+          this.W_expdate = new Date(item.workExpiryDate);
+          this.Ed_wrkstdate =new Date( item.workStartDate);
 
           this.employeeWorkForm.setValue({
-            pp_num:  data.GetEmployeeDetailsList[0].PassportNo,
-            PI_Auth:   data.GetEmployeeDetailsList[0].IssuingAuthority,
-            PI_cntry:   data.GetEmployeeDetailsList[0].IssuingCountry,
-            V_num:   data.GetEmployeeDetailsList[0].VisaNo,
-            VI_Auth:   data.GetEmployeeDetailsList[0].Visa_IssuingAuthority,
-            VI_cntry:   data.GetEmployeeDetailsList[0].Visa_IssuingCountry,
-            Wrk_per_no:   data.GetEmployeeDetailsList[0].WorkPermitNo,
-            WI_Auth:   data.GetEmployeeDetailsList[0].Work_IssuingAuthority,
-            WI_cntry:   data.GetEmployeeDetailsList[0].Work_IssuingCountry,
+            EmployeesId:item.employeeId,
+            pp_num:  item.passportNo,
+            PI_Auth:   item.issuingAuthority,
+            PI_cntry:   item.issuingCountry,
+            V_num:   item.visaNo,
+            VI_Auth:   item.visaIssuingAuthority?item.visaIssuingAuthority:'',
+            VI_cntry:   item.visaIssuingCountry?item.visaIssuingCountry:'',
+            Wrk_per_no:   item.workPermitNo,
+            WI_Auth:   item.workIssuingAuthority?item.workIssuingAuthority:'',
+            WI_cntry:   item.workIssuingCountry?item.workIssuingCountry:'',
             
           });
        }
-
 
     });
     $(document).ready(function() {
       $("#tabsecond").click();
     });
+
+    
   }
 
   onSubmitWorkPermit(){
+    alert( this.employeeWorkForm.value.EmployeesId);
     let empWorkPermitData:IEmployeeWorkPermit={
-      employee_id: this.employeePrimaryForm.value.employee_id,
+      EmployeeId: this.employeeWorkForm.value.EmployeesId,
+      EmployeeId1:this.employeePrimaryForm.value.Ed_Employee_ID,
       PassportNo: this.employeeWorkForm.value.pp_num,
       IssueDate: this.I_Date,
       ExpiryDate: this.VI_expdate,
       IssuingAuthority:  this.employeeWorkForm.value.PI_Auth,
       IssuingCountry:  this.employeeWorkForm.value.PI_cntry,
       VisaNo:  this.employeeWorkForm.value.V_num,
-      Visa_IssueDate: this.VI_Date,
-      Visa_ExpiryDate: this.VI_expdate,
-      Visa_IssuingAuthority:  this.employeeWorkForm.value.VI_Auth,
-      Visa_IssuingCountry:  this.employeeWorkForm.value.VI_cntry,
+      VisaIssueDate: this.VI_Date,
+      VisaExpiryDate: this.VI_expdate,
+      VisaIssuingAuthority:  this.employeeWorkForm.value.VI_Auth,
+      VisaIssuingCountry:  this.employeeWorkForm.value.VI_cntry,
       WorkPermitNo:  this.employeeWorkForm.value.Wrk_per_no,
-      Work_IssueDate:this.WI_Date,
-      Work_ExpiryDate: this.W_expdate,
-      Work_IssuingAuthority:  this.employeeWorkForm.value.WI_Auth,
-      Work_IssuingCountry:  this.employeeWorkForm.value.WI_cntry,
+      WorkIssueDate:this.WI_Date,
+      WorkExpiryDate: this.W_expdate,
+      WorkIssuingAuthority:  this.employeeWorkForm.value.WI_Auth,
+      WorkIssuingCountry:  this.employeeWorkForm.value.WI_cntry,
       WorkStartDate: this.Ed_wrkstdate
     }
 
     this.employeeService.UpadteEmpWrkprmtdet(empWorkPermitData).subscribe((data: any) => {
-        if(data.ResponseStatus){
-            this.toastr.success('Updated Successfully.','Success')
+        if(data){
+            this.toastr.success('Updated Successfully.','Success');
+
+      this.employeeService.getEmployeedetList().subscribe((data: any) => {
+        this.employeedetList = data;
+        this.Isupdate=true;
+      });
+      $(document).ready(function() {
+        $("#tabfirst").click();
+      });
         }
     });
   }
@@ -366,18 +369,22 @@ onGridReady(params) {
   employeeAPIcall() {
     this.employeeService.getEmployersList().subscribe((data: any) => {
       this.employersList = data;
+
     });
 
     this.employeeService.getEmployeedetList().subscribe((data: any) => {
       this.employeedetList = data;
+      console.log(data);
     });
 
-    this.employeeService.getOrganizationList(0).subscribe((data: any) => {
+    this.employeeService.getOrganizationList().subscribe((data: any) => {
 
     });
 
     this.employeeService.getbranchlist(0).subscribe((data: any) => {
       this.empbranchlist = data;
+
+      console.log(data);
     });
 
     this.employeeService.getJobCatlogPriDetailes().subscribe((data: any) => {

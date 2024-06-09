@@ -109,38 +109,40 @@
                                                 <form role="form">
 
                                                     <div class="box-body">
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputpassword"><span style="color:blue;">Employer ID</span><span style="color:#d81b60;">*</span></label>
-                                                            <select class="form-control" ng-model="pur_order_emp_id" name="pur_order_emp_id" required ng-change="GetEmployeerbarchllistdet()">
-                                                                <option value="0" disabled>select</option>
-                                                                <option ng-repeat="empr in GetEmployeeriD" value=""></option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputpassword"><span style="color:blue;">Employer Branch</span><span style="color:#d81b60;">*</span></label>
-                                                            <select class="form-control" ng-model="pur_order_emp_brnch" name="pur_order_emp_brnch" required>
-                                                                <option value="0" disabled>select</option>
-                                                                <option ng-repeat="branch in GetEmployeerbarchllist" value=""></option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputpassword"><span style="color:blue;">Organisation Unit</span><span style="color:#d81b60;">*</span></label>
-                                                            <select class="form-control" ng-model="pur_order_orgunit" name="pur_order_orgunit" required>
-                                                                <option value="0" disabled>select</option>
-                                                                <option ng-repeat="org in OrganizationList" value=""></option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group col-md-3">
-                                                            <label for="exampleInputpassword"><span style="color:blue;">Project</span><span style="color:#d81b60;">*</span></label>
-                                                            <select class="form-control" ng-model="pur_order_project" name="pur_order_project" required>
-                                                                <option value="0" disabled>select</option>
-                                                                <option ng-repeat="Proj in ProjectList" value=""></option>
-                                                            </select>
-                                                        </div>
+
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Purchase Order ID</label>
                                                             <input type="text" class="form-control" data-target="#purorder_quo_modal" id="pur_ord_quo_id" data-toggle="modal" ng-model="pur_ord_quo_id" name="pur_ord_quo_id"  placeholder="&#61442;" style="font-family: FontAwesome;">
                                                         </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Employer ID</span><span style="color:#d81b60;">*</span></label>
+                                                            <select class="form-control" ng-model="pur_order_emp_id" name="pur_order_emp_id" id="pur_order_emp_id" required ng-change="GetEmployeerbarchllistdet()" readonly>
+                                                                <option value="0">select</option>
+                                                                <option *ngFor="let item of employerId" value="{{item.epId}}">{{item.employerName}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Employer Branch</span><span style="color:#d81b60;">*</span></label>
+                                                            <select class="form-control" ng-model="pur_order_emp_brnch" id="pur_order_emp_brnch" name="pur_order_emp_brnch" required readonly>
+                                                                <option value="0">select</option>
+                                                                <option *ngFor="let item of branchList" value="{{item.branchId}}">{{item.branchName}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Organisation Unit</span><span style="color:#d81b60;">*</span></label>
+                                                            <select class="form-control" ng-model="pur_order_orgunit" id="pur_order_orgunit" name="pur_order_orgunit" required readonly>
+                                                                <option value="0">select</option>
+                                                                <option *ngFor="let item of organizationlist" value="{{item.orgIdorgId}}">{{item.organizationName}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label for="exampleInputpassword"><span style="color:blue;">Project</span><span style="color:#d81b60;">*</span></label>
+                                                            <select class="form-control" ng-model="pur_order_project" id="pur_order_project" name="pur_order_project" required readonly>
+                                                                <option value="0">select</option>
+                                                                <option *ngFor="let item of projectList?.UpdateProjectDetails " value="{{item?.ProjectID}}">{{item?.ProjectName}}</option>
+                                                            </select>
+                                                        </div>
+                                                       
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1"><span style="color:blue;">GRN ID</span><span style="color:#d81b60;">*</span></label>
                                                             <input type="text" class="form-control" id="pur_order_id" placeholder="Purchase Order ID" ng-model="pur_order_id" name="pur_order_id" required>
@@ -227,10 +229,10 @@
                                                                         <td><input type="text" name="description_$index" ng-model="item.description" id="description" class="form-control" readonly></td>
                                                                         <td width="150"><input ng-model="item.quantity" id="quantity" type="text" class="form-control"></td>
                                                                         <td width="150"><input ng-model="item.unitmeasure" id="unitmeasure" type="text" class="form-control" readonly></td>
-                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
-                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
-                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
-                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="Warehouse" data-target="#Warehouses" data-toggle="modal" ng-model="item.itemid" placeholder="&#61442;" style="font-family:FontAwesome;"  /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="floor" data-target="#floor" data-toggle="modal" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="row" data-target="#row" data-toggle="modal" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td id="td"><input type="text" class="form-control" id="rack" data-target="#rack" data-toggle="modal" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
                                                                         <td><input ng-model="item.totamt" id="totamt" type="text" class="form-control"></td>
                                                                         <td><input ng-model="item.totamt" id="totamt" type="text" class="form-control"></td>
                                                                         <td ng-click="deletrow($index,item.PQTrans_Id)"></td>
@@ -323,7 +325,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="purorder_quo_modal" role="dialog">
+                        <div class="modal fade" id="Warehouses" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -334,34 +336,21 @@
                                         <div class="box-body">
                                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                                 <div class="row">
-                                                     <div class="col-sm-6">
-                                                            <label for="exampleinput1">Supplier ID</label>
-                                                            <input type="text" id="prod_id" ng-model="prod_id" name="prod_id" />
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label for="exampleinput1">Supplier</label>
-                                                            <input type="text" id="desc" ng-model="desc" name="desc" />
-                                                        </div>                                                     
+                                                                                                        
                                                     <div id="prdct_details" class="row">
                                                         <table class="table table-bordered table-striped dataTable" role="grid">
                                                             <thead>
                                                                 <tr>
                                                                     <th>&nbsp;</th>
-                                                                    <th>Quotation ID</th>
-                                                                    <th>Supplier Name</th>
-                                                                     <th>UM</th>
-                                                                        <th>Available Quantity</th>
-                                                                        <th>Reorder Level Quantity</th> 
+                                                                    <th>Branch ID</th>
+                                                                    <th>Branch Name</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr ng-repeat="Qta in GetPurQuatationList">
-                                                                    <td><input type="radio" name="Quatation" ng-click="GetQuatationdetbyid(Qta,$index)" /></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                     <td></td>
-                                                                        <td></td>
-                                                                        <td></td> 
+                                                                <tr *ngFor="let item of Warehouse">
+                                                                    <td><input type="radio" name="Quatation" (click)="GetBranchbyid(item)" /></td>
+                                                                    <td>{{item.branchId}}</td>
+                                                                    <td>{{item.branchName}}</td>
                                                                 </tr>
                                                             </tbody>
 
@@ -373,7 +362,175 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
+                                        <button type="button" id="close1" class="btn btn-default" data-dismiss="modal">close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="floor" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
                                         
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                                                                        
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Branch ID</th>
+                                                                    <th>Branch Name</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of Warehouse">
+                                                                    <td><input type="radio" name="Quatation" (click)="GetBranchbyid(item)" /></td>
+                                                                    <td>{{item.branchId}}</td>
+                                                                    <td>{{item.branchName}}</td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="close1" class="btn btn-default" data-dismiss="modal">close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="row" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                                                                        
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Branch ID</th>
+                                                                    <th>Branch Name</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of Warehouse">
+                                                                    <td><input type="radio" name="Quatation" (click)="GetBranchbyid(item)" /></td>
+                                                                    <td>{{item.branchId}}</td>
+                                                                    <td>{{item.branchName}}</td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="close1" class="btn btn-default" data-dismiss="modal">close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="rack" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                                                                        
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Branch ID</th>
+                                                                    <th>Branch Name</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of Warehouse">
+                                                                    <td><input type="radio" name="Quatation" (click)="GetBranchbyid(item)" /></td>
+                                                                    <td>{{item.branchId}}</td>
+                                                                    <td>{{item.branchName}}</td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="close1" class="btn btn-default" data-dismiss="modal">close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="purorder_quo_modal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        
+                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                                <div class="row">
+                                                                                                        
+                                                    <div id="prdct_details" class="row">
+                                                        <table class="table table-bordered table-striped dataTable" role="grid">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Order ID</th>
+                                                                    <th>Supplier Name</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of purchaseOrder">
+                                                                    <td><input type="radio" name="Quatation" (click)="GetPurchasedetbyid(item)" /></td>
+                                                                    <td>{{item.orderId}}</td>
+                                                                    <td>{{item.supplierName}}</td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="close" class="btn btn-default" data-dismiss="modal">close</button>
                                     </div>
                                 </div>
                             </div>

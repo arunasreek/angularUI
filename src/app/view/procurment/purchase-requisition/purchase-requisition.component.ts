@@ -3,7 +3,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {ProcurementService } from 'src/app/services';
-import { PRPost } from 'src/app/models/procurement.model';
+import { IPRPost } from 'src/app/models/procurement.model';
 declare var $:any;
 
 @Component({
@@ -13,7 +13,7 @@ declare var $:any;
 })
 export class PurchaseRequisitionComponent implements OnInit {
   employerId: any;
-  stockItems: any;
+  stockItemsList: any;
   materialItem: any;
   organizationlist: any;
   projectList: any;
@@ -23,6 +23,10 @@ export class PurchaseRequisitionComponent implements OnInit {
   branchlist: any;
   pur_dt_delvry:Date;
   PRForm: FormGroup;
+  p: number=1;
+  Isedit:number;
+  IsJBupdate:boolean;
+  supplierId:any;
   constructor(public procurementService:ProcurementService,
     private formBuilder: FormBuilder,public toastr:ToastrService) { }
 
@@ -53,28 +57,27 @@ export class PurchaseRequisitionComponent implements OnInit {
 
 
   onSubmitPrimary(){
-    let PRPostData:PRPost={
-
-      emp_id : this.PRForm.value.pur_emp_id,
-   eprbrch_id :this.PRForm.value.pur_emp_brnch,
-    org_unitid : this.PRForm.value.pur_orgunit,
-         prg_id : this.PRForm.value.pur_project,
-        mtrl_req_id :this.PRForm.value.pur_mat_req_id,
-        supname : this.PRForm.value.pur_sup_name,
-        sup_id: this.PRForm.value,
-         cntper_name : this.PRForm.value.pur_cnt_per_name,
-         pursup_add : this.PRForm.value.pur_sup_add,
-         purdtdelvry : this.pur_dt_delvry,
-         purdtdelloca : this.PRForm.value.pur_del_loc,
-         remarks : this.PRForm.value.pur_remarks,
-         tbl_length : this.PRForm.value,
-         pur_req_id : this.PRForm.value.pur_req_id,
+    let PRPostData:IPRPost={
+      RequisitionId:"0",
+      SupplierName:$('#sup_name').val(),
+      SupplierAddress :$("#pur_sup_add").val(),
+      CpPersonName :$("#pur_cnt_per_name").val(),
+      CpMobileNo :$("#pur_cnt_per_mobno").val(),
+      DateOfDelivery:this.pur_dt_delvry,
+      EmployerId:Number(this.PRForm.value.pur_emp_id),
+      SupplierId :String(this.supplierId.suppId),
+      BranchId :this.PRForm.value.pur_emp_brnch,
+      ItemCode:$("#itemid").val(),
+      ItemName:$("#description").val(),
+      UnitOfMeasure:$("#unitmeasure").val(),
+      Quantity:$("#unitmeasure").val(),
+      QuotationId:this.PRForm.value.pur_req_id,
       
     }
 
     this.procurementService.SetPurchaseReq(PRPostData).subscribe((data:any)=>{
-        if(data.ResponseMsg){
-         
+        if(data){
+          alert(data);
             this.toastr.success("Stock Item Successfully Created.","Success");
             this.procurementService.GetPurchaseReqdet().subscribe((data: any) => {
               this.purchaseReq=data
@@ -85,40 +88,65 @@ export class PurchaseRequisitionComponent implements OnInit {
         }
     });
   }
-
+  GetindividuvalSupdet(obj:any){
+    this.supplierId = obj;
+    console.log(obj);
+    $(document).ready(function() {
+      $("#close").click();
+      $("#sup_name").val(obj.supplierName);
+      $("#pur_cnt_per_name").val(obj.ocpFirstName);
+      $("#pur_cnt_per_mobno").val(obj.ocpMobileNo);
+      $("#pur_sup_add").val(obj.address1);
+    });
+  }
+  GetItemdet(obj:any){
+    $(document).ready(function() {
+      $("#stockc").click();
+      $("#itemid").val(obj.stockitemId);
+      $("#description").val(obj.itemName);
+      $("#unitmeasure").val(obj.unitOfMeasure);
+    });
+  }
   
+  GetPurchaseById(ID:string){
+    
+  }
   
   purchaseReqAPICall(){
     this.procurementService.GetMaterialItemdet().subscribe((data: any) => {
       this.materialItemdet=data
     });
-    this.procurementService.GetSupplierList().subscribe((data: any) => {
+    this.procurementService.GetSupplierList(0).subscribe((data: any) => {
       this.supplierList=data
+
+     
     });
     this.procurementService.GetEmployeeriD().subscribe((data: any) => {
       this.employerId=data
     });
-    this.procurementService.getbranchlist(0).subscribe((data: any) => {
+    this.procurementService.getbranchlist().subscribe((data: any) => {
       this.branchlist=data
+      
     });
-
-
-    this.procurementService.GetStockItems().subscribe((data: any) => {
-      this.stockItems=data
-    });
-
+  
     this.procurementService.GetPurchaseReqdet().subscribe((data: any) => {
       this.purchaseReq=data
+
+      console.log(data)
     });
 
     this.procurementService.GetOrganizationList().subscribe((data: any) => {
       this.organizationlist=data
+      
     });
 
     this.procurementService.GetprojctList().subscribe((data: any) => {
       this.projectList=data
     });
 
+    this.procurementService.GetStockItems().subscribe((data: any) => {
+      this.stockItemsList=data
+    });
     
   }
 }

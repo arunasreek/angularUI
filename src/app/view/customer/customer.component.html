@@ -1,5 +1,3 @@
-
-
 <div class="col-md-12" id="divcustomer" ng-controller="EnterpriseController">
     <div class="scrollbar scrollbar-primary">
         <div class="force-overflow">
@@ -7,7 +5,6 @@
                 <ul class="nav nav-tabs" id="inside">
                     <li class="active tab1"><a href="#tab_1" data-toggle="tab">Customer List</a></li>
                     <li class="tab2"><a href="#tab_2" data-toggle="tab">Primary Details</a></li>
-
                 </ul>
                 <div class="tab-content">
                    
@@ -25,24 +22,28 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of customerList  | paginate:{ itemsPerPage: 10 , currentPage: p };" >
-                                    <td>{{item.Customer_ID}}</td>
-                                    <td>{{item.Customer_Name}}</td>
-                                    <td>{{item.Email_Address}}</td>
-                                    <td>{{item.Fax}}</td>
-                                    <td><span class="glyphicon glyphicon-ok-circle" style="color:#102f66;cursor:pointer;font-size: 20px;padding:05px;" title="approve"></span>
-                                        <span class="glyphicon glyphicon-remove-circle" style="color:#102f66;cursor:pointer;font-size:20px;padding:05px;" title="reject"></span></td>
+                                    <td>{{item.customerId}}</td>
+                                    <td>{{item.customerName}}</td>
+                                    <td>{{item.emailAddress}}</td>
+                                    <td>{{item.fax}}</td>
                                     <td>
-                                        
-                                        <a href="/Enterprise/ES/Organizationlist?id" data-lity style="display:none">
-                                            <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #102f66;" ng-click="Editcustomer(CuL)"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #102f66;" ng-click="Deletecustomer(CuL)"></i>
-                                        </a>
-                                    </td>
+                                        <span class="glyphicon glyphicon-ok-circle" style="color:#102f66;cursor:pointer;font-size: 20px;padding:05px;" title="approve"></span>
+                                        <span class="glyphicon glyphicon-remove-circle" style="color:#102f66;cursor:pointer;font-size:20px;padding:05px;" title="reject"></span></td>
+                                        <td>
+                                           
+                                            <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                            <a href="#tab_2" data-toggle="tab" data-lity="" (click)="GetCustomer(item.custId)"> 
+                                                <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
+                                            </a>
+                                            <a href="#tab_2" data-toggle="tab" data-lity="" (click)="GetCustomer(item.custId)">
+                                                <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
+                                            </a>
+                              
+                                        </td>
                                     <td><button class="btn bg-maroon margin" ng-disabled="CuL.ledgeraccount_status==1" ng-click="CreateLedgeraccFromCustomer(CuL.cust_id)">Ledger Account</button></td>
                                 </tr>
                             </tbody>

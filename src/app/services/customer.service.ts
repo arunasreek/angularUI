@@ -15,7 +15,7 @@ export class CustomerService {
 
     }
     getCustomerList(cust_id:number) {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetCustomerList?${cust_id}`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Customer/GetCustomer?id=${cust_id}`).pipe(map((data: any) => {
             return data;
         }));
       
@@ -43,7 +43,7 @@ export class CustomerService {
 
 
     getSupplierList(supp_id:number) {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetSupplierList?${supp_id}`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Supplier/GetSupplierList?id=${supp_id}`).pipe(map((data: any) => {
             return data;
         }));
       

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {PoliciesService } from 'src/app/services';
 import { IStockItemPost } from 'src/app/models/item.model';
-
+declare var $:any;
 @Component({
   selector: 'app-stockitem',
   templateUrl: './stockitem.component.html',
@@ -16,8 +16,12 @@ export class StockitemComponent implements OnInit {
   itemgroupList: any;
   itemcategoryList: any;
   uomList: any;
-  Tax_Rate_Effective_Date: Date;
+  Isedit:number;
+  IsJBupdate:boolean;
 
+  p: number=1;
+  Tax_Rate_Effective_Date: Date;
+  stockitem_id:number;
   constructor(public policiesService:PoliciesService,
     private formBuilder: FormBuilder,public toastr:ToastrService) { }
 
@@ -44,6 +48,22 @@ export class StockitemComponent implements OnInit {
 
   get f() { return this.ItemMasterForm.controls; }
 
+  GetUOMById(ID:number){
+    this.stockitemList.forEach((value,index)=>{
+      if(value.itemgroupId == ID){
+        this.stockitem_id = value.stockitem_id;
+        this.ItemMasterForm.setValue({
+          ItemGroupId:value.itemgroupId,
+          ItemGroupdesc: value.itemGroupDescription,
+        })
+        this.IsJBupdate=true;
+        this.Isedit=1;
+      } 
+      $(document).ready(function() {
+        $("#tab_1").click();
+      });
+    });
+}
 
   onSubmitPrimary(){
     let itemGroupPostData:IStockItemPost={
@@ -79,7 +99,7 @@ export class StockitemComponent implements OnInit {
   itemmasterAPICall(){
     this.policiesService.GetStockItems().subscribe((data: any) => {
       this.stockitemList=data
-      
+      console.log(data);
     });
     this.policiesService.GetItemGroupList().subscribe((data: any) => {
       this.itemgroupList=data

@@ -26,29 +26,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of SupplierList">
-                                    <td>{{item.Supplier_ID}}</td>
-                                    <td>{{item.Supplier_Name}}</td>
-                                    <td>{{item.Email_Address}}</td>
-                                    <td>{{item.Fax}}</td>
-                                    <td><span class="glyphicon glyphicon-ok-circle" style="color:#d81b60;cursor:pointer;font-size: 20px; padding: 05px;" title="approve"></span>
-                                        <span class="glyphicon glyphicon-remove-circle" style="color:#d81b60;cursor:pointer;font-size:20px; padding:05px;" title="reject"></span></td>
+                                <tr *ngFor="let item of SupplierList  | paginate:{ itemsPerPage: 10 , currentPage: p };" >
+                                    <td>{{item.supplierId}}</td>
+                                    <td>{{item.supplierName}}</td>
+                                    <td>{{item.emailAddress}}</td>
+                                    <td>{{item.landLine}}</td>
                                     <td>
-                                       
-                                        <a href="/Enterprise/ES/Organizationlist?id=" data-lity style="display:none">
-                                            <i class="fa fa-eye fa-1x" style="font-size: 22px; padding: 05px;color: #d81b60;"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="fa fa-edit fa-1x" style="font-size: 22px; padding: 05px;color: #d81b60;" ng-click="EditSupplier(SuL)"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="fa fa-trash fa-1x" style="font-size: 22px;padding: 05px;color: #d81b60;" ng-click="DeleteSupplier(SuL)"></i>
-                                        </a>
-                                    </td>
-                                    <td><button class="btn bg-maroon margin" style="font-size: 15px;" ng-disabled="SuL.ledgeraccount_status==1" ng-click="CreateLedgeraccFromSupllier(SuL.supp_id)">Ledger Account</button></td>
+                                        <span class="glyphicon glyphicon-ok-circle" style="color:#102f66;cursor:pointer;font-size: 20px;padding:05px;" title="approve"></span>
+                                        <span class="glyphicon glyphicon-remove-circle" style="color:#102f66;cursor:pointer;font-size:20px;padding:05px;" title="reject"></span></td>
+                                        <td>
+                                           
+                                            <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                            <a href="#tab_2" data-toggle="tab" data-lity="" (click)="GetSupplier(item.suppId)"> 
+                                                <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
+                                            </a>
+                                            <a href="#tab_2" data-toggle="tab" data-lity="" (click)="GetSupplier(item.suppId)">
+                                                <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
+                                            </a>
+                              
+                                        </td>
+                                    <td><button class="btn bg-maroon margin" ng-disabled="CuL.ledgeraccount_status==1" ng-click="CreateLedgeraccFromCustomer(CuL.cust_id)">Ledger Account</button></td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div style="float:right;margin-top:20px;color:102f66;font-weight:800">
+                            <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                           </div>  
                         <!-- <ag-grid-angular
                         style="width:100%; height:500px;min-height:200px"
                         class="ag-theme-alpine"

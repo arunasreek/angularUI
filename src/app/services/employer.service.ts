@@ -2,7 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConfig, APP_CONFIG } from '../config/app.config.module';
 import { map } from 'rxjs/operators';
-import { IEmployerPost, IEmployeeDelete, IEmployeeEdit, IEmployeeWorkPermit } from 'src/app/models/employer.model';
+import { Observable } from 'rxjs';
+import { IEmployerPost, IEmployeeDelete, IEmployeeEdit, IEmployeeWorkPermit,IFinancialSetting,IOtherDetails} from 'src/app/models/employer.model';
 
 @Injectable()
 export class EmployerService {
@@ -10,8 +11,21 @@ export class EmployerService {
 
     }
 
+    uploadlogoNbanner(files:FormData){
+        console.log(files);
+        const headers = new HttpHeaders().append('Content-Disposition','multipart/form-data');
+        return this.http.post<any>(`${this.config.apiEndpoint}/Employee/uploadLogoNbanner`,files,{headers});
+    }
+
+    SetFinancialSettings(PostData:IFinancialSetting):Observable<any>{
+        console.log(PostData);
+        return this.http.post<any>(`${this.config.apiEndpoint}/Employee`,PostData);
+    }
+    SetOtherDetails(PostData:IOtherDetails):Observable<any>{
+        return this.http.post<any>(`${this.config.apiEndpoint}/Employee`,PostData);
+    }
     getEmployersList() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetEmployersList`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Employee/GetAllEmpList`).pipe(map((data: any) => {
             return data;
         }));
     }
@@ -41,9 +55,10 @@ export class EmployerService {
     }
 
     SetEmployerPrimarydet(postData:IEmployerPost){
-        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise/ES/SetEmployerPrimarydet`, postData).pipe(map((res: any) => {
-            return res;
-        }));
+        return this.http.post<any>(`${this.config.apiEndpoint}/Employee`,postData);
+        //return this.http.post<any>(`${this.config.apiEndpoint}/Employee/setEmployeeData`, postData).pipe(map((res: any) => {
+         //   return res;
+       // }));
     }
 
     

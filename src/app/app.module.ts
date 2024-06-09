@@ -168,6 +168,8 @@ import { GeneralDashboardComponent } from './view/dashboards/general-dashboard/g
 import { PurchaseDashboardComponent } from './view/dashboards/purchase-dashboard/purchase-dashboard.component';
 import { EmployeeGroupComponent } from './view/Hcm/employee-group/employee-group.component';
 import { SucessionManagementComponent } from './view/Hcm/sucession-management/sucession-management.component';
+import { UOMComponent } from './view/uom/uom.component';
+import { WareHouse } from './view/stock/WareHouse/warehouse.component';
 
 
 @NgModule({
@@ -322,7 +324,8 @@ import { SucessionManagementComponent } from './view/Hcm/sucession-management/su
     EmployeeGroupComponent,
     
     SucessionManagementComponent,
-
+    UOMComponent,
+    WareHouse
   ],
   imports: [
     HttpClientModule,

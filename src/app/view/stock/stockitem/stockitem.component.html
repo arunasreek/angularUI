@@ -40,30 +40,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of stockitemList?.GetStockItems">
-                                                <td class="sorting_1">{{item?.ItemCode}}</td>
-                                                <td>{{item?.ItemName}}</td>
-                                                <td>{{item?.ReorderLevelQuantity}}</td>
-                                                <td *ngIf="item?.SIStatus == 0">Available</td>
-                                                <td *ngIf="item?.SIStatus == 1">Not Available</td>
-                                                <td>{{item?.Closing_Balance}}</td>
-
+                                            <tr *ngFor="let item of stockitemList | paginate:{ itemsPerPage: 10 , currentPage: p };" >
+                                                <td class="ng-binding">{{item.itemCode}}</td>
+                                                <td class="ng-binding">{{item.itemName}}</td>
+                                                <td class="ng-binding">{{item.reorderLevelQuantity}}</td>
+                                                <td class="ng-binding" >{{item.sistatus}}</td>
+                                                <td class="ng-binding">{{item.closingBalance}}</td>
                                                 <td>
-                                                    <a href="/Stk/mgmt/ItemStockview?id" data-lity>
-                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                           
+                                                    <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetUOMById(item.unitId)"> 
+                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                        <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
                                                     </a>
-                                                    <a href="#" ng-click="EditStockitembyid(ST.stockitem_id)">
-                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetUOMById(item.unitId)">
+                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                     </a>
-                                                    <a href="#" ng-click="DltStockItembyid(ST.stockitem_id)">
-                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                                    <a href="#">
+                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
                                                     </a>
+                                      
                                                 </td>
                                             </tr>
                                         </tbody>

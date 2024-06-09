@@ -58,6 +58,7 @@ import { JobclassviewComponent } from './view/jobs/jobclassview/jobclassview.com
 import { JobgroupComponent } from './view/jobs/jobgroup/jobgroup.component';
 import { JobgroupviewComponent } from './view/jobs/jobgroupview/jobgroupview.component';
 import { ProjectsComponent } from './view/jobs/projects/projects.component';
+import {UOMComponent} from './view/uom/uom.component';
 
 import {MaterialRequisitionComponent} from './view/procurment/material-requisition/material-requisition.component';
 import {MaterialRequisitionViewComponent} from './view/procurment/material-requisition-view/material-requisition-view.component';
@@ -131,7 +132,7 @@ import { EmployeeGroupComponent } from './view/Hcm/employee-group/employee-group
 import { ProjectDashboardComponent } from './view/dashboards/project-dashboard/project-dashboard.component';
 import { GeneralDashboardComponent } from './view/dashboards/general-dashboard/general-dashboard.component';
 import { SucessionManagementComponent } from './view/Hcm/sucession-management/sucession-management.component';
-
+import { WareHouse } from './view/stock/WareHouse/warehouse.component';
 
 
 
@@ -260,6 +261,8 @@ const routes: Routes = [
   {path:'general-dashboard',component:GeneralDashboardComponent},
   {path:'employee-group',component:EmployeeGroupComponent},
   {path:'sucession-management',component:SucessionManagementComponent},
+  {path:'UOM',component:UOMComponent},
+  {path:'WareHouse',component:WareHouse}
 ];
 
 @NgModule({

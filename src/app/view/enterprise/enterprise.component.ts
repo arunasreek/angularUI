@@ -4,6 +4,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EnterpriseService } from 'src/app/services';
 import { IEnterPriseDetailsPost } from 'src/app/models/enterprise.model';
+import { IEnterPriseDataConnSettings } from 'src/app/models/enterprise.model';
+import { IFinancialSetting } from 'src/app/models/enterprise.model';
+import { IOtherDetails } from 'src/app/models/enterprise.model';
+import { tick } from '@angular/core/testing';
 declare var $:any;
 
 @Component({
@@ -16,8 +20,8 @@ export class EnterpriseComponent implements OnInit {
 
   private gridApi;
   private gridColumnApi;
-public rowData:any[];
- formData:FormData = new FormData();
+  public rowData:any[];
+  formData:FormData = new FormData();
   employeedetList: any;
   stateList:any;
   countryList:any;
@@ -26,6 +30,8 @@ public rowData:any[];
   organizationList:any;
   Date_inception:Date;
   date_Ecpiry:Date;
+  FYEDate:Date;
+  FYSDate:Date;
   p: number=1;
   EmpId:number;
 
@@ -36,6 +42,10 @@ public rowData:any[];
 
   enterpriseDetailsForm:FormGroup
   EnterpriselogoNbanner:FormGroup
+  DataConnSettings:FormGroup
+  financesettings:FormGroup
+  OtherDetails:FormGroup
+
 
   constructor(public commonService:CommonService,
                private formBuilder: FormBuilder,
@@ -59,9 +69,65 @@ public rowData:any[];
       date_Ecpiry:['']
     });
     this.EnterpriselogoNbanner = this.formBuilder.group({
-      txtentrapriceid:['']
+      txtentrapriceid:[''],
+     // fileuploadBanner:[''],
+      //fileuploadLogo:['']
 
-    })
+    });
+    this.DataConnSettings = this.formBuilder.group({
+      Dloca:[''],
+      Apploca:[''],
+      Bckuploca:[''],
+      mailserveridloca:['']
+    });
+    this.financesettings = this.formBuilder.group({
+      FCur:[''],
+      FYSDate: [''],
+      FYEDate: [''],
+      PeriodType:[''],
+      emptn:[''],
+      emppcn:[''],
+      empdn:[''],
+      empbn:['']
+    });
+    this.OtherDetails = this.formBuilder.group({
+      Country:[''],
+      State:[''],
+      city:[''],
+      Add1:[''],
+      Add2:[''],
+      p_box:[''],
+      Zipcode:[''],
+      Landline:[''],
+      Fax:[''],
+      Email:[''],
+      Website:[''],
+      ArEmployeeId:[''],
+      f_name:[''],
+      m_name:[''],
+      l_name:[''],
+      Email_a:[''],
+      A_Desig:[''],
+      A_Phone:[''],
+      A_Fax:[''],
+      A_m_No:[''],
+      A_m_Email:[''],
+      A_m_Tel:[''],
+      A_m_mobile:[''],
+      o_emp_id:[''],
+      o_f_name:[''],
+      o_m_name:[''],
+      o_L_name:[''],
+      o_Email:[''],
+      o_Desig:[''],
+      o_Phone:[''],
+      o_Fax:[''],
+      o_mobile:[''],
+      o_Email_P:[''],
+      o_T_P:[''],
+      o_M_P:['']
+    });
+
   }
 
   get a() { return this.enterpriseDetailsForm.controls; }
@@ -69,6 +135,8 @@ public rowData:any[];
   clearenterprisedata(){
     this.Date_inception=null;
     this.date_Ecpiry=null;
+    this.FYEDate = null;
+    this.FYSDate = null;
 
       this.enterpriseDetailsForm.reset();
   }
@@ -115,7 +183,7 @@ onGridReady(params) {
 onFileSelected(event: any, fieldName: string) {
   const file = event.target.files[0];
   if (file) {
-    this.formData.append(fieldName, file, file.name);
+    this.formData.append(this.EmpId.toString()+fieldName, file, file.name);
   }
   console.log(this.formData);
 }
@@ -124,16 +192,19 @@ onFileSelected(event: any, fieldName: string) {
 EntrpBannerUpload(event:any){
   var file = event.target.files[0];
  
-  this.formData.append('banner',file,'bannerpic');
+  //this.formData.append('files',file,'bannerpic');
+  this.formData.append('files',file);
   console.log(file);
 }
 
 EntrpLogoUpload(event:any){
   var file = event.target.files[0];
- 
-  this.formData.append('logo',file,'logopic');
+  this.formData.append('files',file);
+  //this.formData.append('files',file,'logopic');
   console.log(file);
 }
+
+
 
 onSubmitEnterpriseDetailslogonbanner(){
   this.enterpriseService.uploadlogoNbanner(this.formData).subscribe((data)=>{
@@ -154,6 +225,142 @@ onSubmitEnterpriseDetailslogonbanner(){
    console.log('POST request failed', error);
  }
  );
+}
+
+
+OnsubmitOtherDetails(){
+  let OtherDetails:IOtherDetails={
+    EpId:this.EmpId,
+    EnterpriseID:this.enterpriseDetailsForm.value.Enterprise_ID,
+    Country:this.OtherDetails.value.Country,
+    State :this.OtherDetails.value.State,
+    City : this.OtherDetails.value.city,
+    Address1:this.OtherDetails.value.Add1,
+    Address2 : this.OtherDetails.value.Add2,
+    PostBox : this.OtherDetails.value.p_box,
+    ZipCode : this.OtherDetails.value.Zipcode,
+    LandLine : this.OtherDetails.value.Landline,
+    Fax : this.OtherDetails.value.Fax,
+    EmailAddress:this.OtherDetails.value.Email , 
+    Website : this.OtherDetails.value.Website,
+    ArEmployeeId :this.OtherDetails.value.ArEmployeeId,
+    ArFirstName: this.OtherDetails.value.f_name,
+    ArMiddleName : this.OtherDetails.value.m_name,
+    ArLastName : this.OtherDetails.value.l_name,
+    ArEmail : this.OtherDetails.value.Email_a,
+    ArDesignation : this.OtherDetails.value.A_Desig,
+    ArPhone : this.OtherDetails.value.A_Phone,
+    ArFax : this.OtherDetails.value.A_Fax,
+    ArMobileNo : this.OtherDetails.value.A_m_No,
+    ArPreferredContactPerson :"Email",
+    OcpEmployeeId : this.OtherDetails.value.o_emp_id,
+    OcpFirstName : this.OtherDetails.value.o_f_name,
+    OcpMiddleName : this.OtherDetails.value.o_m_name,
+    OcpLastName : this.OtherDetails.value.o_L_name,
+    OcpEmail : this.OtherDetails.value.o_Email,
+    OcpDesignation: this.OtherDetails.value.o_Desig,
+    OcpPhone : this.OtherDetails.value.o_Phone,
+    OcpFax : this.OtherDetails.value.o_Fax,
+    OcpMobileNo: this.OtherDetails.value.o_mobile,
+    OcpPreferredContactPerson :"Email"
+}
+
+  console.log(OtherDetails);
+  // this.enterpriseService.setOrganization(enterPriseDetailsPost)
+  // .subscribe(data => console.log('success', data), error => console.log('error', error)) 
+
+  this.enterpriseService.SetOtherDetails(OtherDetails).subscribe((data)=>{
+     if(data){
+      this.toastr.success("Successfully Created.","Success");
+      this.commonService.getEnterprisealllist().subscribe((data: any) => {
+        this.employeedetList=data
+        this.Isupdate=true;
+      });
+      $(document).ready(function() {
+        $("#tabfirst").click();
+      });
+     }
+    // alert("Saved");
+    
+  },
+  (error) => {
+    // Handle any errors that occur during the request
+    console.log('POST request failed', error);
+  }
+  );
+}
+
+
+onSubmitEnterpriseFinancialSetting(){
+  let enterPriseFinsettings:IFinancialSetting={
+    EpId:this.EmpId,
+    EnterpriseID:this.enterpriseDetailsForm.value.Enterprise_ID,
+    PrimaryFunctionalCurrency:this.financesettings.value.FCur,
+    FinancialYearStartDate:this.FYSDate,
+    FinancialYearEndDate: this.FYEDate,
+    PayPeriodType:this.financesettings.value.PeriodType,
+    EmployerTaxNo:this.financesettings.value.emptn,
+    EmployerPanNo:this.financesettings.value.emppcn,
+    EmployerDinNo:this.financesettings.value.empdn,
+    EmployerBinNo:this.financesettings.value.empbn,
+}
+  console.log(enterPriseFinsettings);
+  // this.enterpriseService.setOrganization(enterPriseDetailsPost)
+  // .subscribe(data => console.log('success', data), error => console.log('error', error)) 
+
+  this.enterpriseService.SetFinancialSettings(enterPriseFinsettings).subscribe((data)=>{
+     if(data){
+      this.toastr.success("Successfully Created.","Success");
+      this.commonService.getEnterprisealllist().subscribe((data: any) => {
+        this.employeedetList=data
+        this.Isupdate=true;
+      });
+      $(document).ready(function() {
+        $("#tabfirst").click();
+      });
+     }
+    // alert("Saved");
+    
+  },
+  (error) => {
+    // Handle any errors that occur during the request
+    console.log('POST request failed', error);
+  }
+  );
+}
+
+onSubmitEnterpriseDataConnSettings(){
+  let enterPriseDatasettings:IEnterPriseDataConnSettings={
+    EpId:this.EmpId,
+    EnterpriseID:this.enterpriseDetailsForm.value.Enterprise_ID,
+    Dblocation:this.DataConnSettings.value.Dloca,
+    ApplicationLocation:this.DataConnSettings.value.Apploca,
+    BackupLocation:this.DataConnSettings.value.Bckuploca,
+    MailIdLocation:this.DataConnSettings.value.mailserveridloca
+}
+  console.log(enterPriseDatasettings);
+  // this.enterpriseService.setOrganization(enterPriseDetailsPost)
+  // .subscribe(data => console.log('success', data), error => console.log('error', error)) 
+
+  this.enterpriseService.SetDataConnSettings(enterPriseDatasettings).subscribe((data)=>{
+     if(data){
+      this.toastr.success("Successfully Created.","Success");
+      this.commonService.getEnterprisealllist().subscribe((data: any) => {
+        this.employeedetList=data
+        this.Isupdate=true;
+      });
+      $(document).ready(function() {
+        $("#tabfirst").click();
+      });
+     }
+    // alert("Saved");
+    
+  },
+  (error) => {
+    // Handle any errors that occur during the request
+    console.log('POST request failed', error);
+  }
+  );
 }
 
   onSubmitEnterpriseDetails(){
@@ -243,14 +450,69 @@ onSubmitEnterpriseDetailslogonbanner(){
             Enterprise_ID: item.enterpriseId,
             Entname:item.enterpriseName,
             Prmreg:item.permanentRegistration,
-            Date_inception:new Date(item.dateOfInception),
-            date_Ecpiry:new Date(item.dateOfExpiry),
+            Date_inception:new Date(item.financialYearStartDate),
+            date_Ecpiry:new Date(item.financialYearStartDate),
             ParentEnt:"true"
            
           });
           this.EnterpriselogoNbanner.setValue({
-            txtentrapriceid:item.enterpriseId
+            txtentrapriceid:item.enterpriseId,
+            //fileuploadLogo:item.enterpriseLogo,
+            //fileuploadBanner:item.enterpriseBanner
           });
+          this.DataConnSettings.setValue({
+            Dloca:item.dblocation ?? ' ',
+            Apploca:item.applicationLocation ?? ' ',
+            Bckuploca:item.backupLocation ?? ' ',
+            mailserveridloca:item.mailIdLocation ?? ' '
+          });
+          this.financesettings.setValue({
+            FCur:item.primaryFunctionalCurrency,
+            FYSDate: new Date(item.financialYearStartDate),
+            FYEDate: new Date(item.financialYearEndDate),
+            PeriodType:item.payPeriodType,
+            emptn:item.employerTaxNo,
+            emppcn:item.employerPanNo,
+            empdn:item.employerDinNo,
+            empbn:item.employerBinNo
+          });
+          this.OtherDetails.setValue({
+            Country:item.country,
+            State:item.state,
+            city:item.city,
+            Add1:item.address1,
+            Add2:item.address2,
+            p_box:item.postBox,
+            Zipcode:item.zipCode,
+            Landline:item.landLine,
+            Fax:item.fax,
+            Email:item.emailAddress,
+            Website:item.website,
+            ArEmployeeId:item.arEmployeeId,
+            f_name:item.arFirstName,
+            m_name:item.arMiddleName,
+            l_name:item.arLastName,
+            Email_a:item.arEmail,
+            A_Desig:item.arDesignation,
+            A_Phone:item.arPhone,
+            A_Fax:item.arFax,
+            A_m_No:item.arMobileNo,
+            A_m_Email:true,
+            o_emp_id:item.ocpEmployeeId,
+            o_f_name:item.ocpFirstName,
+            o_m_name:item.ocpMiddleName,
+            o_L_name:item.ocpLastName,
+            o_Email:item.ocpEmail,
+            o_Desig:item.ocpDesignation,
+            o_Phone:item.ocpPhone,
+            o_Fax:item.ocpFax,
+            o_mobile:item.ocpMobileNo,
+            o_Email_P:true,
+            A_m_Tel:false,
+            A_m_mobile:false,
+            o_T_P:false,
+            o_M_P:false
+          })
           this.Isupdate=true;
           //this.enterpriseDetailsForm.get('ParentEnt').setValue('true');
 
@@ -260,7 +522,7 @@ onSubmitEnterpriseDetailslogonbanner(){
           // this.enterpriseDetailsForm.value.Prmreg = item.permanentRegistration,
           // this.Date_inception = item.dateOfInception,
           // this.date_Ecpiry = item.dateOfExpiry
-          console.log( this.enterpriseDetailsForm);
+          console.log(this.DataConnSettings);
         }
       });
      

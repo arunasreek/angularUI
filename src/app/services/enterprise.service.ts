@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConfig, APP_CONFIG } from '../config/app.config.module';
 import { map } from 'rxjs/operators';
 import { IEnterPriseDetailsPost } from '../models/enterprise.model';
+import { IEnterPriseDataConnSettings } from '../models/enterprise.model';
+import { IFinancialSetting } from '../models/enterprise.model';
+import { IOtherDetails } from '../models/enterprise.model';
 import { Observable } from 'rxjs';
 //import { from } from 'rxjs/internal/observable/from';
 
@@ -13,6 +16,24 @@ export class EnterpriseService {
     }
 
 
+
+    SetOtherDetails(PostData:IOtherDetails):Observable<any>{
+        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise`,PostData);
+    }
+    SetFinancialSettings(PostData:IFinancialSetting):Observable<any>{
+        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise`,PostData);
+    }
+
+    SetDataConnSettings(PostData:IEnterPriseDataConnSettings):Observable<any>{
+
+
+        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise`,PostData);
+    }
+    getEnterpriseById(ep_id:number):Observable<any>{
+
+
+        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise/GetDetailsById`,ep_id);
+    }
     setOrganization(postData:IEnterPriseDetailsPost):Observable<any>{
         // const headers ={'content-type':'application/json'}
         // const body =JSON.stringify(postData);
@@ -42,8 +63,10 @@ export class EnterpriseService {
         
     }
 
-    uploadlogoNbanner(formdata:FormData){
-        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise/uploadLogoNbanner`,formdata);
+    uploadlogoNbanner(files:FormData){
+        console.log(files);
+        const headers = new HttpHeaders().append('Content-Disposition','multipart/form-data');
+        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise/uploadLogoNbanner`,files,{headers});
     }
 
     getStatelist(country_id:number) {

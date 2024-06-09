@@ -10,8 +10,14 @@ export class OrganizationService {
 
     }
 
-    getbranchlist(b_id:number) {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/Getbranchlist?${b_id}`).pipe(map((data: any) => {
+    getOrganizationUnitList(){
+        return this.http.get<any>(`${this.config.apiEndpoint}/OrganizationUnit/GetAllOrganization`).pipe(map((data: any) => {
+            return data;
+        }));
+    }
+
+    getEmpBranchList(){
+        return this.http.get<any>(`${this.config.apiEndpoint}/EmployeeBranch/GetAllEmpBranch`).pipe(map((data: any) => {
             return data;
         }));
     }
@@ -28,8 +34,8 @@ export class OrganizationService {
         }));
     }
 
-    getenterprisealllist() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/Getenterprisealllist`).pipe(map((data: any) => {
+    getEmployersList() {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Employee/GetAllEmpList`).pipe(map((data: any) => {
             return data;
         }));
     }
@@ -59,10 +65,9 @@ export class OrganizationService {
     }
 
     setOrganization(postData:IOrganiationPost){
-        return this.http.post<any>(`${this.config.apiEndpoint}/Enterprise/ES/SetOrganization`, postData).pipe(map((res: any) => {
-            return res;
-        }));
+        return this.http.post<any>(`${this.config.apiEndpoint}/OrganizationUnit`,postData);
     }
+    
     
    deleteOrganization(o_id:number) {
         return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/DelOrganization?o_id=${o_id}`).pipe(map((data: any) => {

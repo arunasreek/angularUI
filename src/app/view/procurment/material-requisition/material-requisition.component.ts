@@ -44,7 +44,7 @@ export class MaterialRequisitionComponent implements OnInit {
     this.procurementService.GetMaterialItemdetbyid().subscribe((data: any) => {
       this.materialItem=data
     });
-    this.procurementService.getbranchlist(0).subscribe((data: any) => {
+    this.procurementService.getbranchlist().subscribe((data: any) => {
       this.branchList=data
     });
     this.procurementService.GetOrganizationList().subscribe((data: any) => {

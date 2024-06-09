@@ -32,19 +32,19 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                <tr *ngFor="let item of employeedetList?.GetEmployeeDetailsList | paginate:{ itemsPerPage: 10 , currentPage: p };" class="ng-scope">
-                                      <td class="ng-binding">{{item?.employee_id}}</td>
-                                      <td class="ng-binding">{{item?.EmployeeID}}</td>
-                                      <td class="ng-binding">{{item?.ED_FirstName}}</td>
-                                      <td class="ng-binding">{{item?.ED_MiddleName}}</td>
-                                      <td class="ng-binding">{{item?.ED_Designation}}</td>
+                                <tr *ngFor="let item of employeedetList | paginate:{ itemsPerPage: 10 , currentPage: p };" class="ng-scope">
+                                      <td class="ng-binding">{{item?.employeeId}}</td>
+                                      <td class="ng-binding">{{item?.employeeId1}}</td>
+                                      <td class="ng-binding">{{item?.edFirstName}}</td>
+                                      <td class="ng-binding">{{item?.edMiddleName}}</td>
+                                      <td class="ng-binding">{{item?.edDesignation}}</td>
                                       <td>
                                           
                                           <a href="/Enterprise/ES/Employeeview?id=1" data-lity="">
                                               <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                           </a>
-                                          <a (click)="editemployee(item.employee_id)">
-                                              <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ></i>
+                                          <a (click)="editemployee(item.employeeId)">
+                                              <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                           </a>
                                           <a (click)="deleteEmployee(item.employee_id)">
                                               <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ></i>
@@ -123,7 +123,7 @@
                                                       
                                                       <select class="form-control" id="Ed_Employer_ID" formControlName="Ed_Employer_ID"  name="Ed_Employer_ID">
                                                           <option value="" disabled="" selected="selected">Select</option>
-                                                        <option *ngFor="let item of employersList?.GetEmployeeListForAll" [value]="item.emp_id">{{item?.EmployerName}}</option>
+                                                        <option *ngFor="let item of employersList" [value]="item.empId">{{item?.employerId}}</option>
                                                       </select>
     
                                                   </div>
@@ -139,7 +139,7 @@
                                                       
                                                       <select class="form-control " id="Ed_Emplr_branch" formControlName="Ed_Emplr_branch"  name="Ed_Emplr_branch">
                                                           <option value="" disabled="" selected="selected">Select</option>
-                                                          <option *ngFor="let item of empbranchlist" [value]="item.b_id">{{item.BranchName}}</option>
+                                                          <option *ngFor="let item of empbranchlist" [value]="item.bId">{{item.branchName}}</option>
                                                       </select>
     
                                                   </div>
@@ -149,8 +149,8 @@
                                                       <select class="form-control" id="Ed_prj" formControlName="Ed_prj" name="Ed_prj">
                                                           <option value="" disabled="" selected="selected">Select</option>
                                                           
-                                                          <option value="Prg1">Prg1</option>
-                                                          <option value="Prg2">Prg2</option>
+                                                          <option value="1">Prg1</option>
+                                                          <option value="2">Prg2</option>
                                                       </select>
     
                                                   </div>
@@ -371,6 +371,13 @@
 
               <div class="tab-pane panel panel-default" id="tab_1">
                 <form [formGroup]="employeeWorkForm"(ngSubmit)="onSubmitWorkPermit()">
+                    <div>
+                        <label>Select Employees Id</label>
+                        <select aria-controls="example1" class="form-control input-sm ng-pristine ng-valid ng-empty ng-touched" id="EmployeesId" formControlName="EmployeesId" name="EmployeesId">
+                            <option value="" selected="selected">--Select Employees Id--</option>
+                            <option *ngFor="let item of employeedetList" [value]="item.employeeId">{{item?.employeeId1}}</option>
+                        </select>
+                    </div>
                   <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingOne">
                           <h4 class="panel-title">
@@ -565,9 +572,9 @@
                               </div>
                           </div>
                       </div>
-                      <button type="submit" class="btn bg-maroon margin" *ngIf="Isupdate">Save</button>
-                      <button type="button" class="btn bg-maroon margin" *ngIf="Isupdate" ng-click="SetEmployeePrimarydet()">Exit</button>
-                      <button type="button" class="btn bg-maroon margin" *ngIf="Isupdate">Cancel</button>
+                      <button type="submit" class="btn bg-maroon margin" >Save</button>
+                      <button type="button" class="btn bg-maroon margin" ng-click="SetEmployeePrimarydet()">Exit</button>
+                      <button type="button" class="btn bg-maroon margin" >Cancel</button>
     
                   </div>
                 </form>
@@ -694,8 +701,6 @@
                                   </div>
                               </div>
                           </div>
-    
-    
     
                       </div>
                   </form>

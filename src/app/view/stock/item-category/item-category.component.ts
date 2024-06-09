@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {PoliciesService } from 'src/app/services';
 import { IItemCategoryPost } from 'src/app/models/item.model';
-
+declare var $:any;
 @Component({
   selector: 'app-item-category',
   templateUrl: './item-category.component.html',
@@ -11,9 +11,11 @@ import { IItemCategoryPost } from 'src/app/models/item.model';
 })
 export class ItemCategoryComponent implements OnInit {
   itemcategoryList: any;
- 
+  Isedit:number;
+  IsJBupdate:boolean;
+  p: number=1;
   ItemCategoryForm: FormGroup;
-
+  itemCategoryId:number;
   constructor(public policiesService:PoliciesService,
     private formBuilder: FormBuilder,public toastr:ToastrService) { }
 
@@ -53,9 +55,29 @@ export class ItemCategoryComponent implements OnInit {
         }
     });
   }
+
+  GetUOMById(ID:number){
+    this.itemcategoryList.forEach((value,index)=>{
+      if(value.itemgroupId == ID){
+        this.itemCategoryId = value.itemCategoryId;
+        this.ItemCategoryForm.setValue({
+          ItemGroupId:value.itemgroupId,
+          ItemGroupdesc: value.itemGroupDescription,
+        })
+        this.IsJBupdate=true;
+        this.Isedit=1;
+      } 
+      $(document).ready(function() {
+        $("#tab_1").click();
+      });
+    });
+}
+
+
   itemCategoryAPICall(){
     this.policiesService.GetItemCategoryList().subscribe((data: any) => {
       this.itemcategoryList=data
+      console.log(data);
     });
   }
 

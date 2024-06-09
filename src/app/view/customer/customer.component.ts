@@ -17,7 +17,8 @@ export class CustomerComponent implements OnInit {
   private gridApi;
   private gridColumnApi;
   public rowData:[];
-
+  Isedit:number;
+  IsJBupdate:boolean;
   customerList:any;
   customerForm: FormGroup;
   submitted: boolean;
@@ -88,6 +89,7 @@ export class CustomerComponent implements OnInit {
       Customer_ID: this.customerForm.value.Customer_Id,
       Customer_Name: this.customerForm.value.Customer_Name,
       Both_Supplier_Customer: this.customerForm.value.Customer_S_C,
+      ledgeraccount_status: this.customerForm.value.Customer_c_Legeracc,
       country_id: this.customerForm.value.Country,
       state_id: this.customerForm.value.State,
       city_id:this.customerForm.value.customer_city,
@@ -107,8 +109,6 @@ export class CustomerComponent implements OnInit {
       OCP_Phone: this.customerForm.value.Customer_Office_Phone,
       OCP_Fax: this.customerForm.value.Customer_Office_Fax,
       OCP_MobileNo: this.customerForm.value.Customer_Office_MobileNo, 
-      
-       
     }
   
     this.customerService.SetCoustomer(customerData).subscribe((data: any) => {
@@ -116,6 +116,7 @@ export class CustomerComponent implements OnInit {
         this.toastr.success("Customer Successfully Created.","Success");
      this.customerService. getCustomerList(0).subscribe((data: any) => {
       this.customerList=data
+      console.log(data);
     });
         // $(document).ready(function() {
         //   $("#tabfirst").click();
@@ -180,6 +181,46 @@ export class CustomerComponent implements OnInit {
 //         params.api.setRowData(data);
 //     });
 // }
+GetCustomer(id:number){
+  this.customerList.forEach((value,index)=>{
+    if(value.custId == id){
+     
+      this.cust_id = value.custId;
+      this.customerForm.setValue({
+        Customer_Id: value.customerId,
+        Customer_Name: value.customerName,
+        Customer_S_C: value.bothSupplierCustomer,
+        Country: value.country,
+        State:   value.stateId,
+        Customer_c_Legeracc:value.ledgeraccountStatus,
+        customer_city: value.cityId,
+        Customer_Add1: value.address1,
+        Customer_Add2: value.address2,
+        Customer_Post_Box: value.postBox,
+        Customer_Zip_code: value.zipCode,
+        Customer_Land_code: value.landLine,
+        Customer_Fax: value.fax,
+        Customer_Email: value.emailAddress,
+        Customer_Website: value.website,
+        Customer_Fname: value.ocpFirstName,
+        Customer_Mname: value.ocpMiddleName,
+        Customer_Lname: value.ocpLastName,
+        Customer_Office_email:value.ocpEmail,
+        Customer_Office_Designation:value.ocpDesignation,
+        Customer_Office_Phone:value.ocpPhone,
+        Customer_Office_Fax:value.ocpFax,
+        Customer_Office_MobileNo:value.ocpMobileNo,
+      })
+      this.IsJBupdate=true;
+      this.Isedit=1;
+    } 
+    $(document).ready(function() {
+      $('#tab_2').click();
+    });
+  });
+}
+
+
   customerServiceAPICall(){
     this.commonService. getEnterprisealllist().subscribe((data: any) => {
       this.enterprisealllist=data
@@ -188,6 +229,7 @@ export class CustomerComponent implements OnInit {
     this.customerService. getCustomerList(0).subscribe((data: any) => {
      
       this.customerList=data
+      console.log(data);
     });
     this.commonService. getEnterpriseids().subscribe((data: any) => {
        this.erpriseids=data

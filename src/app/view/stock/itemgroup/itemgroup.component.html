@@ -13,10 +13,7 @@
             </ul>
             <div class="tab-content">
                 <div class="box tab-pane active" id="lifirsttab">
-                    <div class="box-header">
-                        <h3 class="box-title">Data Table</h3>
-                    </div>
-                    <!-- /.box-header -->
+                    
                     <div class="box-body">
                         <div class="tab-pane active dataTables_wrapper form-inline dt-bootstrap">
                             <div class="row">
@@ -30,26 +27,24 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of itemgroupList?.GetItemGroups">
-                                                <td class="sorting_1">{{item?.ItemGroupID}}</td>
-                                                <td>{{item?.ItemGroupDescription}}</td>
+                                            <tr *ngFor="let item of itemgroupList | paginate:{ itemsPerPage: 10 , currentPage: p };" >
+                                                <td class="ng-binding">{{item.itemgroupId}}</td>
+                                                <td class="ng-binding">{{item.itemGroupDescription}}</td>
 
                                                 <td>
-                                                    <a href="/Stk/mgmt/stockitemView?id" data-lity>
-                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                           
+                                                    <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetUOMById(item.itemgroupId)"> 
+                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                        <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
                                                     </a>
-                                                    <a href="#" ng-click="GetItemGroupbyid(Group.itemgroup_id)">
-                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetUOMById(item.itemgroupId)">
+                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                     </a>
-                                                    <a href="#" ng-click="DltItemGroupbyid(Group.itemgroup_id)">
-                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                                    <a href="#">
+                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
                                                     </a>
+                                      
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -57,8 +52,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- /.tab-content -->
                     </div>
                 </div>
                 <div class="tab-pane" id="tab_1" ng-form="ItemGroupform1">
@@ -90,10 +83,10 @@
                                             </div>
 
                                             <!-- /.box-body -->
-                                            <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="ItemGroupform1.$invalid" >Save</button>
-                            <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin" ng-disabled="ItemGroupform1.$invalid" ng-click="SetItemGroup()">Update</button>
-                            <button type="button" class="btn bg-maroon margin" ng-click="cancelgrp()">Cancel</button>
-                            <button type="button" class="btn bg-maroon margin" ng-click="editexitgrp()">Exit</button>
+                                            <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" *ngIf="!IsJBupdate"  >Save</button>
+                                            <button type="submit" ng-show="Isedit==1" class="btn bg-maroon margin" *ngIf="IsJBupdate" >Update</button>
+                                            <button type="button" class="btn bg-maroon margin" ng-click="cancelgrp()">Cancel</button>
+                                            <button type="button" class="btn bg-maroon margin" ng-click="editexitgrp()">Exit</button>
 
                                         </form>
                                     </div>

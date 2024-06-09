@@ -8,7 +8,6 @@ import {
     EnterpriseService,
     EmployerBranchesService,
     CustomerService ,
-
     EmployerService,
     ProjectService,
     WarehouseService,
@@ -33,13 +32,11 @@ import {
         OrganizationService,
         EnterpriseService,
         EmployerBranchesService,
-
         CustomerService,
         EmployerService,
         ProjectService,
         WarehouseService,
         CharofAcctsService ,
-
         CustomerService,
         ReceiptService ,
         PoliciesService,
@@ -47,8 +44,7 @@ import {
         JournalService,
         AssestsService,
         LinkService,
-        TaskService
-
+        TaskService,
     ]
 })
 

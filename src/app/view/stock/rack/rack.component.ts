@@ -14,7 +14,15 @@ declare var $:any;
 export class RackComponent implements OnInit {
   rackList: any;
   RackForm: FormGroup;
-
+  Isupdate:boolean;
+  Isrenew:boolean;
+  IsActive:boolean;
+  IsInactive:boolean;
+  Isedit:number;
+  IsJBupdate:boolean;
+  http: any;
+  p: number=1;
+  rackId:number;
   constructor(public warehouseService:WarehouseService,
     private formBuilder: FormBuilder,public toastr:ToastrService) { }
 
@@ -85,6 +93,24 @@ export class RackComponent implements OnInit {
  RackAPICall(){
   this.warehouseService.GetRackList().subscribe((data: any) => {
     this.rackList=data
+    console.log(data);
+  });
+}
+
+GetRackById(ID:number){
+  this.rackList.forEach((value,index)=>{
+    if(value.rackId == ID){
+      this.rackId = value.rackId;
+      this.RackForm.setValue({
+        RackId:value.rackId1,
+        Rackdesc: value.rackDescription,
+      })
+      this.IsJBupdate=true;
+      this.Isedit=1;
+    } 
+    $(document).ready(function() {
+      $("#tab_1").click();
+    });
   });
 }
 

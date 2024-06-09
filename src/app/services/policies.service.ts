@@ -11,17 +11,17 @@ export class PoliciesService {
     }
 
     GetItemGroupList() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Stk/mgmt/GetItemGroupList`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/ItemGroup/GetItems`).pipe(map((data: any) => {
             return data;
         }));
     }
     GetStockItems() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Stk/mgmt/GetStockItems`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/ItemGroup/GetStockItems`).pipe(map((data: any) => {
             return data;
         }));
     }
     GetItemCategoryList() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Stk/mgmt/GetItemCategoryList`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/ItemGroup/GetItemCategoryList`).pipe(map((data: any) => {
             return data;
         }));
     }

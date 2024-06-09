@@ -14,3 +14,10 @@ export interface IRackPost {
     RackID: string,
     RackDescription: string,
 }
+
+export interface IWareHouse{
+    WarehouseId:number,
+    WarehouseId1:string,
+    WarehouseDescription:string,
+    Status:boolean,
+}

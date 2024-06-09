@@ -37,27 +37,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of purchaseReq?.GetPurchaseReqList ">
-                                            <td>{{item?.purchase_id}}</td>
-                                            <td>{{item?.Supplier_Name}}</td>                                           
-                                            <td>{{item?.delivery_location}}</td>
-                                            <td>{{item?.dateof_delivery}}</td>
-                                            <td>                                                
-                                                <a href="/procure/pc/purchasereqview?id=&As_id=" data-lity>
+                                        <tr *ngFor="let item of purchaseReq | paginate:{ itemsPerPage: 10 , currentPage: p };" >
+                                            <td class="ng-binding">{{item.requisitionId}}</td>
+                                            <td class="ng-binding">{{item.supplierName}}</td>
+                                            <td class="ng-binding">{{item.cpMobileNo}}</td>
+                                            <td class="ng-binding">{{item.dateOfDelivery}}</td>
+                                            <td>
+                                       
+                                                <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                                    <!-- (click)="GetUOMById(item.unitId)" -->
+                                                <a href="#tab_1" data-toggle="tab" data-lity=""  (click)="GetPurchaseById(item.requisitionId)"> 
                                                     <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                    <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
+                                                </a>
+                                                <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetPurchaseById(item.requisitionId)">
+                                                    <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                 </a>
                                                 <a href="#">
-                                                    <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" ng-click="EditPurmaterailreq(GEL.purchase_id,GEL.As_id)"></i>
+                                                    <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
                                                 </a>
-                                                <a href="#">
-                                                    <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="DltPurreqbyId(GEL.purchase_id,GEL.As_id)"></i>
-                                                </a>
+                                  
                                             </td>
-                                        </tr>
-
-
-
-                                    </tbody>
+                                            
+                                        </tr>                                            
+                                    </tbody>      
                                     <!--   <tfoot>
                                     <tr>
                                     <th rowspan="1" colspan="1">Rendering engine</th>
@@ -67,6 +70,9 @@
                                     <th rowspan="1" colspan="1">CSS grade</th></tr>
                                     </tfoot> -->
                                 </table>
+                                <div style="float:right;margin-top:20px;color:#102f66;font-weight:800">
+                                    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                                   </div> 
                             </div>
                         </div>
                     </div>
@@ -101,21 +107,21 @@
                                                             <label for="exampleInputpassword">Employer ID</label>
                                                             <select class="form-control" id="emp_id" formControlName="pur_emp_id" name="pur_emp_id">
                                                                 <option value="" >select</option>
-                                                                <option *ngFor="let item of employerId" value="{{item.EmployerID}}">{{item.EmployerName}}</option>
+                                                                <option *ngFor="let item of employerId" value="{{item.epId}}">{{item.employerName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Employer Branch</label>
                                                             <select class="form-control" id="emp_brnch" formControlName="pur_emp_brnch" name="pur_emp_brnch">
                                                                 <option value="" >select</option>
-                                                                <option *ngFor="let item of branchlist" value="{{item.BranchId}}">{{item.BranchName}}</option>
+                                                                <option *ngFor="let item of branchlist" value="{{item.branchId}}">{{item.branchName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Organisation Unit</label>
                                                             <select class="form-control" id="orgunit" formControlName="pur_orgunit" name="pur_orgunit">
                                                                 <option value="" >select</option>
-                                                                <option *ngFor="let item of organizationlist" value="{{item.Org_ID}}">{{item.OrganizationName}}</option>
+                                                                <option *ngFor="let item of organizationlist" value="{{item.orgId}}">{{item.organizationName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
@@ -127,7 +133,8 @@
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Material Request ID</label>
-                                                            <input type="text" class="form-control" data-target="#pur_mat_req_id" id="mat_req_id" data-toggle="modal" formControlName="pur_mat_req_id" name="pur_mat_req_id"  placeholder="&#61442;" style="font-family: FontAwesome;">
+                                                            <input type="text" class="form-control"   id="mat_req_id"  name="pur_mat_req_id"  placeholder="&#61442;" style="font-family: FontAwesome;">
+                                                            <!-- data-target="#pur_mat_req_id" data-toggle="modal" formControlName="pur_mat_req_id" -->
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleinputemail1">purchase requisition id</label>
@@ -163,6 +170,7 @@
                                                             <!-- <input type="text" class="form-control" id="pur_dt_delvry" formControlName="pur_dt_delvry" name="pur_dt_delvry" placeholder="dd-mm-yy"> -->
                                                             <input type="text"
                                                             class="form-control"
+                                                            formController="pur_dt_delvry"
                                                              #dp="bsDatepicker"
                                                             bsDatepicker [(bsValue)]="pur_dt_delvry" >     
                                                         </div>
@@ -194,9 +202,9 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody id="txtbody">
-                                                                    <tr ng-repeat="item in ItemsList" ng-if="item.status<3">
+                                                                    <tr >
                                                                         <td><input type="text" class="form-control" id="slno_" value="" placeholder="S.No" readonly /></td>
-                                                                        <td id="td"><input type="text" class="form-control" id="itemid" data-target="#pur_item_id" ng-model="item.itemid"  placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td onclick="addrow()"><input type="text" class="form-control" id="itemid" data-target="#pur_item_id"  data-toggle="modal" ng-model="item.itemid"  placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
                                                                         <td><input type="text" name="description_$index" ng-model="item.description" id="description" class="form-control" readonly></td>
                                                                         <td width="150"><input ng-model="item.quantity" id="quantity" type="text" class="form-control"></td>
                                                                         <td width="150"><input ng-model="item.unitmeasure" id="unitmeasure" type="text" class="form-control" readonly></td>
@@ -217,6 +225,10 @@
                                                     <!--  <div class="box-footer">
                                                       <button type="submit" class="btn btn-primary">Submit</button>
                                                     </div> -->
+                                                    <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" *ngIf="!IsJBupdate" >Save</button>
+                                                    <button type="button" ng-show="Isedit==1"  class="btn bg-maroon margin" *ngIf="IsJBupdate"  ng-click="onSubmitPrimary()">Update</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-click="canceljbcls()">Cancel</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-click="exitjbcls()">Exit</button>
 
                                                 </form>
                                             </div>
@@ -253,12 +265,11 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr ng-repeat="item in GetStockitemsList">
-                                                                    <td><input type="radio" name="Empcheckgrp" id="itemcheck" value="" ng-model="Itemcheck" ng-click="GetItemdet(item)" /></td>
-                                                                    <td style="display:none;"></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
+                                                                <tr *ngFor="let stock of stockItemsList">
+                                                                    <td><input type="radio" name="Empcheckgrp" id="itemcheck" value="" ng-model="Itemcheck" (click)="GetItemdet(stock)" /></td>
+                                                                    <td>{{stock.itemCode}}</td>
+                                                                    <td>{{stock.itemName}}</td>     
+                                                                    <td>{{stock.unitOfMeasure}}</td>
                                                                 </tr>
                                                             </tbody>
 
@@ -270,7 +281,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                       
+                                        <button type="button" id="stockc" class="btn btn-default" data-dismiss="modal">close</button>
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +355,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title" style="text-align:center">Select Item</h4>
+                                        <h4 class="modal-title" style="text-align:center">Select Supplier</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="box-body">
@@ -369,10 +380,10 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr *ngFor="let item of supplierList?.GetSupplierList">
-                                                                    <td><input type="radio" name="item" ng-click="GetindividuvalSupdet(suplist)" /></td>
-                                                                    <td>{{item?.supp_id}}</td>
-                                                                    <td>{{item?.Supplier_Name}}</td>                                                                  
+                                                                <tr *ngFor="let item of supplierList">
+                                                                    <td><input type="radio" name="Supplier" (click)="GetindividuvalSupdet(item)" /></td>
+                                                                    <td>{{item.suppId}}</td>
+                                                                    <td>{{item.supplierName}}</td>                                                                  
                                                                 </tr>
                                                             </tbody>                                                            
                                                         </table>
@@ -384,7 +395,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                                        <button type="button" class="btn btn-default" id="close" data-dismiss="modal">close</button>
                                     </div>
                                 </div>
                             </div>
@@ -398,6 +409,7 @@
     </div>
 </section>
 <script type="text/javascript">
+
     function addrow() {
         var html = '<tr>' +
                     '<td><input type="text" class="form-control"  placeholder="S.No"/></td>' +
@@ -409,6 +421,9 @@
                     '</tr>'
         $(html).appendTo($("#txtbody"))
     };
+    $("#td").on("click",function(){
+        addrow();
+    });
     function deleterow() {
         var par = $(this).parent().parent();
         par.remove();

@@ -19,9 +19,9 @@
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 160px;">Requisition ID</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 203px;">Supplier Name</th>
-                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
+                                             <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">Parent Enterprise</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Inception</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th> 
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Date Of Expiry Date</th>  -->
 
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 136px;">Supplier Contact Person</th>
 
@@ -38,20 +38,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="Qta in GetPurQuatationList">
-                                            <td></td>
-                                            <td></td>
-                                             <td></td>
-    <td></td>
-    <td></td> 
-                                            <td></td>
-                                            <td></td>
+                                        <tr *ngFor="let item of purQuatdet | paginate:{ itemsPerPage: 10 , currentPage: p };" >
+                                            <td class="ng-binding">{{item.quotationId}}</td>
+                                            <td class="ng-binding">{{item.supplierName}}</td>
+                                            <td class="ng-binding">{{item.cpMobileNo}}</td>
+                                            <td class="ng-binding">{{item.dateOfDelivery}}</td>
                                             <td>
                                                 <span class="glyphicon glyphicon-ok-circle" style="color: #d81b60;cursor:pointer;font-size:20px;padding:05px;" title="approve"></span>
                                                 <span class="glyphicon glyphicon-remove-circle" style="color: #d81b60;cursor:pointer; font-size:20px;padding:05px;" title="approve"></span>
                                             </td>
                                             <td>
-                                                 edit 
+                                                  
                                                 <a href="/procure/pc/purchaseQuatView?id" data-lity>
                                                     <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                 </a>
@@ -103,64 +100,64 @@
                                                 <!-- /.box-header -->
                                                 <!-- form start -->
 
-                                                <form role="form">
+                                                <form [formGroup]="PRForm" (ngSubmit)="onSubmitPrimary()">
 
                                                     <div class="box-body">
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Employer ID</label>
-                                                            <select class="form-control" id="pur_quo_emp_id" ng-model="pur_quo_emp_id" name="pur_quo_emp_id" onchange="GetEmplrbarchllist()">
+                                                            <select class="form-control" id="pur_quo_emp_id" formControlName="pur_quo_emp_id" name="pur_quo_emp_id" onchange="GetEmplrbarchllist()">
                                                                 <option value="" >select</option>
-                                                                <option *ngFor="let item of employerId" value="{{item.EmployerID}}">{{item.EmployerName}}</option>
+                                                                <option *ngFor="let item of employerId" value="{{item.epId}}">{{item.employerName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Employer Branch</label>
-                                                            <select class="form-control" id="pur_quo_emp_brnch" ng-model="pur_quo_emp_brnch" name="pur_quo_emp_brnch">
+                                                            <select class="form-control" id="pur_quo_emp_brnch" formControlName="pur_quo_emp_brnch" name="pur_quo_emp_brnch">
                                                                 <option value="0" >select</option>
-                                                                <option *ngFor="let item of branchList" value="{{item.BranchId}}">{{item.BranchName}}</option>
+                                                                <option *ngFor="let item of branchList" value="{{item.branchId}}">{{item.branchName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Organisation Unit</label>
-                                                            <select class="form-control" id="pur_quo_orgunit" ng-model="pur_quo_orgunit" name="pur_quo_orgunit">
+                                                            <select class="form-control" id="pur_quo_orgunit" formControlName="pur_quo_orgunit" name="pur_quo_orgunit">
                                                                 <option value="">select</option>
-                                                                <option *ngFor="let item of organizationlist" value="{{item.Org_ID}}">{{item.OrganizationName}}</option>
+                                                                <option *ngFor="let item of organizationlist" value="{{item.orgId}}">{{item.organizationName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword">Project</label>
-                                                            <select class="form-control" id="pur_quo_project" ng-model="pur_quo_project" name="pur_quo_project">
+                                                            <select class="form-control" id="pur_quo_project" formControlName="pur_quo_project" name="pur_quo_project">
                                                                 <option value="" >select</option>
                                                                 <option *ngFor="let item of projectList?.UpdateProjectDetails " value="{{item?.ProjectID}}">{{item?.ProjectName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Requisition ID</label>
-                                                            <input type="text" class="form-control" id="pur_quoreq_id" data-target="#pur_quo_req_id" data-toggle="modal" ng-model="pur_quo_req_id" name="pur_quo_req_id" placeholder="&#61442;" style="font-family: FontAwesome;">
+                                                            <input type="text" class="form-control" id="pur_quoreq_id" data-target="#pur_quo_req_id" data-toggle="modal" formControlName="pur_quo_requ_id" name="pur_quo_req_id" placeholder="&#61442;" style="font-family: FontAwesome;">
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Quotation ID</label>
-                                                            <input type="text" class="form-control" id="pur_quo_id" placeholder="Quotation ID" ng-model="pur_quo_id" name="pur_quo_id">
+                                                            <input type="text" class="form-control" id="pur_quo_id" placeholder="Quotation ID" formControlName="pur_quo_id" name="pur_quo_id">
 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Supplier Name</label>
-                                                            <input type="text" class="form-control" data-target="#pur_quo_sup" data-toggle="modal" id="pur_quo_sup_name" ng-model="pur_quo_sup_name" name="pur_quo_sup_name" placeholder="&#61442;" style="font-family: FontAwesome;">
+                                                            <input type="text" class="form-control" data-target="#pur_quo_sup" data-toggle="modal" id="pur_quo_sup_name" formControlName="pur_quo_sup_name" name="pur_quo_sup_name" placeholder="&#61442;" style="font-family: FontAwesome;">
                                                         </div>
                                                        
                                                        
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Contact Person Name</label>
-                                                            <input type="text" class="form-control" id="pur_quo_cnt_per_name" ng-model="pur_quo_cnt_per_name" name="pur_quo_cnt_per_name" placeholder="Contact Person Name" readonly>
+                                                            <input type="text" class="form-control" id="pur_quo_cnt_per_name" formControlName="pur_quo_cnt_per_name" name="pur_quo_cnt_per_name" placeholder="Contact Person Name" readonly>
                                                         </div>
 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Contact Person Mobile No</label>
-                                                            <input type="text" class="form-control" id="pur_quo_cnt_per_mobno" ng-model="pur_quo_cnt_per_mobno" name="pur_quo_cnt_per_mobno" placeholder="" readonly>
+                                                            <input type="text" class="form-control" id="pur_quo_cnt_per_mobno" formControlName="pur_quo_cnt_per_mobno" name="pur_quo_cnt_per_mobno" placeholder="" readonly>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputFile">Supplier Address</label>
-                                                            <textarea class="form-control" id="pur_quo_sup_add" ng-model="pur_quo_sup_add" name="pur_quo_sup_add" readonly></textarea>
+                                                            <textarea class="form-control" id="pur_quo_sup_add" formControlName="pur_quo_sup_add" name="pur_quo_sup_add" readonly></textarea>
                                                         </div>
                                                         <!-- 	<div class="form-group col-md-3">
                                                           <label for="exampleInputPassword1">Start Date / Renewed Date</label>
@@ -173,12 +170,13 @@
                                                             <input type="text"
                                                             placeholder="dd-mm-yy"
                                                             class="form-control"
+                                                            formControlName="pur_quo_dt_delvry"
                                                              #dp="bsDatepicker"
                                                             bsDatepicker [(bsValue)]="pur_quo_dt_delvry" > 
                                                         </div> 
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Remarks</label>
-                                                            <textarea class="form-control" id="pur_quo_remarks" ng-model="pur_quo_remarks" name="pur_quo_remarks" placeholder="Remarks"></textarea>
+                                                            <textarea class="form-control" id="pur_quo_remarks" formControlName="pur_quo_remarks" name="pur_quo_remarks" placeholder="Remarks"></textarea>
                                                         </div>
                                                        
                                                         <br />
@@ -213,28 +211,29 @@
                                                                         <td></td>
                                                                         <td></td>
                                                                         <td></td>
-                                                                        <td><input type="text" class="form-control" /></td>
-                                                                        <td><input type="text" class="form-control" /></td>
-                                                                        <td><input type="text" class="form-control" /></td>
+                                                                        <td><input type="text" id="Distype" class="form-control" /></td>
+                                                                        <td><input type="text" id="TDisAmt" class="form-control" /></td>
+                                                                        <td><input type="text" id="TAmt" class="form-control" /></td>
                                                                     </tr>
                                                                 </tfoot> 
                                                                 <tbody id="txtbody">
-                                                                    <tr ng-repeat="item in ItemsList" ng-if="item.status<3">
+                                                                    <tr >
                                                                         <td><input type="text" class="form-control" id="slno" value="" placeholder="S.No" readonly /></td>
-                                                                        <td id="td"><input type="text" class="form-control" id="itemid" ng-model="item.itemid" ng-click="GetItempopup($index)" placeholder="&#61442;" style="font-family:FontAwesome;" /></td>
+                                                                        <td ><input type="text" class="form-control" id="itemid" data-target="#pur_item_id" data-toggle="modal" ng-model="pur_item_id" name="pur_item_id" placeholder="&#61442;" style="font-family: FontAwesome;"></td>
+                                                                        <!-- <td><input type="text" class="form-control" id="itemid" data-target="#pur_item_id"  data-toggle="modal" ng-model="item.itemid"  placeholder="&#61442;" style="font-family:FontAwesome;" /></td> -->
                                                                         <td><input type="text" name="description_$index" ng-model="item.description" id="description" class="form-control" readonly></td>
                                                                         <td width="150"><input ng-model="item.quantity" id="quantity_" type="text" class="form-control"></td>
                                                                         <td width="150"><input ng-model="item.unitmeasure" id="unitmeasure" type="text" class="form-control" readonly></td>
                                                                         <td><input ng-model="item.price" id="price" type="text" class="form-control" ng-keyup="GetTaxamount($index)"></td>
                                                                         <td><input ng-model="item.taxamt" id="taxamt" type="text" class="form-control"></td>
                                                                         <td width="150">
-                                                                            <select ng-model="item.distype" id="distype" name="discnttype" class="form-control" ng-change="Getclearamt($index)">
+                                                                            <select ng-model="item.distype" id="distype" name="discnttype" class="form-control" ng-change="Getclearamt()">
                                                                                 <option value="" selected>Select</option>
-                                                                                <option value="A">Amount</option>
-                                                                                <option value="P">Percentage</option>
+                                                                                <option value="Amount">Amount</option>
+                                                                                <option value="Percentage">Percentage</option>
                                                                             </select>
                                                                         </td>                                                                        
-                                                                        <td><input ng-model="item.discountamt" id="discountamt" type="text" class="form-control" ng-keyup="GetcaltotAmt($index)"></td>
+                                                                        <td><input ng-model="item.discountamt" id="discountamt" type="text" class="form-control" (blur)="GetcaltotAmt()"></td>
                                                                         <td><input ng-model="item.totamt" id="totamt" type="text" class="form-control"></td>
                                                                         
                                                                         <td ng-click="deletrow($index,item.PQTrans_Id)"></td>
@@ -255,6 +254,10 @@
                                                     <!--  <div class="box-footer">
                                                       <button type="submit" class="btn btn-primary">Submit</button>
                                                     </div> -->
+                                                    <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" *ngIf="!IsJBupdate" >Save</button>
+                                                    <button type="button" ng-show="Isedit==1"  class="btn bg-maroon margin" *ngIf="IsJBupdate"  ng-click="onSubmitPrimary()">Update</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-click="canceljbcls()">Cancel</button>
+                                                    <button type="button" class="btn bg-maroon margin" ng-click="exitjbcls()">Exit</button>
 
                                                 </form>
                                             </div>
@@ -266,7 +269,7 @@
 
                         </div>
 
-                        <div class="modal fade" id="pur_Item_id" role="dialog">
+                        <div class="modal fade" id="pur_item_id" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -276,14 +279,7 @@
                                     <div class="modal-body">
                                         <div class="box-body">
                                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                                                <div class="row">                                                 
-                                                     <div class="text-center">
-                                                        </div>
-                                                    <div class="text-right col-sm-12">
-                                                        <label for="exampleinput">Search</label>
-                                                        <input type="search" id="pur_search" ng-model="pur_search" name="pur_search" />
-                                                    </div> 
-
+                                                <div class="row">                                                                                                     
                                                     <div id="prdct_details" class="row">
                                                         <table class="table table-bordered table-striped dataTable" role="grid">
                                                             <thead>
@@ -292,17 +288,16 @@
                                                                     <th>Item ID</th>
                                                                     <th>Item Description</th>
                                                                     <th>UM</th>
-                                                                     <th>Available Quantity</th>
-    <th>Reorder Level Quantity</th> 
+                                                                     <!-- <th>Available Quantity</th>
+                                                                    <th>Reorder Level Quantity</th>  -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr ng-repeat="item in GetStockitemsList">
-                                                                    <td><input type="radio" name="Empcheckgrp" id="itemcheck" value="" ng-model="Itemcheck" ng-click="GetItemdet(item)" /></td>
-                                                                    <td style="display:none;"><label id="lblitemid_"></label></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
+                                                                <tr *ngFor="let stock of stockItems">
+                                                                    <td><input type="radio" name="Empcheckgrp" id="itemcheck" value="" ng-model="Itemcheck" (click)="GetItemdet(stock)" /></td>
+                                                                    <td>{{stock.itemCode}}</td>
+                                                                    <td>{{stock.itemName}}</td>     
+                                                                    <td>{{stock.unitOfMeasure}}</td>
                                                                 </tr>
                                                             </tbody>
 
@@ -314,7 +309,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        
+                                        <button type="button" id="stockc" class="btn btn-default" data-dismiss="modal">close</button>
                                     </div>
                                 </div>
                             </div>
@@ -347,10 +342,10 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr *ngFor="let item of purchaseReq?.GetPurchaseReqList">
-                                                                    <td><input type="radio" name="purchase" id="purMat" value="" ng-model="Itemcheck" ng-click="GetPurchaseDet(pur)" /></td>
-                                                                    <td>{{item?.purchase_id}}</td>
-                                                                    <td>{{item?.Supplier_Name}}</td>
+                                                                <tr *ngFor="let item of purchaseReq">
+                                                                    <td><input type="radio" name="purchase" id="purMat" value="" ng-model="Itemcheck" (click)="GetPurchaseDet(item)" /></td>
+                                                                    <td>{{item.requisitionId}}</td>
+                                                                    <td>{{item.supplierName}}</td>
                                                                      <!-- <td></td>
                                                                         <td></td>
                                                                         <td></td>  -->
@@ -366,7 +361,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                                        <button type="button" class="btn btn-default" id="close" data-dismiss="modal">close</button>
                                     </div>
                                 </div>
                             </div>
@@ -411,10 +406,10 @@
                                                             </thead>
                                                             <tbody>
                                                                 
-                                                                <tr *ngFor="let item of supplierList?.GetSupplierList">
-                                                                    <td><input type="radio" name="supitem" ng-click="GetindividuvalSupdet(suplist)" /></td>
-                                                                    <td>{{item?.Supplier_ID}}</td>
-                                                                    <td>{{item?.Supplier_Name}}</td>
+                                                                <tr *ngFor="let item of supplierList">
+                                                                    <td><input type="radio" name="supitem" (click)="GetindividuvalSupdet(item)" /></td>
+                                                                    <td>{{item.supplierId}}</td>
+                                                                    <td>{{item.supplierName}}</td>
                                                                 </tr>                                                                                                                                
                                                             </tbody>
                                                         </table>
@@ -426,7 +421,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                                        <button type="button" class="btn btn-default" id="closeS" data-dismiss="modal">close</button>
                                     </div>
                                 </div>
                             </div>
@@ -457,38 +452,47 @@
                                                 <!-- /.box-header -->
                                                 <!-- form start -->
 
-                                                <form role="form">
+                                                <form [formGroup]="PRShipping" (ngSubmit)="onsubmitShipment()">
 
                                                     <div class="box-body">
                                                         <div class="form-group col-md-3">
+                                                            <label for="exampleInputPassword1"><span style="color:blue;">QuatationID</span><span style="color:#d81b60;">*</span></label>
+                                                             <!-- <input type="text" class="form-control" id="pur_quo_del_state" formControlName="pur_quo_del_state" name="pur_quo_del_state" placeholder="Delivery State" required>  -->
+                                                             <select class="form-control" id="pur_quo_ID" formControlName="pur_quo_ID" name="pur_quo_ID" >
+                                                                <option value="" >select</option>
+                                                                <option *ngFor="let item of purQuatdet" value="{{item.quotationId}}">{{item.quotationId}}</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1"><span style="color:blue;">Name Of Receiving Company</span><span style="color:#d81b60;">*</span></label>
-                                                            <input type="text" class="form-control" id="pur_quo_rec_compny" ng-model="pur_quo_rec_compny" name="pur_quo_rec_compny" placeholder="Name Of Receiving Company" required>
+                                                            <input type="text" class="form-control" id="pur_quo_rec_compny" formControlName="pur_quo_rec_compny" name="pur_quo_rec_compny" placeholder="Name Of Receiving Company" required>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputEmail1">Contact Person</label>
-                                                            <input type="text" class="form-control" id="pur_qou_cnt_per" placeholder="Contact Person" ng-model="pur_qou_cnt_per" name="pur_qou_cnt_per">
+                                                            <input type="text" class="form-control" id="pur_qou_cnt_per" placeholder="Contact Person" formControlName="pur_qou_cnt_per" name="pur_qou_cnt_per">
 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Mobile</label>
-                                                            <input type="text" class="form-control" ng-model="pur_quo_mobile" name="pur_quo_mobile" id="pur_quo_mobile" placeholder="Mobile">
+                                                            <input type="text" class="form-control" formControlName="pur_quo_mobile" name="pur_quo_mobile" id="pur_quo_mobile" placeholder="Mobile">
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputFile">Landline</label>
-                                                            <input type="text" class="form-control" id="pur_quo_landline" ng-model="pur_quo_landline" name="pur_quo_landline" placeholder="Landline">
+                                                            <input type="text" class="form-control" id="pur_quo_landline" formControlName="pur_quo_landline" name="pur_quo_landline" placeholder="Landline">
                                                         </div>
                                                         <br />
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1">Fax</label>
-                                                            <input type="text" class="form-control" id="pur_quo_fax" ng-model="pur_quo_fax" name="pur_quo_fax" placeholder="Fax">
+                                                            <input type="text" class="form-control" id="pur_quo_fax" formControlName="pur_quo_fax" name="pur_quo_fax" placeholder="Fax">
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword"><span style="color:blue;">Receiving Company Tax ID</span><span style="color:#d81b60;">*</span></label>
-                                                            <input type="text" class="form-control" id="pur_tax_id" ng-model="pur_quo_recng_com_tax_id" name="pur_quo_recng_com_tax_id" placeholder="Receiving Company Tax ID" required>
+                                                            <input type="text" class="form-control" id="pur_tax_id" formControlName="pur_quo_recng_com_tax_id" name="pur_quo_recng_com_tax_id" placeholder="Receiving Company Tax ID" required>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Mode Of Shipment</span><span style="color:#d81b60;">*</span></label>
-                                                            <select type="text" class="form-control" id="pur_mode_shpmnt" ng-model="pur_quo_mode_of_shpmnt" name="pur_quo_mode_of_shpmnt" placeholder="" required>
+                                                            <select type="text" class="form-control" id="pur_mode_shpmnt" formControlName="pur_quo_mode_of_shpmnt" name="pur_quo_mode_of_shpmnt" placeholder="" required>
                                                                 <option value="0" disabled>please select</option>
                                                                 <option value="ByAir">By Air</option>
                                                                 <option value="BySea">By Sea</option>
@@ -502,15 +506,15 @@
                                          -->
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Port Of Origon</span><span style="color:#d81b60;">*</span></label>
-                                                            <input type="text" class="form-control" id="pur_quo_prtorgn" ng-model="pur_quo_prtorgn" name="pur_quo_prtorgn" placeholder="Port Of Origon" required>
+                                                            <input type="text" class="form-control" id="pur_quo_prtorgn" formControlName="pur_quo_prtorgn" name="pur_quo_prtorgn" placeholder="Port Of Origon" required>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Port Of Destination</span><span style="color:#d81b60;">*</span></label>
-                                                            <input type="text" class="form-control" id="pur_quo_prtdest" ng-model="pur_quo_prtdest" name="pur_quo_prtdest" placeholder="Port Of Destination" required>
+                                                            <input type="text" class="form-control" id="pur_quo_prtdest" formControlName="pur_quo_prtdest" name="pur_quo_prtdest" placeholder="Port Of Destination" required>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword"><span style="color:blue;">Shipment Terms</span><span style="color:#d81b60;">*</span></label>
-                                                            <select class="form-control" id="pur_shpmnterms" ng-model="pur_quo_shpmnterms" name="pur_quo_shpmnterms" required>
+                                                            <select class="form-control" id="pur_shpmnterms" formControlName="pur_quo_shpmnterms" name="pur_quo_shpmnterms" required>
                                                                 <option value="" disabled>select</option>
                                                                 <option value="FOB">FOB</option>
                                                                 <option value="CAD">CAD</option>
@@ -518,45 +522,50 @@
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Date Of Delivery</span><span style="color:#d81b60;">*</span></label>
-                                                            <input type="text" class="form-control" id="pur_quo_dt_delvry" ng-model="pur_quo_dt_delvry" name="pur_quo_dt_delvry" placeholder="dd-mm-yy" required>
+                                                            <input type="text"
+                                                            placeholder="dd-mm-yy"
+                                                            class="form-control"
+                                                            formControlName="pur_quo_dt_delvrys"
+                                                             #dp="bsDatepicker"
+                                                            bsDatepicker [(bsValue)]="pur_quo_dt_delvrys" > 
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Delivery Country</span><span style="color:#d81b60;">*</span></label>
-                                                             <input type="text" class="form-control" id="pur_quo_del_country" ng-model="pur_quo_del_country" name="pur_quo_del_country" placeholder="Delivery Country" required> 
-                                                            <select class="form-control" id="pur_quo_del_country" ng-model="Country" name="Country" ng-change="GetStateList()">
-                                                                <option value="0" disabled>--Select Country Id--</option>
-                                                                <option ng-repeat="C in Countrylist" value="">()</option>
+                                                             <!-- <input type="text" class="form-control" id="pur_quo_del_country" formControlName="pur_quo_del_country" name="pur_quo_del_country" placeholder="Delivery Country" required>  -->
+                                                             <select class="form-control" id="pur_quo_del_country" formControlName="pur_quo_del_country" name="pur_quo_del_country" onchange="GetEmplrbarchllist()">
+                                                                <option value="" >select</option>
+                                                                <option *ngFor="let item of countryList" value="{{item.countryId}}">{{item.countryName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Delivery State</span><span style="color:#d81b60;">*</span></label>
-                                                             <input type="text" class="form-control" id="pur_quo_del_state" ng-model="pur_quo_del_state" name="pur_quo_del_state" placeholder="Delivery State" required> 
-                                                            <select class="form-control" id="pur_quo_del_state" ng-model="State" name="State"  ng-change="GetCityList()">
-                                                                <option value="0" disabled>--Select State--</option>
-                                                                <option ng-repeat="S in Satelist" value=""></option>
+                                                             <!-- <input type="text" class="form-control" id="pur_quo_del_state" formControlName="pur_quo_del_state" name="pur_quo_del_state" placeholder="Delivery State" required>  -->
+                                                             <select class="form-control" id="pur_quo_del_state" formControlName="pur_quo_del_state" name="pur_quo_del_state" >
+                                                                <option value="" >select</option>
+                                                                <option *ngFor="let item of statesList" value="{{item.stateId}}">{{item.stateName}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputPassword1"><span style="color:blue;">Delivery City</span><span style="color:#d81b60;">*</span></label>
-                                                            <input type="text" class="form-control" id="pur_quo_del_city" ng-model="pur_quo_del_city" name="pur_quo_del_city" placeholder="Delivery City" required>
-                                                             <select class="form-control" id="pur_quo_del_city" ng-model="City" name="City">
-                                                                <option value="0" disabled>--Select City--</option>
-                                                                <option ng-repeat="C in Citylist" value=""></option>
-                                                            </select> 
+                                                            <!-- <input type="text" class="form-control" id="pur_quo_del_city" formControlName="pur_quo_del_city" name="pur_quo_del_city" placeholder="Delivery City" required> -->
+                                                            <select class="form-control" id="pur_quo_del_city" formControlName="pur_quo_del_city" name="pur_quo_del_city" >
+                                                                <option value="" >select</option>
+                                                                <option *ngFor="let item of citiesList" value="{{item.cityId}}">{{item.cityName}}</option>
+                                                            </select>
                                                         </div>
                                                         
                                                        
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword"><span style="color:blue;">Delivery Address</span><span style="color:#d81b60;">*</span></label>
-                                                            <textarea class="form-control" id="pur_quo_del_add" ng-model="pur_quo_del_add" name="pur_quo_del_add" placeholder="Delivery Address" required></textarea>
+                                                            <textarea class="form-control" id="pur_quo_del_add" formControlName="pur_quo_del_add" name="pur_quo_del_add" placeholder="Delivery Address" required></textarea>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInput"><span style="color:blue;">Delivery Terms</span><span style="color:#d81b60;">*</span></label>
-                                                            <textarea class="form-control" id="pur_quo_del_terms" ng-model="pur_quo_del_terms" name="pur_quo_del_terms"></textarea>
+                                                            <textarea class="form-control" id="pur_quo_del_terms" formControlName="pur_quo_del_terms" name="pur_quo_del_terms"></textarea>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <label for="exampleInputpassword"><span style="color:blue;">Remarks</span><span style="color:#d81b60;">*</span></label>
-                                                            <textarea class="form-control" id="pur_quo_remrk" ng-model="pur_quo_remrk" name="pur_quo_remrk" placeholder="Remarks" required></textarea>
+                                                            <textarea class="form-control" id="pur_quo_remrk" formControlName="pur_quo_remrk" name="pur_quo_remrk" placeholder="Remarks" required></textarea>
                                                         </div>
 
 
@@ -566,6 +575,10 @@
                                                     <!--  <div class="box-footer">
                                       <button type="submit" class="btn btn-primary">Submit</button>
                                     </div> -->
+                                    <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" *ngIf="!IsJBupdate" >Save</button>
+                                    <button type="button" ng-show="Isedit==1"  class="btn bg-maroon margin" *ngIf="IsJBupdate"  ng-click="onSubmitPrimary()">Update</button>
+                                    <button type="button" class="btn bg-maroon margin" ng-click="canceljbcls()">Cancel</button>
+                                    <button type="button" class="btn bg-maroon margin" ng-click="exitjbcls()">Exit</button>
 
                                                 </form>
                                             </div>

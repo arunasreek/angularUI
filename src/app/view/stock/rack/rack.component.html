@@ -30,29 +30,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of rackList?.GetRackDet">
-                                                <td class="sorting_1">{{item?.RackID}}</td>
-                                                <td>{{item?.RackDescription}}</td>
-
-
+                                            <tr *ngFor="let item of rackList | paginate:{ itemsPerPage: 10 , currentPage: p };" >
+                                                <td class="ng-binding">{{item.rackId1}}</td>
+                                                <td class="ng-binding">{{item.rackDescription}}</td>
+                                                <!-- <td class="ng-binding">{{item.status}}</td> -->
                                                 <td>
-                                                    <a href="/Stk/mgmt/InventRackView?id" data-lity>
-                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                           
+                                                    <!-- <a href="/Enterprise/ES/EntrapriseListView?id=10008" data-lity=""> -->
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetRackById(item.rackId)"> 
+                                                        <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
+                                                        <!-- <i class="fa fa-eye fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;" (click) ="GetEnterprise()"></i> -->
                                                     </a>
-                                                    <a href="#" ng-click="GetRackbyid(rack.rack_id)">
-                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                                    <a href="#tab_1" data-toggle="tab" data-lity="" (click)="GetRackById(item.rackId)">
+                                                        <i class="fa fa-edit fa-1x" style="font-size: 14px; padding: 05px;color: #d81b60;"></i>
                                                     </a>
-                                                    <a href="#" ng-click="DltRackbyid(rack.rack_id)">
-                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;
-                                                            padding: 05px;    color: #d81b60;
-                                                        "></i>
+                                                    <a href="#">
+                                                        <i class="fa fa-trash fa-1x" style="font-size: 14px;padding: 05px;color: #d81b60;" ng-click="EnterpriseDelete(GEL)"></i>
                                                     </a>
+                                      
                                                 </td>
-                                            </tr>
+                                            </tr>  
                                         </tbody>
                                     </table>
                                 </div>
@@ -91,8 +88,9 @@
                                             </div>
 
                                             <!-- /.box-body -->
-                                            <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" ng-disabled="rackform1.$invalid" ng-click="SetRackdet()">Save</button>
-                                            <button type="button" ng-show="Isedit==1" class="btn bg-maroon margin" ng-disabled="rackform1.$invalid" ng-click="SetRackdet()">Update</button>
+                                           
+                                            <button type="submit" ng-show="Isedit==0" class="btn bg-maroon margin" *ngIf="!IsJBupdate" >Save</button>
+                                            <button type="submit" ng-show="Isedit==1" class="btn bg-maroon margin" *ngIf="IsJBupdate" >Update</button>
                                             <button type="button" class="btn bg-maroon margin">Cancel</button>
                                             <button type="button" class="btn bg-maroon margin">Exit</button>
 

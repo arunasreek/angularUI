@@ -14,7 +14,17 @@ export class CommonService {
     }
 
     getCountry() {
-        return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetCountry`).pipe(map((data: any) => {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Common/GetAllCountries`).pipe(map((data: any) => {
+            return data;
+        }));
+    }
+    getStates() {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Common/GetStates`).pipe(map((data: any) => {
+            return data;
+        }));
+    }
+    getCities() {
+        return this.http.get<any>(`${this.config.apiEndpoint}/Common/GetCities`).pipe(map((data: any) => {
             return data;
         }));
     }
