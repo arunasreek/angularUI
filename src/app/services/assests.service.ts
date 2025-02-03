@@ -25,7 +25,7 @@ export class AssestsService {
         return this.http.get<any>(`${this.config.apiEndpoint}/Financila/Fn/GetAccountnums`).pipe(map((data: any) => {
             return data;
         }));
-    } 
+    }
     Getbranchlist(){
         return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/Getbranchlist`).pipe(map((res: any) => {
             return res;
@@ -43,7 +43,7 @@ export class AssestsService {
         }));
     }
 
-   
+
     getEnterpriseids() {
         return this.http.get<any>(`${this.config.apiEndpoint}/Enterprise/ES/GetEnterpriseids`).pipe(map((data: any) => {
             return data;

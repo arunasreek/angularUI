@@ -37,7 +37,7 @@ tr:hover{
     margin-left: 0;
     background: none;
   }
-  
+
   .breadcrumb span,
   .breadcrumb a {
     margin-right: 10px;
@@ -196,7 +196,7 @@ ul li ul {
                     #cssmenu ul li a:hover:before {
                         width: 100%;
                     }
-                
+
                 #cssmenu ul li a:after {
                     content: '';
                     display: block;
@@ -290,7 +290,6 @@ ul li ul {
       .main-header .sidebar-toggle .icon-bar {
         display: none;
       }
- 
-     
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

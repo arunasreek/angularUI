@@ -11,7 +11,7 @@ export class LineChart6Component implements OnInit {
   private gLib: any;
 
 
-  constructor(private gChartService : GoogleChartService) { 
+  constructor(private gChartService : GoogleChartService) {
     this.gLib = this.gChartService.getGoogle();
     this.gLib.charts.load('current', {'packages':['corechart','table']});
     this.gLib.charts.setOnLoadCallback(this.drawChart.bind(this));
@@ -22,7 +22,7 @@ export class LineChart6Component implements OnInit {
   private drawChart(){
     let data = this.gLib.visualization.arrayToDataTable([
       ['Day', 'Q2', 'Q3','Q4'],
-     
+
       [1,  37.8, 80.8, 41.8],
       [2,  30.9, 69.5, 32.4],
       [3,  25.4,   57, 25.7],
